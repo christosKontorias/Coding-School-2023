@@ -23,12 +23,12 @@ namespace Session_04
         }
         public int DaysCalculation()
         {
-            int secToDays = numberinSeconds / 86400;
+            int secToDays = numberinSeconds / (24 * 3600);
             return secToDays;
         }
         public int YearsCalculation()
         {
-            int secToYears = numberinSeconds / 31536000;
+            int secToYears = numberinSeconds / 3153600;
             return secToYears;
         }
         

@@ -9,7 +9,8 @@ internal class Program
         ProgramThree programThree = new ProgramThree();
         ProgramFour programFour = new ProgramFour();
         ProgramFive programFive = new ProgramFive();
-
+        ProgramSix programSix = new ProgramSix();
+        ProgramSeven programSeven = new ProgramSeven();
 
 
 
@@ -17,26 +18,50 @@ internal class Program
         Console.WriteLine();
         Console.WriteLine("Question 1:");
         Console.WriteLine(programOne.HelloName());
+
         Console.WriteLine();
+
         Console.WriteLine("Question 2:");
-        Console.WriteLine(programTwo.Sum());
-        Console.WriteLine(programTwo.Division());
+        Console.WriteLine("The sum:" + " 8.5 " + "+ " + "1.5" + " = "+ programTwo.Sum());
+        Console.WriteLine("The division:" + " 8.5 " + "/ " + "1.5" + " = " + programTwo.Division());
+
         Console.WriteLine();
+
         Console.WriteLine("Question 3:");
         Console.WriteLine("A: " + programThree.operationOne());
-        Console.WriteLine(programThree.operationTwo());
-        Console.WriteLine(programThree.operationThree());
-        Console.WriteLine(programThree.operationFour());
-        Console.WriteLine(programThree.operationFive());
+        Console.WriteLine("B: " + programThree.operationTwo());
+        Console.WriteLine("C: " + programThree.operationThree());
+        Console.WriteLine("E: " + programThree.operationFive());
+
         Console.WriteLine();
+
         Console.WriteLine("Question 4:");
         Console.WriteLine(programFour.GenderAge());
+
         Console.WriteLine();
+
         Console.WriteLine("Question 5:");
-        Console.WriteLine(programFive.MinutesCalculation());
-        Console.WriteLine(programFive.HoursCalculation());
-        Console.WriteLine(programFive.DaysCalculation());
-        Console.WriteLine(programFive.YearsCalculation());
+        Console.WriteLine("In Seconds: 45678.");
+        Console.WriteLine("Minutes: " + programFive.MinutesCalculation());
+        Console.WriteLine("Hours: " + programFive.HoursCalculation());
+        Console.WriteLine("Days: " + programFive.DaysCalculation());
+        Console.WriteLine("Years: " + programFive.YearsCalculation());
+
+        Console.WriteLine();
+
+        Console.WriteLine("Question 6:");
+        Console.WriteLine("Minutes: " + programSix.MinutesTimeSpan());
+        Console.WriteLine("Hours: " + programSix.HoursTimeSpan());
+        Console.WriteLine("Days: " + programSix.DaysTimeSpan());
+        Console.WriteLine("Years: " + programSix.YearsTimeSpan());
+
+
+
+        Console.WriteLine();
+        Console.WriteLine("Question 7:");
+        Console.WriteLine("Celcius: 25.5");
+        Console.WriteLine("Kelvin: " + programSeven.CelsiusToKelvin());
+        Console.WriteLine("Fahrenheit: " + programSeven.CelsiusToFahrenheit());
 
 
         Console.ReadLine(); 
