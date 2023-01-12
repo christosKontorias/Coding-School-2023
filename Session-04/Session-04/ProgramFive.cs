@@ -13,6 +13,7 @@ namespace Session_04
         public int MinutesCalculation()
         {
             int secToMinutes = numberinSeconds / 60;
+            Console.WriteLine("In Seconds: 45678.");
             return secToMinutes;
         }
         

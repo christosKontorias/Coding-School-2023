@@ -12,7 +12,6 @@ namespace Session_04
         double numberA = 8.5;
         double numberB = 1.5;
 
-
         public double Sum()
         {
             double sum = numberA + numberB;

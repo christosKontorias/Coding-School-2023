@@ -9,16 +9,16 @@ namespace Session_04
     internal class ProgramSeven
     {
 
-        double celsius = 25.5;
+        double celsiusDegrees = 25.5;
 
         public double CelsiusToKelvin()
         {
-            double kelvin = celsius + 273;
+            double kelvin = celsiusDegrees + 273;
             return kelvin;
         }
         public double CelsiusToFahrenheit()
         {
-            double fahrenheit = celsius * 18 / 10 + 32;
+            double fahrenheit = celsiusDegrees * 18 / 10 + 32;
             return fahrenheit;
         }
     }

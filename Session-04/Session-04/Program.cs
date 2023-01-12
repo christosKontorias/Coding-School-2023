@@ -31,6 +31,7 @@ internal class Program
         Console.WriteLine("A: " + programThree.operationOne());
         Console.WriteLine("B: " + programThree.operationTwo());
         Console.WriteLine("C: " + programThree.operationThree());
+        Console.WriteLine("D: " + programThree.operationFour());
         Console.WriteLine("E: " + programThree.operationFive());
 
         Console.WriteLine();
@@ -41,7 +42,6 @@ internal class Program
         Console.WriteLine();
 
         Console.WriteLine("Question 5:");
-        Console.WriteLine("In Seconds: 45678.");
         Console.WriteLine("Minutes: " + programFive.MinutesCalculation());
         Console.WriteLine("Hours: " + programFive.HoursCalculation());
         Console.WriteLine("Days: " + programFive.DaysCalculation());
@@ -55,9 +55,8 @@ internal class Program
         Console.WriteLine("Days: " + programSix.DaysTimeSpan());
         Console.WriteLine("Years: " + programSix.YearsTimeSpan());
 
-
-
         Console.WriteLine();
+
         Console.WriteLine("Question 7:");
         Console.WriteLine("Celcius: 25.5");
         Console.WriteLine("Kelvin: " + programSeven.CelsiusToKelvin());
