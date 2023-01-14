@@ -1,6 +1,8 @@
 ﻿using Session_05;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Serialization;
+using static Session_05.ProgramFive;
 
 internal class Program
 {
@@ -8,9 +10,7 @@ internal class Program
     {
         ProgramOne programOne = new ProgramOne();
         ProgramTwo programTwo = new ProgramTwo();
-
-
-        ProgramFive programFive = new ProgramFive();
+        ProgramThree programThree = new ProgramThree();
 
 
 
@@ -56,17 +56,19 @@ internal class Program
                             break;                        }
                         else
                         {
-                            Console.WriteLine("Invalid entry. Please press Enter to go back to question two menu!");
+                            Console.WriteLine("Invalid entry. Please press Enter to go back to question 2 menu!");
                             Console.ReadLine();
                             Console.Clear();
                         }
                     } while (true);
 
-
                     break;
 
                 case "3":
-
+                    Console.WriteLine(programThree.AllPrimeNumbers());
+                    Console.WriteLine("Press Enter to Go Back!");
+                    Console.ReadLine();
+                    Console.Clear();
                     break;
 
                 case "4":
@@ -74,7 +76,9 @@ internal class Program
                     break;
 
                 case "5":
-                    Console.WriteLine();
+                    int[] array = { 0, -2, 1, 20, -31, 50, -4, 17, 89, 100 };
+                    Sorting.SortArray(array);
+
                     Console.WriteLine("Press Enter to Go Back!");
                     Console.ReadLine();
                     Console.Clear();

@@ -10,6 +10,25 @@ namespace Session_05
 {
     internal class ProgramFive
     {
+        public class Sorting
+        {
+            public static void SortArray(int[] arr)
+            {
+                Console.WriteLine("Initial Array: ");
+                Console.WriteLine(string.Join(" ", arr));
+                Array.Sort(arr);
 
+
+                Array.Sort(arr);
+                Console.WriteLine("Array sorted in ascending order: ");
+                foreach (int num in arr)
+                {
+                    Console.Write(num + " ");
+                }
+
+                Console.WriteLine();
+
+            }
+        }
     }
 }
