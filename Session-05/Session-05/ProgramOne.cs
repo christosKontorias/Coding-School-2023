@@ -15,7 +15,7 @@ namespace Session_05
             name = "Christos";
             reverseName = "";
 
-            Console.WriteLine("Name is {0}", name, ".");
+            Console.WriteLine("Name is {0}.", name);
 
             // Find Name Length
             int length;
@@ -26,7 +26,7 @@ namespace Session_05
                 length--;
             }
 
-            return "The Reversed name is: " + reverseName + ".";
+            return "The Reverse name is: " + reverseName + ".";
         }
 
     }
