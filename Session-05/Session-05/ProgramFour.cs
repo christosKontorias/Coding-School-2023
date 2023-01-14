@@ -10,14 +10,14 @@ namespace Session_05
     {
         public static void MultiplyArrays(int[] array1, int[] array2)
         {
-            int[] result = new int[array1.Length * array2.Length];
+            int[] newArray = new int[array1.Length * array2.Length];
             int index = 0;
 
             for (int i = 0; i < array1.Length; i++)
             {
                 for (int j = 0; j < array2.Length; j++)
                 {
-                    result[index] = array1[i] * array2[j];
+                    newArray[index] = array1[i] * array2[j];
                     index++;
                 }
             }
@@ -29,7 +29,7 @@ namespace Session_05
             Console.WriteLine(string.Join(" ", array2));
 
             Console.WriteLine("Result Array: ");
-            foreach (int num in result)
+            foreach (int num in newArray)
             {
                 Console.Write(num + " ");
             }

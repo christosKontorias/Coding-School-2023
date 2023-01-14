@@ -16,14 +16,10 @@ namespace Session_05
             reverseName = "";
 
             Console.WriteLine("Name is {0}.", name);
-
-            // Find Name Length
-            int length;
-            length = name.Length - 1;
-            while (length >= 0)
+   
+            for (int i = name.Length - 1; i >= 0; i--)
             {
-                reverseName = reverseName + name[length];
-                length--;
+                reverseName += name[i];
             }
 
             return "The Reverse name is: " + reverseName + ".";

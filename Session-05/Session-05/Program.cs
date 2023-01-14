@@ -2,7 +2,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Serialization;
-using static Session_05.ProgramFive;
 
 internal class Program
 {
@@ -11,8 +10,8 @@ internal class Program
         ProgramOne programOne = new ProgramOne();
         ProgramTwo programTwo = new ProgramTwo();
         ProgramThree programThree = new ProgramThree();
-        ProgramFive programFive = new ProgramFive();
 
+        ProgramFive programFive = new ProgramFive();
 
 
         String choice, questionTwochoice;
@@ -66,7 +65,7 @@ internal class Program
                     break;
 
                 case "3":
-                    Console.WriteLine(programThree.AllPrimeNumbers());
+                    programThree.AllPrimeNumbers();                    
                     Console.WriteLine("Press Enter to Go Back!");
                     Console.ReadLine();
                     Console.Clear();
@@ -83,7 +82,7 @@ internal class Program
 
                 case "5":
                     int[] array = { 0, -2, 1, 20, -31, 50, -4, 17, 89, 100 };
-                    Sorting.SortArray(array);
+                    programFive.SortArray(array);
                     Console.WriteLine("Press Enter to Go Back!");
                     Console.ReadLine();
                     Console.Clear();

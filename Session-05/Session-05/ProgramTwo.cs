@@ -12,37 +12,29 @@ namespace Session_05
     {
         public int Sum()
         {
-            int i, n, sum = 0;
+            int sum = 0;
 
             Console.WriteLine("Enter the value of an integer n :");
+            int n = int.Parse(Console.ReadLine());
 
-            n = Convert.ToInt32(Console.ReadLine());
-
-            for (i = 1; i <= n; i++)
+            for (int i = 1; i <= n; i++)
             {
                 sum += i;
             }
-
-            //Console.WriteLine("Total sum: " + sum);
-
             return sum;
         }
 
         public int Product()
         {
-            int i, n, product = 1;
+            int product = 1;
 
             Console.WriteLine("Enter the value of an integer n :");
+            int n = int.Parse(Console.ReadLine());
 
-            n = Convert.ToInt32(Console.ReadLine());
-
-            for (i = 1; i <= n; i++)
+            for (int i = 1; i <= n; i++)
             {
-                product = product * i;
+                product *= i;
             }
-
-            //Console.WriteLine("Total product: " + product);
-
             return product;
         }
     }
