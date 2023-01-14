@@ -11,6 +11,7 @@ internal class Program
         ProgramOne programOne = new ProgramOne();
         ProgramTwo programTwo = new ProgramTwo();
         ProgramThree programThree = new ProgramThree();
+        ProgramFive programFive = new ProgramFive();
 
 
 
@@ -72,13 +73,17 @@ internal class Program
                     break;
 
                 case "4":
-
+                    int[] array1 = { 2, 4, 9, 12 };
+                    int[] array2 = { 1, 3, 7, 10 };
+                    ProgramFour.MultiplyArrays(array1, array2);
+                    Console.WriteLine("Press Enter to Go Back!");
+                    Console.ReadLine();
+                    Console.Clear();
                     break;
 
                 case "5":
                     int[] array = { 0, -2, 1, 20, -31, 50, -4, 17, 89, 100 };
                     Sorting.SortArray(array);
-
                     Console.WriteLine("Press Enter to Go Back!");
                     Console.ReadLine();
                     Console.Clear();
