@@ -7,15 +7,19 @@ internal class Program
     private static void Main(string[] args)
     {
         ProgramOne programOne = new ProgramOne();
+        ProgramTwo programTwo = new ProgramTwo();
+
+
+        ProgramFive programFive = new ProgramFive();
 
 
 
-        String choice;
+        String choice, questionTwochoice;
 
-        DisplayMenu();
+        DisplayMainMenu();
         choice = Console.ReadLine();
 
-        while(choice != "6")
+        while (choice != "6")
         {
             switch(choice)
             {
@@ -27,6 +31,37 @@ internal class Program
                     break;
                 
                 case "2":
+                    do
+                    {
+                        DisplayQuestionTwoMenu();
+
+                        questionTwochoice = Console.ReadLine().ToUpper();
+
+                        if (questionTwochoice == "A")
+                        {
+                            Console.WriteLine("The Sum is: " + programTwo.Sum() + ".");
+                            Console.WriteLine("Press Enter to Go Back!");
+                            Console.ReadLine();
+                            Console.Clear();
+                        }
+                        else if (questionTwochoice == "B")
+                        {
+                            Console.WriteLine("The Product is: " + programTwo.Product() + ".");
+                            Console.WriteLine("Press Enter to Go Back!");
+                            Console.ReadLine();
+                            Console.Clear();
+                        }
+                        else if (questionTwochoice == "C")
+                        {
+                            break;                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid entry. Please press Enter to go back to question two menu!");
+                            Console.ReadLine();
+                            Console.Clear();
+                        }
+                    } while (true);
+
 
                     break;
 
@@ -39,25 +74,28 @@ internal class Program
                     break;
 
                 case "5":
-
+                    Console.WriteLine();
+                    Console.WriteLine("Press Enter to Go Back!");
+                    Console.ReadLine();
+                    Console.Clear();
                     break;
 
                 default:
                     {
                         Console.WriteLine("Invalid entry. Please press Enter to go back to main menu!");
                         Console.ReadLine();
-                        DisplayMenu();
+                        DisplayMainMenu();
                         break;
                     }
             }
 
             Console.Clear();
-            DisplayMenu();
+            DisplayMainMenu();
             choice = Console.ReadLine(); 
         }
     }
 
-    static void DisplayMenu()
+    static void DisplayMainMenu()
     {
         Console.WriteLine("Session 5 EXERCISE");
         Console.WriteLine();
@@ -71,5 +109,17 @@ internal class Program
 
         Console.WriteLine("Enter Choice: ");
     }
+    static void DisplayQuestionTwoMenu()
+    {
+        Console.WriteLine("Question 2");
+        Console.WriteLine();
+        Console.WriteLine("A. Calculates the sum of an integer from 1 to n.");
+        Console.WriteLine("B. Calculates the product of an integer from 1 to n.");
+        Console.WriteLine("C. Exit");
+        Console.WriteLine();
+
+        Console.WriteLine("Enter Choice: ");
+    }
+
 
 }
