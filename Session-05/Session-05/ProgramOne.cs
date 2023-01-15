@@ -21,9 +21,7 @@ namespace Session_05
             {
                 reverseName += name[i];
             }
-
             return "The Reverse name is: " + reverseName + ".";
         }
-
     }
 }

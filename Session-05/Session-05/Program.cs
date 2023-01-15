@@ -12,7 +12,6 @@ internal class Program
         ProgramThree programThree = new ProgramThree();
         ProgramFive programFive = new ProgramFive();
 
-
         String choice, questionTwochoice;
 
         DisplayMainMenu();
@@ -95,7 +94,6 @@ internal class Program
                         break;
                     }
             }
-
             Console.Clear();
             DisplayMainMenu();
             choice = Console.ReadLine(); 
@@ -116,6 +114,7 @@ internal class Program
 
         Console.WriteLine("Enter Choice: ");
     }
+
     static void DisplayQuestionTwoMenu()
     {
         Console.WriteLine("Question 2");
@@ -127,6 +126,4 @@ internal class Program
 
         Console.WriteLine("Enter Choice: ");
     }
-
-
 }

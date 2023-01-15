@@ -16,7 +16,6 @@ namespace Session_05
             Console.WriteLine(string.Join(" ", arr));
             Array.Sort(arr);
 
-
             Array.Sort(arr);
             Console.WriteLine("Array sorted in ascending order: ");
             foreach (int num in arr){

@@ -33,7 +33,6 @@ namespace Session_05
             {
                 Console.Write(num + " ");
             }
-
             Console.WriteLine();
         }
     }
