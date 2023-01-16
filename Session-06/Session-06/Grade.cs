@@ -15,6 +15,6 @@ namespace Session_06
         public int Grade { get; set; }
     }
 
-    //Constructos
+    //Constructor
 
 }

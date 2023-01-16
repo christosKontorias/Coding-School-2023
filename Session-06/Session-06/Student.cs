@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Session_06
 {
-    class Student
+    class Student : Person
     {
         //Properties
         public int RegistrationNumber { get; set; }
@@ -22,5 +22,7 @@ namespace Session_06
         {
 
         }
+
+        //Constructor
     }
 }

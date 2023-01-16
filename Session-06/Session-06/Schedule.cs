@@ -15,6 +15,6 @@ namespace Session_06
         public DateTime Callendar { get; set; }
 
 
-        //Constructos
+        //Constructor
     }
 }

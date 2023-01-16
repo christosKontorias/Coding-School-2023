@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Session_06
 {
-    class Professor
+    class Professor : Person
     {
         //Properties
         public string? Rank { get; set; }
@@ -14,7 +14,7 @@ namespace Session_06
 
 
         //Methods
-        public void Teach(string course, DateTime datetime)
+        public void Teach(Course[] course, DateTime datetime)
         {
 
         }
@@ -26,5 +26,7 @@ namespace Session_06
         {
 
         }
+
+        //Constructor
     }
 }

@@ -13,7 +13,7 @@ namespace Session_06
         public string? Code { get; set; }
         public string? Subject { get; set; }
 
-        //Constructos
+        //Constructor
 
     }
 }
