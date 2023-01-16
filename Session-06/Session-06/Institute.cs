@@ -25,5 +25,24 @@ namespace Session_06
         }
 
         //Constructor
+        public Institute()
+        {
+
+        }
+        public Institute(Guid id)
+        {
+            ID = id;
+        }
+        public Institute(Guid id, string name)
+        {
+            ID = id;
+            Name = name;
+        }
+        public Institute(Guid id, string name, int yearinservice)
+        {
+            ID = id;
+            Name = name;
+            YearsInService = yearinservice;
+        }
     }
 }
