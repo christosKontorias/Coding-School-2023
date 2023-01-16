@@ -25,5 +25,24 @@ namespace Session_06
         }
 
         //Constructor
+        public Person()
+        {
+
+        }
+        public Person(Guid id)
+        {
+            ID = id;
+        }
+        public Person(Guid id, string name)
+        {
+            ID = id;
+        }
+        public Person(Guid id, string name, int age)
+        {
+            ID = id;
+            Name = name;
+            Age = age;
+        }
+
     }
 }
