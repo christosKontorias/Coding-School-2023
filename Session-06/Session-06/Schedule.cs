@@ -16,5 +16,31 @@ namespace Session_06
 
 
         //Constructor
+        public Schedule()
+        {
+
+        }
+        public Schedule(Guid id)
+        {
+            ID = id;
+        }
+        public Schedule(Guid id, Guid courseid)
+        {
+            ID = id;
+            CourseID = courseid;
+        }
+        public Schedule(Guid id, Guid studentid, Guid courseid, Guid professorid)
+        {
+            ID = id;
+            CourseID = courseid;
+            ProfessorID = professorid;
+        }
+        public Schedule(Guid id, Guid studentid, Guid courseid, Guid professorid, DateTime callendar)
+        {
+            ID = id;
+            CourseID = courseid;
+            ProfessorID = professorid;
+            Callendar = callendar;
+        }
     }
 }
