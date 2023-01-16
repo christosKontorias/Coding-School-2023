@@ -36,7 +36,7 @@ namespace Session_06
         {
             Rank = rank;
         }
-        public Professor(string rank, Course[]? courses)
+        public Professor(string rank, Course[] courses)
         {
             Rank = rank;
             Courses = courses;

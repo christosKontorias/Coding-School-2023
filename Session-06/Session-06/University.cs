@@ -35,5 +35,31 @@ namespace Session_06
         }
 
         //Constructor
+        public University()
+        {
+
+        }
+        public University(Student[] students)
+        {
+            Students = students;
+        }
+        public University(Student[] students, Course[] courses)
+        {
+            Students = students;
+            Courses = courses;
+        }
+        public University(Student[] students, Course[] courses, Grade[] grade)
+        {
+            Students = students;
+            Courses = courses;
+            //Grade = grade;
+        }
+        public University(Student[] students, Course[] courses, Grade[] grade, Schedule[] scheduledcourse)
+        {
+            Students = students;
+            Courses = courses;
+            //Grade = grade;
+            ScheduledCourse = scheduledcourse;
+        }
     }
 }
