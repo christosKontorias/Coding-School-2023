@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Session_06
 {
-    class Student : Person
+    class Student : Person 
     {
         //Properties
         public int RegistrationNumber { get; set; }
@@ -24,6 +25,10 @@ namespace Session_06
         }
 
         //Constructor
+        public Student(Guid id, string name, int age) : base(id, name, age)
+        {
+
+        }
         public Student()
         {
 
@@ -37,5 +42,6 @@ namespace Session_06
             RegistrationNumber = registrationNumber;
             Courses = courses;
         }
+
     }
 }

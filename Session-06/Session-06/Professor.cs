@@ -28,7 +28,11 @@ namespace Session_06
         }
 
         //Constructor
-        public Professor()
+        public Professor(Guid id, string name, int age) : base(id, name, age)
+        {
+
+        }
+        public Professor() 
         {
 
         }

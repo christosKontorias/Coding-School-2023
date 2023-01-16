@@ -35,10 +35,15 @@ namespace Session_06
         }
 
         //Constructor
+        public University(Guid id, string name, int yearinservice) : base (id, name, yearinservice)
+        {
+
+        }
         public University()
         {
 
         }
+
         public University(Student[] students)
         {
             Students = students;
@@ -62,4 +67,5 @@ namespace Session_06
             ScheduledCourse = scheduledcourse;
         }
     }
+    
 }
