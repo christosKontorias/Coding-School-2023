@@ -28,5 +28,19 @@ namespace Session_06
         }
 
         //Constructor
+        public Professor()
+        {
+
+        }
+        public Professor(string rank)
+        {
+            Rank = rank;
+        }
+        public Professor(string rank, Course[]? courses)
+        {
+            Rank = rank;
+            Courses = courses;
+        }
+
     }
 }

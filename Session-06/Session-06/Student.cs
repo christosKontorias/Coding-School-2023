@@ -24,5 +24,18 @@ namespace Session_06
         }
 
         //Constructor
+        public Student()
+        {
+
+        }
+        public Student(int registrationNumber)
+        {
+            RegistrationNumber = registrationNumber;
+        }
+        public Student(int registrationNumber, Course[] courses)
+        {
+            RegistrationNumber = registrationNumber;
+            Courses = courses;
+        }
     }
 }
