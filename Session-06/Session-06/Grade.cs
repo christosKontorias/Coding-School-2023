@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace Session_06
 {
-    internal class Grade
+    class Grade
     {
+        //Properties
+        public Guid ID { get; set; }
+        public Guid StudentID { get; set; }
+        public Guid CourseID { get; set; }
+        public int Grade { get; set; }
     }
+
+    //Constructos
+
 }

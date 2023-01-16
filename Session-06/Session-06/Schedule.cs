@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace Session_06
 {
-    internal class Schedule
+    class Schedule
     {
+        //Properties
+        public Guid ID { get; set; }
+        public Guid CourseID { get; set; }
+        public Guid ProfessorID { get; set; }
+        public DateTime Callendar { get; set; }
+
+
+        //Constructos
     }
 }

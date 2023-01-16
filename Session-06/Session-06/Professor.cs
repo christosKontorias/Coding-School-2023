@@ -6,7 +6,25 @@ using System.Threading.Tasks;
 
 namespace Session_06
 {
-    internal class Professor
+    class Professor
     {
+        //Properties
+        public string? Rank { get; set; }
+        public Course[]? Courses { get; set; }
+
+
+        //Methods
+        public void Teach(string course, DateTime datetime)
+        {
+
+        }
+        public void SetGrade(Guid studentID, Guid courseID, int grade)
+        {
+
+        }
+        public void GetName()
+        {
+
+        }
     }
 }
