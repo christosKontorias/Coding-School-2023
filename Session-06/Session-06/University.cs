@@ -52,13 +52,13 @@ namespace Session_06
         {
             Students = students;
             Courses = courses;
-            //Grade = grade;
+            Grades = grade;
         }
         public University(Student[] students, Course[] courses, Grade[] grade, Schedule[] scheduledcourse)
         {
             Students = students;
             Courses = courses;
-            //Grade = grade;
+            Grades = grade;
             ScheduledCourse = scheduledcourse;
         }
     }

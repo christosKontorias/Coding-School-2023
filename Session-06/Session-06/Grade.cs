@@ -13,7 +13,7 @@ namespace Session_06
         public Guid ID { get; set; }
         public Guid StudentID { get; set; }
         public Guid CourseID { get; set; }
-        public int grade { get; set; }
+        public int GradeValue { get; set; }
 
 
         //Constructor
@@ -36,12 +36,12 @@ namespace Session_06
             StudentID = studentid;
             CourseID = courseid;
         }
-        public Grade(Guid id, Guid studentid, Guid courseid, int grade)
+        public Grade(Guid id, Guid studentid, Guid courseid, int gradevalue)
         {
             ID = id;
             StudentID = studentid;
             CourseID = courseid;
-            //Grade = grade;
+            GradeValue = gradevalue;
         }
     }
 }
