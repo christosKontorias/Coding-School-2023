@@ -13,6 +13,7 @@ namespace Session_07
         public Guid ResponseID { get; set; }
         public string Output { get; set; }
 
+        //Constructor
         public ActionResponse()
         {
             RequestID = Guid.NewGuid();

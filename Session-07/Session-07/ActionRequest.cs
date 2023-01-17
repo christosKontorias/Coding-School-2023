@@ -21,8 +21,6 @@ namespace Session_07
 
         public ActionEnum Action { get; set; }
 
-
-
         public ActionRequest()
         {
             RequestID = Guid.NewGuid(); 

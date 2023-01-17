@@ -12,7 +12,7 @@ namespace Session_07
         public Guid ID { get; set; }
         public DateTime TimeStamp { get; set; }
         public string MessageValue { get; set; }
-
+        //Constructor
         public Message()
         {
             ID = Guid.NewGuid(); 
