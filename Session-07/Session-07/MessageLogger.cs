@@ -11,24 +11,27 @@ namespace Session_07
         //Properties
         public Message[] Messages { get; set; }
         int maxMessages = 1000;
+        int messageStored = 0;
+
+        public MessageLogger() { Messages = new Message[messageStored]; }
         //Methods
+
         public string ReadAll()
         {
             string message = string.Empty;
 
             for(int i= 0; i <= maxMessages; i++)
             {
-                message += Messages[i].MessageValue + ", ";
+                message += Messages[i].MessageValue + "\n";
             }
 
             return message;
-            Console.WriteLine("dsadasdsa");
         }
         public void Clear()
         {
-            
+            Array.Clear(Messages);
         }
-        public void Write(string Message)
+        public void Write(Message message)
         {
 
         }

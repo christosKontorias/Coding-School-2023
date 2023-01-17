@@ -58,7 +58,6 @@ namespace Session_07
         }
         public string Uppercase(string input)
         {
-
             if (input.Contains(" "))
             {
                 string[] words = input.Split(' ');
@@ -77,7 +76,7 @@ namespace Session_07
                 return "Input must contain multiple words.";
             }
         }
-        public string Reverse(string input)
+        public virtual string Reverse(string input)
         {
             if (string.IsNullOrEmpty(input))
             {
