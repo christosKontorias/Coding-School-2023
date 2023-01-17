@@ -29,10 +29,9 @@ response = resolver.Execute(request1);
 response = resolver.Execute(request2);
 response = resolver.Execute(request3);
 
-Console.Write(resolver.Logger.ReadAll());
+//Console.Write(resolver.Logger.ReadAll());
 
 //Console.ReadLine();
-
 //Console.WriteLine(resolver.Logger.ReadAll());
 
 //foreach (Message message in resolver.Logger.Messages)
