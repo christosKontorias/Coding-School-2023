@@ -22,7 +22,7 @@ namespace Session_07
             }
 
             return message;
-
+            Console.WriteLine("dsadasdsa");
         }
         public void Clear()
         {
