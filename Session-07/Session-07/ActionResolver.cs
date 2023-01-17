@@ -45,7 +45,7 @@ namespace Session_07
 
         }
 
-        public string DecimalToBinary(string input)
+        public virtual string DecimalToBinary(string input)
         {
             if (decimal.TryParse(input.ToString(), out decimal result))
             {
