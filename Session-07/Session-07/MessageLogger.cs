@@ -9,10 +9,19 @@ namespace Session_07
     internal class MessageLogger
     {
         //Properties
-        public Message[]? Messages { get; set; }
+        public Message[] Messages { get; set; }
+        int maxMessages = 1000;
         //Methods
-        public void RealAll()
+        public string ReadAll()
         {
+            string message = string.Empty;
+
+            for(int i= 0; i <= maxMessages; i++)
+            {
+                message += Messages[i].MessageValue + ", ";
+            }
+
+            return message;
 
         }
         public void Clear()
@@ -23,7 +32,5 @@ namespace Session_07
         {
 
         }
-
-
     }
 }

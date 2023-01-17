@@ -17,23 +17,15 @@ namespace Session_07
     {
         //Properties
         public Guid RequestID { get; set; }
-        public string? Input { get; set; }
+        public string Input { get; set; }
 
         public ActionEnum Action { get; set; }
 
 
 
-        public decimal Convert(decimal num)
+        public ActionRequest()
         {
-            return num;
-        }
-        public string Uppercase(string word)
-        {
-            return word;
-        }
-        public string Reverse(string input)
-        {
-            return input;
+            RequestID = Guid.NewGuid(); 
         }
 
     }

@@ -11,8 +11,11 @@ namespace Session_07
         //Properties
         public Guid RequestID { get; set; }
         public Guid ResponseID { get; set; }
-        public string? Output { get; set; }
+        public string Output { get; set; }
 
-
+        public ActionResponse()
+        {
+            RequestID = Guid.NewGuid();
+        }
     }
 }
