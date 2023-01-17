@@ -8,5 +8,10 @@ namespace Session_07
 {
     internal class ActionResponse
     {
+        //Properties
+
+        //Methods
+
+        //Constructor
     }
 }

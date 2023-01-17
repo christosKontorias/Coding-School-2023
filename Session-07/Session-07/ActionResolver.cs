@@ -8,5 +8,10 @@ namespace Session_07
 {
     internal class ActionResolver
     {
+        //Properties
+
+        //Methods
+
+        //Constructor
     }
 }
