@@ -42,7 +42,7 @@ namespace Session_07
         //Constructor
         public ActionResolver()
         {
-
+            Logger = new MessageLogger();
         }
 
         public virtual string DecimalToBinary(string input)
