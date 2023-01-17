@@ -31,9 +31,9 @@ response = resolver.Execute(request3);
 
 //Console.WriteLine(resolver.Logger.ReadAll());
 
-foreach (Message message in resolver.Logger.Messages)
-{
+//foreach (Message message in resolver.Logger.Messages)
+//{
 
-    Console.WriteLine(message);
+//    Console.WriteLine(message);
 
-}
+//}

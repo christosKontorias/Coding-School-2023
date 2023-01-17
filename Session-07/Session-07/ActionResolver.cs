@@ -79,8 +79,11 @@ namespace Session_07
         }
         public string Reverse(string input)
         {
-
-            return input;
+            if (string.IsNullOrEmpty(input))
+            {
+                return input;
+            }
+            return Reverse(input.Substring(1)) + input[0];
         }
     }
 }
