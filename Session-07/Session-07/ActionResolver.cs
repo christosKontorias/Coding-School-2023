@@ -16,7 +16,7 @@ namespace Session_07
         public ActionResponse Execute(ActionRequest request)
         {
             var response = new ActionResponse();
-            response.RequestID = request.RequestID; 
+            response.RequestID = request.RequestID;
 
             switch (request.Action)
             {
@@ -97,3 +97,4 @@ namespace Session_07
         }
     }
 }
+

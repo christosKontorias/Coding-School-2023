@@ -11,7 +11,7 @@ namespace Session_07
         //Properties
         public Message[] Messages { get; set; }
         int maxMessages = 1000;
-        int messageStored = 3;
+        int messageStored = 0;
 
         public MessageLogger() { Messages = new Message[maxMessages]; }
         //Methods
