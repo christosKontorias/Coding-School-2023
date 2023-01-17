@@ -78,11 +78,22 @@ namespace Session_07
         }
         public virtual string Reverse(string input)
         {
-            if (string.IsNullOrEmpty(input))
+            try
             {
-                return input;
+                if (input.Length > 0)
+                {
+                    return input[input.Length - 1] + Reverse(input.Substring(0, input.Length - 1));
+                }
+                else
+                {
+                    return input;
+                }
             }
-            return Reverse(input.Substring(1)) + input[0];
+            catch (Exception ex)
+            {
+                return null;
+
+            }
         }
     }
 }
