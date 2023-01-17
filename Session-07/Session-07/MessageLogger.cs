@@ -9,9 +9,21 @@ namespace Session_07
     internal class MessageLogger
     {
         //Properties
-
+        public Message[]? Messages { get; set; }
         //Methods
+        public void RealAll()
+        {
 
-        //Constructor
+        }
+        public void Clear()
+        {
+            
+        }
+        public void Write(string Message)
+        {
+
+        }
+
+
     }
 }

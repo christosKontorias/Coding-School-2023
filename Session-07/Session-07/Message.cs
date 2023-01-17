@@ -13,8 +13,6 @@ namespace Session_07
         public DateTime TimeStamp { get; set; }
         public string MessageValue { get; set; }
 
-        //Methods
 
-        //Constructor
     }
 }
