@@ -23,11 +23,8 @@ namespace Session_07
         {
             public override string Manipulate()
             {
-
                 // “Convert” you must check if the Input is a decimal number and convert it to binary.
                 // ...
-
-
                 return string.Empty;
             }
         }
@@ -35,8 +32,7 @@ namespace Session_07
         public class StringReverse : StringManipulator
         {
             public override string Manipulate()
-            {
-
+            { 
                 return string.Empty;
             }
         }
@@ -45,7 +41,6 @@ namespace Session_07
         {
             public override string Manipulate()
             {
-
                 return string.Empty;
             }
         }
