@@ -12,7 +12,7 @@ namespace Session_07
         {
             public string MessageValue { get; set; }
 
-            public virtual string Manipulate()
+            public virtual string Manipulate(string input)
             {
                 return string.Empty;
             }
