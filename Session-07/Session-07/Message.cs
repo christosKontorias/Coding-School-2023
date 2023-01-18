@@ -19,5 +19,13 @@ namespace Session_07
         {
             ID = Guid.NewGuid(); 
         }
+
+        public Message(string messageValue)
+        {
+            ID = Guid.NewGuid();
+            MessageValue = messageValue;
+            TimeStamp = DateTime.Now;  
+
+        }
     }
 }

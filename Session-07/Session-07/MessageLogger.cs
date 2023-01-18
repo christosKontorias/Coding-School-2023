@@ -10,11 +10,13 @@ namespace Session_07
     {
         //Properties
         public Message[] Messages { get; set; }
-        int maxMessages = 1000;
         int messageStored = 0;
+        private int _messageCounter = 0;
 
-        public MessageLogger() { 
-            Messages = new Message[1000]; 
+        //Constructor
+        public MessageLogger()
+        {
+            Messages = new Message[1000];
         }
         //Methods
 
@@ -32,18 +34,14 @@ namespace Session_07
 
         public void Clear()
         {
-           Array.Clear(Messages);
+            Array.Clear(Messages);
         }
         public void Write(Message message)
         {
-           if(messageStored >= maxMessages)
-            {
-                messageStored = 0;
-            }else
-            {
-                Message[] messages = Messages;
-                messageStored++;
-            }
+            //Message message = new Message("EXECUTION START");
+            Messages[_messageCounter] = message;
+            _messageCounter++;
+
         }
     }
 }

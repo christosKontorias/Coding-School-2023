@@ -19,6 +19,13 @@ namespace Session_07
             response.ResponseID = Guid.NewGuid();
             response.RequestID = request.RequestID;
 
+            MessageLogger logger = new MessageLogger();
+
+            logger.Write(new Message("EXECUTION START"));
+
+            //Message message = new Message("EXECUTION START");
+            //logger.Messages[0] = message;
+
             try {
                 switch (request.Action)
                 {
@@ -40,8 +47,13 @@ namespace Session_07
                 }
             }
             catch(Exception ex) {
-
-                throw;
+                Message message2 = new Message(ex.Message);
+                logger.Messages[1] = message2;
+            }
+            finally
+            {
+                Message message3 = new Message("EXECUTION END");
+                logger.Messages[0] = message3;
             }
 
             return response;
