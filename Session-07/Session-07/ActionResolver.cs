@@ -18,23 +18,29 @@ namespace Session_07
             var response = new ActionResponse();
             response.RequestID = request.RequestID;
 
-            switch (request.Action)
-            {
-                case ActionEnum.Convert:
-                    response.Output = DecimalToBinary(request.Input);
-                    break;
+            try {
+                switch (request.Action)
+                {
+                    case ActionEnum.Convert:
+                        response.Output = DecimalToBinary(request.Input);
+                        break;
 
-                case ActionEnum.Uppercase:
-                    response.Output = Uppercase(request.Input);
-                    break;
+                    case ActionEnum.Uppercase:
+                        response.Output = Uppercase(request.Input);
+                        break;
 
-                case ActionEnum.Reverse:
-                    response.Output = Reverse(request.Input);
-                    break;
+                    case ActionEnum.Reverse:
+                        response.Output = Reverse(request.Input);
+                        break;
 
-                default:
-                    Console.WriteLine("Please select another input");
-                    break;
+                    default:
+                        Console.WriteLine("Please select another input");
+                        break;
+                }
+            }
+            catch(Exception ex) {
+
+                throw;
             }
 
             return response;
