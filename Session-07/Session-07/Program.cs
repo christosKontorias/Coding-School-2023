@@ -13,21 +13,21 @@ var request1 = new ActionRequest()
     Action = ActionEnum.Convert
 };
 
-//var request2 = new ActionRequest()
-//{
-//    Input = "Hello World",
-//    Action = ActionEnum.Uppercase
-//};
+var request2 = new ActionRequest()
+{
+    Input = "Hello World",
+    Action = ActionEnum.Uppercase
+};
 
-//var request3 = new ActionRequest()
-//{
-//    Input = "Christos",
-//    Action = ActionEnum.Reverse
-//};
+var request3 = new ActionRequest()
+{
+    Input = "Christos",
+    Action = ActionEnum.Reverse
+};
 
 response = resolver.Execute(request1);
-//response = resolver.Execute(request2);
-//response = resolver.Execute(request3);
+response = resolver.Execute(request2);
+response = resolver.Execute(request3);
 
 
 resolver.Logger.ReadAll();

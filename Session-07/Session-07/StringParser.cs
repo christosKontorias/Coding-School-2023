@@ -11,7 +11,7 @@ namespace Session_07
     {
         public class StringManipulator
         {
-            public string MessageValue { get; set; }
+            public string Text { get; set; }
 
             public virtual string Manipulate()
             {
@@ -25,7 +25,7 @@ namespace Session_07
             {
                 // “Convert” you must check if the Input is a decimal number and convert it to binary.
 
-                return String.Empty;
+                return string.Empty;
             }
         }
 
@@ -37,7 +37,6 @@ namespace Session_07
                 //one words(separated by a space), then find the longest word in the
                 //Input string and convert it to uppercase.   
 
-
                 return string.Empty;
             }
         }
@@ -47,6 +46,7 @@ namespace Session_07
             public override string Manipulate()
             {
                 //“Reverse” you must check if the Input is a string and reverse it.
+
                 return string.Empty;
             }
         }

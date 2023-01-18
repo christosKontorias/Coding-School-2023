@@ -71,17 +71,17 @@ namespace Session_07
             Logger.Write(message);
         }
 
-        public virtual string Convert(string input)
+        public virtual string Convertc(string input)
         {
             StringConvert convert = new StringConvert();
-            convert.MessageValue = input;
+            convert.Text = input;
 
             return convert.Manipulate();
         }
         public string Uppercase(string input)
         {
             StringUppercase uppercase = new StringUppercase();
-            uppercase.MessageValue = input;
+            uppercase.Text = input;
 
             return uppercase.Manipulate();
 
@@ -89,7 +89,7 @@ namespace Session_07
         public virtual string Reverse(string input)
         {
             StringReverse reverse = new StringReverse();
-            reverse.MessageValue = input;
+            reverse.Text = input;
 
             return reverse.Manipulate();
         }
