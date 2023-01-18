@@ -10,7 +10,6 @@ namespace Session_07
     {
         //Properties
         public Message[] Messages { get; set; }
-        int messageStored = 0;
         private int _messageCounter = 0;
 
         //Constructor

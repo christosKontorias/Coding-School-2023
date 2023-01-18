@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Session_07
 {
-    public class ActionEntity { 
-        
+    public class ActionEntity {
+        public Guid RequestID { get; set; }
+
     }
 
     public enum ActionEnum
