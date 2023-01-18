@@ -10,21 +10,17 @@ namespace Session_07
     {
         public class StringManipulator
         {
-
-            public string Text { get; set; }
+            public string MessageValue { get; set; }
 
             public virtual string Manipulate()
             {
 
                 return string.Empty;
             }
-
         }
 
         public class StringConvert : StringManipulator
         {
-
-
             public override string Manipulate()
             {
 
@@ -38,18 +34,15 @@ namespace Session_07
 
         public class StringReverse : StringManipulator
         {
-
             public override string Manipulate()
             {
 
                 return string.Empty;
             }
-
         }
 
         public class StringUppercase : StringManipulator
         {
-
             public override string Manipulate()
             {
 
