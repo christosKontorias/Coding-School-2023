@@ -3,13 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Session_07.StringParser;
 
 namespace Session_07
 {
     internal class ActionResolver
     {
+
         //Properties
         public MessageLogger Logger { get; set; }
+
+        //Constructor
+        public ActionResolver()
+        {
+            Logger = new MessageLogger();
+        }
 
         //Methods
         public ActionResponse Execute(ActionRequest request)
@@ -18,14 +26,15 @@ namespace Session_07
             response.ResponseID = Guid.NewGuid();
             response.RequestID = request.RequestID;
 
-            Log("EXECUTION START");            
+            Log("EXECUTION START");
 
-            try {
+            try
+            {
                 switch (request.Action)
                 {
                     case ActionEnum.Convert:
                         Log("Convert");
-                        response.Output = DecimalToBinary(request.Input);
+                        response.Output = Convert(request.Input);
                         break;
 
                     case ActionEnum.Uppercase:
@@ -43,8 +52,9 @@ namespace Session_07
                         break;
                 }
             }
-            catch(Exception ex) {
-                Logger.Write(new Message(ex.Message));
+            catch (Exception ex)
+            {
+                Log(ex.Message);
             }
             finally
             {
@@ -57,63 +67,59 @@ namespace Session_07
         private void Log(string messageValue)
         {
             Logger.Write(new Message(messageValue));
+            Message message = new Message(messageValue);
+            Logger.Write(message);
         }
 
-        //Constructor
-        public ActionResolver()
+        public virtual string Convert(string input)
         {
-            Logger = new MessageLogger();
-        }
+            StringConvert convert = new StringConvert();
+            convert.MessageValue = input;
 
-        public virtual string DecimalToBinary(string input)
-        {
-            if (decimal.TryParse(input.ToString(), out decimal result))
-            {
-                return Convert.ToString((int)result, 2);
-            }
-            else
-            {
-                return "Input is not a decimal number.";
-            }
+            return convert.Manipulate();
         }
         public string Uppercase(string input)
         {
-            if (input.Contains(" "))
-            {
-                string[] words = input.Split(' ');
-                string longestWord = "";
-                foreach (string word in words)
-                {
-                    if (word.Length > longestWord.Length)
-                    {
-                        longestWord = word;
-                    }
-                }
-                return longestWord.ToUpper();
-            }
-            else
-            {
-                return "Input must contain multiple words.";
-            }
+            //if (input.Contains(" "))
+            //{
+            //    string[] words = input.Split(' ');
+            //    string longestWord = "";
+            //    foreach (string word in words)
+            //    {
+            //        if (word.Length > longestWord.Length)
+            //        {
+            //            longestWord = word;
+            //        }
+            //    }
+            //    return longestWord.ToUpper();
+            //}
+            //else
+            //{
+            //    return "Input must contain multiple words.";
+            //}
+            return input.ToUpper();
+
         }
         public virtual string Reverse(string input)
         {
-            try
-            {
-                if (input.Length > 0)
-                {
-                    return input[input.Length - 1] + Reverse(input.Substring(0, input.Length - 1));
-                }
-                else
-                {
-                    return input;
-                }
-            }
-            catch (Exception ex)
-            {
-                return null;
+            //try
+            //{
+            //    if (input.Length > 0)
+            //    {
+            //        return input[input.Length - 1] + Reverse(input.Substring(0, input.Length - 1));
+            //    }
+            //    else
+            //    {
+            //        return input;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    return null;
 
-            }
+            //}
+            return string.Empty;
+
         }
     }
 }

@@ -8,7 +8,6 @@ namespace Session_07
 {
     public class ActionEntity {
         public Guid RequestID { get; set; }
-
     }
 
     public enum ActionEnum
@@ -18,7 +17,7 @@ namespace Session_07
         Reverse
     }
 
-    internal class ActionRequest
+    internal class ActionRequest : ActionEntity
     {
         //Properties
         public Guid RequestID { get; set; }
@@ -30,6 +29,5 @@ namespace Session_07
         {
             RequestID = Guid.NewGuid(); 
         }
-
     }
 }

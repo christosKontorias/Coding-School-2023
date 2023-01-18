@@ -17,8 +17,8 @@ namespace Session_07
         {
             Messages = new Message[1000];
         }
-        //Methods
 
+        //Methods
         public void ReadAll()
         {
             foreach (Message message in Messages)
