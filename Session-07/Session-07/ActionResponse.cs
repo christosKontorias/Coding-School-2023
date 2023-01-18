@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Session_07
 {
-    internal class ActionResponse
+    internal class ActionResponse : ActionEntity
     {
         //Properties
         public Guid RequestID { get; set; }

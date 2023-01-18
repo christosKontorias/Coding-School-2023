@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Session_07
 {
+    public class ActionEntity { 
+        
+    }
+
     public enum ActionEnum
     {
         Convert,

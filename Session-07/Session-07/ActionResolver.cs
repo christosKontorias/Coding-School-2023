@@ -8,7 +8,6 @@ namespace Session_07
 {
     internal class ActionResolver
     {
-
         //Properties
         public MessageLogger Logger { get; set; }
 

@@ -20,27 +20,27 @@ namespace Session_07
         }
         //Methods
 
-        public string ReadAll()
+        public void ReadAll()
         {
-            string message = String.Empty;
-
-            for (int i = 0; i < messageStored; i++)
+            foreach (Message message in Messages)
             {
-                message += Messages[i].MessageValue + "\n";
+                if (message != null)
+                {
+                    Console.WriteLine(message.MessageValue);
+                }
             }
-
-            return message;
         }
 
         public void Clear()
         {
-            Array.Clear(Messages);
+            Messages = new Message[1000];
+            _messageCounter = 0;
         }
+
         public void Write(Message message)
         {
             Messages[_messageCounter] = message;
             _messageCounter++;
-
         }
     }
 }
