@@ -15,7 +15,8 @@ namespace Session_07
         //Methods
         public ActionResponse Execute(ActionRequest request)
         {
-            var response = new ActionResponse();
+            ActionResponse response = new ActionResponse();
+            response.ResponseID = Guid.NewGuid();
             response.RequestID = request.RequestID;
 
             try {
