@@ -34,9 +34,7 @@ namespace Session_07
             {
                 //“Uppercase” you must check if the Input is a string and has more than
                 //one words(separated by a space), then find the longest word in the
-                //Input string and convert it to uppercase.
-
-                //if (input.Contains(" "))
+                //Input string and convert it to                 //if (input.Contains(" "))
                 //{
                 //    string[] words = input.Split(' ');
                 //    string longestWord = "";
