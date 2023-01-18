@@ -36,6 +36,24 @@ namespace Session_07
                 //one words(separated by a space), then find the longest word in the
                 //Input string and convert it to uppercase.
 
+                //if (input.Contains(" "))
+                //{
+                //    string[] words = input.Split(' ');
+                //    string longestWord = "";
+                //    foreach (string word in words)
+                //    {
+                //        if (word.Length > longestWord.Length)
+                //        {
+                //            longestWord = word;
+                //        }
+                //    }
+                //    return longestWord.ToUpper();
+                //}
+                //else
+                //{
+                //    return "Input must contain multiple words.";
+                //}
+
                 return string.Empty;
             }
         }
@@ -46,6 +64,22 @@ namespace Session_07
             {
                 //“Reverse” you must check if the Input is a string and reverse it.
 
+                //try
+                //{
+                //    if (input.Length > 0)
+                //    {
+                //        return input[input.Length - 1] + Reverse(input.Substring(0, input.Length - 1));
+                //    }
+                //    else
+                //    {
+                //        return input;
+                //    }
+                //}
+                //catch (Exception ex)
+                //{
+                //    return null;
+
+                //}
                 return string.Empty;
             }
         }
