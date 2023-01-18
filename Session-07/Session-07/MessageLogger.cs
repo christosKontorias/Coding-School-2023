@@ -13,7 +13,9 @@ namespace Session_07
         int maxMessages = 1000;
         int messageStored = 0;
 
-        public MessageLogger() { Messages = new Message[maxMessages]; }
+        public MessageLogger() { 
+            Messages = new Message[1000]; 
+        }
         //Methods
 
         public string ReadAll()
