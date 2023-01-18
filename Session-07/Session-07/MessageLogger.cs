@@ -32,7 +32,7 @@ namespace Session_07
         {
            Array.Clear(Messages);
         }
-        public void Write(string message)
+        public void Write(Message message)
         {
            if(messageStored >= maxMessages)
             {
