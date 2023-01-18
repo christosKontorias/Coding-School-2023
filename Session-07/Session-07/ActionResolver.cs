@@ -71,7 +71,7 @@ namespace Session_07
             Logger.Write(message);
         }
 
-        public virtual string Convertc(string input)
+        public virtual string Convert(string input)
         {
             StringConvert convert = new StringConvert();
             convert.Text = input;
