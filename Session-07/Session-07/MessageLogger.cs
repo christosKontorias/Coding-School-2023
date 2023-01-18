@@ -38,7 +38,6 @@ namespace Session_07
         }
         public void Write(Message message)
         {
-            //Message message = new Message("EXECUTION START");
             Messages[_messageCounter] = message;
             _messageCounter++;
 

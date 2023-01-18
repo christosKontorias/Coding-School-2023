@@ -34,9 +34,10 @@ response = resolver.Execute(request3);
 //Console.ReadLine();
 //Console.WriteLine(resolver.Logger.ReadAll());
 
-//foreach (Message message in resolver.Logger.Messages)
-//{
+foreach (Message message in resolver.Logger.Messages)
+{
+    if (message != null) {     
+    Console.WriteLine(message.MessageValue);
+    }
 
-//    Console.WriteLine(message);
-
-//}
+}

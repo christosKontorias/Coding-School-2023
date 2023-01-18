@@ -19,25 +19,23 @@ namespace Session_07
             response.ResponseID = Guid.NewGuid();
             response.RequestID = request.RequestID;
 
-            MessageLogger logger = new MessageLogger();
-
-            logger.Write(new Message("EXECUTION START"));
-
-            //Message message = new Message("EXECUTION START");
-            //logger.Messages[0] = message;
+            Log("EXECUTION START");            
 
             try {
                 switch (request.Action)
                 {
                     case ActionEnum.Convert:
+                        Log("Convert");
                         response.Output = DecimalToBinary(request.Input);
                         break;
 
                     case ActionEnum.Uppercase:
+                        Log("Uppercase");
                         response.Output = Uppercase(request.Input);
                         break;
 
                     case ActionEnum.Reverse:
+                        Log("Reverse");
                         response.Output = Reverse(request.Input);
                         break;
 
@@ -47,17 +45,21 @@ namespace Session_07
                 }
             }
             catch(Exception ex) {
-                Message message2 = new Message(ex.Message);
-                logger.Messages[1] = message2;
+                Logger.Write(new Message(ex.Message));
             }
             finally
             {
-                Message message3 = new Message("EXECUTION END");
-                logger.Messages[0] = message3;
+                Log("EXECUTE END");
             }
 
             return response;
         }
+
+        private void Log(string messageValue)
+        {
+            Logger.Write(new Message(messageValue));
+        }
+
         //Constructor
         public ActionResolver()
         {
