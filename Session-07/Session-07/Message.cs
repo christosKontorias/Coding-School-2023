@@ -11,6 +11,8 @@ namespace Session_07
         //Properties
         public Guid ID { get; set; }
         public DateTime TimeStamp { get; set; }
+
+        //Change from class diagram: Message Cannot be the same as the class name
         public string MessageValue { get; set; }
         //Constructor
         public Message()
