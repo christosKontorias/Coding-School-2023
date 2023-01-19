@@ -53,10 +53,12 @@ namespace Sessions_09
 
                 case CalcOperation.Power:
                     Power power = new Power();
+                    //_result = power.Do(_value1);
                     break;
 
                 case CalcOperation.SquareRoot:
                     SquareRoot squareRoot = new SquareRoot();
+                    //_result = squareRoot.Do(_value1);
                     break;
 
                 default:
@@ -79,13 +81,7 @@ namespace Sessions_09
 
         private void btnZero_Click(object sender, EventArgs e)
         {
-            //if (_result != null)
-            //{
-            //    ctrlDisplay.Text = string.Empty;
-            //    _value1 = null;
-            //    _value2 = null;
-            //    _result = null;
-            //}
+
             ClearValues();
 
             ctrlDisplay.Text += " 0 ";
@@ -103,14 +99,7 @@ namespace Sessions_09
 
         private void btn1_Click(object sender, EventArgs e)
         {
-            //if (_result != null)
-            //{
 
-            //    ctrlDisplay.Text = string.Empty;
-            //    _value1 = null;
-            //    _value2 = null;
-            //    _result = null;
-            //}
             ClearValues();
 
             ctrlDisplay.Text += " 1 ";
@@ -128,14 +117,7 @@ namespace Sessions_09
 
         private void btnTwo_Click(object sender, EventArgs e)
         {
-            //if (_result != null)
-            //{
-
-            //    ctrlDisplay.Text = string.Empty;
-            //    _value1 = null;
-            //    _value2 = null;
-            //    _result = null;
-            //}
+ 
             ClearValues();
 
             ctrlDisplay.Text += " 2 ";
@@ -153,14 +135,7 @@ namespace Sessions_09
 
         private void btnThree_Click(object sender, EventArgs e)
         {
-            //if (_result != null)
-            //{
 
-            //    ctrlDisplay.Text = string.Empty;
-            //    _value1 = null;
-            //    _value2 = null;
-            //    _result = null;
-            //}
             ClearValues();
 
             ctrlDisplay.Text += " 3 ";
@@ -178,14 +153,7 @@ namespace Sessions_09
 
         private void btnFour_Click(object sender, EventArgs e)
         {
-            //if (_result != null)
-            //{
-
-            //    ctrlDisplay.Text = string.Empty;
-            //    _value1 = null;
-            //    _value2 = null;
-            //    _result = null;
-            //}
+ 
             ClearValues();
 
             ctrlDisplay.Text += " 4 ";
@@ -203,14 +171,7 @@ namespace Sessions_09
 
         private void btnFive_Click(object sender, EventArgs e)
         {
-            //if (_result != null)
-            //{
-
-            //    ctrlDisplay.Text = string.Empty;
-            //    _value1 = null;
-            //    _value2 = null;
-            //    _result = null;
-            //}
+ 
             ClearValues();
 
             ctrlDisplay.Text += " 5 ";
@@ -228,14 +189,7 @@ namespace Sessions_09
 
         private void btnSix_Click(object sender, EventArgs e)
         {
-            //if (_result != null)
-            //{
 
-            //    ctrlDisplay.Text = string.Empty;
-            //    _value1 = null;
-            //    _value2 = null;
-            //    _result = null;
-            //}
             ClearValues();
 
             ctrlDisplay.Text += " 6 ";
@@ -253,14 +207,7 @@ namespace Sessions_09
 
         private void btnSeven_Click(object sender, EventArgs e)
         {
-            //if (_result != null)
-            //{
 
-            //    ctrlDisplay.Text = string.Empty;
-            //    _value1 = null;
-            //    _value2 = null;
-            //    _result = null;
-            //}
             ClearValues();
 
             ctrlDisplay.Text += " 7 ";
@@ -278,14 +225,7 @@ namespace Sessions_09
 
         private void btnEight_Click(object sender, EventArgs e)
         {
-            //if (_result != null)
-            //{
 
-            //    ctrlDisplay.Text = string.Empty;
-            //    _value1 = null;
-            //    _value2 = null;
-            //    _result = null;
-            //}
             ClearValues();
 
             ctrlDisplay.Text += " 8 ";
@@ -303,14 +243,7 @@ namespace Sessions_09
 
         private void btnNine_Click(object sender, EventArgs e)
         {
-            //if (_result != null)
-            //{
-
-            //    ctrlDisplay.Text = string.Empty;
-            //    _value1 = null;
-            //    _value2 = null;
-            //    _result = null;
-            //}
+ 
             ClearValues();
 
             ctrlDisplay.Text += " 9 ";
@@ -354,6 +287,7 @@ namespace Sessions_09
         private void btnPower_Click(object sender, EventArgs e)
         {
             //_calcOperation = CalcOperation.Power;
+
             try
             {
                 double ans = Math.Pow(Double.Parse(ctrlDisplay.Text), 2);
@@ -368,6 +302,7 @@ namespace Sessions_09
         private void btnSquareRoot_Click(object sender, EventArgs e)
         {
             //_calcOperation = CalcOperation.SquareRoot;
+
             try
             {
                 double ans = Math.Sqrt(Double.Parse(ctrlDisplay.Text));
