@@ -74,6 +74,21 @@ namespace Sessions_09
 
             ctrlDisplay.Text += _result;
         }
+        private void SetValues(decimal value)
+        {
+            ClearValues();
+
+            //ctrlDisplay.Text += value + " ";
+
+            if (_value1 == null)
+            {
+                _value1 = value;
+            }
+            else
+            {
+                _value2 = value;
+            }
+        }
 
         private void CheckOperation()
         {
@@ -107,14 +122,15 @@ namespace Sessions_09
 
             ctrlDisplay.Text += " 0 ";
 
-            if (_value1 == null)
-            {
-                _value1 = 0;
-            }
-            else
-            {
-                _value2 = 0;
-            }
+            SetValues(0);
+            //if (_value1 == null)
+            //{
+            //    _value1 = 0;
+            //}
+            //else
+            //{
+            //    _value2 = 0;
+            //}
 
         }
 
@@ -125,14 +141,16 @@ namespace Sessions_09
 
             ctrlDisplay.Text += " 1 ";
 
-            if (_value1 == null)
-            {
-                _value1 = 1;
-            }
-            else
-            {
-                _value2 = 1;
-            }
+            SetValues(1);
+
+            //if (_value1 == null)
+            //{
+            //    _value1 = 1;
+            //}
+            //else
+            //{
+            //    _value2 = 1;
+            //}
 
         }
 
@@ -143,14 +161,16 @@ namespace Sessions_09
 
             ctrlDisplay.Text += " 2 ";
 
-            if (_value1 == null)
-            {
-                _value1 = 2;
-            }
-            else
-            {
-                _value2 = 2;
-            }
+            SetValues(2);
+
+            //if (_value1 == null)
+            //{
+            //    _value1 = 2;
+            //}
+            //else
+            //{
+            //    _value2 = 2;
+            //}
 
         }
 
@@ -161,14 +181,16 @@ namespace Sessions_09
 
             ctrlDisplay.Text += " 3 ";
 
-            if (_value1 == null)
-            {
-                _value1 = 3;
-            }
-            else
-            {
-                _value2 = 3;
-            }
+            SetValues(3);
+
+            //if (_value1 == null)
+            //{
+            //    _value1 = 3;
+            //}
+            //else
+            //{
+            //    _value2 = 3;
+            //}
 
         }
 
@@ -179,14 +201,16 @@ namespace Sessions_09
 
             ctrlDisplay.Text += " 4 ";
 
-            if (_value1 == null)
-            {
-                _value1 = 4;
-            }
-            else
-            {
-                _value2 = 4;
-            }
+            SetValues(4);
+
+            //if (_value1 == null)
+            //{
+            //    _value1 = 4;
+            //}
+            //else
+            //{
+            //    _value2 = 4;
+            //}
 
         }
 
@@ -197,14 +221,16 @@ namespace Sessions_09
 
             ctrlDisplay.Text += " 5 ";
 
-            if (_value1 == null)
-            {
-                _value1 = 5;
-            }
-            else
-            {
-                _value2 = 5;
-            }
+            SetValues(5);
+
+            //if (_value1 == null)
+            //{
+            //    _value1 = 5;
+            //}
+            //else
+            //{
+            //    _value2 = 5;
+            //}
 
         }
 
@@ -215,14 +241,17 @@ namespace Sessions_09
 
             ctrlDisplay.Text += " 6 ";
 
-            if (_value1 == null)
-            {
-                _value1 = 6;
-            }
-            else
-            {
-                _value2 = 6;
-            }
+            SetValues(6);
+
+
+            //if (_value1 == null)
+            //{
+            //    _value1 = 6;
+            //}
+            //else
+            //{
+            //    _value2 = 6;
+            //}
 
         }
 
@@ -233,14 +262,17 @@ namespace Sessions_09
 
             ctrlDisplay.Text += " 7 ";
 
-            if (_value1 == null)
-            {
-                _value1 = 7;
-            }
-            else
-            {
-                _value2 = 7;
-            }
+            SetValues(7);
+
+
+            //if (_value1 == null)
+            //{
+            //    _value1 = 7;
+            //}
+            //else
+            //{
+            //    _value2 = 7;
+            //}
 
         }
 
@@ -251,14 +283,16 @@ namespace Sessions_09
 
             ctrlDisplay.Text += " 8 ";
 
-            if (_value1 == null)
-            {
-                _value1 = 8;
-            }
-            else
-            {
-                _value2 = 8;
-            }
+            SetValues(8);
+
+            //if (_value1 == null)
+            //{
+            //    _value1 = 8;
+            //}
+            //else
+            //{
+            //    _value2 = 8;
+            //}
 
         }
 
@@ -269,14 +303,17 @@ namespace Sessions_09
 
             ctrlDisplay.Text += " 9 ";
 
-            if (_value1 == null)
-            {
-                _value1 = 9;
-            }
-            else
-            {
-                _value2 = 9;
-            }
+
+            SetValues(9);
+
+            //if (_value1 == null)
+            //{
+            //    _value1 = 9;
+            //}
+            //else
+            //{
+            //    _value2 = 9;
+            //}
 
         }
 
