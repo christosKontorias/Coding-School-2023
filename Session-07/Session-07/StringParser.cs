@@ -24,7 +24,14 @@ namespace Session_07
             public override string Manipulate()
             {
                 // “Convert” you must check if the Input is a decimal number and convert it to binary.
-                return string.Empty;
+                if (decimal.TryParse(Text, out decimal number))
+                {
+                    return Convert.ToString(Convert.ToInt32(number), 2);
+                }
+                else
+                {
+                    return string.Empty;
+                }
             }
         }
 
@@ -35,8 +42,16 @@ namespace Session_07
                 //“Uppercase” you must check if the Input is a string and has more than
                 //one words(separated by a space), then find the longest word in the
                 //Input string and convert it to uppercase.   
-
-                return string.Empty;
+                if (!string.IsNullOrWhiteSpace(Text) && Text.Contains(" "))
+                {
+                    string[] words = Text.Split(' ');
+                    string longestWord = words.OrderByDescending(w => w.Length).First();
+                    return longestWord.ToUpper();
+                }
+                else
+                {
+                    return string.Empty;
+                }
             }
         }
 
@@ -46,7 +61,16 @@ namespace Session_07
             {
                 //“Reverse” you must check if the Input is a string and reverse it.
 
-                return string.Empty;
+                if (!string.IsNullOrEmpty(Text))
+                {
+                    char[] charArray = Text.ToCharArray();
+                    Array.Reverse(charArray);
+                    return new string(charArray);
+                }
+                else
+                {
+                    return string.Empty;
+                }
             }
         }
 

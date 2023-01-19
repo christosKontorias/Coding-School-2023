@@ -26,6 +26,9 @@ namespace Session_07
             response.ResponseID = Guid.NewGuid();
             response.RequestID = request.RequestID;
 
+            StringManipulator manipulator = null;
+
+
             Log("EXECUTION START");
 
             try
@@ -35,16 +38,19 @@ namespace Session_07
                     case ActionEnum.Convert:
                         Log("Convert");
                         response.Output = Convert(request.Input);
+                        manipulator = new StringConvert();
                         break;
 
                     case ActionEnum.Uppercase:
                         Log("Uppercase");
                         response.Output = Uppercase(request.Input);
+                        manipulator = new StringUppercase();
                         break;
 
                     case ActionEnum.Reverse:
                         Log("Reverse");
                         response.Output = Reverse(request.Input);
+                        manipulator = new StringReverse();
                         break;
 
                     default:

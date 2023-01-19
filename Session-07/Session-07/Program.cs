@@ -25,9 +25,14 @@ var request3 = new ActionRequest()
     Action = ActionEnum.Reverse
 };
 
-response = resolver.Execute(request1);
-response = resolver.Execute(request2);
-response = resolver.Execute(request3);
+var response1 = resolver.Execute(request1);
+var response2 = resolver.Execute(request2);
+var response3 = resolver.Execute(request3);
 
+
+Console.WriteLine(response1.Output);
+Console.WriteLine(response2.Output);
+Console.WriteLine(response3.Output);
 
 resolver.Logger.ReadAll();
+Console.ReadLine();
