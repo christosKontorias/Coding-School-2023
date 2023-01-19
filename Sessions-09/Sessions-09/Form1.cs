@@ -323,14 +323,30 @@ namespace Sessions_09
 
         private void btnPower_Click(object sender, EventArgs e)
         {
-            _calcOperation = CalcOperation.Power;
-
+            //_calcOperation = CalcOperation.Power;
+            try
+            {
+                double ans = Math.Pow(Double.Parse(ctrlDisplay.Text), 2);
+                ctrlDisplay.Text = ans.ToString();
+            }
+            catch (Exception E)
+            {
+                MessageBox.Show(E.Message);
+            }
         }
 
         private void btnSquareRoot_Click(object sender, EventArgs e)
         {
-            _calcOperation = CalcOperation.SquareRoot;
-
+            //_calcOperation = CalcOperation.SquareRoot;
+            try
+            {
+                double ans = Math.Sqrt(Double.Parse(ctrlDisplay.Text));
+                ctrlDisplay.Text = ans.ToString();
+            }
+            catch (Exception E)
+            {
+                MessageBox.Show(E.Message);
+            }
         }
         private void btnClear_Click(object sender, EventArgs e)
         {
