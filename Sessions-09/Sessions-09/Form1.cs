@@ -9,6 +9,9 @@ namespace Sessions_09
         private decimal? _result = null;
         private CalcOperation _calcOperation;
 
+        private bool _isOperatorSet = false;
+
+
         enum CalcOperation
         {
             Addition,
@@ -31,22 +34,26 @@ namespace Sessions_09
             switch (_calcOperation)
             {
                 case CalcOperation.Addition:
-
+                    CheckOperation();
                     Addition addition = new Addition();
                     _result = addition.Do(_value1, _value2);
                     break;
 
                 case CalcOperation.Subtraction:
+                    CheckOperation();
                     Subtraction subtraction = new Subtraction();
                     _result = subtraction.Do(_value1, _value2);
                     break;
 
                 case CalcOperation.Multiplication:
+                    CheckOperation();
+
                     Multiplication multiplication = new Multiplication();
                     _result = multiplication.Do(_value1, _value2);
                     break;
 
                 case CalcOperation.Division:
+                    CheckOperation();
                     Division division = new Division();
                     _result = division.Do(_value1, _value2);
                     break;
@@ -66,6 +73,20 @@ namespace Sessions_09
             }
 
             ctrlDisplay.Text += _result;
+        }
+
+        private void CheckOperation()
+        {
+            // perform the calculation
+            _isOperatorSet = false;
+            btnAddition.Enabled = true;
+            btnSubtraction.Enabled = true;
+            btnMultiplication.Enabled = true;
+            btnDivision.Enabled = true;
+            btnSquareRoot.Enabled = true;
+            btnPower.Enabled = true;
+
+            // enable other operator buttons
         }
 
         private void ClearValues()
@@ -117,7 +138,7 @@ namespace Sessions_09
 
         private void btnTwo_Click(object sender, EventArgs e)
         {
- 
+
             ClearValues();
 
             ctrlDisplay.Text += " 2 ";
@@ -130,7 +151,7 @@ namespace Sessions_09
             {
                 _value2 = 2;
             }
-            
+
         }
 
         private void btnThree_Click(object sender, EventArgs e)
@@ -153,7 +174,7 @@ namespace Sessions_09
 
         private void btnFour_Click(object sender, EventArgs e)
         {
- 
+
             ClearValues();
 
             ctrlDisplay.Text += " 4 ";
@@ -171,7 +192,7 @@ namespace Sessions_09
 
         private void btnFive_Click(object sender, EventArgs e)
         {
- 
+
             ClearValues();
 
             ctrlDisplay.Text += " 5 ";
@@ -243,7 +264,7 @@ namespace Sessions_09
 
         private void btnNine_Click(object sender, EventArgs e)
         {
- 
+
             ClearValues();
 
             ctrlDisplay.Text += " 9 ";
@@ -261,65 +282,107 @@ namespace Sessions_09
 
         private void btnAddition_Click(object sender, EventArgs e)
         {
-            ctrlDisplay.Text += " + ";
-            _calcOperation = CalcOperation.Addition;
+            if (!_isOperatorSet)
+            {
+                ctrlDisplay.Text += " + ";
+                _calcOperation = CalcOperation.Addition;
+                _isOperatorSet = true;
+                btnAddition.Enabled = false;
+                btnSubtraction.Enabled = false;
+                btnMultiplication.Enabled = false;
+                btnDivision.Enabled = false;
+                btnSquareRoot.Enabled = false;
+                btnPower.Enabled = false;
+                //disable other operator buttons
+            }
         }
 
 
         private void btnSubtraction_Click(object sender, EventArgs e)
         {
-            ctrlDisplay.Text += " - ";
-            _calcOperation = CalcOperation.Subtraction;
+            if (!_isOperatorSet)
+            {
+                ctrlDisplay.Text += " - ";
+                _calcOperation = CalcOperation.Subtraction;
+                _isOperatorSet = true;
+                btnAddition.Enabled = false;
+                btnSubtraction.Enabled = false;
+                btnMultiplication.Enabled = false;
+                btnDivision.Enabled = false;
+                btnSquareRoot.Enabled = false;
+                btnPower.Enabled = false;
+                //disable other operator buttons
+            }
         }
 
         private void btnMultiplication_Click(object sender, EventArgs e)
         {
-            ctrlDisplay.Text += " * ";
-            _calcOperation = CalcOperation.Multiplication;
+            if (!_isOperatorSet)
+            {
+                ctrlDisplay.Text += " * ";
+                _calcOperation = CalcOperation.Multiplication;
+                btnAddition.Enabled = false;
+                btnSubtraction.Enabled = false;
+                btnMultiplication.Enabled = false;
+                btnDivision.Enabled = false;
+                btnSquareRoot.Enabled = false;
+                btnPower.Enabled = false;
+                //disable other operator buttons
+            }
         }
 
         private void btnDivision_Click(object sender, EventArgs e)
         {
-            ctrlDisplay.Text += " / ";
-            _calcOperation = CalcOperation.Division;
+            if (!_isOperatorSet)
+            {
+                ctrlDisplay.Text += " / ";
+                _calcOperation = CalcOperation.Division;
+                btnAddition.Enabled = false;
+                btnSubtraction.Enabled = false;
+                btnMultiplication.Enabled = false;
+                btnDivision.Enabled = false;
+                btnSquareRoot.Enabled = false;
+                btnPower.Enabled = false;
+                //disable other operator buttons
+            }
         }
 
         private void btnPower_Click(object sender, EventArgs e)
         {
             //_calcOperation = CalcOperation.Power;
-
-            try
-            {
-                double ans = Math.Pow(Double.Parse(ctrlDisplay.Text), 2);
-                ctrlDisplay.Text = ans.ToString();
-            }
-            catch (Exception E)
-            {
-                MessageBox.Show(E.Message);
-            }
+                try
+                {
+                    double ans = Math.Pow(Double.Parse(ctrlDisplay.Text), 2);
+                    ctrlDisplay.Text = ans.ToString();
+                }
+                catch (Exception E)
+                {
+                    MessageBox.Show(E.Message);
+                }
         }
 
         private void btnSquareRoot_Click(object sender, EventArgs e)
         {
             //_calcOperation = CalcOperation.SquareRoot;
 
-            try
-            {
-                double ans = Math.Sqrt(Double.Parse(ctrlDisplay.Text));
-                ctrlDisplay.Text = ans.ToString();
-            }
-            catch (Exception E)
-            {
-                MessageBox.Show(E.Message);
-            }
+                try
+                {
+                    double ans = Math.Sqrt(Double.Parse(ctrlDisplay.Text));
+                    ctrlDisplay.Text = ans.ToString();
+                }
+                catch (Exception E)
+                {
+                    MessageBox.Show(E.Message);
+                }
+            
         }
         private void btnClear_Click(object sender, EventArgs e)
         {
-            ctrlDisplay.Text = " ";
+            ctrlDisplay.Text = "";
         }
         private void btnC_Click(object sender, EventArgs e)
         {
-            ctrlDisplay.Text = ctrlDisplay.Text.Remove(ctrlDisplay.Text.Length - 1);
+            ctrlDisplay.Text = ctrlDisplay.Text.Remove(ctrlDisplay.Text.Length - 2);
         }
     }
 }
