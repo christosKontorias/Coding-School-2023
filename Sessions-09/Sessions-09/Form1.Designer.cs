@@ -47,6 +47,7 @@
             this.btnSquareRoot = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.ctrlDisplay = new System.Windows.Forms.TextBox();
+            this.btnC = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnOne
@@ -157,6 +158,7 @@
             this.btnZero.TabIndex = 10;
             this.btnZero.Text = "0";
             this.btnZero.UseVisualStyleBackColor = true;
+            this.btnZero.Click += new System.EventHandler(this.btnZero_Click);
             // 
             // btnEqual
             // 
@@ -222,6 +224,7 @@
             this.btnPower.TabIndex = 16;
             this.btnPower.Text = "Pow 2";
             this.btnPower.UseVisualStyleBackColor = true;
+            this.btnPower.Click += new System.EventHandler(this.btnPower_Click);
             // 
             // btnSquareRoot
             // 
@@ -232,6 +235,7 @@
             this.btnSquareRoot.TabIndex = 17;
             this.btnSquareRoot.Text = "Sqrt";
             this.btnSquareRoot.UseVisualStyleBackColor = true;
+            this.btnSquareRoot.Click += new System.EventHandler(this.btnSquareRoot_Click);
             // 
             // btnClear
             // 
@@ -253,11 +257,23 @@
             this.ctrlDisplay.Size = new System.Drawing.Size(206, 29);
             this.ctrlDisplay.TabIndex = 19;
             // 
+            // btnC
+            // 
+            this.btnC.Font = new System.Drawing.Font("Poor Richard", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnC.Location = new System.Drawing.Point(198, 395);
+            this.btnC.Name = "btnC";
+            this.btnC.Size = new System.Drawing.Size(65, 40);
+            this.btnC.TabIndex = 20;
+            this.btnC.Text = "C";
+            this.btnC.UseVisualStyleBackColor = true;
+            this.btnC.Click += new System.EventHandler(this.btnC_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 529);
+            this.Controls.Add(this.btnC);
             this.Controls.Add(this.ctrlDisplay);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnSquareRoot);
@@ -304,5 +320,6 @@
         private Button btnSquareRoot;
         private Button btnClear;
         private TextBox ctrlDisplay;
+        private Button btnC;
     }
 }

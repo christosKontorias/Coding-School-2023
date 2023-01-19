@@ -14,7 +14,9 @@ namespace Sessions_09
             Addition,
             Subtraction,
             Multiplication,
-            Division
+            Division,
+            Power,
+            SquareRoot
         }
 
         public Form1()
@@ -49,6 +51,16 @@ namespace Sessions_09
                     _result = division.Do(_value1, _value2);
                     break;
 
+                case CalcOperation.Power:
+                    Power power = new Power();
+
+                    break;
+
+                case CalcOperation.SquareRoot:
+                    SquareRoot squareRoot = new SquareRoot();
+
+                    break;
+
                 default:
                     break;
             }
@@ -79,6 +91,28 @@ namespace Sessions_09
             }
         }
 
+
+        private void btnZero_Click(object sender, EventArgs e)
+        {
+            if (_result != null)
+            {
+                ctrlDisplay.Text = string.Empty;
+                _value1 = null;
+                _value2 = null;
+                _result = null;
+            }
+
+            ctrlDisplay.Text += " 0 ";
+
+            if (_value1 == null)
+            {
+                _value1 = 0;
+            }
+            else
+            {
+                _value2 = 0;
+            }
+        }
         private void btnTwo_Click(object sender, EventArgs e)
         {
             if (_result != null)
@@ -262,11 +296,6 @@ namespace Sessions_09
 
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            //ctrlDisplay.Text = "";
-        }
-
         private void btnAddition_Click(object sender, EventArgs e)
         {
             ctrlDisplay.Text += " + ";
@@ -290,6 +319,26 @@ namespace Sessions_09
         {
             ctrlDisplay.Text += " / ";
             _calcOperation = CalcOperation.Division;
+        }
+
+        private void btnPower_Click(object sender, EventArgs e)
+        {
+            _calcOperation = CalcOperation.Power;
+
+        }
+
+        private void btnSquareRoot_Click(object sender, EventArgs e)
+        {
+            _calcOperation = CalcOperation.SquareRoot;
+
+        }
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            ctrlDisplay.Text = " ";
+        }
+        private void btnC_Click(object sender, EventArgs e)
+        {
+            ctrlDisplay.Text = ctrlDisplay.Text.Remove(ctrlDisplay.Text.Length - 1);
         }
     }
 }
