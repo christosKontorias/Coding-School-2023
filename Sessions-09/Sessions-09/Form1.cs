@@ -129,9 +129,7 @@ namespace Sessions_09
             //}
             //else
             //{
-            //    _value2 = 0;
-            //}
-
+            //  
         }
 
         private void btn1_Click(object sender, EventArgs e)
@@ -386,9 +384,10 @@ namespace Sessions_09
 
         private void btnPower_Click(object sender, EventArgs e)
         {
-            //_calcOperation = CalcOperation.Power;
-                try
-                {
+            ctrlDisplay.Text = "";
+
+            try
+            {
                     double ans = Math.Pow(Double.Parse(ctrlDisplay.Text), 2);
                     ctrlDisplay.Text = ans.ToString();
                 }
@@ -396,6 +395,7 @@ namespace Sessions_09
                 {
                     MessageBox.Show(E.Message);
                 }
+
         }
 
         private void btnSquareRoot_Click(object sender, EventArgs e)
