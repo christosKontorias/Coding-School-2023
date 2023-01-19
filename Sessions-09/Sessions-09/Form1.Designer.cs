@@ -46,7 +46,7 @@
             this.btnPower = new System.Windows.Forms.Button();
             this.btnSquareRoot = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.ctrlDisplay = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnOne
@@ -58,7 +58,7 @@
             this.btnOne.TabIndex = 1;
             this.btnOne.Text = "1";
             this.btnOne.UseVisualStyleBackColor = true;
-            this.btnOne.Click += new System.EventHandler(this.button1_Click);
+            this.btnOne.Click += new System.EventHandler(this.btn1_Click);
             // 
             // btnTwo
             // 
@@ -159,6 +159,7 @@
             this.btnEqual.TabIndex = 11;
             this.btnEqual.Text = "=";
             this.btnEqual.UseVisualStyleBackColor = true;
+            this.btnEqual.Click += new System.EventHandler(this.btnEqual_Click);
             // 
             // btnAddition
             // 
@@ -230,21 +231,21 @@
             this.btnClear.Text = "CE";
             this.btnClear.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // ctrlDisplay
             // 
-            this.textBox1.Font = new System.Drawing.Font("Poor Richard", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.Location = new System.Drawing.Point(136, 78);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(206, 29);
-            this.textBox1.TabIndex = 19;
+            this.ctrlDisplay.Font = new System.Drawing.Font("Poor Richard", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ctrlDisplay.Location = new System.Drawing.Point(136, 78);
+            this.ctrlDisplay.Name = "ctrlDisplay";
+            this.ctrlDisplay.ReadOnly = true;
+            this.ctrlDisplay.Size = new System.Drawing.Size(206, 29);
+            this.ctrlDisplay.TabIndex = 19;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 529);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.ctrlDisplay);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnSquareRoot);
             this.Controls.Add(this.btnPower);
@@ -289,6 +290,6 @@
         private Button btnPower;
         private Button btnSquareRoot;
         private Button btnClear;
-        private TextBox textBox1;
+        private TextBox ctrlDisplay;
     }
 }
