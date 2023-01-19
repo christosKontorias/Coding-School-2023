@@ -12,7 +12,9 @@ namespace Sessions_09
         enum CalcOperation
         {
             Addition,
-            Subtraction
+            Subtraction,
+            Multiplication,
+            Division
         }
 
         public Form1()
@@ -35,6 +37,16 @@ namespace Sessions_09
                 case CalcOperation.Subtraction:
                     Subtraction subtraction = new Subtraction();
                     _result = subtraction.Do(_value1, _value2);
+                    break;
+
+                case CalcOperation.Multiplication:
+                    Multiplication multiplication = new Multiplication();
+                    _result = multiplication.Do(_value1, _value2);
+                    break;
+
+                case CalcOperation.Division:
+                    Division division = new Division();
+                    _result = division.Do(_value1, _value2);
                     break;
 
                 default:
@@ -266,6 +278,18 @@ namespace Sessions_09
         {
             ctrlDisplay.Text += " - ";
             _calcOperation = CalcOperation.Subtraction;
+        }
+
+        private void btnMultiplication_Click(object sender, EventArgs e)
+        {
+            ctrlDisplay.Text += " * ";
+            _calcOperation = CalcOperation.Multiplication;
+        }
+
+        private void btnDivision_Click(object sender, EventArgs e)
+        {
+            ctrlDisplay.Text += " / ";
+            _calcOperation = CalcOperation.Division;
         }
     }
 }

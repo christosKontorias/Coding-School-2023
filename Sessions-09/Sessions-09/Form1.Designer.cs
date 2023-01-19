@@ -200,6 +200,7 @@
             this.btnMultiplication.TabIndex = 14;
             this.btnMultiplication.Text = "X";
             this.btnMultiplication.UseVisualStyleBackColor = true;
+            this.btnMultiplication.Click += new System.EventHandler(this.btnMultiplication_Click);
             // 
             // btnDivision
             // 
@@ -210,6 +211,7 @@
             this.btnDivision.TabIndex = 15;
             this.btnDivision.Text = "/";
             this.btnDivision.UseVisualStyleBackColor = true;
+            this.btnDivision.Click += new System.EventHandler(this.btnDivision_Click);
             // 
             // btnPower
             // 
