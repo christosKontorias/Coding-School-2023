@@ -69,6 +69,7 @@
             this.btnTwo.TabIndex = 2;
             this.btnTwo.Text = "2";
             this.btnTwo.UseVisualStyleBackColor = true;
+            this.btnTwo.Click += new System.EventHandler(this.btnTwo_Click);
             // 
             // btnThree
             // 
@@ -170,6 +171,7 @@
             this.btnAddition.TabIndex = 12;
             this.btnAddition.Text = "+";
             this.btnAddition.UseVisualStyleBackColor = true;
+            this.btnAddition.Click += new System.EventHandler(this.btnAddition_Click);
             // 
             // btnSubtraction
             // 
