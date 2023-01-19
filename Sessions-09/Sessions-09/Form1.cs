@@ -47,7 +47,6 @@ namespace Sessions_09
 
                 case CalcOperation.Multiplication:
                     CheckOperation();
-
                     Multiplication multiplication = new Multiplication();
                     _result = multiplication.Do(_value1, _value2);
                     break;
@@ -60,12 +59,10 @@ namespace Sessions_09
 
                 case CalcOperation.Power:
                     Power power = new Power();
-                    //_result = power.Do(_value1);
                     break;
 
                 case CalcOperation.SquareRoot:
                     SquareRoot squareRoot = new SquareRoot();
-                    //_result = squareRoot.Do(_value1);
                     break;
 
                 default:
@@ -77,9 +74,6 @@ namespace Sessions_09
         private void SetValues(decimal value)
         {
             ClearValues();
-
-            //ctrlDisplay.Text += value + " ";
-
             if (_value1 == null)
             {
                 _value1 = value;
@@ -100,7 +94,6 @@ namespace Sessions_09
             btnDivision.Enabled = true;
             btnSquareRoot.Enabled = true;
             btnPower.Enabled = true;
-
             // enable other operator buttons
         }
 
@@ -117,202 +110,66 @@ namespace Sessions_09
 
         private void btnZero_Click(object sender, EventArgs e)
         {
-
             ClearValues();
-
             ctrlDisplay.Text += " 0 ";
-
             SetValues(0);
-            //if (_value1 == null)
-            //{
-            //    _value1 = 0;
-            //}
-            //else
-            //{
-            //  
         }
-
         private void btn1_Click(object sender, EventArgs e)
         {
-
             ClearValues();
-
             ctrlDisplay.Text += " 1 ";
-
             SetValues(1);
-
-            //if (_value1 == null)
-            //{
-            //    _value1 = 1;
-            //}
-            //else
-            //{
-            //    _value2 = 1;
-            //}
-
         }
-
         private void btnTwo_Click(object sender, EventArgs e)
         {
-
             ClearValues();
-
             ctrlDisplay.Text += " 2 ";
-
             SetValues(2);
-
-            //if (_value1 == null)
-            //{
-            //    _value1 = 2;
-            //}
-            //else
-            //{
-            //    _value2 = 2;
-            //}
-
         }
 
         private void btnThree_Click(object sender, EventArgs e)
         {
-
             ClearValues();
-
             ctrlDisplay.Text += " 3 ";
-
             SetValues(3);
-
-            //if (_value1 == null)
-            //{
-            //    _value1 = 3;
-            //}
-            //else
-            //{
-            //    _value2 = 3;
-            //}
-
         }
 
         private void btnFour_Click(object sender, EventArgs e)
         {
-
             ClearValues();
-
             ctrlDisplay.Text += " 4 ";
-
             SetValues(4);
-
-            //if (_value1 == null)
-            //{
-            //    _value1 = 4;
-            //}
-            //else
-            //{
-            //    _value2 = 4;
-            //}
-
         }
-
         private void btnFive_Click(object sender, EventArgs e)
         {
-
             ClearValues();
-
             ctrlDisplay.Text += " 5 ";
-
             SetValues(5);
-
-            //if (_value1 == null)
-            //{
-            //    _value1 = 5;
-            //}
-            //else
-            //{
-            //    _value2 = 5;
-            //}
-
         }
-
         private void btnSix_Click(object sender, EventArgs e)
         {
-
             ClearValues();
-
             ctrlDisplay.Text += " 6 ";
-
             SetValues(6);
-
-
-            //if (_value1 == null)
-            //{
-            //    _value1 = 6;
-            //}
-            //else
-            //{
-            //    _value2 = 6;
-            //}
-
         }
-
         private void btnSeven_Click(object sender, EventArgs e)
         {
-
             ClearValues();
-
             ctrlDisplay.Text += " 7 ";
-
             SetValues(7);
-
-
-            //if (_value1 == null)
-            //{
-            //    _value1 = 7;
-            //}
-            //else
-            //{
-            //    _value2 = 7;
-            //}
-
         }
-
         private void btnEight_Click(object sender, EventArgs e)
         {
-
             ClearValues();
-
             ctrlDisplay.Text += " 8 ";
-
             SetValues(8);
-
-            //if (_value1 == null)
-            //{
-            //    _value1 = 8;
-            //}
-            //else
-            //{
-            //    _value2 = 8;
-            //}
-
         }
 
         private void btnNine_Click(object sender, EventArgs e)
         {
-
             ClearValues();
-
             ctrlDisplay.Text += " 9 ";
-
-
             SetValues(9);
-
-            //if (_value1 == null)
-            //{
-            //    _value1 = 9;
-            //}
-            //else
-            //{
-            //    _value2 = 9;
-            //}
-
         }
 
         private void btnAddition_Click(object sender, EventArgs e)
@@ -384,34 +241,30 @@ namespace Sessions_09
 
         private void btnPower_Click(object sender, EventArgs e)
         {
-            ctrlDisplay.Text = "";
-
             try
             {
-                    double ans = Math.Pow(Double.Parse(ctrlDisplay.Text), 2);
-                    ctrlDisplay.Text = ans.ToString();
-                }
-                catch (Exception E)
-                {
-                    MessageBox.Show(E.Message);
-                }
-
+                double ans = Math.Pow(Double.Parse(ctrlDisplay.Text), 2);
+                ctrlDisplay.Text = ans.ToString();
+            }
+            catch (Exception E)
+            {
+                MessageBox.Show(E.Message);
+            }
+            //_calcOperation = CalcOperation.Power;
         }
 
         private void btnSquareRoot_Click(object sender, EventArgs e)
         {
+            try
+            {
+                double ans = Math.Sqrt(Double.Parse(ctrlDisplay.Text));
+                ctrlDisplay.Text = ans.ToString();
+            }
+            catch (Exception E)
+            {
+                MessageBox.Show(E.Message);
+            }
             //_calcOperation = CalcOperation.SquareRoot;
-
-                try
-                {
-                    double ans = Math.Sqrt(Double.Parse(ctrlDisplay.Text));
-                    ctrlDisplay.Text = ans.ToString();
-                }
-                catch (Exception E)
-                {
-                    MessageBox.Show(E.Message);
-                }
-            
         }
         private void btnClear_Click(object sender, EventArgs e)
         {

@@ -256,6 +256,7 @@
             this.ctrlDisplay.ReadOnly = true;
             this.ctrlDisplay.Size = new System.Drawing.Size(206, 29);
             this.ctrlDisplay.TabIndex = 19;
+            this.ctrlDisplay.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btnC
             // 
