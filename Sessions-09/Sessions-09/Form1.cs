@@ -274,5 +274,10 @@ namespace Sessions_09
         {
             ctrlDisplay.Text = ctrlDisplay.Text.Remove(ctrlDisplay.Text.Length - 2);
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
