@@ -44,9 +44,14 @@
             this.grvGrades = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.labelScheduledCourses = new System.Windows.Forms.Label();
+            this.grvScheduledCourses = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCallendar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grvStudents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvCourses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvGrades)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvScheduledCourses)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -178,15 +183,50 @@
             // 
             // dataGridViewTextBoxColumn5
             // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "Grade";
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "GradeValue";
             this.dataGridViewTextBoxColumn5.HeaderText = "Grade";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // labelScheduledCourses
+            // 
+            this.labelScheduledCourses.AutoSize = true;
+            this.labelScheduledCourses.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelScheduledCourses.Location = new System.Drawing.Point(495, 174);
+            this.labelScheduledCourses.Name = "labelScheduledCourses";
+            this.labelScheduledCourses.Size = new System.Drawing.Size(171, 28);
+            this.labelScheduledCourses.TabIndex = 10;
+            this.labelScheduledCourses.Text = "ScheduledCourses";
+            // 
+            // grvScheduledCourses
+            // 
+            this.grvScheduledCourses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grvScheduledCourses.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn6,
+            this.colCallendar});
+            this.grvScheduledCourses.Location = new System.Drawing.Point(457, 220);
+            this.grvScheduledCourses.Name = "grvScheduledCourses";
+            this.grvScheduledCourses.Size = new System.Drawing.Size(244, 98);
+            this.grvScheduledCourses.TabIndex = 11;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "CourseID";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Subject";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // colCallendar
+            // 
+            this.colCallendar.DataPropertyName = "Callendar";
+            this.colCallendar.HeaderText = "Callendar";
+            this.colCallendar.Name = "colCallendar";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.grvScheduledCourses);
+            this.Controls.Add(this.labelScheduledCourses);
             this.Controls.Add(this.grvGrades);
             this.Controls.Add(this.grvCourses);
             this.Controls.Add(this.labelCourses);
@@ -201,6 +241,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grvStudents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvCourses)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvGrades)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvScheduledCourses)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -224,5 +265,9 @@
         private DataGridView grvGrades;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private Label labelScheduledCourses;
+        private DataGridView grvScheduledCourses;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private DataGridViewTextBoxColumn colCallendar;
     }
 }

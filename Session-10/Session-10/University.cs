@@ -27,14 +27,15 @@ namespace Session_10
 
         public List<Course> Courses { get; set; }
 
+        public List<ScheduledCourse> ScheduledCourses { get; set; }
 
-        //public Schedule[]? ScheduledCourse { get; set; }
 
         public University()
         {
             Students = new List<Student>();
             Grades = new List<Grade>();
             Courses = new List<Course>();
+            ScheduledCourses = new List<ScheduledCourse>();
         }
     }
 
@@ -53,7 +54,7 @@ namespace Session_10
     {
         public Course()
         {
-            ID = Guid.NewGuid();   
+            ID = Guid.NewGuid();
         }
         //Properties
         public Guid ID { get; set; }
@@ -73,6 +74,15 @@ namespace Session_10
         public int GradeValue { get; set; }
     }
 
+
+    class ScheduledCourse
+    {
+        //Properties
+        public Guid ID { get; set; }
+        public Guid CourseID { get; set; }
+        public Guid ProfessorID { get; set; }
+        public DateTime Callendar { get; set; }
+    }
     class Student : Person
     {
         public Student()

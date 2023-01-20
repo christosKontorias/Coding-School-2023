@@ -3,7 +3,9 @@ namespace Session_10
     public partial class Form1 : Form
     {
         private University _university;
+        private Grade _grade;
         private Course _course;
+        private ScheduledCourse _scheduledCourse;
 
         public Form1()
         {
@@ -13,7 +15,9 @@ namespace Session_10
         private void Form1_Load(object sender, EventArgs e)
         {
             PopulateData();
+            PopulateGrades();
             PopulateCourses();
+            PopulateScheduledCourses();
         }
 
         private void PopulateData()
@@ -52,7 +56,37 @@ namespace Session_10
             
         }
 
-   
+        private void PopulateGrades()
+        {
+            List<Grade> grades = new List<Grade>();
+
+            _grade = new Grade()
+            {
+                CourseID = new Guid(),
+                GradeValue = 0
+            };
+
+            Grade grade1 = new Grade()
+            {
+                CourseID = new Guid(),
+                GradeValue = 67
+            };
+
+            Grade grade2 = new Grade()
+            {
+                CourseID = new Guid(),
+                GradeValue = 84
+            };
+
+            //_course.Courses.Add(course1);
+            //_course.Courses.Add(course2);
+
+            grades.Add(grade1);
+            grades.Add(grade2);
+
+            grvGrades.AutoGenerateColumns = false;
+            grvGrades.DataSource = grades;
+        }
         private void PopulateCourses()
         {
             List<Course> courses = new List<Course>();
@@ -84,6 +118,40 @@ namespace Session_10
             grvCourses.AutoGenerateColumns = false;
             grvCourses.DataSource = courses;
         }
+        private void PopulateScheduledCourses()
+        {
+            List<ScheduledCourse> scheduledCourses = new List<ScheduledCourse>();
+
+            _scheduledCourse = new ScheduledCourse()
+            {
+                CourseID = new Guid(),
+                Callendar = DateTime.Now
+            };
+
+            ScheduledCourse scheduledCourse1 = new ScheduledCourse()
+            {
+                CourseID = new Guid(),
+                Callendar = DateTime.Today.AddDays(4)
+            };
+
+            ScheduledCourse scheduledCourse2 = new ScheduledCourse()
+            {
+                CourseID = new Guid(),
+                Callendar = DateTime.Today.AddDays(3)
+            };
+
+            //_course.Courses.Add(course1);
+            //_course.Courses.Add(course2);
+
+            scheduledCourses.Add(scheduledCourse1);
+            scheduledCourses.Add(scheduledCourse2);
+
+            grvScheduledCourses.AutoGenerateColumns = false;
+            grvScheduledCourses.DataSource = scheduledCourses;
+        }
+
+
+
             private void btnSave_Click(object sender, EventArgs e)
         {
             Serializer serializer = new Serializer();
