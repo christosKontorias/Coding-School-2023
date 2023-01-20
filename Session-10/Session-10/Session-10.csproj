@@ -9,4 +9,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\UniversityLibrary\UniversityLibrary.csproj" />
+  </ItemGroup>
+
 </Project>
