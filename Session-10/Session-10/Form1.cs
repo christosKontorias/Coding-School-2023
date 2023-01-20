@@ -22,6 +22,7 @@ namespace Session_10
 
         private void PopulateData()
         {
+
             List<Student> students = new List<Student>();
 
             _university = new University()
@@ -47,15 +48,14 @@ namespace Session_10
 
             _university.Students.Add(student1);
             _university.Students.Add(student2);
-            
+
             students.Add(student1);
             students.Add(student2);
 
             grvStudents.AutoGenerateColumns = false;
             grvStudents.DataSource = students;
-            
-        }
 
+        }
         private void PopulateGrades()
         {
             List<Grade> grades = new List<Grade>();
@@ -63,6 +63,7 @@ namespace Session_10
             _grade = new Grade()
             {
                 CourseID = new Guid(),
+
                 GradeValue = 0
             };
 
@@ -78,8 +79,8 @@ namespace Session_10
                 GradeValue = 84
             };
 
-            //_course.Courses.Add(course1);
-            //_course.Courses.Add(course2);
+            _university.Grades.Add(grade1);
+            _university.Grades.Add(grade2);
 
             grades.Add(grade1);
             grades.Add(grade2);
@@ -93,7 +94,7 @@ namespace Session_10
 
             _course = new Course()
             {
-                Code =  " ",
+                Code = " ",
                 Subject = " "
             };
 
@@ -109,8 +110,9 @@ namespace Session_10
                 Subject = "CS"
             };
 
-            //_course.Courses.Add(course1);
-            //_course.Courses.Add(course2);
+
+            _university.Courses.Add(course1);
+            _university.Courses.Add(course2);
 
             courses.Add(course1);
             courses.Add(course2);
@@ -124,24 +126,24 @@ namespace Session_10
 
             _scheduledCourse = new ScheduledCourse()
             {
-                CourseID = new Guid(),
+                Subject = "",
                 Callendar = DateTime.Now
             };
 
             ScheduledCourse scheduledCourse1 = new ScheduledCourse()
             {
-                CourseID = new Guid(),
+                Subject = "Math",
                 Callendar = DateTime.Today.AddDays(4)
             };
 
             ScheduledCourse scheduledCourse2 = new ScheduledCourse()
             {
-                CourseID = new Guid(),
+                Subject = "CS",
                 Callendar = DateTime.Today.AddDays(3)
             };
 
-            //_course.Courses.Add(course1);
-            //_course.Courses.Add(course2);
+            _university.ScheduledCourses.Add(scheduledCourse1);
+            _university.ScheduledCourses.Add(scheduledCourse2);
 
             scheduledCourses.Add(scheduledCourse1);
             scheduledCourses.Add(scheduledCourse2);
@@ -152,7 +154,7 @@ namespace Session_10
 
 
 
-            private void btnSave_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             Serializer serializer = new Serializer();
             serializer.SerializeTofile(_university, "university.json");

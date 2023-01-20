@@ -210,7 +210,7 @@
             // 
             // dataGridViewTextBoxColumn6
             // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "CourseID";
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "Subject";
             this.dataGridViewTextBoxColumn6.HeaderText = "Subject";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             // 

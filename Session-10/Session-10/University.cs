@@ -12,8 +12,7 @@ namespace Session_10
     {
         public Guid ID { get; set; }
         public string Name { get; set; }
-        //public int YearsInService { get; set; }
-
+        public int YearsInService { get; set; }
         public Institute()
         {
             ID = Guid.NewGuid();
@@ -24,11 +23,8 @@ namespace Session_10
     {
         public List<Student> Students { get; set; }
         public List<Grade> Grades { get; set; }
-
         public List<Course> Courses { get; set; }
-
         public List<ScheduledCourse> ScheduledCourses { get; set; }
-
 
         public University()
         {
@@ -75,13 +71,18 @@ namespace Session_10
     }
 
 
-    class ScheduledCourse
+    class ScheduledCourse : Course
     {
+        public ScheduledCourse() 
+        {
+            ID = Guid.NewGuid();
+        }
         //Properties
         public Guid ID { get; set; }
         public Guid CourseID { get; set; }
         public Guid ProfessorID { get; set; }
         public DateTime Callendar { get; set; }
+        public string? Subject { get; set; }
     }
     class Student : Person
     {
