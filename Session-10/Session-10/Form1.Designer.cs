@@ -30,8 +30,13 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.grvStudents = new System.Windows.Forms.DataGridView();
+            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSurname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colGender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.grvStudents)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -54,27 +59,67 @@
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
-            // dataGridView1
+            // grvStudents
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 46);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
-            this.dataGridView1.TabIndex = 2;
+            this.grvStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grvStudents.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colName,
+            this.colSurname,
+            this.colAge,
+            this.colGender});
+            this.grvStudents.Location = new System.Drawing.Point(12, 46);
+            this.grvStudents.Name = "grvStudents";
+            this.grvStudents.Size = new System.Drawing.Size(493, 150);
+            this.grvStudents.TabIndex = 2;
+            // 
+            // colName
+            // 
+            this.colName.DataPropertyName = "Name";
+            this.colName.HeaderText = "Name";
+            this.colName.Name = "colName";
+            // 
+            // colSurname
+            // 
+            this.colSurname.DataPropertyName = "Surname";
+            this.colSurname.HeaderText = "Surname";
+            this.colSurname.Name = "colSurname";
+            // 
+            // colAge
+            // 
+            this.colAge.DataPropertyName = "Age";
+            this.colAge.HeaderText = "Age";
+            this.colAge.Name = "colAge";
+            // 
+            // colGender
+            // 
+            this.colGender.DataPropertyName = "Gender";
+            this.colGender.HeaderText = "Gender";
+            this.colGender.Name = "colGender";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(214, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 15);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Students";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.grvStudents);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvStudents)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -82,6 +127,11 @@
 
         private Button button1;
         private Button btnLoad;
-        private DataGridView dataGridView1;
+        private DataGridView grvStudents;
+        private Label label1;
+        private DataGridViewTextBoxColumn colName;
+        private DataGridViewTextBoxColumn colSurname;
+        private DataGridViewTextBoxColumn colAge;
+        private DataGridViewTextBoxColumn colGender;
     }
 }

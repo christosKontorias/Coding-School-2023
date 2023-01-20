@@ -44,11 +44,11 @@ namespace Session_10
             ID = Guid.NewGuid();
         }
     }
-    class Student : Person
-    {
-        //public int RegistrationNumber { get; set; }
-        //public Course[]? Courses { get; set; }
-        public string Name { get; set; }
-        public int Age { get; set; }
-    }
+    //class Student : Person
+    //{
+    //    //public int RegistrationNumber { get; set; }
+    //    //public Course[]? Courses { get; set; }
+    //    public string Name { get; set; }
+    //    public int Age { get; set; }
+    //}
 }

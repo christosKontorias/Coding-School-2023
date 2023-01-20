@@ -15,6 +15,8 @@ namespace Session_10
 
         private void PopulateData()
         {
+            List<Student> students = new List<Student>();
+
             _university = new University()
             {
                 Name = "University 1"
@@ -23,18 +25,31 @@ namespace Session_10
             Student student1 = new Student()
             {
                 Name = "Student 1",
-                Age = 20
+                Surname = "Surname 1",
+                Age = 20,
+                Gender = Student.GenderEnum.Male
             };
 
             Student student2 = new Student()
             {
                 Name = "Student 2",
-                Age = 25
+                Surname = "Surname 2",
+                Age = 22,
+                Gender = Student.GenderEnum.Female
             };
 
             _university.Students.Add(student1);
             _university.Students.Add(student2);
+            
+            students.Add(student1);
+            students.Add(student2);
+
+            grvStudents.AutoGenerateColumns = false;
+            grvStudents.DataSource = students;
+            
         }
+
+        
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -50,6 +65,11 @@ namespace Session_10
             _university = serializer.DeserializeFromFile<University>("university.json");
 
             MessageBox.Show(_university.Name + " Loaded!");
+
+        }
+
+        private void grvStudent_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }
