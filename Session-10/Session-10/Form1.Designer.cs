@@ -35,7 +35,7 @@
             this.colSurname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colGender = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelStudents = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grvStudents)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,7 +69,7 @@
             this.colGender});
             this.grvStudents.Location = new System.Drawing.Point(12, 46);
             this.grvStudents.Name = "grvStudents";
-            this.grvStudents.Size = new System.Drawing.Size(493, 150);
+            this.grvStudents.Size = new System.Drawing.Size(444, 105);
             this.grvStudents.TabIndex = 2;
             // 
             // colName
@@ -96,21 +96,22 @@
             this.colGender.HeaderText = "Gender";
             this.colGender.Name = "colGender";
             // 
-            // label1
+            // labelStudents
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(214, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 15);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Students";
+            this.labelStudents.AutoSize = true;
+            this.labelStudents.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelStudents.Location = new System.Drawing.Point(214, 9);
+            this.labelStudents.Name = "labelStudents";
+            this.labelStudents.Size = new System.Drawing.Size(88, 28);
+            this.labelStudents.TabIndex = 3;
+            this.labelStudents.Text = "Students";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelStudents);
             this.Controls.Add(this.grvStudents);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.button1);
@@ -128,7 +129,7 @@
         private Button button1;
         private Button btnLoad;
         private DataGridView grvStudents;
-        private Label label1;
+        private Label labelStudents;
         private DataGridViewTextBoxColumn colName;
         private DataGridViewTextBoxColumn colSurname;
         private DataGridViewTextBoxColumn colAge;
