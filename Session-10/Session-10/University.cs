@@ -23,27 +23,56 @@ namespace Session_10
     class University : Institute
     {
         public List<Student> Students { get; set; }
-        //public Course[]? Courses { get; set; }
-        //public Grade[]? Grades { get; set; }
+        public List<Grade> Grades { get; set; }
+
+        public List<Course> Courses { get; set; }
+
+
         //public Schedule[]? ScheduledCourse { get; set; }
 
         public University()
         {
             Students = new List<Student>();
+            Grades = new List<Grade>();
+            Courses = new List<Course>();
         }
     }
 
     class Person
     {
         public Guid ID { get; set; }
-        //public string? Name { get; set; }
-        //public int Age { get; set; }
+        public string? Name { get; set; }
+        public int Age { get; set; }
 
         public Person()
         {
             ID = Guid.NewGuid();
         }
     }
+    class Course
+    {
+        public Course()
+        {
+            ID = Guid.NewGuid();   
+        }
+        //Properties
+        public Guid ID { get; set; }
+        public string? Code { get; set; }
+        public string? Subject { get; set; }
+    }
+    class Grade
+    {
+        public Grade()
+        {
+            ID = Guid.NewGuid();
+        }
+
+        public Guid ID { get; set; }
+        public Guid StudentID { get; set; }
+        public Guid CourseID { get; set; }
+        public int GradeValue { get; set; }
+    }
+
     class Student : Person
     {
         public Student()
@@ -57,7 +86,6 @@ namespace Session_10
         public string Name { get; set; }
         public string Surname { get; set; }
         public int Age { get; set; }
-        public bool Undergraduate { get; set; }
         public GenderEnum Gender { get; set; }
     }
 }

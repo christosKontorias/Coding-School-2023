@@ -3,6 +3,8 @@ namespace Session_10
     public partial class Form1 : Form
     {
         private University _university;
+        private Course _course;
+
         public Form1()
         {
             InitializeComponent();
@@ -11,6 +13,7 @@ namespace Session_10
         private void Form1_Load(object sender, EventArgs e)
         {
             PopulateData();
+            PopulateCourses();
         }
 
         private void PopulateData()
@@ -49,9 +52,39 @@ namespace Session_10
             
         }
 
-        
+   
+        private void PopulateCourses()
+        {
+            List<Course> courses = new List<Course>();
 
-        private void btnSave_Click(object sender, EventArgs e)
+            _course = new Course()
+            {
+                Code =  " ",
+                Subject = " "
+            };
+
+            Course course1 = new Course()
+            {
+                Code = "101",
+                Subject = "Math"
+            };
+
+            Course course2 = new Course()
+            {
+                Code = "150",
+                Subject = "CS"
+            };
+
+            //_course.Courses.Add(course1);
+            //_course.Courses.Add(course2);
+
+            courses.Add(course1);
+            courses.Add(course2);
+
+            grvCourses.AutoGenerateColumns = false;
+            grvCourses.DataSource = courses;
+        }
+            private void btnSave_Click(object sender, EventArgs e)
         {
             Serializer serializer = new Serializer();
             serializer.SerializeTofile(_university, "university.json");
