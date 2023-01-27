@@ -1,179 +1,141 @@
+using Session_10.Libraries;
+using System.Diagnostics;
+using System.Xml.Serialization;
+
 namespace Session_10
 {
     public partial class Form1 : Form
     {
         private University _university;
-        private Grade _grade;
-        private Course _course;
-        private ScheduledCourse _scheduledCourse;
-
-        public Form1()
-        {
+        public Form1() {
             InitializeComponent();
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            PopulateData();
+        private void Form1_Load(object sender, EventArgs e) {
+            SetControlProperties();
+   
+        }
+        private void SetControlProperties() {
+            PopulateStudents();
             PopulateGrades();
             PopulateCourses();
             PopulateScheduledCourses();
         }
 
-        private void PopulateData()
-        {
-
-            List<Student> students = new List<Student>();
-
-            _university = new University()
-            {
-                Name = "University 1"
+        private void PopulateStudents() {
+            _university = new University() {
+                Name = "University Title"
             };
+            List<Students> student = new List<Students>();
 
-            Student student1 = new Student()
-            {
+            Students student1 = new Students() {
                 Name = "Student 1",
-                Surname = "Surname 1",
                 Age = 20,
-                Gender = Student.GenderEnum.Male
+                RegistrationNumber = 1
             };
 
-            Student student2 = new Student()
-            {
+            Students student2 = new Students() {
                 Name = "Student 2",
-                Surname = "Surname 2",
-                Age = 22,
-                Gender = Student.GenderEnum.Female
+                Age = 25,
+                RegistrationNumber = 2
             };
 
-            _university.Students.Add(student1);
-            _university.Students.Add(student2);
+            student.Add(student1);
+            student.Add(student2);
+            GridViewStudents.DataSource = student;
+            GridViewStudents.AutoGenerateColumns = false;
 
-            students.Add(student1);
-            students.Add(student2);
-
-            grvStudents.AutoGenerateColumns = false;
-            grvStudents.DataSource = students;
-
+            _university.Student.Add(student1);
+            _university.Student.Add(student2);
         }
-        private void PopulateGrades()
-        {
-            List<Grade> grades = new List<Grade>();
 
-            _grade = new Grade()
-            {
-                CourseID = new Guid(),
-
-                GradeValue = 0
+        private void PopulateGrades() {
+            _university = new University() {
+                Name = "University Title"
             };
+            List<Grades> grade = new List<Grades>();
 
-            Grade grade1 = new Grade()
-            {
-                CourseID = new Guid(),
+            Grades grade1 = new Grades() {
+                ID = new Guid(),
                 GradeValue = 67
             };
 
-            Grade grade2 = new Grade()
-            {
-                CourseID = new Guid(),
+            Grades grade2 = new Grades() {
+                ID = new Guid(),
                 GradeValue = 84
             };
 
-            _university.Grades.Add(grade1);
-            _university.Grades.Add(grade2);
+            grade.Add(grade1);
+            grade.Add(grade2);
 
-            grades.Add(grade1);
-            grades.Add(grade2);
+            GridViewGrades.DataSource = grade;
+            GridViewGrades.AutoGenerateColumns = false;
 
-            grvGrades.AutoGenerateColumns = false;
-            grvGrades.DataSource = grades;
+            _university.Grade.Add(grade1);
+            _university.Grade.Add(grade2);
         }
-        private void PopulateCourses()
-        {
-            List<Course> courses = new List<Course>();
-
-            _course = new Course()
-            {
-                Code = " ",
-                Subject = " "
+        private void PopulateCourses() {
+            _university = new University() {
+                Name = "University Title"
             };
+            List<Courses> course = new List<Courses>();
 
-            Course course1 = new Course()
-            {
+            Courses course1 = new Courses() {
                 Code = "101",
-                Subject = "Math"
+                Subject = "Maths"
             };
 
-            Course course2 = new Course()
-            {
+            Courses course2 = new Courses() {
                 Code = "150",
                 Subject = "CS"
             };
 
+            course.Add(course1);
+            course.Add(course2);
 
-            _university.Courses.Add(course1);
-            _university.Courses.Add(course2);
+            GridViewCourses.DataSource = course;
+            GridViewCourses.AutoGenerateColumns = false;
 
-            courses.Add(course1);
-            courses.Add(course2);
-
-            grvCourses.AutoGenerateColumns = false;
-            grvCourses.DataSource = courses;
+            _university.Course.Add(course1);
+            _university.Course.Add(course2);
         }
-        private void PopulateScheduledCourses()
-        {
-            List<ScheduledCourse> scheduledCourses = new List<ScheduledCourse>();
+        private void PopulateScheduledCourses() {
+            _university = new University() {
+                Name = "University Title"
+            };
+            List<ScheduledCourses> scheduledCourse = new List<ScheduledCourses>();
 
-            _scheduledCourse = new ScheduledCourse()
-            {
-                Subject = "",
-                Callendar = DateTime.Now
+            ScheduledCourses scheduledCourse1 = new ScheduledCourses() {
+                ID = new Guid(),
+                Callendar = DateTime.Today.AddDays(56)
             };
 
-            ScheduledCourse scheduledCourse1 = new ScheduledCourse()
-            {
-                Subject = "Math",
-                Callendar = DateTime.Today.AddDays(4)
+            ScheduledCourses scheduledCourse2 = new ScheduledCourses() {
+                ID = new Guid(),
+                Callendar = DateTime.Today.AddDays(40)
             };
 
-            ScheduledCourse scheduledCourse2 = new ScheduledCourse()
-            {
-                Subject = "CS",
-                Callendar = DateTime.Today.AddDays(3)
-            };
+            scheduledCourse.Add(scheduledCourse1);
+            scheduledCourse.Add(scheduledCourse2);
 
-            _university.ScheduledCourses.Add(scheduledCourse1);
-            _university.ScheduledCourses.Add(scheduledCourse2);
+            GridViewScheduledCourses.DataSource = scheduledCourse;
+            GridViewScheduledCourses.AutoGenerateColumns = false;
 
-            scheduledCourses.Add(scheduledCourse1);
-            scheduledCourses.Add(scheduledCourse2);
-
-            grvScheduledCourses.AutoGenerateColumns = false;
-            grvScheduledCourses.DataSource = scheduledCourses;
+            _university.ScheduledCourse.Add(scheduledCourse1);
+            _university.ScheduledCourse.Add(scheduledCourse2);
         }
-
-
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
+        private void button1_Click(object sender, EventArgs e) {
             Serializer serializer = new Serializer();
-            serializer.SerializeTofile(_university, "university.json");
+            serializer.SerializeToFile(_university, "university.json");
 
-            MessageBox.Show("Save Done");
+            MessageBox.Show("Save Done!");
         }
 
-        private void btnLoad_Click(object sender, EventArgs e)
-        {
+        private void btnLoad_Click(object sender, EventArgs e) {
             Serializer serializer = new Serializer();
+
             _university = serializer.DeserializeFromFile<University>("university.json");
 
             MessageBox.Show(_university.Name + " Loaded!");
-
-        }
-
-        private void grvStudent_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }
