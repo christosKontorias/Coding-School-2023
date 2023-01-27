@@ -1,4 +1,4 @@
-﻿namespace Sessions_09
+﻿namespace Session_09
 {
     partial class Form1
     {

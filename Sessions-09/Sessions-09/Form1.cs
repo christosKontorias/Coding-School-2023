@@ -1,6 +1,6 @@
 using CalculatorLibrary;
 
-namespace Sessions_09
+namespace Session_09
 {
     public partial class Form1 : Form
     {
