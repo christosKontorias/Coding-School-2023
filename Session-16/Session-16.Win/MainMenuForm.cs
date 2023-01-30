@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Session_16 {
+namespace Session_16.Win {
     public partial class MainMenuForm : Form {
         private CarServiceCenter _carServiceCenter;
         private Serializer _serializer;

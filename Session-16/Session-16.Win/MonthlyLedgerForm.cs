@@ -15,7 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Session_16 {
+namespace Session_16.Win {
     public partial class MonthlyLedgerForm : Form {
         private Serializer _serializer;
         private CarServiceCenter _carServiceCenter;
@@ -53,7 +53,7 @@ namespace Session_16 {
                         monthlyLedger.Incomes += transaction.TotalPrice;
                     }
                 }
-                monthlyLedger.Total=monthlyLedger.Incomes - monthlyLedger.Expenses;
+                monthlyLedger.Total = monthlyLedger.Incomes - monthlyLedger.Expenses;
                 list.Add(monthlyLedger);
             }
             bsMonthlyLedger.DataSource = list;

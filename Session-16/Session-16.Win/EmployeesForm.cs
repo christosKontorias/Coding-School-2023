@@ -16,7 +16,7 @@ using System.Text.RegularExpressions;
 using DevExpress.XtraEditors.ColorPick.Picker;
 using DevExpress.XtraGrid.Views.Base;
 
-namespace Session_16 {
+namespace Session_16.Win {
     public partial class EmployeesForm : Form {
         private Serializer _serializer;
         private CarServiceCenter _carServiceCenter;

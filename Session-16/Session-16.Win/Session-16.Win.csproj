@@ -16,13 +16,17 @@
 
   <ItemGroup>
     <PackageReference Include="DevExpress.Win.Design" Version="22.2.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\CarServiceCenterLib.Models\CarServiceCenterLib.Models.csproj" />
-		<ProjectReference Include="..\CarServiceCenterLib.Orm\CarServiceCenterLib.Orm.csproj" />
-		<ProjectReference Include="..\SerializerLib\SerializerLib.csproj" />
-	</ItemGroup>
+  <ItemGroup>    
+    <ProjectReference Include="..\CarServiceCenterLib.Models\CarServiceCenterLib.Models.csproj" />    
+    <ProjectReference Include="..\CarServiceCenterLib.Orm\CarServiceCenterLib.Orm.csproj" />    
+    <ProjectReference Include="..\SerializerLib\SerializerLib.csproj" />
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">

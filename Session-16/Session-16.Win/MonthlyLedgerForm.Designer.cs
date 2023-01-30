@@ -1,4 +1,4 @@
-﻿namespace Session_16 {
+﻿namespace Session_16.Win {
     partial class MonthlyLedgerForm {
         /// <summary>
         /// Required designer variable.

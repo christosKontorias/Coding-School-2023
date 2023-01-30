@@ -1,4 +1,4 @@
-namespace Session_16 {
+namespace Session_16.Win {
     internal static class Program {
         /// <summary>
         ///  The main entry point for the application.

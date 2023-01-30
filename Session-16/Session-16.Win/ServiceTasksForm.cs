@@ -16,7 +16,7 @@ using DevExpress.XtraEditors.ColorPick.Picker;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid;
 
-namespace Session_16 {
+namespace Session_16.Win {
     public partial class ServiceTasksForm : Form {
         private CarServiceCenter _carServiceCenter;
         private Serializer _serializer;

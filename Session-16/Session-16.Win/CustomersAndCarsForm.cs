@@ -14,7 +14,7 @@ using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Base;
 using CarServiceCenterLib.Models;
 
-namespace Session_16 {
+namespace Session_16.Win {
     public partial class CustomersAndCarsForm : Form {
         private CarServiceCenter _carServiceCenter;
         private Serializer _serializer;

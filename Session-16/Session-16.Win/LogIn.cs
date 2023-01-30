@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Session_16 {
+namespace Session_16.Win {
     public partial class LogIn : Form {
         public LogIn() {
             InitializeComponent();

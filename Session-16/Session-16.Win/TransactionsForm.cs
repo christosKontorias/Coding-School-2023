@@ -5,7 +5,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraScheduler.Native;
 using SerializerLib;
 
-namespace Session_16 {
+namespace Session_16.Win {
     public partial class TransactionsForm : Form {
         // Properties
         private Serializer _serializer;
