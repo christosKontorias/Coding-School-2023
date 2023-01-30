@@ -14,9 +14,11 @@ namespace CarServiceCenterLib.Orm.Context
     {
 
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Engineer> Engineers { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new CustomerConfiguration());
+            modelBuilder.ApplyConfiguration(new EngineerConfiguration());
             base.OnModelCreating(modelBuilder);
         }
 
