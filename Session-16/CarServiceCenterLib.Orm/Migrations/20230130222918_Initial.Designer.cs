@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarServiceCenterLib.Orm.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230130220550_Initial")]
+    [Migration("20230130222918_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -24,6 +24,32 @@ namespace CarServiceCenterLib.Orm.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("CarServiceCenterLib.Models.Car", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Brand")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("CarRegistrationNumber")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Model")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Car", (string)null);
+                });
 
             modelBuilder.Entity("CarServiceCenterLib.Models.Customer", b =>
                 {
@@ -83,7 +109,58 @@ namespace CarServiceCenterLib.Orm.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("ManagerID");
+
                     b.ToTable("Engineer", (string)null);
+                });
+
+            modelBuilder.Entity("CarServiceCenterLib.Models.Manager", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("SalaryPerMonth")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Manager", (string)null);
+                });
+
+            modelBuilder.Entity("CarServiceCenterLib.Models.Engineer", b =>
+                {
+                    b.HasOne("CarServiceCenterLib.Models.Manager", null)
+                        .WithMany("Engineers")
+                        .HasForeignKey("ManagerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CarServiceCenterLib.Models.Manager", b =>
+                {
+                    b.Navigation("Engineers");
                 });
 #pragma warning restore 612, 618
         }

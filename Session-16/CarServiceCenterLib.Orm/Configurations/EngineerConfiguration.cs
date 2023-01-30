@@ -14,9 +14,6 @@ namespace CarServiceCenterLib.Orm.Configurations {
             builder.HasKey(engineer => engineer.ID);
             builder.Property(engineer => engineer.Name).HasMaxLength(50);
             builder.Property(engineer => engineer.Surname).HasMaxLength(50);
-            builder.Property(engineer => engineer.SalaryPerMonth);
-            builder.Property(engineer => engineer.StartDate);
-
         }
     }
 }
