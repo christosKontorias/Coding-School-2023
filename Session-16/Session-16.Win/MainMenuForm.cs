@@ -16,7 +16,6 @@ namespace Session_16.Win {
     public partial class MainMenuForm : Form {
         private CarServiceCenter _carServiceCenter;
         private Serializer _serializer;
-
         public MainMenuForm() {
             InitializeComponent();
             _carServiceCenter = new CarServiceCenter();
@@ -25,25 +24,20 @@ namespace Session_16.Win {
         private void MainMenuForm_Load(object sender, EventArgs e) {
 
         }
-
         private void button1_Click(object sender, EventArgs e) {
             TransactionsForm transactionsForm = new TransactionsForm(_carServiceCenter);
             transactionsForm.ShowDialog(); // Shows _transactionsForm
         }
-
-
         private void btnCustomerAndCars_Click(object sender, EventArgs e) {
             CustomersAndCarsForm customersAndCarsForm = new CustomersAndCarsForm(_carServiceCenter);
             customersAndCarsForm.ShowDialog(); // Shows _customerAndCarsForm
         }
-
         private void Populate(CarServiceCenter _carServiceCenter) {
             CustomerRepo customerRepo = new CustomerRepo();
             EngineerRepo engineerRepo = new EngineerRepo();
             ManagerRepo managerRepo = new ManagerRepo();
             CarRepo carRepo = new CarRepo();
             ServiceTaskRepo serviceTaskRepo = new ServiceTaskRepo();
-
 
             _carServiceCenter.Customers.Add(new Customer("Sotiris", "Chrysanthou", "6954872136", "154852984"));
             customerRepo.Add(_carServiceCenter.Customers.Last());
@@ -124,33 +118,26 @@ namespace Session_16.Win {
                 _carServiceCenter.AddTask(transactionLine, transaction.Date, out _);
             }
         }
-
         private void btnPopulate_Click(object sender, EventArgs e) {
             Populate(_carServiceCenter);
             DevExpress.XtraEditors.XtraMessageBox.Show("Populate Successful!");
         }
-
         private void btnServiceTasks_Click(object sender, EventArgs e) {
             ServiceTasksForm serviceTasksForm = new ServiceTasksForm(_carServiceCenter);
             serviceTasksForm.ShowDialog();  // shows _ServiceTasksForm
         }
-
         private void btnEmployees_Click(object sender, EventArgs e) {
             EmployeesForm employeesForm = new EmployeesForm(_carServiceCenter);
             employeesForm.ShowDialog();
         }
-
-
         private void btn_MonthlyLedger_Click(object sender, EventArgs e) {
             MonthlyLedgerForm monthlyLedgerForm = new MonthlyLedgerForm(_carServiceCenter);
             monthlyLedgerForm.ShowDialog();
         }
-
         private void btnSave_Click(object sender, EventArgs e) {
             _serializer.SerializeToFile(_carServiceCenter, "CarServiceCenter.json");
             DevExpress.XtraEditors.XtraMessageBox.Show("Saved!");
         }
-
         private void btnLoad_Click(object sender, EventArgs e) {
             CustomerRepo customerRepo = new CustomerRepo();
             _carServiceCenter.Customers = customerRepo.GetAll().ToList();
@@ -165,36 +152,26 @@ namespace Session_16.Win {
 
             MessageBox.Show("Done!");
         }
-
         private void btnTransactions_Click(object sender, EventArgs e) {
             TransactionsForm transactionsForm = new TransactionsForm(_carServiceCenter);
             transactionsForm.ShowDialog(); // Shows _transactionsForm
         }
-
         private void btnCustomerAndCars_Click_1(object sender, EventArgs e) {
             CustomersAndCarsForm customersAndCarsForm = new CustomersAndCarsForm(_carServiceCenter);
             customersAndCarsForm.ShowDialog(); // Shows _customerAndCarsForm
         }
-
         private void btnServiceTasks_Click_1(object sender, EventArgs e) {
             ServiceTasksForm serviceTasksForm = new ServiceTasksForm(_carServiceCenter);
             serviceTasksForm.ShowDialog();  // shows _ServiceTasksForm
         }
-
         private void btnEmployees_Click_1(object sender, EventArgs e) {
             EmployeesForm employeesForm = new EmployeesForm(_carServiceCenter);
             employeesForm.ShowDialog();
         }
-
         private void btn_MonthlyLedger_Click_1(object sender, EventArgs e) {
             MonthlyLedgerForm monthlyLedgerForm = new MonthlyLedgerForm(_carServiceCenter);
             monthlyLedgerForm.ShowDialog();
         }
-
-        private void panelMenu_Paint(object sender, PaintEventArgs e) {
-
-        }
-
         private void btnExit_Click(object sender, EventArgs e) {
             this.Close();
         }
@@ -219,13 +196,11 @@ namespace Session_16.Win {
             btnCustomerAndCars.FlatAppearance.BorderColor = Color.Black;
             btnCustomerAndCars.FlatAppearance.BorderSize = 1;
         }
-
         private void btnCustomerAndCars_MouseLeave(object sender, EventArgs e) {
             btnCustomerAndCars.BackColor = Color.FromArgb(237, 234, 218);
             btnCustomerAndCars.ForeColor = Color.Black;
             btnCustomerAndCars.FlatAppearance.BorderSize = 0;
         }
-
         private void btnServiceTasks_MouseEnter(object sender, EventArgs e) {
             btnServiceTasks.BackColor = Color.FromArgb(145, 31, 31);
             btnServiceTasks.FlatAppearance.MouseOverBackColor = btnServiceTasks.BackColor;
@@ -233,13 +208,11 @@ namespace Session_16.Win {
             btnServiceTasks.FlatAppearance.BorderColor = Color.Black;
             btnServiceTasks.FlatAppearance.BorderSize = 1;
         }
-
         private void btnServiceTasks_MouseLeave(object sender, EventArgs e) {
             btnServiceTasks.BackColor = Color.FromArgb(237, 234, 218);
             btnServiceTasks.ForeColor = Color.Black;
             btnServiceTasks.FlatAppearance.BorderSize = 0;
         }
-
         private void btnEmployees_MouseEnter(object sender, EventArgs e) {
             btnEmployees.BackColor = Color.FromArgb(145, 31, 31);
             btnEmployees.FlatAppearance.MouseOverBackColor = btnEmployees.BackColor;
@@ -247,13 +220,11 @@ namespace Session_16.Win {
             btnEmployees.FlatAppearance.BorderColor = Color.Black;
             btnEmployees.FlatAppearance.BorderSize = 1;
         }
-
         private void btnEmployees_MouseLeave(object sender, EventArgs e) {
             btnEmployees.BackColor = Color.FromArgb(237, 234, 218);
             btnEmployees.ForeColor = Color.Black;
             btnEmployees.FlatAppearance.BorderSize = 0;
         }
-
         private void btn_MonthlyLedger_MouseEnter(object sender, EventArgs e) {
             btn_MonthlyLedger.BackColor = Color.FromArgb(145, 31, 31);
             btn_MonthlyLedger.FlatAppearance.MouseOverBackColor = btn_MonthlyLedger.BackColor;
@@ -261,13 +232,11 @@ namespace Session_16.Win {
             btn_MonthlyLedger.FlatAppearance.BorderColor = Color.Black;
             btn_MonthlyLedger.FlatAppearance.BorderSize = 1;
         }
-
         private void btn_MonthlyLedger_MouseLeave(object sender, EventArgs e) {
             btn_MonthlyLedger.BackColor = Color.FromArgb(237, 234, 218);
             btn_MonthlyLedger.ForeColor = Color.Black;
             btn_MonthlyLedger.FlatAppearance.BorderSize = 0;
         }
-
         private void btnExit_MouseEnter(object sender, EventArgs e) {
             btnExit.BackColor = Color.FromArgb(145, 31, 31);
             btnExit.FlatAppearance.MouseOverBackColor = btnExit.BackColor;
@@ -275,7 +244,6 @@ namespace Session_16.Win {
             btnExit.FlatAppearance.BorderColor = Color.Black;
             btnExit.FlatAppearance.BorderSize = 1;
         }
-
         private void btnExit_MouseLeave(object sender, EventArgs e) {
             btnExit.BackColor = Color.FromArgb(237, 234, 218);
             btnExit.ForeColor = Color.Black;
@@ -287,31 +255,26 @@ namespace Session_16.Win {
             btnPopulate.FlatAppearance.BorderColor = Color.Red;
             btnPopulate.FlatAppearance.BorderSize = 2;
         }
-
         private void btnPopulate_MouseLeave(object sender, EventArgs e) {
             btnPopulate.ForeColor = Color.Black;
             btnPopulate.FlatAppearance.BorderSize = 0;
         }
-
         private void btnSave_MouseEnter(object sender, EventArgs e) {
             btnSave.FlatAppearance.MouseOverBackColor = btnSave.BackColor;
             btnSave.ForeColor = Color.Blue;
             btnSave.FlatAppearance.BorderColor = Color.Red;
             btnSave.FlatAppearance.BorderSize = 2;
         }
-
         private void btnSave_MouseLeave(object sender, EventArgs e) {
             btnSave.ForeColor = Color.Black;
             btnSave.FlatAppearance.BorderSize = 0;
         }
-
         private void btnLoad_MouseEnter(object sender, EventArgs e) {
             btnLoad.FlatAppearance.MouseOverBackColor = btnLoad.BackColor;
             btnLoad.ForeColor = Color.Blue;
             btnLoad.FlatAppearance.BorderColor = Color.Red;
             btnLoad.FlatAppearance.BorderSize = 2;
         }
-
         private void btnLoad_MouseLeave(object sender, EventArgs e) {
             btnLoad.ForeColor = Color.Black;
             btnLoad.FlatAppearance.BorderSize = 0;

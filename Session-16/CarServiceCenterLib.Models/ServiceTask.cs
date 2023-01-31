@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarServiceCenterLib.Models {
     public class ServiceTask {
+
         //Properties
         public Guid ID { get; set; }
         public int Code { get; set; }

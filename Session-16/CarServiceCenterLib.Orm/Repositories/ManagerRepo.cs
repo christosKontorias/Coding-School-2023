@@ -28,12 +28,10 @@ namespace CarServiceCenterLib.Orm.Repositories {
             return context.Managers.ToList();
 
         }
-
         public Manager? GetById(Guid id) {
             using var context = new AppDbContext();
             return context.Managers.SingleOrDefault();
         }
-
         public void Update(Guid id, Manager entity) {
             using var context = new AppDbContext();
             var ManagerDb = context.Managers.Where(manager => manager.ID == id).SingleOrDefault();

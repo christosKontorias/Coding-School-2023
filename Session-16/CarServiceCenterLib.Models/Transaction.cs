@@ -6,17 +6,19 @@ using System.Threading.Tasks;
 
 namespace CarServiceCenterLib.Models {
     public class Transaction {
+
         //Properties 
         public DateTime Date { get; set; }
         public double TotalPrice { get; set; }
+
         //Relations
         public Guid ID { get; set; }
-        public List<TransactionLine> TransactionLines { get; set; }
         public Guid CustomerID { get; set; }
-        public Customer Customer { get; set; }
         public Guid CarID { get; set; }
-        public Car Car { get; set; }
         public Guid ManagerID { get; set; }
+        public List<TransactionLine> TransactionLines { get; set; }
+        public Customer Customer { get; set; }
+        public Car Car { get; set; }
         public Manager Manager { get; set; }
 
         // Constructors
@@ -38,7 +40,6 @@ namespace CarServiceCenterLib.Models {
             TransactionLines.Add(transactionLine);
             TotalPrice += transactionLine.Price;
         }
-
         public void UpdateTotalPrice() {
             TotalPrice = 0;
             foreach (TransactionLine transactionLine in TransactionLines) {

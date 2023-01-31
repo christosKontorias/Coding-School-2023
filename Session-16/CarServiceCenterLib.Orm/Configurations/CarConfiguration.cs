@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CarServiceCenterLib.Orm.Configurations {
-    internal class CarConfiguration : IEntityTypeConfiguration<Car> {
+    public class CarConfiguration : IEntityTypeConfiguration<Car> {
         public void Configure(EntityTypeBuilder<Car> builder) {
             builder.ToTable("Car");
             builder.HasKey(car => car.ID);

@@ -37,6 +37,7 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.grdCars = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colCarID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colBrand = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colModel = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCarRegistrationNumber = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -44,7 +45,6 @@
             this.bsService = new System.Windows.Forms.BindingSource(this.components);
             this.btn_Save = new System.Windows.Forms.Button();
             this.btn_Close = new System.Windows.Forms.Button();
-            this.colCarID = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdCustomers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCustomers)).BeginInit();
@@ -137,10 +137,6 @@
             this.labelCustomers.TabIndex = 1;
             this.labelCustomers.Text = "Customers";
             // 
-            // bsCustomers
-            // 
-            this.bsCustomers.CurrentChanged += new System.EventHandler(this.bsCustomers_CurrentChanged);
-            // 
             // labelControl1
             // 
             this.labelControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -182,6 +178,14 @@
             this.gridView2.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridView2_RowUpdated);
             this.gridView2.ValidatingEditor += new DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventHandler(this.gridView2_ValidatingEditor);
             // 
+            // colCarID
+            // 
+            this.colCarID.Caption = "ID";
+            this.colCarID.FieldName = "ID";
+            this.colCarID.Name = "colCarID";
+            this.colCarID.Visible = true;
+            this.colCarID.VisibleIndex = 3;
+            // 
             // colBrand
             // 
             this.colBrand.Caption = "Brand";
@@ -205,14 +209,6 @@
             this.colCarRegistrationNumber.Name = "colCarRegistrationNumber";
             this.colCarRegistrationNumber.Visible = true;
             this.colCarRegistrationNumber.VisibleIndex = 2;
-            // 
-            // bsCars
-            // 
-            this.bsCars.CurrentChanged += new System.EventHandler(this.bsCars_CurrentChanged);
-            // 
-            // bsService
-            // 
-            this.bsService.CurrentChanged += new System.EventHandler(this.bsService_CurrentChanged);
             // 
             // btn_Save
             // 
@@ -249,14 +245,6 @@
             this.btn_Close.Click += new System.EventHandler(this.btn_Close_Click);
             this.btn_Close.MouseEnter += new System.EventHandler(this.btn_Close_MouseEnter);
             this.btn_Close.MouseLeave += new System.EventHandler(this.btn_Close_MouseLeave);
-            // 
-            // colCarID
-            // 
-            this.colCarID.Caption = "ID";
-            this.colCarID.FieldName = "ID";
-            this.colCarID.Name = "colCarID";
-            this.colCarID.Visible = true;
-            this.colCarID.VisibleIndex = 3;
             // 
             // CustomersAndCarsForm
             // 

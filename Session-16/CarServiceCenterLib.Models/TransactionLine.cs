@@ -6,18 +6,20 @@ using System.Threading.Tasks;
 
 namespace CarServiceCenterLib.Models {
     public class TransactionLine {
+
         // Properties
         public Guid ID { get; set; }
         public double Hours { get; set; }
         public double PricePerHour { get; set; } //constant maybe
         public double Price { get; set; }
+
         //Relations
-        public Transaction Transaction { get; set; }
         public Guid TransactionID { get; set; }
-        public Engineer Engineer { get; set; }
         public Guid EngineerID { get; set; }
-        public ServiceTask ServiceTask { get; set; }
         public Guid ServiceTaskID { get; set; }
+        public Transaction Transaction { get; set; }
+        public Engineer Engineer { get; set; }
+        public ServiceTask ServiceTask { get; set; }
 
         //Constrators
         public TransactionLine() {

@@ -1,6 +1,6 @@
 ﻿namespace CarServiceCenterLib.Models {
     public class Person {
-        
+
         //Properties
         public Guid ID { get; set; }
         public string Name { get; set; }
@@ -10,7 +10,6 @@
         public Person() {
             ID = Guid.NewGuid();
         }
-
         public Person(String name, String surname) {
             ID = Guid.NewGuid();
             Name = name;

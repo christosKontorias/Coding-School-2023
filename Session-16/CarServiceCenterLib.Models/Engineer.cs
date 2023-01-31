@@ -10,6 +10,7 @@ namespace CarServiceCenterLib.Models {
         // Properties
         public double SalaryPerMonth { get; set; }
         public DateTime? StartDate { get; set; }
+
         //Relations
         public Guid ManagerID { get; set; }
         public List<TransactionLine> TransactionLines { get; set; }

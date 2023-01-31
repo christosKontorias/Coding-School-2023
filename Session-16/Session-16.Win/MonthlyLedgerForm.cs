@@ -19,27 +19,20 @@ namespace Session_16.Win {
     public partial class MonthlyLedgerForm : Form {
         private Serializer _serializer;
         private CarServiceCenter _carServiceCenter;
-
         public MonthlyLedgerForm(CarServiceCenter carServiceCenter) {
             InitializeComponent();
             _serializer = new Serializer();
             _carServiceCenter = carServiceCenter;
         }
-
         private void MonthlyLedgerForm_Load(object sender, EventArgs e) {
             SetControlProperties();
             _serializer = new Serializer();
         }
-
         private void SetControlProperties() {
             _serializer = new Serializer();
             bsMonthlyLedger.DataSource = _carServiceCenter.Managers;
             grdMonthlyLedger.DataSource = bsMonthlyLedger;
         }
-        private void grdCustomers_Click(object sender, EventArgs e) {
-
-        }
-
         private void btnCalculate_Click(object sender, EventArgs e) {
             List<MonthlyLedger> list = new List<MonthlyLedger>();
             MonthlyLedger monthlyLedger;
@@ -68,7 +61,6 @@ namespace Session_16.Win {
             btnCalculate.FlatAppearance.BorderColor = Color.Red;
             btnCalculate.FlatAppearance.BorderSize = 2;
         }
-
         private void btnCalculate_MouseLeave(object sender, EventArgs e) {
             btnCalculate.ForeColor = Color.Black;
             btnCalculate.FlatAppearance.BorderColor = Color.Black;

@@ -14,7 +14,6 @@ namespace CarServiceCenterLib.Orm.Configurations {
             builder.HasKey(manager => manager.ID);
             builder.Property(manager => manager.Name).HasMaxLength(50);
             builder.Property(manager => manager.Surname).HasMaxLength(50);
-
         }
     }
 }

@@ -21,7 +21,6 @@ namespace Session_16.Win {
     public partial class ServiceTasksForm : Form {
         private CarServiceCenter _carServiceCenter;
         private Serializer _serializer;
-
         public ServiceTasksForm(CarServiceCenter carServiceCenter) {
             InitializeComponent();
             _carServiceCenter = carServiceCenter;
@@ -30,53 +29,44 @@ namespace Session_16.Win {
         private void ServiceTasksForm_Load_1(object sender, EventArgs e) {
             SetControlProperties();
         }
-
         private void SetControlProperties() {
 
             _serializer = new Serializer();
             bsServiceTasks.DataSource = _carServiceCenter.ServiceTasks;
             grdServiceTasks.DataSource = bsServiceTasks;
         }
-
         private void dgvServiceTasks_CellContentClick(object sender, DataGridViewCellEventArgs e) {
 
         }
-
         private void btnSave_Click(object sender, EventArgs e) {
             _serializer.SerializeToFile(_carServiceCenter, "CarServiceCenter.json");
             DevExpress.XtraEditors.XtraMessageBox.Show("Saved!");
         }
-
         private void btn_Close_Click(object sender, EventArgs e) {
             this.Close();
         }
-
         private void btnSave_MouseEnter(object sender, EventArgs e) {
             btnSave.FlatAppearance.MouseOverBackColor = btnSave.BackColor;
             btnSave.ForeColor = Color.Blue;
             btnSave.FlatAppearance.BorderColor = Color.Red;
             btnSave.FlatAppearance.BorderSize = 2;
         }
-
         private void btnSave_MouseLeave(object sender, EventArgs e) {
             btnSave.ForeColor = Color.Black;
             btnSave.FlatAppearance.BorderColor = Color.Black;
             btnSave.FlatAppearance.BorderSize = 2;
         }
-
         private void btn_Close_MouseEnter(object sender, EventArgs e) {
             btn_Close.FlatAppearance.MouseOverBackColor = btn_Close.BackColor;
             btn_Close.ForeColor = Color.Blue;
             btn_Close.FlatAppearance.BorderColor = Color.Red;
             btn_Close.FlatAppearance.BorderSize = 2;
         }
-
         private void btn_Close_MouseLeave(object sender, EventArgs e) {
             btn_Close.ForeColor = Color.Black;
             btn_Close.FlatAppearance.BorderColor = Color.Black;
             btn_Close.FlatAppearance.BorderSize = 2;
         }
-
         private void gridView1_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e) {
             ServiceTaskRepo serviceTaskRepo = new ServiceTaskRepo();
             GridView view = sender as GridView;
@@ -84,8 +74,6 @@ namespace Session_16.Win {
             String code = view.GetRowCellValue(e.RowHandle, colCode).ToString();
             String description = view.GetRowCellValue(e.RowHandle, colDescription) as String;
             String hours = view.GetRowCellValue(e.RowHandle, colHours).ToString();
-            
-
 
             // Code Cell
             if (code == null) {
@@ -119,7 +107,6 @@ namespace Session_16.Win {
                 serviceTaskRepo.Add(FindServiceTask(id));
             }
         }
-
         private void gridView1_ValidatingEditor(object sender, DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventArgs e) {
             ColumnView view = sender as ColumnView;
             GridColumn column = (e as EditFormValidateEditorEventArgs)?.Column ?? view.FocusedColumn;
@@ -158,7 +145,6 @@ namespace Session_16.Win {
                 }
             }
         }
-
         private void gridView1_InitNewRow(object sender, InitNewRowEventArgs e) {
             DevExpress.XtraGrid.Columns.GridColumn col = gridView1.Columns.ColumnByFieldName("Code");
             int dataRowCount = gridView1.DataRowCount;
@@ -179,7 +165,6 @@ namespace Session_16.Win {
                 }
             }
         }
-
         private ServiceTask FindServiceTask(Guid id) {
             ServiceTask retServiceTask = null;
             foreach (ServiceTask serviceTask in _carServiceCenter.ServiceTasks) {
@@ -189,15 +174,12 @@ namespace Session_16.Win {
             }
             return retServiceTask;
         }
-
         private void gridView1_RowDeleting(object sender, DevExpress.Data.RowDeletingEventArgs e) {
             GridView view = sender as GridView;
             ServiceTaskRepo carRepo = new ServiceTaskRepo();
             Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colID).ToString());
             carRepo.Delete(id);
         }
-
-
         private void gridView1_RowUpdated(object sender, RowObjectEventArgs e) {
             GridView view = sender as GridView;
             ServiceTaskRepo serviceTaskRepo = new ServiceTaskRepo();

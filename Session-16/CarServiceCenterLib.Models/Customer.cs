@@ -13,6 +13,7 @@ namespace CarServiceCenterLib.Models {
 
         //Relations 
         public List<Transaction> Transactions { get; set; }
+
         // Constructors
         public Customer() {
             Transactions = new List<Transaction>();
@@ -22,6 +23,5 @@ namespace CarServiceCenterLib.Models {
             Phone = phone;
             TIN = tin;
         }
-
     }
 }

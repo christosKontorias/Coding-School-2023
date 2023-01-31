@@ -23,7 +23,6 @@ namespace CarServiceCenterLib.Orm.Repositories {
             context.Remove(CarDb);
             context.SaveChanges();
         }
-
         public IList<Car> GetAll() {
             using var context = new AppDbContext();
             return context.Cars.ToList();

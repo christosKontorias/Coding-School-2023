@@ -15,7 +15,6 @@ namespace CarServiceCenterLib.Orm.Repositories {
                 context.SaveChanges();
             }
         }
-
         public void Delete(Guid id) {
             using var context = new AppDbContext();
             var ServiceTaskDb = context.ServiceTasks.Where(serviceTask => serviceTask.ID == id).SingleOrDefault();
@@ -24,8 +23,6 @@ namespace CarServiceCenterLib.Orm.Repositories {
             context.Remove(ServiceTaskDb);
             context.SaveChanges();
         }
-
-
         public IList<ServiceTask> GetAll() {
             using var context = new AppDbContext();
             return context.ServiceTasks.ToList();
@@ -45,7 +42,6 @@ namespace CarServiceCenterLib.Orm.Repositories {
             ServiceTaskDb.Hours = entity.Hours;
             context.SaveChanges();
         }
-
         public bool EntityExist(ServiceTask entity) {
             using var context = new AppDbContext();
             var ServiceTaskDb = context.ServiceTasks

@@ -8,10 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarServiceCenterLib.Orm.Context
-{
-    public class AppDbContext : DbContext
-    {
+namespace CarServiceCenterLib.Orm.Context {
+    public class AppDbContext : DbContext {
 
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Engineer> Engineers { get; set; }
@@ -21,10 +19,7 @@ namespace CarServiceCenterLib.Orm.Context
         public DbSet<TransactionLine> TransactionLines { get; set; }
         public DbSet<ServiceTask> ServiceTasks { get; set; }
 
-
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+        protected override void OnModelCreating(ModelBuilder modelBuilder) {
             modelBuilder.ApplyConfiguration(new CustomerConfiguration());
             modelBuilder.ApplyConfiguration(new EngineerConfiguration());
             modelBuilder.ApplyConfiguration(new ManagerConfiguration());
@@ -32,12 +27,10 @@ namespace CarServiceCenterLib.Orm.Context
             modelBuilder.ApplyConfiguration(new TransactionConfiguration());
             modelBuilder.ApplyConfiguration(new TransactionLineConfiguration());
             modelBuilder.ApplyConfiguration(new ServiceTaskConfiguration());
-
             base.OnModelCreating(modelBuilder);
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
             optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;" +
                 "Initial Catalog=CarServiceCenterDb;" +
                 "Integrated Security=True;" +
@@ -46,6 +39,5 @@ namespace CarServiceCenterLib.Orm.Context
                 "ApplicationIntent=ReadWrite;");
             base.OnConfiguring(optionsBuilder);
         }
-
     }
 }

@@ -22,13 +22,11 @@ namespace Session_16.Win {
         private void TransactionsForm_Load(object sender, EventArgs e) {
             SetControlProperties();
         }
-
         private void SetControlProperties() {
             bsTransactions.DataSource = _carServiceCenter.Transactions;
             grdTransactions.DataSource = bsTransactions;
             grdTransactionLines.DataSource = bsTransactions;
             grdTransactionLines.DataMember = "TransactionLines";
-
 
             SetLookUpEdit<Customer>(repCustomerName, _carServiceCenter.Customers, "Name", "ID");
             SetLookUpEdit<Customer>(repCustomerSurname, _carServiceCenter.Customers, "Surname", "ID");
@@ -40,7 +38,6 @@ namespace Session_16.Win {
             SetLookUpEdit<Engineer>(repEngineersSurname, _carServiceCenter.Engineers, "Surname", "ID");
             SetLookUpEdit<ServiceTask>(repServiceTasksDescription, _carServiceCenter.ServiceTasks, "Description", "ID");
         }
-
         public List<TransactionLine> ReturnAllTransactionLines() {
             List<TransactionLine> transactionLines = new List<TransactionLine>();
             foreach (Transaction transaction in _carServiceCenter.Transactions) {
@@ -48,22 +45,18 @@ namespace Session_16.Win {
             }
             return transactionLines;
         }
-
         private void btnSave_Click(object sender, EventArgs e) {
             _serializer.SerializeToFile(_carServiceCenter, "CarServiceCenter.json");
             DevExpress.XtraEditors.XtraMessageBox.Show("Saved!");
         }
-
         private void SetLookUpEdit<T>(RepositoryItemLookUpEdit rep, List<T> list, String displayMember, String valueMember) {
             rep.DataSource = list;
             rep.DisplayMember = displayMember;
             rep.ValueMember = valueMember;
         }
-
         private void btn_Close_Click(object sender, EventArgs e) {
             this.Close();
         }
-
         private void gridView2_InitNewRow(object sender, InitNewRowEventArgs e) {
             GridView view = sender as GridView;
             view.SetRowCellValue(e.RowHandle, "TransactionID", gridView1.GetRowCellValue(gridView1.GetSelectedRows()[0], "ID"));
@@ -74,9 +67,9 @@ namespace Session_16.Win {
             TransactionLine transactionLine = FindTransactionLineWithID((Guid)gridView2.GetFocusedRowCellValue("ID"), transaction.TransactionLines);
             _carServiceCenter.DeleteTask(transactionLine, transaction.Date);
         }
-
         private void gridView2_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e) {
             GridView view = sender as GridView;
+
             if (e.Column.Caption != "Sevice Task Description") return;
             ServiceTask serviceTask = FindServiceTaskWithID((Guid)e.Value, _carServiceCenter.ServiceTasks);
             if (serviceTask != null) {
@@ -96,7 +89,6 @@ namespace Session_16.Win {
                 MessageBox.Show(message);
             }
         }
-
         private ServiceTask FindServiceTaskWithID(Guid serviceID, List<ServiceTask> serviceTasks) {
             ServiceTask retServiceTask = null;
             foreach (ServiceTask serviceTask in _carServiceCenter.ServiceTasks) {
@@ -118,7 +110,6 @@ namespace Session_16.Win {
             }
             return RetTransaction;
         }
-
         private TransactionLine FindTransactionLineWithID(Guid transactionLineID, List<TransactionLine> transactionsLines) {
             TransactionLine RetTransactionLine = null;
 
@@ -138,26 +129,22 @@ namespace Session_16.Win {
             btnSave.FlatAppearance.BorderColor = Color.Red;
             btnSave.FlatAppearance.BorderSize = 2;
         }
-
         private void btnSave_MouseLeave(object sender, EventArgs e) {
             btnSave.ForeColor = Color.Black;
             btnSave.FlatAppearance.BorderColor = Color.Black;
             btnSave.FlatAppearance.BorderSize = 2;
         }
-
         private void btn_Close_MouseEnter(object sender, EventArgs e) {
             btn_Close.FlatAppearance.MouseOverBackColor = btn_Close.BackColor;
             btn_Close.ForeColor = Color.Blue;
             btn_Close.FlatAppearance.BorderColor = Color.Red;
             btn_Close.FlatAppearance.BorderSize = 2;
         }
-
         private void btn_Close_MouseLeave(object sender, EventArgs e) {
             btn_Close.ForeColor = Color.Black;
             btn_Close.FlatAppearance.BorderColor = Color.Black;
             btn_Close.FlatAppearance.BorderSize = 2;
         }
-
         private void gridView1_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e) {
             UpdateLabelWorkHour();
         }
@@ -169,7 +156,6 @@ namespace Session_16.Win {
                 }
             }
         }
-
         private void gridView2_RowDeleted(object sender, DevExpress.Data.RowDeletedEventArgs e) {
             UpdateLabelWorkHour();
         }

@@ -15,7 +15,6 @@ namespace CarServiceCenterLib.Orm.Repositories {
                 context.SaveChanges();
             }
         }
-
         public void Delete(Guid id) {
             using var context = new AppDbContext();
             var EngineerDb = context.Engineers.Where(engineer => engineer.ID == id).SingleOrDefault();
@@ -24,18 +23,14 @@ namespace CarServiceCenterLib.Orm.Repositories {
             context.Remove(EngineerDb);
             context.SaveChanges();
         }
-
-
         public IList<Engineer> GetAll() {
             using var context = new AppDbContext();
             return context.Engineers.ToList();
         }
-
         public Engineer? GetById(Guid id) {
             using var context = new AppDbContext();
             return context.Engineers.Where(engineer => engineer.ID == id).SingleOrDefault();
         }
-
         public void Update(Guid id, Engineer entity) {
             using var context = new AppDbContext();
             var EngineerDb = context.Engineers
@@ -49,7 +44,6 @@ namespace CarServiceCenterLib.Orm.Repositories {
             EngineerDb.StartDate = entity.StartDate;
             context.SaveChanges();
         }
-
         public bool EntityExist(Engineer entity) {
             using var context = new AppDbContext();
             var EngineerDb = context.Engineers

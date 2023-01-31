@@ -26,7 +26,6 @@ namespace Session_16.Win {
             _serializer = new Serializer();
             _carServiceCenter = carServiceCenter;
         }
-
         private void EmployeesForm_Load(object sender, EventArgs e) {
             SetControlProperties();
         }
@@ -38,54 +37,47 @@ namespace Session_16.Win {
             SetLookUpEdit<Manager>(repManagerName, _carServiceCenter.Managers, "Name", "ID");
             SetLookUpEdit<Manager>(repManagerSurname, _carServiceCenter.Managers, "Surname", "ID");
         }
-
         private void btnSave_Click(object sender, EventArgs e) {
             _serializer.SerializeToFile(_carServiceCenter, "CarServiceCenter.json");
             DevExpress.XtraEditors.XtraMessageBox.Show("Saved!");
 
         }
-
         private void btnClose_Click(object sender, EventArgs e) {
             this.Close();
         }
-
         private void SetLookUpEdit<T>(RepositoryItemLookUpEdit rep, List<T> list, String displayMember, String valueMember) {
             rep.DataSource = list;
             rep.DisplayMember = displayMember;
             rep.ValueMember = valueMember;
         }
-
         private void gridView2_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e) {
             GridView view = sender as GridView;
         }
-        //Customize Buttons
 
+        //Customize Buttons
         private void btnSave_MouseEnter(object sender, EventArgs e) {
             btnSave.FlatAppearance.MouseOverBackColor = btnSave.BackColor;
             btnSave.ForeColor = Color.Blue;
             btnSave.FlatAppearance.BorderColor = Color.Red;
             btnSave.FlatAppearance.BorderSize = 2;
         }
-
         private void btnSave_MouseLeave(object sender, EventArgs e) {
             btnSave.ForeColor = Color.Black;
             btnSave.FlatAppearance.BorderColor = Color.Black;
             btnSave.FlatAppearance.BorderSize = 2;
         }
-
         private void btnClose_MouseEnter(object sender, EventArgs e) {
             btnClose.FlatAppearance.MouseOverBackColor = btnClose.BackColor;
             btnClose.ForeColor = Color.Blue;
             btnClose.FlatAppearance.BorderColor = Color.Red;
             btnClose.FlatAppearance.BorderSize = 2;
         }
-
         private void btnClose_MouseLeave(object sender, EventArgs e) {
             btnClose.ForeColor = Color.Black;
             btnClose.FlatAppearance.BorderColor = Color.Black;
             btnSave.FlatAppearance.BorderSize = 2;
         }
-        //gridView1_ValidateRow Giannis
+
         private void gridView1_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e) {
             GridView view = sender as GridView;
             GridColumn colName = view.Columns["Name"];
@@ -160,11 +152,11 @@ namespace Session_16.Win {
                 engineerRepo.Add(FindEngineer(id));
             }
         }
-
         private void gridView1_ValidatingEditor(object sender, DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventArgs e) {
             ColumnView view = sender as ColumnView;
             GridColumn column = (e as EditFormValidateEditorEventArgs)?.Column ?? view.FocusedColumn;
             String cellVal = e.Value.ToString();
+
             if (column.FieldName == "Name") {
                 // colName changed
                 if (cellVal == null) {
@@ -211,7 +203,6 @@ namespace Session_16.Win {
                 }
             }
         }
-
         private void gridView2_ValidateRow(object sender, ValidateRowEventArgs e) {
             GridView view = sender as GridView;
             GridColumn colName = view.Columns["Name"];
@@ -267,11 +258,11 @@ namespace Session_16.Win {
                 managerRepo.Add(FindManager(id));
             }
         }
-
         private void gridView2_ValidatingEditor(object sender, DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventArgs e) {
             ColumnView view = sender as ColumnView;
             GridColumn column = (e as EditFormValidateEditorEventArgs)?.Column ?? view.FocusedColumn;
             String cellVal = e.Value.ToString();
+
             if (column.FieldName == "Name") {
                 // colName changed
                 if (cellVal == null) {
@@ -308,11 +299,9 @@ namespace Session_16.Win {
                 }
             }
         }
-
         private void gridView1_RowCountChanged(object sender, EventArgs e) {
             _carServiceCenter.UpdateWorkDays();
         }
-
         private Engineer FindEngineer(Guid id) {
             Engineer retEngineer = null;
             foreach (Engineer engineer in _carServiceCenter.Engineers) {
@@ -331,34 +320,24 @@ namespace Session_16.Win {
             }
             return retManager;
         }
-
-
-
         private void gridView1_RowDeleting(object sender, DevExpress.Data.RowDeletingEventArgs e) {
             GridView view = sender as GridView;
             EngineerRepo engineerRepo = new EngineerRepo();
             Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colEngID).ToString());
             engineerRepo.Delete(id);
         }
-
         private void gridView1_RowUpdated(object sender, RowObjectEventArgs e) {
             EngineerRepo engineerRepo = new EngineerRepo();
             GridView view = sender as GridView;
             Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colEngID).ToString());
             engineerRepo.Update(id, FindEngineer(id));
         }
-
-        private void gridView2_RowDeleted(object sender, DevExpress.Data.RowDeletedEventArgs e) {
-
-        }
-
         private void gridView2_RowUpdated(object sender, RowObjectEventArgs e) {
             ManagerRepo managerRepo = new ManagerRepo();
             GridView view = sender as GridView;
             Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colID).ToString());
             managerRepo.Update(id, FindManager(id));
         }
-
         private void gridView2_RowDeleting(object sender, DevExpress.Data.RowDeletingEventArgs e) {
             GridView view = sender as GridView;
             ManagerRepo managerRepo = new ManagerRepo();

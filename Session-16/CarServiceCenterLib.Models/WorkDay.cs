@@ -21,6 +21,7 @@ namespace CarServiceCenterLib.Models {
             Tasks = new List<TransactionLine>();
         }
 
+        //Methods
         public double WorkLoad() {
             double sumWorkHours = 0.0;
             foreach (TransactionLine task in Tasks) {
@@ -32,19 +33,14 @@ namespace CarServiceCenterLib.Models {
         public double MaxWorkLoad() {
             return NumOfEngineers * 8;
         }
-
         public int UpdateNumOfEngineers(int Engineers) {
             NumOfEngineers = Engineers;
             return NumOfEngineers;
         }
         public bool AddTask(TransactionLine task, out String message) {
-
             bool ret = false;
-            //Check if task is less than 8 hours
             if (task.Hours <= 8) {
-                //Check if adding the task will not exceed the MaxWorkLoad
                 if (WorkLoad() + task.Hours <= MaxWorkLoad()) {
-                    //If task is valid, add it to the list and update the WorkLoad
                     Tasks.Add(task);
                     message = "Task added successfully";
                     _workload += task.Hours;
@@ -59,10 +55,8 @@ namespace CarServiceCenterLib.Models {
             }
             return ret;
         }
-
         public void DeleteTask(TransactionLine task) {
             Tasks.Remove(task);
         }
     }
 }
-

@@ -28,12 +28,10 @@ namespace CarServiceCenterLib.Orm.Configurations {
                 .HasForeignKey(transaction => transaction.CustomerID)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
-
             builder.HasOne(transaction => transaction.Manager)
                 .WithMany(manager => manager.Transactions)
                 .HasForeignKey(transaction => transaction.ManagerID)
                 .OnDelete(DeleteBehavior.ClientSetNull);
-
         }
     }
 }
