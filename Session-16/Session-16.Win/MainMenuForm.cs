@@ -38,6 +38,7 @@ namespace Session_16.Win {
             ManagerRepo managerRepo = new ManagerRepo();
             CarRepo carRepo = new CarRepo();
             ServiceTaskRepo serviceTaskRepo = new ServiceTaskRepo();
+            TransactionRepo transactionRepo = new TransactionRepo();
 
             _carServiceCenter.Customers.Add(new Customer("Sotiris", "Chrysanthou", "6954872136", "154852984"));
             customerRepo.Add(_carServiceCenter.Customers.Last());
@@ -62,7 +63,6 @@ namespace Session_16.Win {
             _carServiceCenter.Managers.Add(new Manager("Fotis", "Chrysoulas", 15000, DateTime.Parse("21/1/2023")));
             managerRepo.Add(_carServiceCenter.Managers.Last());
             _carServiceCenter.Managers.Add(new Manager("Giannis", "Ioannou", 10000, DateTime.Parse("15/3/2023")));
-
             managerRepo.Add(_carServiceCenter.Managers.Last());
             _carServiceCenter.Managers.Add(new Manager("Fotis", "Mitsou", 8000, DateTime.Parse("21/2/2023")));
             managerRepo.Add(_carServiceCenter.Managers.Last());
@@ -149,6 +149,8 @@ namespace Session_16.Win {
             _carServiceCenter.Cars = carRepo.GetAll().ToList();
             ServiceTaskRepo serviceTaskRepo = new ServiceTaskRepo();
             _carServiceCenter.ServiceTasks = serviceTaskRepo.GetAll().ToList();
+            TransactionRepo transactionRepo = new TransactionRepo();
+            _carServiceCenter.Transactions = transactionRepo.GetAll().ToList();
 
             MessageBox.Show("Done!");
         }
