@@ -72,10 +72,6 @@ namespace Session_16.Win {
             btn_Close.ForeColor = Color.Black;
             btn_Close.FlatAppearance.BorderSize = 0;
         }
-        private void gridView2_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e) {
-
-        }
-
         private void gridView2_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e) {
             CarRepo carRepo = new CarRepo();
             GridView view = sender as GridView;
