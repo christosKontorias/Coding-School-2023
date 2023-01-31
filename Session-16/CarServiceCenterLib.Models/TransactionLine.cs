@@ -32,6 +32,5 @@ namespace CarServiceCenterLib.Models {
             Hours = hours;
             Price = pricePerHour * hours;
         }
-        // Methods
     }
 }

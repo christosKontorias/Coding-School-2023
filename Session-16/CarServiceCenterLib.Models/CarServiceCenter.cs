@@ -8,6 +8,7 @@ using System.Transactions;
 
 namespace CarServiceCenterLib.Models {
     public class CarServiceCenter {
+
         // Properties
         public List<WorkDay> WorkDays { get; set; }
         public List<Engineer> Engineers { get; set; }
@@ -27,7 +28,6 @@ namespace CarServiceCenterLib.Models {
             Transactions = new List<Transaction>();
             Cars = new List<Car>();
             ServiceTasks = new List<ServiceTask>();
-
         }
 
         // Methods
@@ -50,7 +50,6 @@ namespace CarServiceCenterLib.Models {
             message = msg;
             return ret;
         }
-
         public void UpdateWorkDays() {
             foreach (WorkDay workDay in WorkDays) {
                 workDay.UpdateNumOfEngineers(Engineers.Count());
@@ -64,7 +63,6 @@ namespace CarServiceCenterLib.Models {
                 }
             }
         }
-
         public double SalaryEngineersFrom(int Year, int Month) {
             double TotalSalary = 0;
             foreach (Engineer engineer in Engineers) {
@@ -110,7 +108,5 @@ namespace CarServiceCenterLib.Models {
             }
             return ret;
         }
-
-
     }
 }

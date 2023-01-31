@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace CarServiceCenterLib.Models {
     public class WorkDay {
+
+        //Properties
         public DateTime Date { get; set; }
         public List<TransactionLine> Tasks { get; set; }
         public int NumOfEngineers { get; set; }
@@ -36,8 +38,6 @@ namespace CarServiceCenterLib.Models {
             return NumOfEngineers;
         }
         public bool AddTask(TransactionLine task, out String message) {
-            //task cannot be over 8 hours
-            //(WorkLoad + task.Hours) cannot be > than MaxWorkLoad
 
             bool ret = false;
             //Check if task is less than 8 hours

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarServiceCenterLib.Models {
     public class MonthlyLedger {
+        //Properties
         public int Year { get; set; }
         public int Month { get; set; }
         public double Expenses { get; set; }
@@ -20,6 +21,5 @@ namespace CarServiceCenterLib.Models {
             Year = year;
             Month = month;
         }
-
     }
 }

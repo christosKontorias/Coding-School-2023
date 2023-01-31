@@ -16,7 +16,6 @@ namespace CarServiceCenterLib.Models {
         public List<Engineer> Engineers { get; set; }
         public List<Transaction> Transactions { get; set; }
 
-
         // Constructors
         public Manager() {
             StartDate = null;
@@ -31,12 +30,8 @@ namespace CarServiceCenterLib.Models {
         }
 
         // Methods
-
         public void AddEngineer( Engineer engineer ) {
             Engineers.Add(engineer);
         } 
-
     }
-
-
 }

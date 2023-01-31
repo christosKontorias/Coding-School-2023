@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace CarServiceCenterLib.Models {
     public class ServiceTask {
         //Properties
+        public Guid ID { get; set; }
         public int Code { get; set; }
         public string Description { get; set; }
         public double Hours { get; set; }
 
         //Relations
-        public Guid ID { get; set; }
         public List<TransactionLine> TransactionLines { get; set; }
 
         // Contructors

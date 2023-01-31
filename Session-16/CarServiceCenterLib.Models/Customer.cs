@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarServiceCenterLib.Models {
     public class Customer : Person {
+
         // Properties
         public String Phone { get; set; }
         public String TIN { get; set; }
@@ -18,11 +19,9 @@ namespace CarServiceCenterLib.Models {
         }
         public Customer(String name, String surname, String phone, String tin) : base(name, surname) {
             Transactions = new List<Transaction>();
-
             Phone = phone;
             TIN = tin;
         }
 
-        // Methods
     }
 }

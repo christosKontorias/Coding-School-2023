@@ -19,7 +19,6 @@ namespace CarServiceCenterLib.Models {
         public Guid ManagerID { get; set; }
         public Manager Manager { get; set; }
 
-
         // Constructors
         public Transaction() {
             TransactionLines = new List<TransactionLine>();
@@ -33,15 +32,7 @@ namespace CarServiceCenterLib.Models {
             ManagerID = managerID;
             TransactionLines = new List<TransactionLine>();
         }
-        //public Transaction(Guid id, DateTime date, Guid customerID, Guid carID, Guid managerID, double totalPrice) {
-        //    TransactionLines = new List<TransactionLine>();
-        //    ID = id;
-        //    Date = date;
-        //    CustomerID = customerID;
-        //    CarID = carID;
-        //    ManagerID = managerID;
-        //    TotalPrice = totalPrice;
-        //}
+
         // Methods
         public void AddTransactionLine(TransactionLine transactionLine) {
             TransactionLines.Add(transactionLine);

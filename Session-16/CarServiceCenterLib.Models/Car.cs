@@ -8,13 +8,9 @@ namespace CarServiceCenterLib.Models {
     public class Car {
 
         // Properties
-
         public Guid ID { get; set; }
-
         public string Brand { get; set; }
-
         public string Model { get; set; }
-
         public string CarRegistrationNumber { get; set; }
 
         //Relations
@@ -24,7 +20,6 @@ namespace CarServiceCenterLib.Models {
         public Car() {
             ID = Guid.NewGuid();
             Transactions = new List<Transaction>();
-
         }
 
         public Car(String brand, String model, String registrationNumber) {
@@ -34,7 +29,5 @@ namespace CarServiceCenterLib.Models {
             Model = model;
             CarRegistrationNumber = registrationNumber;
         }
-        // Method
-
     }
 }
