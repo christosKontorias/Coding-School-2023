@@ -19,6 +19,7 @@ namespace CarServiceCenterLib.Orm.Context
         public DbSet<Car> Cars { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<TransactionLine> TransactionLines { get; set; }
+        public DbSet<ServiceTask> ServiceTasks { get; set; }
 
 
 
@@ -30,7 +31,7 @@ namespace CarServiceCenterLib.Orm.Context
             modelBuilder.ApplyConfiguration(new CarConfiguration());
             modelBuilder.ApplyConfiguration(new TransactionConfiguration());
             modelBuilder.ApplyConfiguration(new TransactionLineConfiguration());
-
+            modelBuilder.ApplyConfiguration(new ServiceTaskConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

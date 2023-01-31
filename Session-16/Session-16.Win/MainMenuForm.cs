@@ -42,6 +42,7 @@ namespace Session_16.Win {
             EngineerRepo engineerRepo = new EngineerRepo();
             ManagerRepo managerRepo = new ManagerRepo();
             CarRepo carRepo = new CarRepo();
+            ServiceTaskRepo serviceTaskRepo = new ServiceTaskRepo();
 
 
             _carServiceCenter.Customers.Add(new Customer("Sotiris", "Chrysanthou", "6954872136", "154852984"));
@@ -65,13 +66,12 @@ namespace Session_16.Win {
             carRepo.Add(_carServiceCenter.Cars.Last());
 
             _carServiceCenter.Managers.Add(new Manager("Fotis", "Chrysoulas", 15000, DateTime.Parse("21/1/2023")));
-            
             managerRepo.Add(_carServiceCenter.Managers.Last());
             _carServiceCenter.Managers.Add(new Manager("Giannis", "Ioannou", 10000, DateTime.Parse("15/3/2023")));
 
-           managerRepo.Add(_carServiceCenter.Managers.Last());
+            managerRepo.Add(_carServiceCenter.Managers.Last());
             _carServiceCenter.Managers.Add(new Manager("Fotis", "Mitsou", 8000, DateTime.Parse("21/2/2023")));
-           managerRepo.Add(_carServiceCenter.Managers.Last());
+            managerRepo.Add(_carServiceCenter.Managers.Last());
             _carServiceCenter.Managers.Add(new Manager("Sotiris", "Kontizas", 8000, DateTime.Parse("21/2/2023")));
             managerRepo.Add(_carServiceCenter.Managers.Last());
 
@@ -80,16 +80,24 @@ namespace Session_16.Win {
             _carServiceCenter.Engineers.Add(new Engineer("Kostas", "Kostaki", _carServiceCenter.Managers[0].ID, 1500, DateTime.Parse("2/1/2023")));
             engineerRepo.Add(_carServiceCenter.Engineers.Last());
             _carServiceCenter.Engineers.Add(new Engineer("Kostis", "Marvelias", _carServiceCenter.Managers[0].ID, 800, DateTime.Parse("2/3/2023")));
-           engineerRepo.Add(_carServiceCenter.Engineers.Last());
+            engineerRepo.Add(_carServiceCenter.Engineers.Last());
 
 
             _carServiceCenter.ServiceTasks.Add(new ServiceTask(1, "Air Filter", 2.0));
+            serviceTaskRepo.Add(_carServiceCenter.ServiceTasks.Last());
             _carServiceCenter.ServiceTasks.Add(new ServiceTask(2, "General service", 8.0));
+            serviceTaskRepo.Add(_carServiceCenter.ServiceTasks.Last());
             _carServiceCenter.ServiceTasks.Add(new ServiceTask(3, "Tire change", 3.0));
+            serviceTaskRepo.Add(_carServiceCenter.ServiceTasks.Last());
             _carServiceCenter.ServiceTasks.Add(new ServiceTask(4, "Change gasket", 6.0));
+            serviceTaskRepo.Add(_carServiceCenter.ServiceTasks.Last());
             _carServiceCenter.ServiceTasks.Add(new ServiceTask(5, "Oil Filter", 4.0));
+            serviceTaskRepo.Add(_carServiceCenter.ServiceTasks.Last());
             _carServiceCenter.ServiceTasks.Add(new ServiceTask(6, "Spark plug", 5.0));
+            serviceTaskRepo.Add(_carServiceCenter.ServiceTasks.Last());
             _carServiceCenter.ServiceTasks.Add(new ServiceTask(7, "Oil Filter", 7.0));
+            serviceTaskRepo.Add(_carServiceCenter.ServiceTasks.Last());
+
 
             Customer customer = _carServiceCenter.Customers[0];
             Car car = _carServiceCenter.Cars[0];
@@ -152,14 +160,10 @@ namespace Session_16.Win {
             _carServiceCenter.Managers = managerRepo.GetAll().ToList();
             CarRepo carRepo = new CarRepo();
             _carServiceCenter.Cars = carRepo.GetAll().ToList();
+            ServiceTaskRepo serviceTaskRepo = new ServiceTaskRepo();
+            _carServiceCenter.ServiceTasks = serviceTaskRepo.GetAll().ToList();
 
             MessageBox.Show("Done!");
-            //if (File.Exists("CarServiceCenter.json")) {
-            //    _carServiceCenter = _serializer.Deserialize<CarServiceCenter>("CarServiceCenter.json");
-            //    DevExpress.XtraEditors.XtraMessageBox.Show("Load Successful!");
-            //} else {
-            //    DevExpress.XtraEditors.XtraMessageBox.Show("File Not Found!");
-            //}
         }
 
         private void btnTransactions_Click(object sender, EventArgs e) {
