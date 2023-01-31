@@ -54,8 +54,8 @@ namespace CarServiceCenterLib.Orm.Repositories {
             && serviceTask.Hours == entity.Hours
             ).SingleOrDefault();
             if (ServiceTaskDb is null) {
-                var ServiceTask1Db = context.Customers
-                .Where(customer => customer.ID == entity.ID);
+                var ServiceTask1Db = context.ServiceTasks
+                .Where(serviceTask => serviceTask.ID == entity.ID).SingleOrDefault();
                 if (ServiceTask1Db is null) { return false; } else {
                     return true;
                 }
