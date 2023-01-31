@@ -13,6 +13,8 @@ using System.Text.RegularExpressions;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Base;
 using CarServiceCenterLib.Models;
+using CarServiceCenterLib.Orm.Repositories;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Session_16.Win {
     public partial class CustomersAndCarsForm : Form {
@@ -181,6 +183,7 @@ namespace Session_16.Win {
         }
 
         private void gridView1_ValidateRow(object sender, ValidateRowEventArgs e) {
+            CustomerRepo customerRepo = new CustomerRepo();
             GridView view = sender as GridView;
             GridColumn colName = view.Columns["Name"];
             GridColumn colSurname = view.Columns["Surname"];
@@ -190,6 +193,7 @@ namespace Session_16.Win {
             String surname = view.GetRowCellValue(e.RowHandle, colSurname) as String;
             String phone = view.GetRowCellValue(e.RowHandle, colPhone) as String;
             String tin = view.GetRowCellValue(e.RowHandle, colTIN) as String;
+
             // Name Cell
             if (name == null) {
                 e.Valid = false;
@@ -229,15 +233,15 @@ namespace Session_16.Win {
                 view.SetColumnError(colTIN, "Insert Valid TIN");
             }
 
-            if (e.Valid) {
-                view.ClearColumnErrors();
-            }
+
+
         }
 
         private void gridView1_ValidatingEditor(object sender, DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventArgs e) {
             ColumnView view = sender as ColumnView;
             GridColumn column = (e as EditFormValidateEditorEventArgs)?.Column ?? view.FocusedColumn;
             String cellVal = e.Value as String;
+
 
             // colName changed
             if (column.FieldName == "Name") {
@@ -289,6 +293,34 @@ namespace Session_16.Win {
                     view.SetColumnError(colPhone, "Insert Valid TIN with format for e.g [165485219]");
                 }
             }
+            if (e.Valid) {
+                
+            }
+        }
+
+        private Customer FindCustomer(Guid id) {
+            Customer retCustomer = null;
+            foreach (Customer customer in _carServiceCenter.Customers) {
+                if(customer.ID == id) {
+                    retCustomer = customer;
+                }
+            }
+            return retCustomer;
+        }
+
+        private void gridView1_RowUpdated(object sender, RowObjectEventArgs e) {
+            CustomerRepo customerRepo = new CustomerRepo();
+            GridView view = sender as GridView;
+            Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colID).ToString());
+            customerRepo.Update(id, FindCustomer(id));
+        }
+
+        private void gridView1_RowDeleting(object sender, DevExpress.Data.RowDeletingEventArgs e) {
+            CustomerRepo customerRepo = new CustomerRepo();
+            GridView view = sender as GridView;
+            Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colID).ToString());
+
+            customerRepo.Delete(id);
         }
     }
 }

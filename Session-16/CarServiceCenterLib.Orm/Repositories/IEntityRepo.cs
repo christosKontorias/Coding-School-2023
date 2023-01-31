@@ -11,5 +11,6 @@ namespace CarServiceCenterLib.Orm.Repositories {
         void Add(TEntity entity);
         void Update(Guid id, TEntity entity);
         void Delete(Guid id);
+        bool EntityExist(TEntity entity);
     }
 }

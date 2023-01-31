@@ -11,13 +11,15 @@ namespace CarServiceCenterLib.Orm.Repositories {
     public class CustomerRepo : IEntityRepo<Customer> {
         public void Add(Customer entity) {
             using var context = new AppDbContext();
-            context.Add(entity);
-            context.SaveChanges();
+            if (!EntityExist(entity)) {
+                context.Add(entity);
+                context.SaveChanges();
+            }
         }
 
         public void Delete(Guid id) {
             using var context = new AppDbContext();
-            var CustomerDb  = context.Customers.Where(customer => customer.ID == id).SingleOrDefault();
+            var CustomerDb = context.Customers.Where(customer => customer.ID == id).SingleOrDefault();
             if (CustomerDb is null)
                 return;
             context.Remove(CustomerDb);
@@ -26,25 +28,25 @@ namespace CarServiceCenterLib.Orm.Repositories {
 
         public IList<Customer> GetAll() {
             using var context = new AppDbContext();
-            return context.Customers
-                .Include(customer => customer.ID)
-                .Include(customer => customer.Name)
-                .Include(customer => customer.Surname)
-                .Include(customer => customer.Phone)
-                .Include(customer => customer.TIN)
-                .ToList();
-
+            return context.Customers.ToList();
+            //.Include(customer => customer.ID)
+            //.Include(customer => customer.Name)
+            //.Include(customer => customer.Surname)
+            //.Include(customer => customer.Phone)
+            //.Include(customer => customer.TIN)
+            //.ToList();
         }
 
         public Customer? GetById(Guid id) {
             using var context = new AppDbContext();
-            return context.Customers.Where(customer => customer.ID == id)
-                .Include(customer => customer.ID)
-                .Include(customer => customer.Name)
-                .Include(customer => customer.Surname)
-                .Include(customer => customer.Phone)
-                .Include(customer => customer.TIN)
-                .SingleOrDefault();
+            return context.Customers.SingleOrDefault();
+            //Where(customer => customer.ID == id)
+            //.Include(customer => customer.ID)
+            //.Include(customer => customer.Name)
+            //.Include(customer => customer.Surname)
+            //.Include(customer => customer.Phone)
+            //.Include(customer => customer.TIN)
+            //.SingleOrDefault();
         }
 
         public void Update(Guid id, Customer entity) {
@@ -57,6 +59,23 @@ namespace CarServiceCenterLib.Orm.Repositories {
             CustomerDb.Phone = entity.Phone;
             CustomerDb.TIN = entity.TIN;
             context.SaveChanges();
+        }
+
+        public bool EntityExist(Customer entity) {
+            using var context = new AppDbContext();
+            var CustomerDb = context.Customers
+                .Where(customer => customer.Name == entity.Name
+            && customer.Surname == entity.Surname
+            && customer.Phone == entity.Phone
+            && customer.TIN == entity.TIN
+            ).SingleOrDefault();
+            if (CustomerDb is null) {
+                var Customer1Db = context.Customers
+                .Where(customer => customer.ID == entity.ID);
+                if (Customer1Db is null) { return false; } else { 
+                return true;
+                }
+            } else return true;
         }
     }
 }
