@@ -12,6 +12,7 @@ namespace CarServiceCenterLib.Orm.Configurations {
         public void Configure(EntityTypeBuilder<TransactionLine> builder) {
             builder.ToTable("TransactionLines");
             builder.HasKey(transactionline => transactionline.ID);
+
             builder.HasOne(transactionline => transactionline.Transaction)
                  .WithMany(transaction => transaction.TransactionLines)
                  .HasForeignKey(transactionline => transactionline.TransactionID);

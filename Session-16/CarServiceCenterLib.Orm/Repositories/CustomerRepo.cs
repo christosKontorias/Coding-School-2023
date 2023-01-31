@@ -29,24 +29,11 @@ namespace CarServiceCenterLib.Orm.Repositories {
         public IList<Customer> GetAll() {
             using var context = new AppDbContext();
             return context.Customers.ToList();
-            //.Include(customer => customer.ID)
-            //.Include(customer => customer.Name)
-            //.Include(customer => customer.Surname)
-            //.Include(customer => customer.Phone)
-            //.Include(customer => customer.TIN)
-            //.ToList();
         }
 
         public Customer? GetById(Guid id) {
             using var context = new AppDbContext();
             return context.Customers.SingleOrDefault();
-            //Where(customer => customer.ID == id)
-            //.Include(customer => customer.ID)
-            //.Include(customer => customer.Name)
-            //.Include(customer => customer.Surname)
-            //.Include(customer => customer.Phone)
-            //.Include(customer => customer.TIN)
-            //.SingleOrDefault();
         }
 
         public void Update(Guid id, Customer entity) {

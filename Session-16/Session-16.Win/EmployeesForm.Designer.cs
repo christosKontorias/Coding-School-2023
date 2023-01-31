@@ -27,6 +27,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeesForm));
             this.grdEngineers = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colEngID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSurname = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colEngineersManagerName = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -49,7 +50,6 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.colStartDate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colEngId = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdEngineers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repManagerName)).BeginInit();
@@ -81,7 +81,7 @@
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colEngId,
+            this.colEngID,
             this.colName,
             this.colSurname,
             this.colEngineersManagerName,
@@ -92,9 +92,17 @@
             this.gridView1.GridControl = this.grdEngineers;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.RowDeleting += new DevExpress.Data.RowDeletingEventHandler(this.gridView1_RowDeleting);
             this.gridView1.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridView1_ValidateRow);
+            this.gridView1.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridView1_RowUpdated);
             this.gridView1.ValidatingEditor += new DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventHandler(this.gridView1_ValidatingEditor);
             this.gridView1.RowCountChanged += new System.EventHandler(this.gridView1_RowCountChanged);
+            // 
+            // colEngID
+            // 
+            this.colEngID.Caption = "ID";
+            this.colEngID.FieldName = "ID";
+            this.colEngID.Name = "colEngID";
             // 
             // colName
             // 
@@ -318,12 +326,6 @@
             this.colStartDate.VisibleIndex = 4;
             this.colStartDate.Width = 66;
             // 
-            // colEngId
-            // 
-            this.colEngId.Caption = "ID";
-            this.colEngId.FieldName = "ID";
-            this.colEngId.Name = "colEngId";
-            // 
             // EmployeesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -380,6 +382,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colManagerStartDate;
         private DevExpress.XtraGrid.Columns.GridColumn colEngineerStartDate;
         private DevExpress.XtraGrid.Columns.GridColumn colID;
-        private DevExpress.XtraGrid.Columns.GridColumn colEngId;
+        private DevExpress.XtraGrid.Columns.GridColumn colEngID;
     }
 }

@@ -12,7 +12,6 @@ namespace CarServiceCenterLib.Models {
         public DateTime? StartDate { get; set; }
         //Relations
         public Guid ManagerID { get; set; }
-        public Manager Manager { get; set; }
         public List<TransactionLine> TransactionLines { get; set; }
 
         // Constructors

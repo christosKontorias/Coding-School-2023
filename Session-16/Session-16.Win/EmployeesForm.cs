@@ -102,7 +102,7 @@ namespace Session_16.Win {
             String startDay;
             EngineerRepo engineerRepo = new EngineerRepo();
 
-            Guid id = Guid.Parse(view.GetRowCellValue(e.RowHandle, colEngId).ToString());
+            Guid id = Guid.Parse(view.GetRowCellValue(e.RowHandle, colEngID).ToString());
 
             if (view.GetRowCellValue(e.RowHandle, colEngineerStartDate) != null)
                 startDay = view.GetRowCellValue(e.RowHandle, colEngineerStartDate).ToString();
@@ -158,7 +158,6 @@ namespace Session_16.Win {
 
             if (e.Valid) {
                 view.ClearColumnErrors();
-                FindEngineer(id).Manager = FindManager(id);
                 engineerRepo.Add(FindEngineer(id));
             }
         }
@@ -331,9 +330,20 @@ namespace Session_16.Win {
         }
 
         private void gridView2_RowUpdated(object sender, RowObjectEventArgs e) {
+
+        }
+
+        private void gridView1_RowDeleting(object sender, DevExpress.Data.RowDeletingEventArgs e) {
+            GridView view = sender as GridView;
+            EngineerRepo engineerRepo = new EngineerRepo();
+            Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colEngID).ToString());
+            engineerRepo.Delete(id);
+        }
+
+        private void gridView1_RowUpdated(object sender, RowObjectEventArgs e) {
             EngineerRepo engineerRepo = new EngineerRepo();
             GridView view = sender as GridView;
-            Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colID).ToString());
+            Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colEngID).ToString());
             engineerRepo.Update(id, FindEngineer(id));
         }
     }
