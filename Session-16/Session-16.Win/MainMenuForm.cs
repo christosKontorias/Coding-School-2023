@@ -65,16 +65,14 @@ namespace Session_16.Win {
             //carRepo.Add(_carServiceCenter.Cars.Last());
 
             _carServiceCenter.Managers.Add(new Manager("Fotis", "Chrysoulas", 15000, DateTime.Parse("21/1/2023")));
-            _carServiceCenter.addManagerProfile(_carServiceCenter.Managers.Last().ID, "FotisChrysoulas", "1234");
+            
             managerRepo.Add(_carServiceCenter.Managers.Last());
             _carServiceCenter.Managers.Add(new Manager("Giannis", "Ioannou", 10000, DateTime.Parse("15/3/2023")));
-            _carServiceCenter.addManagerProfile(_carServiceCenter.Managers.Last().ID, "GiannisIoannou", "2345");
+
            managerRepo.Add(_carServiceCenter.Managers.Last());
             _carServiceCenter.Managers.Add(new Manager("Fotis", "Mitsou", 8000, DateTime.Parse("21/2/2023")));
-            _carServiceCenter.addManagerProfile(_carServiceCenter.Managers.Last().ID, "FotisMitsou", "3456");
            managerRepo.Add(_carServiceCenter.Managers.Last());
             _carServiceCenter.Managers.Add(new Manager("Sotiris", "Kontizas", 8000, DateTime.Parse("21/2/2023")));
-            _carServiceCenter.addManagerProfile(_carServiceCenter.Managers.Last().ID, "SotirisKontizas", "4567");
             managerRepo.Add(_carServiceCenter.Managers.Last());
 
             _carServiceCenter.Engineers.Add(new Engineer("Demetris", "Raptodimos", _carServiceCenter.Managers[0].ID, 1000, DateTime.Parse("2/2/2023")));
