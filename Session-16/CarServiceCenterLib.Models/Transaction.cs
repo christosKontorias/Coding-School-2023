@@ -13,8 +13,10 @@ namespace CarServiceCenterLib.Models {
         public Guid CarID { get; set; }
         public Guid ManagerID { get; set; }
         public double TotalPrice { get; set; }
+        //Relations
         public List<TransactionLine> TransactionLines { get; set; }
 
+       
 
         public Transaction(Guid id, DateTime date, Guid customerID, Guid carID, Guid managerID, double totalPrice) {
             ID = id;

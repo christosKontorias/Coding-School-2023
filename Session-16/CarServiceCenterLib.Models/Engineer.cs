@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 namespace CarServiceCenterLib.Models {
     public class Engineer : Person {
         // Properties
-        public Guid ManagerID { get; set; }
         public double SalaryPerMonth { get; set; }
 
         public DateTime? StartDate { get; set; }
-        
+        //Relations
+        public Guid ManagerID { get; set; }
+        public Manager Manager { get; set; }
 
 
         // Constructors
