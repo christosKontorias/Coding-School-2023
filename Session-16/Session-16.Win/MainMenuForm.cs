@@ -40,6 +40,8 @@ namespace Session_16.Win {
         private void Populate(CarServiceCenter _carServiceCenter) {
             CustomerRepo customerRepo = new CustomerRepo(); 
             EngineerRepo engineerRepo = new EngineerRepo();
+            ManagerRepo managerRepo = new ManagerRepo();
+
             _carServiceCenter.Customers.Add(new Customer("Sotiris", "Chrysanthou", "6954872136", "154852984"));
             customerRepo.Add(_carServiceCenter.Customers.Last());
             _carServiceCenter.Customers.Add(new Customer("Demetris", "Manolas", "6912342136", "165826475"));
@@ -50,6 +52,7 @@ namespace Session_16.Win {
             customerRepo.Add(_carServiceCenter.Customers.Last());
             _carServiceCenter.Customers.Add(new Customer("Panos", "Ioannides", "6912334867", "165942358"));
             customerRepo.Add(_carServiceCenter.Customers.Last());
+
             _carServiceCenter.Cars.Add(new Car("Ford", "Focus", "IZM 5469"));
             _carServiceCenter.Cars.Add(new Car("Ford", "Fiesta", "IMZ 1234"));
             _carServiceCenter.Cars.Add(new Car("Mazda", "6", "IAM 3369"));
@@ -57,12 +60,17 @@ namespace Session_16.Win {
 
             _carServiceCenter.Managers.Add(new Manager("Fotis", "Chrysoulas", 15000, DateTime.Parse("21/1/2023")));
             _carServiceCenter.addManagerProfile(_carServiceCenter.Managers.Last().ID, "FotisChrysoulas", "1234");
+            managerRepo.Add(_carServiceCenter.Managers.Last());
+
             _carServiceCenter.Managers.Add(new Manager("Giannis", "Ioannou", 10000, DateTime.Parse("15/3/2023")));
             _carServiceCenter.addManagerProfile(_carServiceCenter.Managers.Last().ID, "GiannisIoannou", "2345");
+            managerRepo.Add(_carServiceCenter.Managers.Last());
             _carServiceCenter.Managers.Add(new Manager("Fotis", "Mitsou", 8000, DateTime.Parse("21/2/2023")));
             _carServiceCenter.addManagerProfile(_carServiceCenter.Managers.Last().ID, "FotisMitsou", "3456");
+            managerRepo.Add(_carServiceCenter.Managers.Last());
             _carServiceCenter.Managers.Add(new Manager("Sotiris", "Kontizas", 8000, DateTime.Parse("21/2/2023")));
             _carServiceCenter.addManagerProfile(_carServiceCenter.Managers.Last().ID, "SotirisKontizas", "4567");
+            managerRepo.Add(_carServiceCenter.Managers.Last());
 
             _carServiceCenter.Engineers.Add(new Engineer("Demetris", "Raptodimos", _carServiceCenter.Managers[0].ID, 1000, DateTime.Parse("2/2/2023")));
             //engineerRepo.Add(_carServiceCenter.Engineers.Last());
@@ -138,6 +146,8 @@ namespace Session_16.Win {
             _carServiceCenter.Customers = customerRepo.GetAll().ToList();
             EngineerRepo engineerRepo = new EngineerRepo();
             _carServiceCenter.Engineers = engineerRepo.GetAll().ToList();
+            ManagerRepo managerRepo = new ManagerRepo();
+            _carServiceCenter.Managers = managerRepo.GetAll().ToList();
 
             MessageBox.Show("Done!");
             //if (File.Exists("CarServiceCenter.json")) {

@@ -54,7 +54,7 @@ namespace CarServiceCenterLib.Orm.Repositories {
             ).SingleOrDefault();
             if (ManagerDb is null) {
                 var Manager1Db = context.Managers
-                .Where(manager => manager.ID == entity.ID);
+                .Where(manager => manager.ID == entity.ID).SingleOrDefault();
                 if (Manager1Db is null) { return false; } else {
                     return true;
                 }
