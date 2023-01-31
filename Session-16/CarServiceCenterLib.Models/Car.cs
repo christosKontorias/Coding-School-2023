@@ -17,14 +17,18 @@ namespace CarServiceCenterLib.Models {
 
         public string CarRegistrationNumber { get; set; }
 
-
+        //Relations
+        public List<Transaction> Transactions { get; set; }
 
         // Constructors
         public Car() {
             ID = Guid.NewGuid();
+            Transactions = new List<Transaction>();
+
         }
 
         public Car(String brand, String model, String registrationNumber) {
+            Transactions = new List<Transaction>();
             ID = Guid.NewGuid();
             Brand = brand;
             Model = model;
