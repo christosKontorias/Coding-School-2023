@@ -56,13 +56,13 @@ namespace Session_16.Win {
             customerRepo.Add(_carServiceCenter.Customers.Last());
 
             _carServiceCenter.Cars.Add(new Car("Ford", "Focus", "IZM 5469"));
-            //carRepo.Add(_carServiceCenter.Cars.Last());
+            carRepo.Add(_carServiceCenter.Cars.Last());
             _carServiceCenter.Cars.Add(new Car("Ford", "Fiesta", "IMZ 1234"));
-            //carRepo.Add(_carServiceCenter.Cars.Last());
+            carRepo.Add(_carServiceCenter.Cars.Last());
             _carServiceCenter.Cars.Add(new Car("Mazda", "6", "IAM 3369"));
-            //carRepo.Add(_carServiceCenter.Cars.Last());
+            carRepo.Add(_carServiceCenter.Cars.Last());
             _carServiceCenter.Cars.Add(new Car("Suzuki", "Swift", "IAM 8888"));
-            //carRepo.Add(_carServiceCenter.Cars.Last());
+            carRepo.Add(_carServiceCenter.Cars.Last());
 
             _carServiceCenter.Managers.Add(new Manager("Fotis", "Chrysoulas", 15000, DateTime.Parse("21/1/2023")));
             
@@ -150,8 +150,8 @@ namespace Session_16.Win {
             _carServiceCenter.Engineers = engineerRepo.GetAll().ToList();
             ManagerRepo managerRepo = new ManagerRepo();
             _carServiceCenter.Managers = managerRepo.GetAll().ToList();
-            //CarRepo carRepo = new CarRepo();
-            //_carServiceCenter.Cars = carRepo.GetAll().ToList();
+            CarRepo carRepo = new CarRepo();
+            _carServiceCenter.Cars = carRepo.GetAll().ToList();
 
             MessageBox.Show("Done!");
             //if (File.Exists("CarServiceCenter.json")) {

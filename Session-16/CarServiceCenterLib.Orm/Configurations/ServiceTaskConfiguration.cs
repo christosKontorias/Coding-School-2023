@@ -13,8 +13,11 @@ namespace CarServiceCenterLib.Orm.Configurations {
             builder.ToTable("ServiceTask");
             builder.HasKey(serviceTask => serviceTask.ID);
             builder.Property(serviceTask => serviceTask.Description).HasMaxLength(50);
-        
 
+            builder.HasMany(serviceTask => serviceTask.TransactionLines)
+            .WithOne(transactionline => transactionline.Transaction)
+            .HasForeignKey(serviceTask => serviceTask.TransactionID)
+            .OnDelete(DeleteBehavior.ClientSetNull);
         }
     }
 }

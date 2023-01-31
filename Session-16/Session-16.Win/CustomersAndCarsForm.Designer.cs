@@ -44,6 +44,7 @@
             this.bsService = new System.Windows.Forms.BindingSource(this.components);
             this.btn_Save = new System.Windows.Forms.Button();
             this.btn_Close = new System.Windows.Forms.Button();
+            this.colCarID = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdCustomers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCustomers)).BeginInit();
@@ -168,6 +169,7 @@
             // gridView2
             // 
             this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colCarID,
             this.colBrand,
             this.colModel,
             this.colCarRegistrationNumber});
@@ -175,7 +177,9 @@
             this.gridView2.Name = "gridView2";
             this.gridView2.OptionsView.ShowGroupPanel = false;
             this.gridView2.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView2_CellValueChanged);
+            this.gridView2.RowDeleting += new DevExpress.Data.RowDeletingEventHandler(this.gridView2_RowDeleting);
             this.gridView2.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridView2_ValidateRow);
+            this.gridView2.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridView2_RowUpdated);
             this.gridView2.ValidatingEditor += new DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventHandler(this.gridView2_ValidatingEditor);
             // 
             // colBrand
@@ -246,6 +250,14 @@
             this.btn_Close.MouseEnter += new System.EventHandler(this.btn_Close_MouseEnter);
             this.btn_Close.MouseLeave += new System.EventHandler(this.btn_Close_MouseLeave);
             // 
+            // colCarID
+            // 
+            this.colCarID.Caption = "ID";
+            this.colCarID.FieldName = "ID";
+            this.colCarID.Name = "colCarID";
+            this.colCarID.Visible = true;
+            this.colCarID.VisibleIndex = 3;
+            // 
             // CustomersAndCarsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -296,5 +308,6 @@
         private Button btn_Save;
         private Button btn_Close;
         private DevExpress.XtraGrid.Columns.GridColumn colID;
+        private DevExpress.XtraGrid.Columns.GridColumn colCarID;
     }
 }

@@ -102,7 +102,10 @@ namespace Session_16.Win {
         }
 
         private void gridView2_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e) {
+            CarRepo carRepo = new CarRepo();
             GridView view = sender as GridView;
+            Guid id = Guid.Parse(view.GetRowCellValue(e.RowHandle, colCarID).ToString());
+
             GridColumn colBrand = view.Columns["Brand"];
             GridColumn colModel = view.Columns["Model"];
             GridColumn colRegNum = view.Columns["CarRegistrationNumber"];
@@ -140,6 +143,8 @@ namespace Session_16.Win {
 
             if (e.Valid) {
                 view.ClearColumnErrors();
+                carRepo.Add(FindCar(id));
+
             }
         }
 
@@ -185,11 +190,13 @@ namespace Session_16.Win {
         private void gridView1_ValidateRow(object sender, ValidateRowEventArgs e) {
             CustomerRepo customerRepo = new CustomerRepo();
             GridView view = sender as GridView;
+            Guid id = Guid.Parse(view.GetRowCellValue(e.RowHandle, colID).ToString());
+
             GridColumn colName = view.Columns["Name"];
             GridColumn colSurname = view.Columns["Surname"];
             GridColumn colPhone = view.Columns["Phone"];
             GridColumn colTIN = view.Columns["TIN"];
-            Guid id = Guid.Parse(view.GetRowCellValue(e.RowHandle, colID).ToString());
+
             String name = view.GetRowCellValue(e.RowHandle, colName) as String;
             String surname = view.GetRowCellValue(e.RowHandle, colSurname) as String;
             String phone = view.GetRowCellValue(e.RowHandle, colPhone) as String;
@@ -310,6 +317,15 @@ namespace Session_16.Win {
             }
             return retCustomer;
         }
+        private Car FindCar(Guid id) {
+            Car retCar = null;
+            foreach (Car car in _carServiceCenter.Cars) {
+                if (car.ID == id) {
+                    retCar = car;
+                }
+            }
+            return retCar;
+        }
 
         private void gridView1_RowUpdated(object sender, RowObjectEventArgs e) {
             CustomerRepo customerRepo = new CustomerRepo();
@@ -324,6 +340,20 @@ namespace Session_16.Win {
             Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colID).ToString());
 
             customerRepo.Delete(id);
+        }
+
+        private void gridView2_RowUpdated(object sender, RowObjectEventArgs e) {
+            CarRepo carRepo = new CarRepo();
+            GridView view = sender as GridView;
+            Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colCarID).ToString());
+            carRepo.Update(id, FindCar(id));
+        }
+
+        private void gridView2_RowDeleting(object sender, DevExpress.Data.RowDeletingEventArgs e) {
+            CarRepo carRepo = new CarRepo();
+            GridView view = sender as GridView;
+            Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colCarID).ToString());
+            carRepo.Delete(id);
         }
     }
 }
