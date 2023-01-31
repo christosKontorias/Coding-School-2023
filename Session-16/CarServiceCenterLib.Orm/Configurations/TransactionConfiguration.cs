@@ -12,7 +12,6 @@ namespace CarServiceCenterLib.Orm.Configurations {
         public void Configure(EntityTypeBuilder<Transaction> builder) {
             builder.ToTable("Transaction");
             builder.HasKey(transaction => transaction.ID);
-
         }
     }
 }
