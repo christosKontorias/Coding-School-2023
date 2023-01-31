@@ -158,6 +158,7 @@ namespace Session_16.Win {
 
             if (e.Valid) {
                 view.ClearColumnErrors();
+                FindEngineer(id).Manager = FindManager(id);
                 engineerRepo.Add(FindEngineer(id));
             }
         }
@@ -318,6 +319,15 @@ namespace Session_16.Win {
                 }
             }
             return retEngineer;
+        }
+        private Manager FindManager(Guid id) {
+            Manager retManager = null;
+            foreach (Manager manager in _carServiceCenter.Managers) {
+                if (manager.ID == id) {
+                    retManager = manager;
+                }
+            }
+            return retManager;
         }
 
         private void gridView2_RowUpdated(object sender, RowObjectEventArgs e) {

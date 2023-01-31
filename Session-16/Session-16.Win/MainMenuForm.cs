@@ -65,11 +65,12 @@ namespace Session_16.Win {
             _carServiceCenter.addManagerProfile(_carServiceCenter.Managers.Last().ID, "SotirisKontizas", "4567");
 
             _carServiceCenter.Engineers.Add(new Engineer("Demetris", "Raptodimos", _carServiceCenter.Managers[0].ID, 1000, DateTime.Parse("2/2/2023")));
-            engineerRepo.Add(_carServiceCenter.Engineers.Last());
+            //engineerRepo.Add(_carServiceCenter.Engineers.Last());
             _carServiceCenter.Engineers.Add(new Engineer("Kostas", "Kostaki", _carServiceCenter.Managers[0].ID, 1500, DateTime.Parse("2/1/2023")));
-            engineerRepo.Add(_carServiceCenter.Engineers.Last());
+            //engineerRepo.Add(_carServiceCenter.Engineers.Last());
             _carServiceCenter.Engineers.Add(new Engineer("Kostis", "Marvelias", _carServiceCenter.Managers[0].ID, 800, DateTime.Parse("2/3/2023")));
-            engineerRepo.Add(_carServiceCenter.Engineers.Last());
+            //_carServiceCenter.Engineers.Last().Manager = _carServiceCenter.Managers[0];
+            //engineerRepo.Add(_carServiceCenter.Engineers.Last());
 
 
             _carServiceCenter.ServiceTasks.Add(new ServiceTask(1, "Air Filter", 2.0));

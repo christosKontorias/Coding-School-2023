@@ -56,7 +56,6 @@ namespace CarServiceCenterLib.Orm.Repositories {
                 .Where(engineer => engineer.Name == entity.Name
                 && engineer.Surname == entity.Surname
                 && engineer.SalaryPerMonth == entity.SalaryPerMonth
-                && engineer.ManagerID == entity.ManagerID
                 && engineer.StartDate == entity.StartDate)
                 .SingleOrDefault();
             if (EngineerDb is null) {
