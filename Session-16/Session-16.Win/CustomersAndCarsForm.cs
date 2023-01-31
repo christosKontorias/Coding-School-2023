@@ -299,7 +299,6 @@ namespace Session_16.Win {
             CustomerRepo customerRepo = new CustomerRepo();
             GridView view = sender as GridView;
             Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colID).ToString());
-
             customerRepo.Delete(id);
         }
         private void gridView2_RowUpdated(object sender, RowObjectEventArgs e) {

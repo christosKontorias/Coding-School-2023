@@ -1,4 +1,5 @@
 using CarServiceCenterLib.Models;
+using CarServiceCenterLib.Orm.Repositories;
 using DevExpress.Mvvm.Native;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.Grid;
@@ -158,6 +159,40 @@ namespace Session_16.Win {
         }
         private void gridView2_RowDeleted(object sender, DevExpress.Data.RowDeletedEventArgs e) {
             UpdateLabelWorkHour();
+        }
+
+        private void gridView1_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e) {
+            TransactionRepo transactionRepo = new TransactionRepo();
+            GridView view = sender as GridView;
+            Guid id = Guid.Parse(view.GetRowCellValue(e.RowHandle, colID).ToString());
+
+            if (e.Valid) {
+                view.ClearColumnErrors();
+                transactionRepo.Add(FindTransaction(id));
+            }
+        }
+        private Transaction FindTransaction(Guid id) {
+            Transaction retTransaction = null;
+            foreach (Transaction transaction in _carServiceCenter.Transactions) {
+                if (transaction.ID == id) {
+                    retTransaction = transaction;
+                }
+            }
+            return retTransaction;
+        }
+
+        private void gridView1_RowDeleting(object sender, DevExpress.Data.RowDeletingEventArgs e) {
+            TransactionRepo transactionRepo = new TransactionRepo();
+            GridView view = sender as GridView;
+            Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colID).ToString());
+            transactionRepo.Delete(id);
+        }
+
+        private void gridView1_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e) {
+            TransactionRepo transactionRepo = new TransactionRepo();
+            GridView view = sender as GridView;
+            Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colID).ToString());
+            transactionRepo.Update(id, FindTransaction(id));
         }
     }
 }
