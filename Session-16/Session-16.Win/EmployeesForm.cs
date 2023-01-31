@@ -15,6 +15,7 @@ using DevExpress.XtraGrid.Columns;
 using System.Text.RegularExpressions;
 using DevExpress.XtraEditors.ColorPick.Picker;
 using DevExpress.XtraGrid.Views.Base;
+using CarServiceCenterLib.Orm.Repositories;
 
 namespace Session_16.Win {
     public partial class EmployeesForm : Form {
@@ -99,6 +100,10 @@ namespace Session_16.Win {
             String managerSurname = view.GetRowCellValue(e.RowHandle, colEngineersManagerSurname).ToString();
             String salaryPerMonth = view.GetRowCellValue(e.RowHandle, colSalaryPerMonth).ToString();
             String startDay;
+            EngineerRepo engineerRepo = new EngineerRepo();
+
+            Guid id = Guid.Parse(view.GetRowCellValue(e.RowHandle, colEngId).ToString());
+
             if (view.GetRowCellValue(e.RowHandle, colEngineerStartDate) != null)
                 startDay = view.GetRowCellValue(e.RowHandle, colEngineerStartDate).ToString();
             else
@@ -153,6 +158,7 @@ namespace Session_16.Win {
 
             if (e.Valid) {
                 view.ClearColumnErrors();
+                engineerRepo.Add(FindEngineer(id));
             }
         }
 
@@ -302,6 +308,23 @@ namespace Session_16.Win {
 
         private void gridView1_RowCountChanged(object sender, EventArgs e) {
             _carServiceCenter.UpdateWorkDays();
+        }
+
+        private Engineer FindEngineer(Guid id) {
+            Engineer retEngineer = null;
+            foreach (Engineer engineer in _carServiceCenter.Engineers) {
+                if (engineer.ID == id) {
+                    retEngineer = engineer;
+                }
+            }
+            return retEngineer;
+        }
+
+        private void gridView2_RowUpdated(object sender, RowObjectEventArgs e) {
+            EngineerRepo engineerRepo = new EngineerRepo();
+            GridView view = sender as GridView;
+            Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colID).ToString());
+            engineerRepo.Update(id, FindEngineer(id));
         }
     }
 }

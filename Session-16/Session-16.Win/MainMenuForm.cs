@@ -38,7 +38,8 @@ namespace Session_16.Win {
         }
 
         private void Populate(CarServiceCenter _carServiceCenter) {
-            CustomerRepo customerRepo = new CustomerRepo();
+            CustomerRepo customerRepo = new CustomerRepo(); 
+            EngineerRepo engineerRepo = new EngineerRepo();
             _carServiceCenter.Customers.Add(new Customer("Sotiris", "Chrysanthou", "6954872136", "154852984"));
             customerRepo.Add(_carServiceCenter.Customers.Last());
             _carServiceCenter.Customers.Add(new Customer("Demetris", "Manolas", "6912342136", "165826475"));
@@ -64,8 +65,12 @@ namespace Session_16.Win {
             _carServiceCenter.addManagerProfile(_carServiceCenter.Managers.Last().ID, "SotirisKontizas", "4567");
 
             _carServiceCenter.Engineers.Add(new Engineer("Demetris", "Raptodimos", _carServiceCenter.Managers[0].ID, 1000, DateTime.Parse("2/2/2023")));
+            engineerRepo.Add(_carServiceCenter.Engineers.Last());
             _carServiceCenter.Engineers.Add(new Engineer("Kostas", "Kostaki", _carServiceCenter.Managers[0].ID, 1500, DateTime.Parse("2/1/2023")));
+            engineerRepo.Add(_carServiceCenter.Engineers.Last());
             _carServiceCenter.Engineers.Add(new Engineer("Kostis", "Marvelias", _carServiceCenter.Managers[0].ID, 800, DateTime.Parse("2/3/2023")));
+            engineerRepo.Add(_carServiceCenter.Engineers.Last());
+
 
             _carServiceCenter.ServiceTasks.Add(new ServiceTask(1, "Air Filter", 2.0));
             _carServiceCenter.ServiceTasks.Add(new ServiceTask(2, "General service", 8.0));
@@ -130,6 +135,9 @@ namespace Session_16.Win {
         private void btnLoad_Click(object sender, EventArgs e) {
             CustomerRepo customerRepo = new CustomerRepo();
             _carServiceCenter.Customers = customerRepo.GetAll().ToList();
+            EngineerRepo engineerRepo = new EngineerRepo();
+            _carServiceCenter.Engineers = engineerRepo.GetAll().ToList();
+
             MessageBox.Show("Done!");
             //if (File.Exists("CarServiceCenter.json")) {
             //    _carServiceCenter = _serializer.Deserialize<CarServiceCenter>("CarServiceCenter.json");

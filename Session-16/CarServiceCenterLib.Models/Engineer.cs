@@ -21,6 +21,7 @@ namespace CarServiceCenterLib.Models {
             TransactionLines = new List<TransactionLine>();
         }
         public Engineer(string name, string surname, Guid managerID, double salaryPerMonth, DateTime startDate) : base(name, surname) {
+            TransactionLines = new List<TransactionLine>();
             ManagerID = managerID;
             SalaryPerMonth = salaryPerMonth;
             StartDate = startDate;

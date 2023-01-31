@@ -189,6 +189,7 @@ namespace Session_16.Win {
             GridColumn colSurname = view.Columns["Surname"];
             GridColumn colPhone = view.Columns["Phone"];
             GridColumn colTIN = view.Columns["TIN"];
+            Guid id = Guid.Parse(view.GetRowCellValue(e.RowHandle, colID).ToString());
             String name = view.GetRowCellValue(e.RowHandle, colName) as String;
             String surname = view.GetRowCellValue(e.RowHandle, colSurname) as String;
             String phone = view.GetRowCellValue(e.RowHandle, colPhone) as String;
@@ -232,8 +233,10 @@ namespace Session_16.Win {
                 e.Valid = false;
                 view.SetColumnError(colTIN, "Insert Valid TIN");
             }
-
-
+            if (e.Valid) {
+                view.ClearColumnErrors();
+                customerRepo.Add(FindCustomer(id));
+            }
 
         }
 
