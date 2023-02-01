@@ -30,8 +30,7 @@ namespace CarServiceCenterLib.Orm.Repositories {
         }
         public Transaction? GetById(Guid id) {
             using var context = new AppDbContext();
-            //return context.Transactions.SingleOrDefault();
-            return context.Transactions.FirstOrDefault(transaction => transaction.ID == id);
+            return context.Transactions.SingleOrDefault();
         }
         public void Update(Guid id, Transaction entity) {
             using var context = new AppDbContext();
