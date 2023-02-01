@@ -16,6 +16,7 @@ namespace CarServiceCenterLib.Orm.Configurations {
             builder.Property(transaction => transaction.CustomerID);
             builder.Property(transaction => transaction.CarID);
             builder.Property(transaction => transaction.ManagerID);
+            builder.Property(transaction => transaction.TotalPrice);
             //builder.HasMany(transaction => transaction.TransactionLines)
             //    .WithOne(transactionline => transactionline.Transaction)
             //    .HasForeignKey(transactionline => transactionline.TransactionID)

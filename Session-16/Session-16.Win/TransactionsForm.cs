@@ -182,8 +182,8 @@ namespace Session_16.Win {
         }
 
         private void gridView1_RowDeleting(object sender, DevExpress.Data.RowDeletingEventArgs e) {
-            TransactionRepo transactionRepo = new TransactionRepo();
             GridView view = sender as GridView;
+            TransactionRepo transactionRepo = new TransactionRepo();
             Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colID).ToString());
             transactionRepo.Delete(id);
         }

@@ -30,7 +30,8 @@ namespace CarServiceCenterLib.Orm.Repositories {
         }
         public Transaction? GetById(Guid id) {
             using var context = new AppDbContext();
-            return context.Transactions.SingleOrDefault();
+            //return context.Transactions.SingleOrDefault();
+            return context.Transactions.FirstOrDefault(transaction => transaction.ID == id);
         }
         public void Update(Guid id, Transaction entity) {
             using var context = new AppDbContext();
@@ -47,10 +48,12 @@ namespace CarServiceCenterLib.Orm.Repositories {
         public bool EntityExist(Transaction entity) {
             using var context = new AppDbContext();
             var TransactionDb = context.Transactions
-                .Where(Transaction => Transaction.TransactionLines == entity.TransactionLines
-            && Transaction.Customer == entity.Customer
-            && Transaction.Car == entity.Car
-            && Transaction.Manager == entity.Manager
+                .Where(Transaction => Transaction.ID == entity.ID
+            && Transaction.Date == entity.Date
+            && Transaction.CustomerID == entity.CustomerID
+            && Transaction.CarID == entity.CarID
+            && Transaction.ManagerID == entity.ManagerID
+            && Transaction.TotalPrice == entity.TotalPrice
             ).SingleOrDefault();
             if (TransactionDb is null) {
                 var Transaction1Db = context.Transactions
