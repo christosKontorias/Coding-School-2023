@@ -17,7 +17,7 @@ namespace CarServiceCenterLib.Models {
         public Guid CarID { get; set; }
         public Guid ManagerID { get; set; }
         public List<TransactionLine> TransactionLines { get; set; }
-        public Customer Customer { get; set; }
+        public Customer Customer { get; set; } = null!;
         public Car Car { get; set; }
         public Manager Manager { get; set; }
 

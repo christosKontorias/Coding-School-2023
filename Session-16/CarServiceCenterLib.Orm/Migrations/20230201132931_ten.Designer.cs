@@ -4,6 +4,7 @@ using CarServiceCenterLib.Orm.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarServiceCenterLib.Orm.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230201132931_ten")]
+    partial class ten
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -224,16 +227,18 @@ namespace CarServiceCenterLib.Orm.Migrations
 
                     b.HasIndex("TransactionID");
 
-                    b.ToTable("TransactionLine");
+                    b.ToTable("TransactionLines", (string)null);
                 });
 
             modelBuilder.Entity("CarServiceCenterLib.Models.Engineer", b =>
                 {
-                    b.HasOne("CarServiceCenterLib.Models.Manager", null)
+                    b.HasOne("CarServiceCenterLib.Models.Manager", "Manager")
                         .WithMany("Engineers")
                         .HasForeignKey("ManagerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Manager");
                 });
 
             modelBuilder.Entity("CarServiceCenterLib.Models.Transaction", b =>
