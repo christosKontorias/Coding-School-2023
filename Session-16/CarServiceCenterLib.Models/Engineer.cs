@@ -14,6 +14,7 @@ namespace CarServiceCenterLib.Models {
         //Relations
         public Guid ManagerID { get; set; }
         public List<TransactionLine> TransactionLines { get; set; }
+        //public Manager Manager { get; set; }
 
         // Constructors
         public Engineer() {

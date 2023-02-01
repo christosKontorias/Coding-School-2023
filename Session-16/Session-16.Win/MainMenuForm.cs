@@ -70,6 +70,7 @@ namespace Session_16.Win {
             managerRepo.Add(_carServiceCenter.Managers.Last());
 
             _carServiceCenter.Engineers.Add(new Engineer("Demetris", "Raptodimos", _carServiceCenter.Managers[0].ID, 1000, DateTime.Parse("2/2/2023")));
+            //_carServiceCenter.Engineers.Last().Manager = managerRepo.GetById(_carServiceCenter.);
             engineerRepo.Add(_carServiceCenter.Engineers.Last());
             _carServiceCenter.Engineers.Add(new Engineer("Kostas", "Kostaki", _carServiceCenter.Managers[0].ID, 1500, DateTime.Parse("2/1/2023")));
             engineerRepo.Add(_carServiceCenter.Engineers.Last());
