@@ -18,8 +18,8 @@ namespace CarServiceCenterLib.Models {
         public Guid EngineerID { get; set; }
         public Guid ServiceTaskID { get; set; }
         public Transaction Transaction { get; set; }
-        public Engineer Engineer { get; set; }
-        public ServiceTask ServiceTask { get; set; }
+        //public Engineer Engineer { get; set; }
+        //public ServiceTask ServiceTask { get; set; }
 
         //Constrators
         public TransactionLine() {

@@ -12,13 +12,15 @@ namespace CarServiceCenterLib.Orm.Configurations {
         public void Configure(EntityTypeBuilder<TransactionLine> builder) {
             builder.ToTable("TransactionLines");
             builder.HasKey(transactionline => transactionline.ID);
+
             //builder.Property(transactionLine => transactionLine.TransactionID);
             //builder.Property(transactionLine => transactionLine.ServiceTaskID);
             //builder.Property(transactionLine => transactionLine.EngineerID);
 
-            //builder.HasOne(transactionline => transactionline.Transaction)
-            //     .WithMany(transaction => transaction.TransactionLines)
-            //     .HasForeignKey(transactionline => transactionline.TransactionID);
+            builder.HasOne(transactionLine => transactionLine.Transaction)
+                .WithMany(transaction => transaction.TransactionLines)
+                .HasForeignKey(transactionLine => transactionLine.TransactionID)
+                .OnDelete(DeleteBehavior.ClientCascade);
 
             //builder.HasOne(transactionline => transactionline.Engineer)
             //    .WithMany(engineer => engineer.TransactionLines)

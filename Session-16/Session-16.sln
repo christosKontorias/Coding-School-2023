@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SerializerLib", "Serializer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarServiceCenterLib.Models", "CarServiceCenterLib.Models\CarServiceCenterLib.Models.csproj", "{92EA021A-EA1C-4270-81A7-C25073FC1E2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarServiceCenterLib.Orm", "CarServiceCenterLib.Orm\CarServiceCenterLib.Orm.csproj", "{E69DCA13-D18D-4ED3-95C2-0A1B2268616D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarServiceCenterLib.Orm", "CarServiceCenterLib.Orm\CarServiceCenterLib.Orm.csproj", "{E69DCA13-D18D-4ED3-95C2-0A1B2268616D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Session-16.Win", "Session-16.Win\Session-16.Win.csproj", "{9D925B2C-E62F-45B8-AD23-F45438CCB1B4}"
 EndProject

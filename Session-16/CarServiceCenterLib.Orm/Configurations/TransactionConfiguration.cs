@@ -12,11 +12,11 @@ namespace CarServiceCenterLib.Orm.Configurations {
         public void Configure(EntityTypeBuilder<Transaction> builder) {
             builder.ToTable("Transaction");
             builder.HasKey(transaction => transaction.ID);
-            builder.Property(transaction => transaction.Date);
-            builder.Property(transaction => transaction.CustomerID);
-            builder.Property(transaction => transaction.CarID);
-            builder.Property(transaction => transaction.ManagerID);
-            builder.Property(transaction => transaction.TotalPrice);
+            //builder.Property(transaction => transaction.Date);
+            //builder.Property(transaction => transaction.CustomerID);
+            //builder.Property(transaction => transaction.CarID);
+            //builder.Property(transaction => transaction.ManagerID);
+            //builder.Property(transaction => transaction.TotalPrice);
             //builder.HasMany(transaction => transaction.TransactionLines)
             //    .WithOne(transactionline => transactionline.Transaction)
             //    .HasForeignKey(transactionline => transactionline.TransactionID)

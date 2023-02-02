@@ -24,20 +24,29 @@ namespace Session_16.Win {
             SetControlProperties();
         }
         private void SetControlProperties() {
-            bsTransactions.DataSource = _carServiceCenter.Transactions;
+            CustomerRepo customerRepo = new CustomerRepo();
+            EngineerRepo engineerRepo = new EngineerRepo();
+            ManagerRepo managerRepo = new ManagerRepo();
+            CarRepo carRepo = new CarRepo();
+            ServiceTaskRepo serviceTaskRepo = new ServiceTaskRepo();
+            TransactionRepo transactionRepo = new TransactionRepo();
+            TransactionLineRepo transactionLineRepo = new TransactionLineRepo();
+
+            bsTransactions.DataSource = transactionRepo.GetAll();
             grdTransactions.DataSource = bsTransactions;
             grdTransactionLines.DataSource = bsTransactions;
             grdTransactionLines.DataMember = "TransactionLines";
+            grdTransactionLines.DataSource = bsTransactionLines;
 
-            SetLookUpEdit<Customer>(repCustomerName, _carServiceCenter.Customers, "Name", "ID");
-            SetLookUpEdit<Customer>(repCustomerSurname, _carServiceCenter.Customers, "Surname", "ID");
-            SetLookUpEdit<Car>(repCarBrand, _carServiceCenter.Cars, "Brand", "ID");
-            SetLookUpEdit<Car>(repCarModel, _carServiceCenter.Cars, "Model", "ID");
-            SetLookUpEdit<Manager>(repManagerName, _carServiceCenter.Managers, "Name", "ID");
-            SetLookUpEdit<Manager>(repManagerSurname, _carServiceCenter.Managers, "Surname", "ID");
-            SetLookUpEdit<Engineer>(repEngineersName, _carServiceCenter.Engineers, "Name", "ID");
-            SetLookUpEdit<Engineer>(repEngineersSurname, _carServiceCenter.Engineers, "Surname", "ID");
-            SetLookUpEdit<ServiceTask>(repServiceTasksDescription, _carServiceCenter.ServiceTasks, "Description", "ID");
+            SetLookUpEdit<Customer>(repCustomerName, customerRepo.GetAll().ToList(), "Name", "ID");
+            SetLookUpEdit<Customer>(repCustomerSurname, customerRepo.GetAll().ToList(), "Surname", "ID");
+            SetLookUpEdit<Car>(repCarBrand, carRepo.GetAll().ToList(), "Brand", "ID");
+            SetLookUpEdit<Car>(repCarModel, carRepo.GetAll().ToList(), "Model", "ID");
+            SetLookUpEdit<Manager>(repManagerName, managerRepo.GetAll().ToList(), "Name", "ID");
+            SetLookUpEdit<Manager>(repManagerSurname, managerRepo.GetAll().ToList(), "Surname", "ID");
+            SetLookUpEdit<Engineer>(repEngineersName, engineerRepo.GetAll().ToList(), "Name", "ID");
+            SetLookUpEdit<Engineer>(repEngineersSurname, engineerRepo.GetAll().ToList(), "Surname", "ID");
+            SetLookUpEdit<ServiceTask>(repServiceTasksDescription, serviceTaskRepo.GetAll().ToList(), "Description", "ID");
         }
         public List<TransactionLine> ReturnAllTransactionLines() {
             List<TransactionLine> transactionLines = new List<TransactionLine>();
@@ -188,11 +197,11 @@ namespace Session_16.Win {
             transactionRepo.Delete(id);
         }
 
-        private void gridView1_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e) {
-            TransactionRepo transactionRepo = new TransactionRepo();
-            GridView view = sender as GridView;
-            Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colID).ToString());
-            transactionRepo.Update(id, FindTransaction(id));
-        }
+        //private void gridView1_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e) {
+        //    TransactionRepo transactionRepo = new TransactionRepo();
+        //    GridView view = sender as GridView;
+        //    Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colID).ToString());
+        //    transactionRepo.Update(id, FindTransaction(id));
+        //}
     }
 }

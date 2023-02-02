@@ -8,18 +8,18 @@ namespace CarServiceCenterLib.Models {
     public class Transaction {
 
         //Properties 
+        public Guid ID { get; set; }
         public DateTime Date { get; set; }
         public double TotalPrice { get; set; }
 
         //Relations
-        public Guid ID { get; set; }
         public Guid CustomerID { get; set; }
         public Guid CarID { get; set; }
         public Guid ManagerID { get; set; }
         public List<TransactionLine> TransactionLines { get; set; }
-        public Customer Customer { get; set; } = null!;
-        public Car Car { get; set; }
-        public Manager Manager { get; set; }
+        //public Customer Customer { get; set; } = null!;
+        //public Car Car { get; set; }
+        //public Manager Manager { get; set; }
 
         // Constructors
         public Transaction() {

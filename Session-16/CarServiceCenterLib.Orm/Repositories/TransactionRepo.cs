@@ -1,5 +1,6 @@
 ﻿using CarServiceCenterLib.Models;
 using CarServiceCenterLib.Orm.Context;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace CarServiceCenterLib.Orm.Repositories {
         }
         public void Delete(Guid id) {
             using var context = new AppDbContext();
-            var TransactionDb = context.Transactions.Where(transaction => transaction.ID == id).SingleOrDefault();
+            var TransactionDb = context.Transactions.Where(transaction => transaction.ID == id).Include(transaction => transaction.TransactionLines).SingleOrDefault();
             if (TransactionDb is null)
                 return;
             context.Remove(TransactionDb);
@@ -25,35 +26,32 @@ namespace CarServiceCenterLib.Orm.Repositories {
         }
         public IList<Transaction> GetAll() {
             using var context = new AppDbContext();
-            return context.Transactions.ToList();
-
+            return context.Transactions.Include(transaction => transaction.TransactionLines).ToList();
         }
         public Transaction? GetById(Guid id) {
             using var context = new AppDbContext();
-            return context.Transactions.SingleOrDefault();
+            return context.Transactions.Where(transaction => transaction.ID == id).Include(transaction => transaction.TransactionLines).SingleOrDefault();
         }
         public void Update(Guid id, Transaction entity) {
             using var context = new AppDbContext();
-            var TransactionDb = context.Transactions.Where(transaction => transaction.ID == id).SingleOrDefault();
+            var TransactionDb = context.Transactions.Where(transaction => transaction.ID == id).Include(transaction => transaction.TransactionLines).SingleOrDefault();
             if (TransactionDb is null)
                 return;
-            TransactionDb.TransactionLines = entity.TransactionLines;
-            TransactionDb.Customer = entity.Customer;
-            TransactionDb.Car = entity.Car;
-            TransactionDb.Manager = entity.Manager;
-
+            TransactionDb.CustomerID = entity.CustomerID;
+            TransactionDb.ManagerID = entity.ManagerID;
+            TransactionDb.CarID = entity.CarID;
+            TransactionDb.Date = entity.Date;
+            TransactionDb.TotalPrice = entity.TotalPrice;
             context.SaveChanges();
         }
         public bool EntityExist(Transaction entity) {
             using var context = new AppDbContext();
             var TransactionDb = context.Transactions
-                .Where(Transaction => Transaction.ID == entity.ID
-            && Transaction.Date == entity.Date
-            && Transaction.CustomerID == entity.CustomerID
-            && Transaction.CarID == entity.CarID
-            && Transaction.ManagerID == entity.ManagerID
-            && Transaction.TotalPrice == entity.TotalPrice
-            ).SingleOrDefault();
+                .Where(transaction => transaction.CarID == entity.CarID
+                && transaction.CustomerID == entity.CustomerID
+                && transaction.ManagerID == entity.ManagerID
+                && transaction.Date == entity.Date
+                && transaction.TotalPrice == entity.TotalPrice).SingleOrDefault();
             if (TransactionDb is null) {
                 var Transaction1Db = context.Transactions
                 .Where(transaction => transaction.ID == entity.ID).SingleOrDefault();
