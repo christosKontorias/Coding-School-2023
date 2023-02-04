@@ -16,6 +16,7 @@ namespace CarServiceCenterLib.Orm.Repositories {
                 context.SaveChanges();
             }
         }
+
         public void Delete(Guid id) {
             using var context = new AppDbContext();
             var TransactionDb = context.Transactions.Where(transaction => transaction.ID == id).Include(transaction => transaction.TransactionLines).SingleOrDefault();
@@ -24,26 +25,7 @@ namespace CarServiceCenterLib.Orm.Repositories {
             context.Remove(TransactionDb);
             context.SaveChanges();
         }
-        public IList<Transaction> GetAll() {
-            using var context = new AppDbContext();
-            return context.Transactions.Include(transaction => transaction.TransactionLines).ToList();
-        }
-        public Transaction? GetById(Guid id) {
-            using var context = new AppDbContext();
-            return context.Transactions.Where(transaction => transaction.ID == id).Include(transaction => transaction.TransactionLines).SingleOrDefault();
-        }
-        public void Update(Guid id, Transaction entity) {
-            using var context = new AppDbContext();
-            var TransactionDb = context.Transactions.Where(transaction => transaction.ID == id).Include(transaction => transaction.TransactionLines).SingleOrDefault();
-            if (TransactionDb is null)
-                return;
-            TransactionDb.CustomerID = entity.CustomerID;
-            TransactionDb.ManagerID = entity.ManagerID;
-            TransactionDb.CarID = entity.CarID;
-            TransactionDb.Date = entity.Date;
-            TransactionDb.TotalPrice = entity.TotalPrice;
-            context.SaveChanges();
-        }
+
         public bool EntityExist(Transaction entity) {
             using var context = new AppDbContext();
             var TransactionDb = context.Transactions
@@ -51,7 +33,8 @@ namespace CarServiceCenterLib.Orm.Repositories {
                 && transaction.CustomerID == entity.CustomerID
                 && transaction.ManagerID == entity.ManagerID
                 && transaction.Date == entity.Date
-                && transaction.TotalPrice == entity.TotalPrice).SingleOrDefault();
+                && transaction.TotalPrice == entity.TotalPrice)
+                .SingleOrDefault();
             if (TransactionDb is null) {
                 var Transaction1Db = context.Transactions
                 .Where(transaction => transaction.ID == entity.ID).SingleOrDefault();
@@ -59,6 +42,31 @@ namespace CarServiceCenterLib.Orm.Repositories {
                     return true;
                 }
             } else return true;
+        }
+
+        public IList<Transaction> GetAll() {
+            using var context = new AppDbContext();
+            return context.Transactions.Include(transaction => transaction.TransactionLines).ToList();
+        }
+
+        public Transaction? GetById(Guid id) {
+            using var context = new AppDbContext();
+            return context.Transactions.Where(transaction => transaction.ID == id).Include(transaction => transaction.TransactionLines).SingleOrDefault();
+        }
+
+        public void Update(Guid id, Transaction entity) {
+            using var context = new AppDbContext();
+            var TransactionDb = context.Transactions.Where(transaction => transaction.ID == id).Include(transaction => transaction.TransactionLines).SingleOrDefault();
+            if (TransactionDb is null)
+                return;
+            TransactionDb.Date = entity.Date;
+            TransactionDb.CustomerID = entity.CustomerID;
+            TransactionDb.CarID = entity.CarID;
+            TransactionDb.ManagerID = entity.ManagerID;
+            TransactionDb.TotalPrice = entity.TotalPrice;
+            
+
+            context.SaveChanges();
         }
     }
 }

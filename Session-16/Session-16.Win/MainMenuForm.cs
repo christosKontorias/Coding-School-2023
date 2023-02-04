@@ -25,7 +25,7 @@ namespace Session_16.Win {
 
         }
         private void button1_Click(object sender, EventArgs e) {
-            TransactionsForm transactionsForm = new TransactionsForm(_carServiceCenter);
+            TransactionsForm transactionsForm = new TransactionsForm();
             transactionsForm.ShowDialog(); // Shows _transactionsForm
         }
         private void btnCustomerAndCars_Click(object sender, EventArgs e) {
@@ -107,6 +107,7 @@ namespace Session_16.Win {
             foreach (TransactionLine transactionLine in transaction.TransactionLines) {
                 _carServiceCenter.AddTask(transactionLine, transaction.Date, out _);
             }
+            transactionRepo.Add(_carServiceCenter.Transactions.Last());
             customer = _carServiceCenter.Customers[1];
             car = _carServiceCenter.Cars[1];
             _carServiceCenter.Transactions.Add(new Transaction(customer.ID, car.ID, manager.ID));
@@ -118,6 +119,7 @@ namespace Session_16.Win {
             foreach (TransactionLine transactionLine in transaction.TransactionLines) {
                 _carServiceCenter.AddTask(transactionLine, transaction.Date, out _);
             }
+            transactionRepo.Add(_carServiceCenter.Transactions.Last());
         }
         private void btnPopulate_Click(object sender, EventArgs e) {
             Populate(_carServiceCenter);
@@ -141,22 +143,20 @@ namespace Session_16.Win {
         }
         private void btnLoad_Click(object sender, EventArgs e) {
             CustomerRepo customerRepo = new CustomerRepo();
-            _carServiceCenter.Customers = customerRepo.GetAll().ToList();
             EngineerRepo engineerRepo = new EngineerRepo();
-            _carServiceCenter.Engineers = engineerRepo.GetAll().ToList();
             ManagerRepo managerRepo = new ManagerRepo();
-            _carServiceCenter.Managers = managerRepo.GetAll().ToList();
             CarRepo carRepo = new CarRepo();
+            ServiceTaskRepo serviceTask = new ServiceTaskRepo();
+            _carServiceCenter.Customers = customerRepo.GetAll().ToList();
+            _carServiceCenter.Managers = managerRepo.GetAll().ToList();
+            _carServiceCenter.Engineers = engineerRepo.GetAll().ToList();
             _carServiceCenter.Cars = carRepo.GetAll().ToList();
-            ServiceTaskRepo serviceTaskRepo = new ServiceTaskRepo();
-            _carServiceCenter.ServiceTasks = serviceTaskRepo.GetAll().ToList();
-            TransactionRepo transactionRepo = new TransactionRepo();
-            _carServiceCenter.Transactions = transactionRepo.GetAll().ToList();
+            _carServiceCenter.ServiceTasks = serviceTask.GetAll().ToList();
 
             MessageBox.Show("Done!");
         }
         private void btnTransactions_Click(object sender, EventArgs e) {
-            TransactionsForm transactionsForm = new TransactionsForm(_carServiceCenter);
+            TransactionsForm transactionsForm = new TransactionsForm();
             transactionsForm.ShowDialog(); // Shows _transactionsForm
         }
         private void btnCustomerAndCars_Click_1(object sender, EventArgs e) {
