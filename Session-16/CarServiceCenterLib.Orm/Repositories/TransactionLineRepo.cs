@@ -16,7 +16,6 @@ namespace CarServiceCenterLib.Orm.Repositories {
                 context.SaveChanges();
             }
         }
-
         public void Delete(Guid id) {
             using var context = new AppDbContext();
             var TransactionLineDb = context.TransactionLines.Where(transactionLine => transactionLine.ID == id).SingleOrDefault();
@@ -42,7 +41,6 @@ namespace CarServiceCenterLib.Orm.Repositories {
                 }
             } else return true;
         }
-
         public IList<TransactionLine> GetAll() {
             using var context = new AppDbContext();
             return context.TransactionLines.Include(transactionLine => transactionLine.Transaction).ToList();

@@ -50,11 +50,13 @@ namespace CarServiceCenterLib.Models {
             message = msg;
             return ret;
         }
+
         public void UpdateWorkDays() {
             foreach (WorkDay workDay in WorkDays) {
                 workDay.UpdateNumOfEngineers(Engineers.Count());
             }
         }
+
         public void DeleteTask(TransactionLine task, DateTime date) {
             foreach (WorkDay workDay in WorkDays) {
                 if (workDay.Date.Year == date.Year && workDay.Date.Month == date.Month && workDay.Date.Day == date.Day) {
@@ -62,6 +64,7 @@ namespace CarServiceCenterLib.Models {
                 }
             }
         }
+
         public double SalaryEngineersFrom(int Year, int Month) {
             double TotalSalary = 0;
             foreach (Engineer engineer in Engineers) {
@@ -82,7 +85,7 @@ namespace CarServiceCenterLib.Models {
         }
         public bool ManagerExists() {
             bool ret = true;
-            if (Managers.Count == 0) {
+            if(Managers.Count == 0) {
                 ret = false;
             }
             return ret;

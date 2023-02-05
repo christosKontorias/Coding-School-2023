@@ -26,7 +26,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServiceTasksForm));
             this.grdServiceTasks = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.grvServiceTasks = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -36,7 +36,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btn_Close = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdServiceTasks)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvServiceTasks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsServiceTasks)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,30 +46,30 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grdServiceTasks.Location = new System.Drawing.Point(21, 42);
-            this.grdServiceTasks.MainView = this.gridView1;
+            this.grdServiceTasks.MainView = this.grvServiceTasks;
             this.grdServiceTasks.Name = "grdServiceTasks";
             this.grdServiceTasks.Size = new System.Drawing.Size(643, 200);
             this.grdServiceTasks.TabIndex = 0;
             this.grdServiceTasks.UseEmbeddedNavigator = true;
             this.grdServiceTasks.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.grvServiceTasks});
             // 
-            // gridView1
+            // grvServiceTasks
             // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.grvServiceTasks.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colCode,
             this.colID,
             this.colDescription,
             this.colHours});
-            this.gridView1.GridControl = this.grdServiceTasks;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.ShowDetailButtons = false;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            this.gridView1.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridView1_InitNewRow);
-            this.gridView1.RowDeleting += new DevExpress.Data.RowDeletingEventHandler(this.gridView1_RowDeleting);
-            this.gridView1.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridView1_ValidateRow);
-            this.gridView1.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridView1_RowUpdated);
-            this.gridView1.ValidatingEditor += new DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventHandler(this.gridView1_ValidatingEditor);
+            this.grvServiceTasks.GridControl = this.grdServiceTasks;
+            this.grvServiceTasks.Name = "grvServiceTasks";
+            this.grvServiceTasks.OptionsView.ShowDetailButtons = false;
+            this.grvServiceTasks.OptionsView.ShowGroupPanel = false;
+            this.grvServiceTasks.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.grvServiceTasks_InitNewRow);
+            this.grvServiceTasks.RowDeleting += new DevExpress.Data.RowDeletingEventHandler(this.grvServiceTasks_RowDeleting);
+            this.grvServiceTasks.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.grvServiceTasks_ValidateRow);
+            this.grvServiceTasks.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.grvServiceTasks_RowUpdated);
+            this.grvServiceTasks.ValidatingEditor += new DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventHandler(this.grvServiceTasks_ValidatingEditor);
             // 
             // colCode
             // 
@@ -168,7 +168,7 @@
             this.Text = "ServiceTasksForm";
             this.Load += new System.EventHandler(this.ServiceTasksForm_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.grdServiceTasks)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvServiceTasks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsServiceTasks)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -178,7 +178,7 @@
         #endregion
 
         private DevExpress.XtraGrid.GridControl grdServiceTasks;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Views.Grid.GridView grvServiceTasks;
         private DevExpress.XtraEditors.LabelControl labelServiceTask;
         private DevExpress.XtraGrid.Columns.GridColumn colID;
         private DevExpress.XtraGrid.Columns.GridColumn colDescription;

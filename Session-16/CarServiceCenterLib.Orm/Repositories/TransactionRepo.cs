@@ -16,7 +16,6 @@ namespace CarServiceCenterLib.Orm.Repositories {
                 context.SaveChanges();
             }
         }
-
         public void Delete(Guid id) {
             using var context = new AppDbContext();
             var TransactionDb = context.Transactions.Where(transaction => transaction.ID == id).Include(transaction => transaction.TransactionLines).SingleOrDefault();
@@ -25,7 +24,6 @@ namespace CarServiceCenterLib.Orm.Repositories {
             context.Remove(TransactionDb);
             context.SaveChanges();
         }
-
         public bool EntityExist(Transaction entity) {
             using var context = new AppDbContext();
             var TransactionDb = context.Transactions
@@ -43,17 +41,14 @@ namespace CarServiceCenterLib.Orm.Repositories {
                 }
             } else return true;
         }
-
         public IList<Transaction> GetAll() {
             using var context = new AppDbContext();
             return context.Transactions.Include(transaction => transaction.TransactionLines).ToList();
         }
-
         public Transaction? GetById(Guid id) {
             using var context = new AppDbContext();
             return context.Transactions.Where(transaction => transaction.ID == id).Include(transaction => transaction.TransactionLines).SingleOrDefault();
         }
-
         public void Update(Guid id, Transaction entity) {
             using var context = new AppDbContext();
             var TransactionDb = context.Transactions.Where(transaction => transaction.ID == id).Include(transaction => transaction.TransactionLines).SingleOrDefault();
@@ -64,8 +59,6 @@ namespace CarServiceCenterLib.Orm.Repositories {
             TransactionDb.CarID = entity.CarID;
             TransactionDb.ManagerID = entity.ManagerID;
             TransactionDb.TotalPrice = entity.TotalPrice;
-            
-
             context.SaveChanges();
         }
     }

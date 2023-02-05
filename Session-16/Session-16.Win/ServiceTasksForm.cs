@@ -21,6 +21,7 @@ namespace Session_16.Win {
     public partial class ServiceTasksForm : Form {
         private CarServiceCenter _carServiceCenter;
         private Serializer _serializer;
+
         public ServiceTasksForm(CarServiceCenter carServiceCenter) {
             InitializeComponent();
             _carServiceCenter = carServiceCenter;
@@ -30,12 +31,10 @@ namespace Session_16.Win {
             SetControlProperties();
         }
         private void SetControlProperties() {
-
+            ServiceTaskRepo serviceTaskRepo = new ServiceTaskRepo();
             _serializer = new Serializer();
-            bsServiceTasks.DataSource = _carServiceCenter.ServiceTasks;
+            bsServiceTasks.DataSource = serviceTaskRepo.GetAll();
             grdServiceTasks.DataSource = bsServiceTasks;
-        }
-        private void dgvServiceTasks_CellContentClick(object sender, DataGridViewCellEventArgs e) {
 
         }
         private void btnSave_Click(object sender, EventArgs e) {
@@ -45,6 +44,118 @@ namespace Session_16.Win {
         private void btn_Close_Click(object sender, EventArgs e) {
             this.Close();
         }
+        private ServiceTask FindServiceTaskWithID(Guid id) {
+            ServiceTask retServiceTask = null;
+            foreach (ServiceTask serviceTask in _carServiceCenter.ServiceTasks) {
+                if (serviceTask.ID == id) {
+                    retServiceTask = serviceTask;
+                }
+            }
+            return retServiceTask;
+        }
+        private void grvServiceTasks_ValidateRow(object sender, ValidateRowEventArgs e) {
+            ServiceTaskRepo serviceTaskRepo = new ServiceTaskRepo();
+            GridView view = sender as GridView;
+            Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colID).ToString());
+            String code = view.GetRowCellValue(e.RowHandle, colCode).ToString();
+            String description = view.GetRowCellValue(e.RowHandle, colDescription) as String;
+            String hours = view.GetRowCellValue(e.RowHandle, colHours).ToString();
+            if (code == null) {
+                e.Valid = false;
+                view.SetColumnError(colCode, "Insert Valid Brand");
+            } else if (code == " ") {
+                e.Valid = false;
+                view.SetColumnError(colCode, "Fill Code cell");
+            }
+            if (description == null) {
+                e.Valid = false;
+                view.SetColumnError(colDescription, "Insert Valid Description");
+            } else if (description == "") {
+                e.Valid = false;
+                view.SetColumnError(colDescription, "Fill Description cell");
+            }
+            if (hours == null) {
+                e.Valid = false;
+                view.SetColumnError(colHours, "Insert Valid Hours");
+            } else if (hours == "") {
+                e.Valid = false;
+                view.SetColumnError(colHours, "Fill Hours cell");
+            } else if (!double.TryParse(hours, out _)) {
+                e.Valid = false;
+                view.SetColumnError(colHours, "Insert Valid Hours");
+            }
+            if (e.Valid) {
+                view.ClearColumnErrors();
+                serviceTaskRepo.Add((ServiceTask)bsServiceTasks.Current);
+            }
+        }
+        private void grvServiceTasks_ValidatingEditor(object sender, DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventArgs e) {
+            ColumnView view = sender as ColumnView;
+            GridColumn column = (e as EditFormValidateEditorEventArgs)?.Column ?? view.FocusedColumn;
+            String cellVal = e.Value as String;
+            if (column.FieldName == "Code") {
+                if (cellVal == null) {
+                    e.Valid = false;
+                    view.SetColumnError(colCode, "Insert Valid Code");
+                } else if (cellVal == " ") {
+                    e.Valid = false;
+                    view.SetColumnError(colCode, "Fill Code cell");
+                }
+            } else if (column.FieldName == "Description") {
+                if (cellVal == null) {
+                    e.Valid = false;
+                    view.SetColumnError(colDescription, "Insert Valid Description");
+                } else if (cellVal == "") {
+                    e.Valid = false;
+                    view.SetColumnError(colDescription, "Fill Description cell");
+                }
+            }
+            if (column.FieldName == "Hours") {
+                if (cellVal == null) {
+                    e.Valid = false;
+                    view.SetColumnError(colHours, "Insert Valid Hours");
+                } else if (cellVal == "") {
+                    e.Valid = false;
+                    view.SetColumnError(colHours, "Fill Hours cell");
+                } else if (!double.TryParse(cellVal, out _)) {
+                    e.Valid = false;
+                    view.SetColumnError(colHours, "Insert Valid Hours");
+                }
+            }
+        }
+        private void grvServiceTasks_RowUpdated(object sender, RowObjectEventArgs e) {
+            GridView view = sender as GridView;
+            ServiceTaskRepo serviceTaskRepo = new ServiceTaskRepo();
+            Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colID).ToString());
+            serviceTaskRepo.Update(id, (ServiceTask)bsServiceTasks.Current);
+        }
+        private void grvServiceTasks_RowDeleting(object sender, DevExpress.Data.RowDeletingEventArgs e) {
+            GridView view = sender as GridView;
+            ServiceTaskRepo serviceTaskRepo = new ServiceTaskRepo();
+            Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colID).ToString());
+            serviceTaskRepo.Delete(id);
+        }
+        private void grvServiceTasks_InitNewRow(object sender, InitNewRowEventArgs e) {
+            DevExpress.XtraGrid.Columns.GridColumn col = grvServiceTasks.Columns.ColumnByFieldName("Code");
+            int dataRowCount = grvServiceTasks.DataRowCount;
+            bool flag;
+            for (int j = 0; j <= dataRowCount; j++) {
+                flag = true;
+                for (int i = 0; i < dataRowCount; i++) {
+                    object cellValue = grvServiceTasks.GetRowCellValue(i, col);
+                    int newValue = Convert.ToInt32(cellValue);
+                    if (j == newValue) {
+                        flag = false;
+                    }
+                }
+                if (flag) {
+                    grvServiceTasks.SetRowCellValue(e.RowHandle, "Code", j);
+                    return;
+                }
+            }
+        }
+
+        //Customize Button
         private void btnSave_MouseEnter(object sender, EventArgs e) {
             btnSave.FlatAppearance.MouseOverBackColor = btnSave.BackColor;
             btnSave.ForeColor = Color.Blue;
@@ -66,125 +177,6 @@ namespace Session_16.Win {
             btn_Close.ForeColor = Color.Black;
             btn_Close.FlatAppearance.BorderColor = Color.Black;
             btn_Close.FlatAppearance.BorderSize = 2;
-        }
-        private void gridView1_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e) {
-            ServiceTaskRepo serviceTaskRepo = new ServiceTaskRepo();
-            GridView view = sender as GridView;
-            Guid id = Guid.Parse(view.GetRowCellValue(e.RowHandle, colID).ToString());
-            String code = view.GetRowCellValue(e.RowHandle, colCode).ToString();
-            String description = view.GetRowCellValue(e.RowHandle, colDescription) as String;
-            String hours = view.GetRowCellValue(e.RowHandle, colHours).ToString();
-
-            // Code Cell
-            if (code == null) {
-                e.Valid = false;
-                view.SetColumnError(colCode, "Insert Valid Brand");
-            } else if (code == " ") {
-                e.Valid = false;
-                view.SetColumnError(colCode, "Fill Code cell");
-            }
-            // Description Cell
-            if (description == null) {
-                e.Valid = false;
-                view.SetColumnError(colDescription, "Insert Valid Description");
-            } else if (description == "") {
-                e.Valid = false;
-                view.SetColumnError(colDescription, "Fill Description cell");
-            }
-            // Hours Cell
-            if (hours == null) {
-                e.Valid = false;
-                view.SetColumnError(colHours, "Insert Valid Hours");
-            } else if (hours == "") {
-                e.Valid = false;
-                view.SetColumnError(colHours, "Fill Hours cell");
-            } else if (!double.TryParse(hours, out _)) {
-                e.Valid = false;
-                view.SetColumnError(colHours, "Insert Valid Hours");
-            }
-            if (e.Valid) {
-                view.ClearColumnErrors();
-                serviceTaskRepo.Add(FindServiceTask(id));
-            }
-        }
-        private void gridView1_ValidatingEditor(object sender, DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventArgs e) {
-            ColumnView view = sender as ColumnView;
-            GridColumn column = (e as EditFormValidateEditorEventArgs)?.Column ?? view.FocusedColumn;
-            String cellVal = e.Value as String;
-            if (column.FieldName == "Code") {
-                // colCode changed
-                if (cellVal == null) {
-                    e.Valid = false;
-                    view.SetColumnError(colCode, "Insert Valid Code");
-                } else if (cellVal == " ") {
-                    e.Valid = false;
-                    view.SetColumnError(colCode, "Fill Code cell");
-                }
-                //else if (Convert.ToInt32(cellVal) == gridView1.Data  )
-            } else if (column.FieldName == "Description") {
-                // colDescription changed
-                if (cellVal == null) {
-                    e.Valid = false;
-                    view.SetColumnError(colDescription, "Insert Valid Description");
-                } else if (cellVal == "") {
-                    e.Valid = false;
-                    view.SetColumnError(colDescription, "Fill Description cell");
-                }
-            }
-            if (column.FieldName == "Hours") {
-                // colHours changed
-                if (cellVal == null) {
-                    e.Valid = false;
-                    view.SetColumnError(colHours, "Insert Valid Hours");
-                } else if (cellVal == "") {
-                    e.Valid = false;
-                    view.SetColumnError(colHours, "Fill Hours cell");
-                } else if (!double.TryParse(cellVal, out _)) {
-                    e.Valid = false;
-                    view.SetColumnError(colHours, "Insert Valid Hours");
-                }
-            }
-        }
-        private void gridView1_InitNewRow(object sender, InitNewRowEventArgs e) {
-            DevExpress.XtraGrid.Columns.GridColumn col = gridView1.Columns.ColumnByFieldName("Code");
-            int dataRowCount = gridView1.DataRowCount;
-            bool flag;
-            // Traverse data rows and change the Price field values. 
-            for (int j = 0; j <= dataRowCount; j++) {
-                flag = true;
-                for (int i = 0; i < dataRowCount; i++) {
-                    object cellValue = gridView1.GetRowCellValue(i, col);
-                    int newValue = Convert.ToInt32(cellValue);
-                    if (j == newValue) {
-                        flag = false;
-                    }
-                }
-                if (flag) {
-                    gridView1.SetRowCellValue(e.RowHandle, "Code", j);
-                    return;
-                }
-            }
-        }
-        private ServiceTask FindServiceTask(Guid id) {
-            ServiceTask retServiceTask = null;
-            foreach (ServiceTask serviceTask in _carServiceCenter.ServiceTasks) {
-                if (serviceTask.ID == id) {
-                    retServiceTask = serviceTask;
-                }
-            }
-            return retServiceTask;
-        }
-        private void gridView1_RowDeleting(object sender, DevExpress.Data.RowDeletingEventArgs e) {
-            GridView view = sender as GridView;
-            ServiceTaskRepo carRepo = new ServiceTaskRepo();
-            Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colID).ToString());
-            carRepo.Delete(id);
-        }
-        private void gridView1_RowUpdated(object sender, RowObjectEventArgs e) {
-            GridView view = sender as GridView;
-            ServiceTaskRepo serviceTaskRepo = new ServiceTaskRepo();
-            Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colID).ToString());
-            serviceTaskRepo.Update(id, FindServiceTask(id));
         }
     }
 }

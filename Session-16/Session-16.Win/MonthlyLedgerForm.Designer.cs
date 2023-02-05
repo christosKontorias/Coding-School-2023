@@ -34,7 +34,7 @@
             this.colTIN = new DevExpress.XtraGrid.Columns.GridColumn();
             this.bsMonthlyLedger = new System.Windows.Forms.BindingSource(this.components);
             this.grdMonthlyLedger = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.grvMonthlyLedger = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colYear = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMonth = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIncomes = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -44,7 +44,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsMonthlyLedger)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdMonthlyLedger)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvMonthlyLedger)).BeginInit();
             this.SuspendLayout();
             // 
             // colName
@@ -106,24 +106,24 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grdMonthlyLedger.Location = new System.Drawing.Point(12, 12);
-            this.grdMonthlyLedger.MainView = this.gridView1;
+            this.grdMonthlyLedger.MainView = this.grvMonthlyLedger;
             this.grdMonthlyLedger.Name = "grdMonthlyLedger";
             this.grdMonthlyLedger.Size = new System.Drawing.Size(798, 413);
             this.grdMonthlyLedger.TabIndex = 4;
             this.grdMonthlyLedger.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.grvMonthlyLedger});
             // 
-            // gridView1
+            // grvMonthlyLedger
             // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.grvMonthlyLedger.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colYear,
             this.colMonth,
             this.colIncomes,
             this.colExpenses,
             this.colTotal});
-            this.gridView1.GridControl = this.grdMonthlyLedger;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.grvMonthlyLedger.GridControl = this.grdMonthlyLedger;
+            this.grvMonthlyLedger.Name = "grvMonthlyLedger";
+            this.grvMonthlyLedger.OptionsView.ShowGroupPanel = false;
             // 
             // colYear
             // 
@@ -203,7 +203,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsMonthlyLedger)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdMonthlyLedger)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvMonthlyLedger)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -218,7 +218,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colTIN;
         private BindingSource bsMonthlyLedger;
         private DevExpress.XtraGrid.GridControl grdMonthlyLedger;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Views.Grid.GridView grvMonthlyLedger;
         private Button btnCalculate;
         private DevExpress.XtraGrid.Columns.GridColumn colIncomes;
         private DevExpress.XtraGrid.Columns.GridColumn colExpenses;

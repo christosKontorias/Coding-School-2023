@@ -86,12 +86,9 @@
             // 
             // colID
             // 
-            this.colID.AccessibleName = "ID";
-            this.colID.Caption = "colID";
+            this.colID.Caption = "ID";
             this.colID.FieldName = "ID";
             this.colID.Name = "colID";
-            this.colID.Visible = true;
-            this.colID.VisibleIndex = 4;
             // 
             // colName
             // 
@@ -137,6 +134,10 @@
             this.labelCustomers.TabIndex = 1;
             this.labelCustomers.Text = "Customers";
             // 
+            // bsCustomers
+            // 
+            this.bsCustomers.CurrentChanged += new System.EventHandler(this.bsCustomers_CurrentChanged);
+            // 
             // labelControl1
             // 
             this.labelControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -172,6 +173,7 @@
             this.gridView2.GridControl = this.grdCars;
             this.gridView2.Name = "gridView2";
             this.gridView2.OptionsView.ShowGroupPanel = false;
+            this.gridView2.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView2_CellValueChanged);
             this.gridView2.RowDeleting += new DevExpress.Data.RowDeletingEventHandler(this.gridView2_RowDeleting);
             this.gridView2.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridView2_ValidateRow);
             this.gridView2.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridView2_RowUpdated);
@@ -182,8 +184,6 @@
             this.colCarID.Caption = "ID";
             this.colCarID.FieldName = "ID";
             this.colCarID.Name = "colCarID";
-            this.colCarID.Visible = true;
-            this.colCarID.VisibleIndex = 3;
             // 
             // colBrand
             // 
@@ -208,6 +208,14 @@
             this.colCarRegistrationNumber.Name = "colCarRegistrationNumber";
             this.colCarRegistrationNumber.Visible = true;
             this.colCarRegistrationNumber.VisibleIndex = 2;
+            // 
+            // bsCars
+            // 
+            this.bsCars.CurrentChanged += new System.EventHandler(this.bsCars_CurrentChanged);
+            // 
+            // bsService
+            // 
+            this.bsService.CurrentChanged += new System.EventHandler(this.bsService_CurrentChanged);
             // 
             // btn_Save
             // 

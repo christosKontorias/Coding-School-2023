@@ -16,6 +16,7 @@ using System.Text.RegularExpressions;
 using DevExpress.XtraEditors.ColorPick.Picker;
 using DevExpress.XtraGrid.Views.Base;
 using CarServiceCenterLib.Orm.Repositories;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Session_16.Win {
     public partial class EmployeesForm : Form {
@@ -26,59 +27,70 @@ namespace Session_16.Win {
             _serializer = new Serializer();
             _carServiceCenter = carServiceCenter;
         }
+
         private void EmployeesForm_Load(object sender, EventArgs e) {
             SetControlProperties();
         }
         private void SetControlProperties() {
-            bsEngineers.DataSource = _carServiceCenter.Engineers;
+            EngineerRepo engineerRepo = new EngineerRepo();
+            ManagerRepo managerRepo = new ManagerRepo();
+            bsEngineers.DataSource = engineerRepo.GetAll();//_carServiceCenter.Engineers;
             grdEngineers.DataSource = bsEngineers;
-            bsManagers.DataSource = _carServiceCenter.Managers;
+            bsManagers.DataSource = managerRepo.GetAll();//_carServiceCenter.Managers;
             grdManagers.DataSource = bsManagers;
             SetLookUpEdit<Manager>(repManagerName, _carServiceCenter.Managers, "Name", "ID");
             SetLookUpEdit<Manager>(repManagerSurname, _carServiceCenter.Managers, "Surname", "ID");
         }
+
         private void btnSave_Click(object sender, EventArgs e) {
             _serializer.SerializeToFile(_carServiceCenter, "CarServiceCenter.json");
             DevExpress.XtraEditors.XtraMessageBox.Show("Saved!");
 
         }
+
         private void btnClose_Click(object sender, EventArgs e) {
             this.Close();
         }
+
         private void SetLookUpEdit<T>(RepositoryItemLookUpEdit rep, List<T> list, String displayMember, String valueMember) {
             rep.DataSource = list;
             rep.DisplayMember = displayMember;
             rep.ValueMember = valueMember;
         }
+
         private void gridView2_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e) {
             GridView view = sender as GridView;
         }
-
         //Customize Buttons
+
         private void btnSave_MouseEnter(object sender, EventArgs e) {
             btnSave.FlatAppearance.MouseOverBackColor = btnSave.BackColor;
             btnSave.ForeColor = Color.Blue;
             btnSave.FlatAppearance.BorderColor = Color.Red;
             btnSave.FlatAppearance.BorderSize = 2;
         }
+
         private void btnSave_MouseLeave(object sender, EventArgs e) {
             btnSave.ForeColor = Color.Black;
             btnSave.FlatAppearance.BorderColor = Color.Black;
             btnSave.FlatAppearance.BorderSize = 2;
         }
+
         private void btnClose_MouseEnter(object sender, EventArgs e) {
             btnClose.FlatAppearance.MouseOverBackColor = btnClose.BackColor;
             btnClose.ForeColor = Color.Blue;
             btnClose.FlatAppearance.BorderColor = Color.Red;
             btnClose.FlatAppearance.BorderSize = 2;
         }
+
         private void btnClose_MouseLeave(object sender, EventArgs e) {
             btnClose.ForeColor = Color.Black;
             btnClose.FlatAppearance.BorderColor = Color.Black;
             btnSave.FlatAppearance.BorderSize = 2;
         }
-
+        //gridView1_ValidateRow Giannis
         private void gridView1_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e) {
+            EngineerRepo engineerRepo = new EngineerRepo();
             GridView view = sender as GridView;
             GridColumn colName = view.Columns["Name"];
             GridColumn colSurName = view.Columns["Surname"];
@@ -86,15 +98,13 @@ namespace Session_16.Win {
             GridColumn colEngineersManagerSurname = view.Columns["ManagerID"];
             GridColumn colSalaryPerMonth = view.Columns["SalaryPerMonth"];
             GridColumn colEngineerStartDate = view.Columns["StartDate"];
+            Guid id = Guid.Parse(view.GetRowCellValue(e.RowHandle, colEngineerID).ToString());
             String name = view.GetRowCellValue(e.RowHandle, colName) as String;
             String surname = view.GetRowCellValue(e.RowHandle, colSurName) as String;
             String managerName = view.GetRowCellValue(e.RowHandle, colEngineersManagerName).ToString();
             String managerSurname = view.GetRowCellValue(e.RowHandle, colEngineersManagerSurname).ToString();
             String salaryPerMonth = view.GetRowCellValue(e.RowHandle, colSalaryPerMonth).ToString();
             String startDay;
-            EngineerRepo engineerRepo = new EngineerRepo();
-            Guid id = Guid.Parse(view.GetRowCellValue(e.RowHandle, colEngID).ToString());
-
             if (view.GetRowCellValue(e.RowHandle, colEngineerStartDate) != null)
                 startDay = view.GetRowCellValue(e.RowHandle, colEngineerStartDate).ToString();
             else
@@ -149,14 +159,14 @@ namespace Session_16.Win {
 
             if (e.Valid) {
                 view.ClearColumnErrors();
-                engineerRepo.Add(FindEngineer(id));
+                engineerRepo.Add((Engineer)bsEngineers.Current);
             }
         }
+
         private void gridView1_ValidatingEditor(object sender, DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventArgs e) {
             ColumnView view = sender as ColumnView;
             GridColumn column = (e as EditFormValidateEditorEventArgs)?.Column ?? view.FocusedColumn;
             String cellVal = e.Value.ToString();
-
             if (column.FieldName == "Name") {
                 // colName changed
                 if (cellVal == null) {
@@ -203,19 +213,19 @@ namespace Session_16.Win {
                 }
             }
         }
+
         private void gridView2_ValidateRow(object sender, ValidateRowEventArgs e) {
+            ManagerRepo managerRepo = new ManagerRepo();
             GridView view = sender as GridView;
             GridColumn colName = view.Columns["Name"];
             GridColumn colSurName = view.Columns["Surname"];
             GridColumn colSalaryPerMonth = view.Columns["SalaryPerMonth"];
             GridColumn colEngineerStartDate = view.Columns["StartDate"];
+            Guid id = Guid.Parse(view.GetRowCellValue(e.RowHandle, colID).ToString());
             String name = view.GetRowCellValue(e.RowHandle, colName) as String;
             String surname = view.GetRowCellValue(e.RowHandle, colSurName) as String;
             String salaryPerMonth = view.GetRowCellValue(e.RowHandle, colSalaryPerMonth).ToString();
             String startDay;
-            ManagerRepo managerRepo = new ManagerRepo();
-            Guid id = Guid.Parse(view.GetRowCellValue(e.RowHandle, colID).ToString());
-
             if (view.GetRowCellValue(e.RowHandle, colEngineerStartDate) != null)
                 startDay = view.GetRowCellValue(e.RowHandle, colEngineerStartDate).ToString();
             else
@@ -255,14 +265,14 @@ namespace Session_16.Win {
 
             if (e.Valid) {
                 view.ClearColumnErrors();
-                managerRepo.Add(FindManager(id));
+                managerRepo.Add((Manager)bsManagers.Current);
             }
         }
+
         private void gridView2_ValidatingEditor(object sender, DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventArgs e) {
             ColumnView view = sender as ColumnView;
             GridColumn column = (e as EditFormValidateEditorEventArgs)?.Column ?? view.FocusedColumn;
             String cellVal = e.Value.ToString();
-
             if (column.FieldName == "Name") {
                 // colName changed
                 if (cellVal == null) {
@@ -299,10 +309,12 @@ namespace Session_16.Win {
                 }
             }
         }
+
         private void gridView1_RowCountChanged(object sender, EventArgs e) {
             _carServiceCenter.UpdateWorkDays();
         }
-        private Engineer FindEngineer(Guid id) {
+
+        private Engineer FindEngineerWithID(Guid id) {
             Engineer retEngineer = null;
             foreach (Engineer engineer in _carServiceCenter.Engineers) {
                 if (engineer.ID == id) {
@@ -311,7 +323,8 @@ namespace Session_16.Win {
             }
             return retEngineer;
         }
-        private Manager FindManager(Guid id) {
+
+        private Manager FindManagerWithID(Guid id) {
             Manager retManager = null;
             foreach (Manager manager in _carServiceCenter.Managers) {
                 if (manager.ID == id) {
@@ -320,29 +333,34 @@ namespace Session_16.Win {
             }
             return retManager;
         }
+
         private void gridView1_RowDeleting(object sender, DevExpress.Data.RowDeletingEventArgs e) {
-            GridView view = sender as GridView;
+            GridView view = sender as GridView; 
             EngineerRepo engineerRepo = new EngineerRepo();
-            Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colEngID).ToString());
+            Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colEngineerID).ToString());
             engineerRepo.Delete(id);
         }
+
         private void gridView1_RowUpdated(object sender, RowObjectEventArgs e) {
+            GridView view = sender as GridView;
             EngineerRepo engineerRepo = new EngineerRepo();
-            GridView view = sender as GridView;
-            Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colEngID).ToString());
-            engineerRepo.Update(id, FindEngineer(id));
+            Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colEngineerID).ToString());
+            engineerRepo.Update(id,(Engineer)bsEngineers.Current);
+
         }
-        private void gridView2_RowUpdated(object sender, RowObjectEventArgs e) {
-            ManagerRepo managerRepo = new ManagerRepo();
-            GridView view = sender as GridView;
-            Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colID).ToString());
-            managerRepo.Update(id, FindManager(id));
-        }
+
         private void gridView2_RowDeleting(object sender, DevExpress.Data.RowDeletingEventArgs e) {
             GridView view = sender as GridView;
             ManagerRepo managerRepo = new ManagerRepo();
             Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colID).ToString());
             managerRepo.Delete(id);
+        }
+
+        private void gridView2_RowUpdated(object sender, RowObjectEventArgs e) {
+            GridView view = sender as GridView;
+            ManagerRepo managerRepo = new ManagerRepo();
+            Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colID).ToString());
+            managerRepo.Update(id, (Manager)bsManagers.Current);
         }
     }
 }

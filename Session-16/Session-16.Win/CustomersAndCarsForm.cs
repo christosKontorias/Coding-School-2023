@@ -31,58 +31,85 @@ namespace Session_16.Win {
             _serializer = new Serializer();
 
         }
+
         private void SetControlProperties() {
             _serializer = new Serializer();
-            bsService.DataSource = _carServiceCenter;
-            bsCustomers.DataSource = bsService;
-
-            bsCustomers.DataSource = _carServiceCenter.Customers;
+            CustomerRepo customerRepo = new CustomerRepo();
+            CarRepo carRepo = new CarRepo();
+            bsCustomers.DataSource = customerRepo.GetAll(); //_carServiceCenter.Customers;
             grdCustomers.DataSource = bsCustomers;
 
-            bsCars.DataSource = _carServiceCenter.Cars;
+            bsCars.DataSource = carRepo.GetAll();//_carServiceCenter.Cars;
             grdCars.DataSource = bsCars;
 
         }
+
+        private void bindingSource1_CurrentChanged(object sender, EventArgs e) {
+
+        }
+
+        private void bsCustomers_CurrentChanged(object sender, EventArgs e) {
+
+        }
+
+        private void bsCars_CurrentChanged(object sender, EventArgs e) {
+
+        }
+
+        private void bsService_CurrentChanged(object sender, EventArgs e) {
+
+        }
+
         private void btn_Save_Click(object sender, EventArgs e) {
             _serializer.SerializeToFile(_carServiceCenter, "CarServiceCenter.json");
             DevExpress.XtraEditors.XtraMessageBox.Show("Saved!");
 
         }
+
         private void btn_Close_Click(object sender, EventArgs e) {
             this.Close();
         }
+
         //Customize Buttons
+
         private void btn_Save_MouseEnter(object sender, EventArgs e) {
             btn_Save.FlatAppearance.MouseOverBackColor = btn_Save.BackColor;
             btn_Save.ForeColor = Color.Blue;
             btn_Save.FlatAppearance.BorderColor = Color.Red;
             btn_Save.FlatAppearance.BorderSize = 2;
         }
+
         private void btn_Save_MouseLeave(object sender, EventArgs e) {
             btn_Save.ForeColor = Color.Black;
             btn_Save.FlatAppearance.BorderSize = 0;
         }
+
         private void btn_Close_MouseEnter(object sender, EventArgs e) {
             btn_Close.FlatAppearance.MouseOverBackColor = btn_Close.BackColor;
             btn_Close.ForeColor = Color.Blue;
             btn_Close.FlatAppearance.BorderColor = Color.Red;
             btn_Close.FlatAppearance.BorderSize = 2;
         }
+
         private void btn_Close_MouseLeave(object sender, EventArgs e) {
             btn_Close.ForeColor = Color.Black;
             btn_Close.FlatAppearance.BorderSize = 0;
         }
+
+        private void gridView2_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e) {
+
+        }
+
         private void gridView2_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e) {
             CarRepo carRepo = new CarRepo();
             GridView view = sender as GridView;
-            Guid id = Guid.Parse(view.GetRowCellValue(e.RowHandle, colCarID).ToString());
             GridColumn colBrand = view.Columns["Brand"];
             GridColumn colModel = view.Columns["Model"];
             GridColumn colRegNum = view.Columns["CarRegistrationNumber"];
+            Guid id = Guid.Parse(view.GetRowCellValue(e.RowHandle, colCarID).ToString());
             String brand = view.GetRowCellValue(e.RowHandle, colBrand) as String;
             String model = view.GetRowCellValue(e.RowHandle, colModel) as String;
             String regNum = view.GetRowCellValue(e.RowHandle, colRegNum) as String;
-
             // Brand Cell
             if (brand == null) {
                 e.Valid = false;
@@ -111,17 +138,17 @@ namespace Session_16.Win {
                 e.Valid = false;
                 view.SetColumnError(colRegNum, "Insert Valid Registration number with format for e.g [IZM 1234] ");
             }
+
             if (e.Valid) {
                 view.ClearColumnErrors();
-                carRepo.Add(FindCar(id));
-
+                carRepo.Add((Car)bsCars.Current);
             }
         }
+
         private void gridView2_ValidatingEditor(object sender, DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventArgs e) {
             ColumnView view = sender as ColumnView;
             GridColumn column = (e as EditFormValidateEditorEventArgs)?.Column ?? view.FocusedColumn;
             String cellVal = e.Value as String;
-
             if (column.FieldName == "Brand") {
                 // colBrand changed
                 if (cellVal == null) {
@@ -156,19 +183,19 @@ namespace Session_16.Win {
                 }
             }
         }
+
         private void gridView1_ValidateRow(object sender, ValidateRowEventArgs e) {
             CustomerRepo customerRepo = new CustomerRepo();
             GridView view = sender as GridView;
-            Guid id = Guid.Parse(view.GetRowCellValue(e.RowHandle, colID).ToString());
             GridColumn colName = view.Columns["Name"];
             GridColumn colSurname = view.Columns["Surname"];
             GridColumn colPhone = view.Columns["Phone"];
             GridColumn colTIN = view.Columns["TIN"];
+            Guid id = Guid.Parse(view.GetRowCellValue(e.RowHandle, colID).ToString());
             String name = view.GetRowCellValue(e.RowHandle, colName) as String;
             String surname = view.GetRowCellValue(e.RowHandle, colSurname) as String;
             String phone = view.GetRowCellValue(e.RowHandle, colPhone) as String;
             String tin = view.GetRowCellValue(e.RowHandle, colTIN) as String;
-
             // Name Cell
             if (name == null) {
                 e.Valid = false;
@@ -207,16 +234,18 @@ namespace Session_16.Win {
                 e.Valid = false;
                 view.SetColumnError(colTIN, "Insert Valid TIN");
             }
+
             if (e.Valid) {
                 view.ClearColumnErrors();
-                customerRepo.Add(FindCustomer(id));
+                customerRepo.Add((Customer)bsCustomers.Current);
             }
+
         }
+
         private void gridView1_ValidatingEditor(object sender, DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventArgs e) {
             ColumnView view = sender as ColumnView;
             GridColumn column = (e as EditFormValidateEditorEventArgs)?.Column ?? view.FocusedColumn;
             String cellVal = e.Value as String;
-
             // colName changed
             if (column.FieldName == "Name") {
                 if (cellVal == null) {
@@ -267,49 +296,51 @@ namespace Session_16.Win {
                     view.SetColumnError(colPhone, "Insert Valid TIN with format for e.g [165485219]");
                 }
             }
-            if (e.Valid) {
-
-            }
-        }
-        private Customer FindCustomer(Guid id) {
-            Customer retCustomer = null;
-            foreach (Customer customer in _carServiceCenter.Customers) {
-                if (customer.ID == id) {
-                    retCustomer = customer;
-                }
-            }
-            return retCustomer;
-        }
-        private Car FindCar(Guid id) {
-            Car retCar = null;
-            foreach (Car car in _carServiceCenter.Cars) {
-                if (car.ID == id) {
-                    retCar = car;
-                }
-            }
-            return retCar;
         }
         private void gridView1_RowUpdated(object sender, RowObjectEventArgs e) {
-            CustomerRepo customerRepo = new CustomerRepo();
             GridView view = sender as GridView;
+            CustomerRepo customerRepo = new CustomerRepo();
             Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colID).ToString());
-            customerRepo.Update(id, FindCustomer(id));
+            customerRepo.Update(id, (Customer)bsCustomers.Current);
         }
+
+        //private Customer FindCustomerWithID(Guid id) {
+        //    Customer retCustomer = null; 
+        //    foreach (Customer customer in _carServiceCenter.Customers) {
+        //        if (customer.ID == id) {
+        //            retCustomer =  customer;
+        //        }
+        //    }
+        //    return retCustomer;
+        //}
+
+        //private Car FindCarWithID(Guid id) {
+        //    Car retCar = null;
+        //    foreach (Car car in _carServiceCenter.Cars) {
+        //        if (car.ID == id) {
+        //            retCar = car;
+        //        }
+        //    }
+        //    return retCar;
+        //}
+
         private void gridView1_RowDeleting(object sender, DevExpress.Data.RowDeletingEventArgs e) {
-            CustomerRepo customerRepo = new CustomerRepo();
             GridView view = sender as GridView;
+            CustomerRepo customerRepo = new CustomerRepo();
             Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colID).ToString());
             customerRepo.Delete(id);
         }
+
         private void gridView2_RowUpdated(object sender, RowObjectEventArgs e) {
-            CarRepo carRepo = new CarRepo();
             GridView view = sender as GridView;
+            CarRepo carRepo = new CarRepo();
             Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colCarID).ToString());
-            carRepo.Update(id, FindCar(id));
+            carRepo.Update(id, (Car)bsCars.Current);
         }
+
         private void gridView2_RowDeleting(object sender, DevExpress.Data.RowDeletingEventArgs e) {
-            CarRepo carRepo = new CarRepo();
             GridView view = sender as GridView;
+            CarRepo carRepo = new CarRepo();
             Guid id = Guid.Parse(view.GetRowCellValue(view.FocusedRowHandle, colCarID).ToString());
             carRepo.Delete(id);
         }
