@@ -26,7 +26,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomersAndCarsForm));
             this.grdCustomers = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.grvCustomers = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSurname = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -36,20 +36,20 @@
             this.bsCustomers = new System.Windows.Forms.BindingSource(this.components);
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.grdCars = new DevExpress.XtraGrid.GridControl();
-            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.grvCars = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCarID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colBrand = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colModel = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCarRegistrationNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.bsCars = new System.Windows.Forms.BindingSource(this.components);
             this.bsService = new System.Windows.Forms.BindingSource(this.components);
-            this.btn_Save = new System.Windows.Forms.Button();
-            this.btn_Close = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdCustomers)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvCustomers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCustomers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdCars)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvCars)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCars)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsService)).BeginInit();
             this.SuspendLayout();
@@ -59,30 +59,30 @@
             this.grdCustomers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grdCustomers.Location = new System.Drawing.Point(14, 42);
-            this.grdCustomers.MainView = this.gridView1;
+            this.grdCustomers.MainView = this.grvCustomers;
             this.grdCustomers.Name = "grdCustomers";
             this.grdCustomers.Size = new System.Drawing.Size(776, 160);
             this.grdCustomers.TabIndex = 0;
             this.grdCustomers.UseEmbeddedNavigator = true;
             this.grdCustomers.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.grvCustomers});
             // 
-            // gridView1
+            // grvCustomers
             // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.grvCustomers.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colID,
             this.colName,
             this.colSurname,
             this.colPhone,
             this.colTIN});
-            this.gridView1.GridControl = this.grdCustomers;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            this.gridView1.Tag = "Name";
-            this.gridView1.RowDeleting += new DevExpress.Data.RowDeletingEventHandler(this.gridView1_RowDeleting);
-            this.gridView1.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridView1_ValidateRow);
-            this.gridView1.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridView1_RowUpdated);
-            this.gridView1.ValidatingEditor += new DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventHandler(this.gridView1_ValidatingEditor);
+            this.grvCustomers.GridControl = this.grdCustomers;
+            this.grvCustomers.Name = "grvCustomers";
+            this.grvCustomers.OptionsView.ShowGroupPanel = false;
+            this.grvCustomers.Tag = "Name";
+            this.grvCustomers.RowDeleting += new DevExpress.Data.RowDeletingEventHandler(this.grvCustomers_RowDeleting);
+            this.grvCustomers.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.grvCustomers_ValidateRow);
+            this.grvCustomers.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.grvCustomers_RowUpdated);
+            this.grvCustomers.ValidatingEditor += new DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventHandler(this.grvCustomers_ValidatingEditor);
             // 
             // colID
             // 
@@ -134,10 +134,6 @@
             this.labelCustomers.TabIndex = 1;
             this.labelCustomers.Text = "Customers";
             // 
-            // bsCustomers
-            // 
-            this.bsCustomers.CurrentChanged += new System.EventHandler(this.bsCustomers_CurrentChanged);
-            // 
             // labelControl1
             // 
             this.labelControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -155,29 +151,28 @@
             this.grdCars.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grdCars.Location = new System.Drawing.Point(14, 238);
-            this.grdCars.MainView = this.gridView2;
+            this.grdCars.MainView = this.grvCars;
             this.grdCars.Name = "grdCars";
             this.grdCars.Size = new System.Drawing.Size(776, 160);
             this.grdCars.TabIndex = 3;
             this.grdCars.UseEmbeddedNavigator = true;
             this.grdCars.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView2});
+            this.grvCars});
             // 
-            // gridView2
+            // grvCars
             // 
-            this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.grvCars.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colCarID,
             this.colBrand,
             this.colModel,
             this.colCarRegistrationNumber});
-            this.gridView2.GridControl = this.grdCars;
-            this.gridView2.Name = "gridView2";
-            this.gridView2.OptionsView.ShowGroupPanel = false;
-            this.gridView2.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView2_CellValueChanged);
-            this.gridView2.RowDeleting += new DevExpress.Data.RowDeletingEventHandler(this.gridView2_RowDeleting);
-            this.gridView2.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridView2_ValidateRow);
-            this.gridView2.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridView2_RowUpdated);
-            this.gridView2.ValidatingEditor += new DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventHandler(this.gridView2_ValidatingEditor);
+            this.grvCars.GridControl = this.grdCars;
+            this.grvCars.Name = "grvCars";
+            this.grvCars.OptionsView.ShowGroupPanel = false;
+            this.grvCars.RowDeleting += new DevExpress.Data.RowDeletingEventHandler(this.grvCars_RowDeleting);
+            this.grvCars.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.grvCars_ValidateRow);
+            this.grvCars.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.grvCars_RowUpdated);
+            this.grvCars.ValidatingEditor += new DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventHandler(this.grvCars_ValidatingEditor);
             // 
             // colCarID
             // 
@@ -209,49 +204,41 @@
             this.colCarRegistrationNumber.Visible = true;
             this.colCarRegistrationNumber.VisibleIndex = 2;
             // 
-            // bsCars
+            // btnSave
             // 
-            this.bsCars.CurrentChanged += new System.EventHandler(this.bsCars_CurrentChanged);
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(234)))), ((int)(((byte)(218)))));
+            this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnSave.FlatAppearance.BorderSize = 2;
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("Segoe Print", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnSave.Location = new System.Drawing.Point(534, 404);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(125, 40);
+            this.btnSave.TabIndex = 4;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.MouseEnter += new System.EventHandler(this.btnSave_MouseEnter);
+            this.btnSave.MouseLeave += new System.EventHandler(this.btnSave_MouseLeave);
             // 
-            // bsService
+            // btnClose
             // 
-            this.bsService.CurrentChanged += new System.EventHandler(this.bsService_CurrentChanged);
-            // 
-            // btn_Save
-            // 
-            this.btn_Save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_Save.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(234)))), ((int)(((byte)(218)))));
-            this.btn_Save.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btn_Save.FlatAppearance.BorderSize = 2;
-            this.btn_Save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Save.Font = new System.Drawing.Font("Segoe Print", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btn_Save.Location = new System.Drawing.Point(534, 404);
-            this.btn_Save.Name = "btn_Save";
-            this.btn_Save.Size = new System.Drawing.Size(125, 40);
-            this.btn_Save.TabIndex = 4;
-            this.btn_Save.Text = "Save";
-            this.btn_Save.UseVisualStyleBackColor = false;
-            this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
-            this.btn_Save.MouseEnter += new System.EventHandler(this.btn_Save_MouseEnter);
-            this.btn_Save.MouseLeave += new System.EventHandler(this.btn_Save_MouseLeave);
-            // 
-            // btn_Close
-            // 
-            this.btn_Close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_Close.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(234)))), ((int)(((byte)(218)))));
-            this.btn_Close.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btn_Close.FlatAppearance.BorderSize = 2;
-            this.btn_Close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Close.Font = new System.Drawing.Font("Segoe Print", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btn_Close.Location = new System.Drawing.Point(665, 404);
-            this.btn_Close.Name = "btn_Close";
-            this.btn_Close.Size = new System.Drawing.Size(125, 40);
-            this.btn_Close.TabIndex = 5;
-            this.btn_Close.Text = "Close";
-            this.btn_Close.UseVisualStyleBackColor = false;
-            this.btn_Close.Click += new System.EventHandler(this.btn_Close_Click);
-            this.btn_Close.MouseEnter += new System.EventHandler(this.btn_Close_MouseEnter);
-            this.btn_Close.MouseLeave += new System.EventHandler(this.btn_Close_MouseLeave);
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(234)))), ((int)(((byte)(218)))));
+            this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnClose.FlatAppearance.BorderSize = 2;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("Segoe Print", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnClose.Location = new System.Drawing.Point(665, 404);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(125, 40);
+            this.btnClose.TabIndex = 5;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.MouseEnter += new System.EventHandler(this.btnClose_MouseEnter);
+            this.btnClose.MouseLeave += new System.EventHandler(this.btnClose_MouseLeave);
             // 
             // CustomersAndCarsForm
             // 
@@ -259,8 +246,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(234)))), ((int)(((byte)(218)))));
             this.ClientSize = new System.Drawing.Size(804, 451);
-            this.Controls.Add(this.btn_Close);
-            this.Controls.Add(this.btn_Save);
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.grdCars);
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.labelCustomers);
@@ -268,13 +255,14 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(820, 490);
             this.Name = "CustomersAndCarsForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CustomersAndCars";
             this.Load += new System.EventHandler(this.CustomersAndCarsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdCustomers)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvCustomers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCustomers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdCars)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvCars)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCars)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsService)).EndInit();
             this.ResumeLayout(false);
@@ -285,7 +273,7 @@
         #endregion
 
         private DevExpress.XtraGrid.GridControl grdCustomers;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Views.Grid.GridView grvCustomers;
         private DevExpress.XtraEditors.LabelControl labelCustomers;
         private DevExpress.XtraGrid.Columns.GridColumn colName;
         private DevExpress.XtraGrid.Columns.GridColumn colSurname;
@@ -294,14 +282,14 @@
         private BindingSource bsCustomers;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraGrid.GridControl grdCars;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private DevExpress.XtraGrid.Views.Grid.GridView grvCars;
         private DevExpress.XtraGrid.Columns.GridColumn colBrand;
         private DevExpress.XtraGrid.Columns.GridColumn colModel;
         private DevExpress.XtraGrid.Columns.GridColumn colCarRegistrationNumber;
         private BindingSource bsCars;
         private BindingSource bsService;
-        private Button btn_Save;
-        private Button btn_Close;
+        private Button btnSave;
+        private Button btnClose;
         private DevExpress.XtraGrid.Columns.GridColumn colID;
         private DevExpress.XtraGrid.Columns.GridColumn colCarID;
     }
