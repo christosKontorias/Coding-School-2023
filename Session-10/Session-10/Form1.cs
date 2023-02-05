@@ -74,7 +74,6 @@ namespace Session_10 {
             _university.Courses = courses;
             _university.ScheduledCourses = scheduledCourses;
         }
-
         private void btnPopulate_Click(object sender, EventArgs e) {
             Populate();
             _serializer.SerializeToFile(_university, "university.json");
@@ -84,7 +83,6 @@ namespace Session_10 {
             _serializer.SerializeToFile(_university, "university.json");
             MessageBox.Show("Saved!");
         }
-
         private void btnLoad_Click(object sender, EventArgs e) {
 
             if (File.Exists("university.json")) {

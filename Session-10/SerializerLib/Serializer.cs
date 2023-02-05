@@ -3,11 +3,9 @@
 namespace SerializerLib {
     public class Serializer {
         public void SerializeToFile(object obj, string fileName) {
-            var options = new JsonSerializerOptions { WriteIndented = true };
-            string jsonString = JsonSerializer.Serialize(obj, options);
+            string jsonString = JsonSerializer.Serialize(obj);
             File.WriteAllText(fileName, jsonString);
         }
-
         public T DeserializeFromFile<T>(string fileName) {
             string jsonString = File.ReadAllText(fileName);
             T? obj = JsonSerializer.Deserialize<T>(jsonString);
