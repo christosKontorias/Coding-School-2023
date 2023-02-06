@@ -7,9 +7,8 @@ header{
 }
 
 .logo{
-    width: 25%;
-    height: 25%;
-    margin: 3%; 
+    width: 120px;
+    padding: 1rem; 
 }
 .nav{
     list-style-type: none;
@@ -36,7 +35,6 @@ a{
 
 .article-img img{
     width: 300px;
-    height: 200px;
     padding: 6% 0%;
 }
 
@@ -70,7 +68,6 @@ h2{
     resize: vertical;
 }
 
-
 button{
     background-color: #00b894;
     color: #fff;
@@ -78,4 +75,26 @@ button{
     border: 0px;
     height: 30px;
     width: 80px;
+}
+
+@media (max-width: 800px){
+    header{
+        flex-direction: column;
+    }
+    .logo{
+        flex-direction: column;
+    }
+    .nav{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .article{
+        display: flex; 
+        justify-content: space-between; 
+        flex-wrap: wrap; 
+    }
+    .content{
+        padding: 1% 5%;
+    }
 }
