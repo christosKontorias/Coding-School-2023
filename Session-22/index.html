@@ -1,59 +1,102 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-      <meta charset="UTF-8">
-     <meta name="author" content="Christos Kontorias">
+    <meta charset="UTF-8">
+    <meta name="author" content="Christos Kontorias">
     <title>Session-22</title>
 </head>
 
 <body>
-<h1>Session-22</h1>
+    <h1>Session-22</h1>
 
-<!-- Question 1-->
-<h3>Question 1</h3>
-<h4>String Reverse</h4>
+    <!-- Question 1-->
+    <h3>Question 1</h3>
+    <h4>String Reverse</h4>
 
-<input type="text" id="input">
-<button id="reverseButton">Reverse</button>
-<p id="output"></p>
+    <input type="text" id="inputQuestion1">
+    <button id="reverseButton">Reverse</button>
+    <p id="outputQuestion1"></p>
 
-<!-- Question 2-->
-<h3>Question 2</h3>
-<h4>Palindrome Checker</h4>
-<input type="text" id="inputPalindrome">
-<button id="checkButton">Check</button>
-<p id="outputPalindrome"></p>
+    <!-- Question 2-->
+    <h3>Question 2</h3>
+    <h4>Palindrome Checker</h4>
+    <input type="text" id="inputQuestion2">
+    <button id="checkButton">Check</button>
+    <p id="outputQuestion2"></p>
 
-<!-- Question 3-->
-<h3>Question 3</h3>
-<h4>Customer Detail Form</h4>
+    <!-- Question 3-->
+    <h3>Question 3</h3>
+    <h4>Customer Detail Form</h4>
 
+    <form>
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+        </div>
+        <div>
+            <label for="surname">Surname:</label>
+            <input type="text" id="surname" name="surname">
+        </div>
+        <div>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age">
+        </div>
+        <div>
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+        <button type="button" onclick="saveCustomer()">Save</button>
+    </form>
 
+    <table id="customerTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Age</th>
+                <th>Gender</th>
+            </tr>
+        </thead>
+        <tbody id="customerTableBody">
+        </tbody>
+    </table>
 
+    <div id="customerDetails">
+        <label for="displayName">Name:</label>
+        <input type="text" id="displayName" disabled>
+        <label for="displaySurname">Surname:</label>
+        <input type="text" id="displaySurname" disabled>
+        <label for="displayAge">Age:</label>
+        <input type="number" id="displayAge" disabled>
+        <label for="displayGender">Gender:</label>
+        <input type="text" id="displayGender" disabled>
+    </div>
 
-<!-- Question 4-->
-<h3>Question 4</h3>
-<h4>Multiplication  Function</h4>
+    <!-- Question 4-->
+    <h3>Question 4</h3>
+    <h4>Multiplication Function</h4>
 
-<input type="text" id="numberA" placeholder="Enter first number">
-<input type="text" id="numberB" placeholder="Enter second number">
-<button id="multiply">Multiply</button>
-<br><br>
-<p id="result"></p>
+    <input type="text" id="numberA" placeholder="Enter first number">
+    <input type="text" id="numberB" placeholder="Enter second number">
+    <button id="multiply">Multiply</button>
+    <br><br>
+    <p id="outputQuestion4"></p>
 
-<!-- Question 5-->
-<h3>Question 5</h3>
-<h4>String Modifier</h4>
+    <!-- Question 5-->
+    <h3>Question 5</h3>
+    <h4>String Modifier</h4>
 
-<input type="text" id="inputQuestion5" placeholder="Enter a string">
-<button id="modify">Modify</button>
-<br><br>
-<p id="outputQuestion5"></p>
+    <input type="text" id="inputQuestion5" placeholder="Enter a string">
+    <button id="modify">Modify</button>
+    <br><br>
+    <p id="outputQuestion5"></p>
 
-
-
-
-<script src="script.js"></script>
+    <!--Js-->
+    <script src="script.js"></script>
 </body>
-
 </html>
