@@ -41,5 +41,22 @@ function multiply(a, b) {
     const result = multiply(numberA, numberB);
     document.getElementById("result").innerHTML = "Result: " + result;
   });
-  
+
 /* Question 5*/
+
+      function modifyString(str) {
+        const match = str.match(/\d+$/);
+        if (match) {
+          const number = parseInt(match[0]) + 1;
+          return str.substring(0, str.lastIndexOf(match[0])) + number;
+        } else {
+          return str + "1";
+        }
+      }
+
+      const modifyBtn = document.getElementById("modify");
+      modifyBtn.addEventListener("click", function() {
+        const inputQuestion5 = document.getElementById("inputQuestion5").value;
+        const outputQuestion5 = modifyString(inputQuestion5);
+        document.getElementById("outputQuestion5").innerHTML = "Modified string: " + outputQuestion5;
+      });
