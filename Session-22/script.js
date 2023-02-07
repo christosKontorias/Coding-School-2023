@@ -74,21 +74,21 @@ function renderCustomerDetails(customer) {
 /* Question 4*/
 
 function multiply(a, b) {
-    return a * b;
+    if (isNaN(a) || isNaN(b)) {
+        return "Both parameters must be numbers.";
+    } else {
+        return a * b;
+    }
 }
 
 const multiplyBtn = document.getElementById("multiply");
 multiplyBtn.addEventListener("click", function () {
     const numberA = parseInt(document.getElementById("numberA").value);
     const numberB = parseInt(document.getElementById("numberB").value);
-    const outputQuestion4 = multiply(numberA, numberB);
-    if (isNaN(numberA) || isNaN(numberB)) {
-        document.getElementById("outputQuestion4").innerHTML = "Both parameters must be numbers.";
-    } else {
-        const outputQuestion4 = multiply(numberA, numberB);
-        document.getElementById("outputQuestion4").innerHTML = "Result: " + outputQuestion4;
-    }
+    const result = multiply(numberA, numberB);
+    document.getElementById("outputQuestion4").innerHTML = "Result: " + result;
 });
+
 
 /* Question 5*/
 
