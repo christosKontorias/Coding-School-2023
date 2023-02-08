@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CarServiceCenter.EF.Repositories {
     public interface IEntityRepo<TEntity> {
 
-        IList<TEntity> GetAll(int id);
+        IList<TEntity> GetAll();
         TEntity? GetById(int id);
         void Add(TEntity entity);
         void Update(int id, TEntity entity);

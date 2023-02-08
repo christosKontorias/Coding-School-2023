@@ -1,5 +1,4 @@
-﻿using CarServiceCenter.EF.Context;
-using CarServiceCenter.Model;
+﻿using CarServiceCenter.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +6,16 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CarServiceCenter.EF.Repositories {
-    public class CarRepo : IEntityRepo<Car> {
+    public class MockCarRepo : IEntityRepo<Car> {
+
+        private readonly List<Car> _cars;
+        public MockCarRepo() {
+            _cars = new List<Car>()
+            {
+                new Car { Id = 1, Brand = "Volvo", Model="C40", CarRegistrationNumber = "XXX-0001"},
+                new Car { Id = 2, Brand = "Tesla", Model="Model Y", CarRegistrationNumber = "XXX-0002"},
+            };
+        }    
         public void Add(Car entity) {
             throw new NotImplementedException();
         }
@@ -17,8 +25,7 @@ namespace CarServiceCenter.EF.Repositories {
         }
 
         public IList<Car> GetAll() {
-            using var context = new CarServiceCenterDbContext();
-            return context.Cars.ToList();
+            return _cars;
         }
 
         public Car? GetById(int id) {

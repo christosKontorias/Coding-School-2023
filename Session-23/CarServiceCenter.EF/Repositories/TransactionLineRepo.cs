@@ -15,7 +15,7 @@ namespace CarServiceCenter.EF.Repositories {
             throw new NotImplementedException();
         }
 
-        public IList<TransactionLine> GetAll(int id) {
+        public IList<TransactionLine> GetAll() {
             throw new NotImplementedException();
         }
 
