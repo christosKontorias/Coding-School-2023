@@ -1,11 +1,12 @@
-﻿using System;
+﻿using CarServiceCenter.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CarServiceCenter.EF.Repositories {
-    public class Manager : IEntityRepo<Manager> {
+    public class ManagerRepo : IEntityRepo<Manager> {
         public void Add(Manager entity) {
             throw new NotImplementedException();
         }
