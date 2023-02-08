@@ -1,3 +1,6 @@
+using CarServiceCenter.EF.Repositories;
+using CarServiceCenter.Model;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
