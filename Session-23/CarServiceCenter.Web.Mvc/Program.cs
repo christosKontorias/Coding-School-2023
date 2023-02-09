@@ -12,7 +12,7 @@ builder.Services.AddScoped<IEntityRepo<Engineer>, MockEngineerRepo>();
 builder.Services.AddScoped<IEntityRepo<Manager>, MockManagerRepo>();
 builder.Services.AddScoped<IEntityRepo<ServiceTask>, MockServiceTaskRepo>();
 builder.Services.AddScoped<IEntityRepo<Transaction>, MockTransactionRepo>();
-builder.Services.AddScoped<IEntityRepo<TransactionLine>, TransactionLineRepo>();
+builder.Services.AddScoped<IEntityRepo<TransactionLine>, MockTransactionLineRepo>();
 
 
 var app = builder.Build();

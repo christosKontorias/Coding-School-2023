@@ -10,12 +10,17 @@ namespace CarServiceCenter.EF.MockRepositories {
     public class MockEngineerRepo : IEntityRepo<Engineer> {
 
         private readonly List<Engineer> _engineers;
-        public MockEngineerRepo() {
+        private readonly IEntityRepo<Manager> _managerRepo;
+
+
+        public MockEngineerRepo(IEntityRepo<Manager> managerRepo) {
             _engineers = new List<Engineer>()
             {
-                new Engineer {Id = 1, Name = "EngineerName", Surname = "EngineerSurname", SalaryPerMonth =  1200},
-                new Engineer {Id = 2, Name = "EngineerName2", Surname = "EngineerSurnam2", SalaryPerMonth =  1050},
+                new Engineer {Id = 1, Name = "EngineerName", Surname = "EngineerSurname", SalaryPerMonth =  1200, ManagerId = 1},
+                new Engineer {Id = 2, Name = "EngineerName2", Surname = "EngineerSurnam2", SalaryPerMonth =  1050, ManagerId = 2},
             };
+            _managerRepo = managerRepo;
+
         }
         public void Add(Engineer entity) {
             throw new NotImplementedException();
@@ -26,6 +31,12 @@ namespace CarServiceCenter.EF.MockRepositories {
         }
 
         public IList<Engineer> GetAll() {
+            var managers = _managerRepo.GetAll();
+
+            foreach (var engineer in _engineers) {
+                engineer.Manager = managers.FirstOrDefault(m => m.Id == engineer.ManagerId);
+            }
+
             return _engineers;
         }
 
