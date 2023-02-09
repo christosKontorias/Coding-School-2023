@@ -11,6 +11,10 @@
             TransactionLines = new List<TransactionLine>();
         }
 
+        public ServiceTask() {
+
+        }
+
         public int Id { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }

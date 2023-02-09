@@ -12,6 +12,10 @@
             Transactions = new List<Transaction>();
         }
 
+        public Manager() {
+
+        }
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
