@@ -1,4 +1,6 @@
-﻿using CarServiceCenter.Model;
+﻿using CarServiceCenter.EF.Context;
+using CarServiceCenter.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,19 +14,36 @@ namespace CarServiceCenter.EF.Repositories {
         }
 
         public void Delete(int id) {
-            throw new NotImplementedException();
+            using var context = new CarServiceCenterDbContext();
+            var TransactionDb = context.Transactions.Where(transaction => transaction.Id == id).Include(transaction => transaction.TransactionLines).SingleOrDefault();
+            if (TransactionDb is null)
+                return;
+            context.Remove(TransactionDb);
+            context.SaveChanges();
         }
 
         public IList<Transaction> GetAll() {
-            throw new NotImplementedException();
+            using var context = new CarServiceCenterDbContext();
+            return context.Transactions.Include(transaction => transaction.TransactionLines).ToList();
+            
         }
 
         public Transaction? GetById(int id) {
-            throw new NotImplementedException();
+            using var context = new CarServiceCenterDbContext();
+            return context.Transactions.Where(transaction => transaction.Id == id).Include(transaction => transaction.TransactionLines).SingleOrDefault();
         }
 
         public void Update(int id, Transaction entity) {
-            throw new NotImplementedException();
+            using var context = new CarServiceCenterDbContext();
+            var TransactionDb = context.Transactions.Where(transaction => transaction.Id == id).Include(transaction => transaction.TransactionLines).SingleOrDefault();
+            if (TransactionDb is null)
+                return;
+            TransactionDb.Date = entity.Date;
+            TransactionDb.CustomerId = entity.CustomerId;
+            TransactionDb.CarId = entity.CarId;
+            TransactionDb.ManagerId = entity.ManagerId;
+            TransactionDb.TotalPrice = entity.TotalPrice;
+            context.SaveChanges();
         }
     }
 }

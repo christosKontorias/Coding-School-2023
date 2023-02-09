@@ -1,4 +1,5 @@
-﻿using CarServiceCenter.Model;
+﻿using CarServiceCenter.EF.Context;
+using CarServiceCenter.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,19 +13,34 @@ namespace CarServiceCenter.EF.Repositories {
         }
 
         public void Delete(int id) {
-            throw new NotImplementedException();
+            using var context = new CarServiceCenterDbContext();
+            var CustomerDb = context.Customers.Where(customer => customer.Id == id).SingleOrDefault();
+            if (CustomerDb is null)
+                return;
+            context.Remove(CustomerDb);
+            context.SaveChanges();
         }
 
         public IList<Customer> GetAll() {
-            throw new NotImplementedException();
+            using var context = new CarServiceCenterDbContext();
+            return context.Customers.ToList();
         }
 
         public Customer? GetById(int id) {
-            throw new NotImplementedException();
+            using var context = new CarServiceCenterDbContext();
+            return context.Customers.SingleOrDefault();
         }
 
         public void Update(int id, Customer entity) {
-            throw new NotImplementedException();
+            using var context = new CarServiceCenterDbContext();
+            var CustomerDb = context.Customers.Where(customer => customer.Id == id).SingleOrDefault();
+            if (CustomerDb is null)
+                return;
+            CustomerDb.Name = entity.Name;
+            CustomerDb.Surname = entity.Surname;
+            CustomerDb.Phone = entity.Phone;
+            CustomerDb.Tin = entity.Tin;
+            context.SaveChanges();
         }
     }
 }

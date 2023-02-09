@@ -1,4 +1,6 @@
-﻿using CarServiceCenter.Model;
+﻿using CarServiceCenter.EF.Context;
+using CarServiceCenter.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,19 +14,35 @@ namespace CarServiceCenter.EF.Repositories {
         }
 
         public void Delete(int id) {
-            throw new NotImplementedException();
+            using var context = new CarServiceCenterDbContext();
+            var TransactionLineDb = context.TransactionLines.Where(transactionLine => transactionLine.Id == id).SingleOrDefault();
+            if (TransactionLineDb is null)
+                return;
+            context.Remove(TransactionLineDb);
+            context.SaveChanges();
         }
 
         public IList<TransactionLine> GetAll() {
-            throw new NotImplementedException();
+            using var context = new CarServiceCenterDbContext();
+            return context.TransactionLines.Include(transactionLine => transactionLine.Transaction).ToList();
         }
 
         public TransactionLine? GetById(int id) {
-            throw new NotImplementedException();
+            using var context = new CarServiceCenterDbContext();
+            return context.TransactionLines.Where(transactionLine => transactionLine.Id == id).SingleOrDefault();
         }
 
         public void Update(int id, TransactionLine entity) {
-            throw new NotImplementedException();
+            using var context = new CarServiceCenterDbContext();
+            var TransactionLineDb = context.TransactionLines.Where(transactionLine => transactionLine.Id == id).SingleOrDefault();
+            if (TransactionLineDb is null)
+                return;
+            TransactionLineDb.Price = entity.Price;
+            TransactionLineDb.PricePerHour = entity.PricePerHour;
+            TransactionLineDb.Hours = entity.Hours;
+            TransactionLineDb.ServiceTaskId = entity.ServiceTaskId;
+
+            context.SaveChanges();
         }
     }
 }
