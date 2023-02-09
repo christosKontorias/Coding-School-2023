@@ -10,26 +10,32 @@ using System.Threading.Tasks;
 namespace CarServiceCenter.EF.Repositories {
     public class CarRepo : IEntityRepo<Car> {
         public void Add(Car entity) {
-            throw new NotImplementedException();
+            using var context = new CarServiceCenterDbContext();
+            if (entity.Id != 0)
+                throw new ArgumentException("Given entity should not have Id set", nameof(entity));
+
+            context.Cars.Add(entity);
+            context.SaveChanges();
         }
 
         public void Delete(int id) {
             using var context = new CarServiceCenterDbContext();
-            var CarDb = context.Cars.Where(car => car.Id == id).SingleOrDefault();
+            var CarDb = context.Cars.SingleOrDefault(car => car.Id == id);
+
             if (CarDb is null)
-                return;
-            context.Remove(CarDb);
+                throw new KeyNotFoundException($"Given id '{id}' was not found in database");
+            context.Cars.Remove(CarDb);
             context.SaveChanges();
         }
 
         public IList<Car> GetAll() {
             using var context = new CarServiceCenterDbContext();
-            return context.Cars.ToList();
+            return context.Cars.Include(car => car.Id).ToList();
         }
 
         public Car? GetById(int id) {
             using var context = new CarServiceCenterDbContext();
-            return context.Cars.SingleOrDefault();
+            return context.Cars.SingleOrDefault(); 
         }
 
         public void Update(int id, Car entity) {
