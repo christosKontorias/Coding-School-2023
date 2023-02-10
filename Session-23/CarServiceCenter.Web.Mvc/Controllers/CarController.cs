@@ -29,9 +29,18 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
         // POST: CarController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection) {
+        public ActionResult Create(CarCreateDto car) {
             try {
-                return RedirectToAction(nameof(Car));
+                if (!ModelState.IsValid) {
+                    return View();
+                }
+                var CarDb = new Car();
+                CarDb.Brand = car.Brand;
+                CarDb.Model = car.Model;
+                CarDb.CarRegistrationNumber = car.CarRegistrationNumber;
+                _carRepo.Add(CarDb);
+
+                return RedirectToAction("Car");
             } catch {
                 return View();
             }
