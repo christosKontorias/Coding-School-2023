@@ -49,15 +49,37 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
 
         // GET: ServiceTaskController/Edit/5
         public ActionResult Edit(int id) {
-            return View();
+            var ServiceTaskDb = _serviceTaskRepo.GetById(id);
+            if (ServiceTaskDb == null) {
+                return null;
+            }
+
+            var viewServiceTask = new ServiceTaskEditDto();
+            viewServiceTask.Code = ServiceTaskDb.Code;
+            viewServiceTask.Description = ServiceTaskDb.Description;
+            viewServiceTask.Hours = ServiceTaskDb.Hours;
+            return View(model: viewServiceTask);
         }
 
         // POST: ServiceTaskController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection) {
+        public ActionResult Edit(int id, ServiceTaskEditDto serviceTask) {
             try {
-                return RedirectToAction(nameof(Index));
+                if (!ModelState.IsValid) {
+                    return View();
+                }
+                var ServiceTaskDb = _serviceTaskRepo.GetById(id);
+
+                if (ServiceTaskDb == null) {
+                    return NotFound();
+                }
+
+                ServiceTaskDb.Code = serviceTask.Code;
+                ServiceTaskDb.Description = serviceTask.Description;
+                ServiceTaskDb.Hours = serviceTask.Hours;
+                _serviceTaskRepo.Update(id, ServiceTaskDb);
+                return RedirectToAction(nameof(ServiceTask));
             } catch {
                 return View();
             }
