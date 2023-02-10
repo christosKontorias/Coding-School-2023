@@ -30,9 +30,19 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
         // POST: ServiceTaskController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection) {
+        public ActionResult Create(ServiceTaskCreateDto serviceTask) {
             try {
-                return RedirectToAction(nameof(Index));
+                if (!ModelState.IsValid) {
+                    return View();
+                }
+                var ServiceTaskDb = new ServiceTask();
+                ServiceTaskDb.Code = serviceTask.Code;
+                ServiceTaskDb.Description = serviceTask.Description;
+                ServiceTaskDb.Hours = serviceTask.Hours;
+
+                _serviceTaskRepo.Add(ServiceTaskDb);
+
+                return RedirectToAction("ServiceTask");
             } catch {
                 return View();
             }
