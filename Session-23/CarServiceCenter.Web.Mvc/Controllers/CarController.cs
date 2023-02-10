@@ -48,14 +48,36 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
 
         // GET: CarController/Edit/5
         public ActionResult Edit(int id) {
-            return View();
+            var CarDb = _carRepo.GetById(id);
+            if(CarDb == null) {
+                return null;
+            }
+
+            var viewCar = new CarEditDto();
+            viewCar.Brand = CarDb.Brand;
+            viewCar.Model = CarDb.Model;
+            viewCar.CarRegistrationNumber = CarDb.CarRegistrationNumber;
+            return View(model: viewCar);
         }
 
         // POST: CarController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection) {
+        public ActionResult Edit(int id, CarEditDto car) {
             try {
+                if (!ModelState.IsValid) {
+                    return View();
+                }
+                var CarDb = _carRepo.GetById(id);
+
+                if (CarDb == null) {
+                    return NotFound();
+                }
+
+                CarDb.Brand = car.Brand;
+                CarDb.Model = car.Model;
+                CarDb.CarRegistrationNumber = car.CarRegistrationNumber;
+                _carRepo.Update(id, CarDb);
                 return RedirectToAction(nameof(Car));
             } catch {
                 return View();
@@ -72,10 +94,22 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection) {
             try {
+                if (!ModelState.IsValid) {
+                    return View();
+                }
+                var CarDb = _carRepo.GetById(id);
+
+                if (CarDb == null) {
+                    return NotFound();
+                }
+
+                CarDb.Brand = car.Brand;
+                CarDb.Model = car.Model;
+                CarDb.CarRegistrationNumber = car.CarRegistrationNumber;
+                _carRepo.Update(id, CarDb);
                 return RedirectToAction(nameof(Car));
             } catch {
-                return View();
+
             }
         }
-    }
 }
