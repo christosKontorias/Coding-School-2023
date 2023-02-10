@@ -30,9 +30,19 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
         // POST: CustomerController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection) {
+        public ActionResult Create(CustomerCreateDto customer) {
             try {
-                return RedirectToAction(nameof(Index));
+                if (!ModelState.IsValid) {
+                    return View();
+                }
+                var CustomerDb = new Customer();
+                CustomerDb.Name = customer.Name;
+                CustomerDb.Surname = customer.Surname;
+                CustomerDb.Phone = customer.Phone;
+                CustomerDb.Tin = customer.Tin;
+                _customerRepo.Add(CustomerDb);
+
+                return RedirectToAction("Customer");
             } catch {
                 return View();
             }
