@@ -49,7 +49,7 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
         // GET: CarController/Edit/5
         public ActionResult Edit(int id) {
             var CarDb = _carRepo.GetById(id);
-            if(CarDb == null) {
+            if (CarDb == null) {
                 return null;
             }
 
@@ -86,7 +86,18 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
 
         // GET: CarController/Delete/5
         public ActionResult Delete(int id) {
-            return View();
+            var CarDb = _carRepo.GetById(id);
+            if (CarDb == null) {
+                return NotFound();
+            }
+
+            var viewCar = new CarDeleteDto {
+                Brand = CarDb.Brand,
+                Model = CarDb.Model,
+                CarRegistrationNumber = CarDb.CarRegistrationNumber
+            };
+
+            return View(model: viewCar);
         }
 
         // POST: CarController/Delete/5
@@ -94,22 +105,13 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection) {
             try {
-                if (!ModelState.IsValid) {
-                    return View();
-                }
-                var CarDb = _carRepo.GetById(id);
 
-                if (CarDb == null) {
-                    return NotFound();
-                }
-
-                CarDb.Brand = car.Brand;
-                CarDb.Model = car.Model;
-                CarDb.CarRegistrationNumber = car.CarRegistrationNumber;
-                _carRepo.Update(id, CarDb);
+                _carRepo.Delete(id);
                 return RedirectToAction(nameof(Car));
-            } catch {
 
+            } catch {
+                return View();
             }
         }
+    }
 }
