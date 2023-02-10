@@ -39,7 +39,6 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
                 ServiceTaskDb.Code = serviceTask.Code;
                 ServiceTaskDb.Description = serviceTask.Description;
                 ServiceTaskDb.Hours = serviceTask.Hours;
-
                 _serviceTaskRepo.Add(ServiceTaskDb);
 
                 return RedirectToAction("ServiceTask");
