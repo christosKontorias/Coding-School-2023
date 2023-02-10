@@ -14,7 +14,7 @@ public class Car
         Transactions = new List<Transaction>();
     }
     public Car() {
-
+        Transactions = new List<Transaction>();
     }
 
 

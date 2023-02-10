@@ -43,6 +43,7 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
                 _customerRepo.Add(CustomerDb);
 
                 return RedirectToAction("Customer");
+
             } catch {
                 return View();
             }
@@ -50,15 +51,39 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
 
         // GET: CustomerController/Edit/5
         public ActionResult Edit(int id) {
-            return View();
+            var CustomerDb = _customerRepo.GetById(id);
+            if (CustomerDb == null) {
+                return null;
+            }
+
+            var viewCustomer = new CustomerEditDto();
+            viewCustomer.Name = CustomerDb.Name;
+            viewCustomer.Surname = CustomerDb.Surname;
+            viewCustomer.Phone = CustomerDb.Phone;
+            viewCustomer.Tin = CustomerDb.Tin;
+            return View(model: viewCustomer);
         }
 
         // POST: CustomerController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection) {
+        public ActionResult Edit(int id, CustomerEditDto customer) {
             try {
-                return RedirectToAction(nameof(Index));
+                if (!ModelState.IsValid) {
+                    return View();
+                }
+                var CustomerDb = _customerRepo.GetById(id);
+
+                if (CustomerDb == null) {
+                    return NotFound();
+                }
+
+                CustomerDb.Name = customer.Name;
+                CustomerDb.Surname = customer.Surname;
+                CustomerDb.Phone = customer.Phone;
+                CustomerDb.Tin = customer.Tin;
+                _customerRepo.Update(id, CustomerDb);
+                return RedirectToAction(nameof(Customer));
             } catch {
                 return View();
             }
@@ -66,7 +91,19 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
 
         // GET: CustomerController/Delete/5
         public ActionResult Delete(int id) {
-            return View();
+            var CustomerDb = _customerRepo.GetById(id);
+            if (CustomerDb == null) {
+                return NotFound();
+            }
+
+            var viewCustomer = new CustomerDeleteDto {
+                Name = CustomerDb.Name,
+                Surname = CustomerDb.Surname,
+                Phone = CustomerDb.Phone,
+                Tin = CustomerDb.Tin
+            };
+
+            return View(model: viewCustomer);
         }
 
         // POST: CustomerController/Delete/5
@@ -74,7 +111,8 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection) {
             try {
-                return RedirectToAction(nameof(Index));
+                _customerRepo.Delete(id);
+                return RedirectToAction(nameof(Customer));
             } catch {
                 return View();
             }

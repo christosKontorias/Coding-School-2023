@@ -9,15 +9,21 @@ using System.Threading.Tasks;
 namespace CarServiceCenter.EF.Repositories {
     public class ManagerRepo : IEntityRepo<Manager> {
         public void Add(Manager entity) {
-            throw new NotImplementedException();
+            using var context = new CarServiceCenterDbContext();
+            if (entity.Id != 0)
+                throw new ArgumentException("Given entity should not have Id set", nameof(entity));
+
+            context.Managers.Add(entity);
+            context.SaveChanges();
         }
 
         public void Delete(int id) {
             using var context = new CarServiceCenterDbContext();
             var ManagerDb = context.Managers.Where(manager => manager.Id == id).SingleOrDefault();
+
             if (ManagerDb is null)
-                return;
-            context.Remove(ManagerDb);
+                throw new KeyNotFoundException($"Given id '{id}' was not found in database");
+            context.Managers.Remove(ManagerDb);
             context.SaveChanges();
         }
 
@@ -28,7 +34,13 @@ namespace CarServiceCenter.EF.Repositories {
 
         public Manager? GetById(int id) {
             using var context = new CarServiceCenterDbContext();
-            return context.Managers.SingleOrDefault();
+            var ManagerDb = context.Managers.Where(manager => manager.Id == id).SingleOrDefault();
+
+            if (ManagerDb is null) {
+                throw new KeyNotFoundException($"Given id '{id}' was not found in database");
+            } else {
+                return ManagerDb;
+            }
         }
 
         public void Update(int id, Manager entity) {
