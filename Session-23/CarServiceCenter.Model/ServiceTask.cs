@@ -36,3 +36,20 @@ public class ServiceTaskEditDto {
     public string Description { get; set; }
     public decimal Hours { get; set; }
 }
+public class ServiceTaskDeleteDto {
+    public int Id { get; set; }
+    public string Code { get; set; }
+    public string Description { get; set; }
+    public decimal Hours { get; set; }
+  
+}
+
+public class ServiceTaskDetailsDto {
+    public int Id { get; set; }
+    public string Code { get; set; }
+    public string Description { get; set; }
+    public decimal Hours { get; set; }
+
+    public List<TransactionLine> TransactionLines { get; set; } = new List<TransactionLine>();
+
+}

@@ -19,7 +19,21 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
 
         // GET: ServiceTaskController/Details/5
         public ActionResult Details(int id) {
-            return View();
+            if (id == null) {
+                return NotFound();
+            }
+            var serviceTasks = _serviceTaskRepo.GetById(id);
+            if (serviceTasks == null) {
+                return NotFound();
+            }
+
+            var viewServiceTask = new ServiceTaskDetailsDto();
+            viewServiceTask.Id = serviceTasks.Id;
+            viewServiceTask.Code = serviceTasks.Code;
+            viewServiceTask.Description = serviceTasks.Description;
+            viewServiceTask.Hours = serviceTasks.Hours;
+            viewServiceTask.TransactionLines = serviceTasks.TransactionLines.ToList();
+            return View(model: viewServiceTask);
         }
 
         // GET: ServiceTaskController/Create
@@ -87,7 +101,18 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
 
         // GET: ServiceTaskController/Delete/5
         public ActionResult Delete(int id) {
-            return View();
+            var ServiceTaskDb = _serviceTaskRepo.GetById(id);
+            if (ServiceTaskDb == null) {
+                return NotFound();
+            }
+
+            var viewServiceTask = new ServiceTaskDeleteDto {
+                Code = ServiceTaskDb.Code,
+                Description = ServiceTaskDb.Description,
+                Hours = ServiceTaskDb.Hours
+            };
+
+            return View(model: viewServiceTask);
         }
 
         // POST: ServiceTaskController/Delete/5
@@ -95,7 +120,8 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection) {
             try {
-                return RedirectToAction(nameof(Index));
+                _serviceTaskRepo.Delete(id);
+                return RedirectToAction(nameof(ServiceTask));
             } catch {
                 return View();
             }
