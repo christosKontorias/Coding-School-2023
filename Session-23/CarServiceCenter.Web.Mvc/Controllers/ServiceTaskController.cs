@@ -32,7 +32,8 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
             viewServiceTask.Code = serviceTasks.Code;
             viewServiceTask.Description = serviceTasks.Description;
             viewServiceTask.Hours = serviceTasks.Hours;
-            viewServiceTask.TransactionLines = serviceTasks.TransactionLines.ToList();
+
+            //viewServiceTask.TransactionLines = serviceTasks.TransactionLines.ToList();
             return View(model: viewServiceTask);
         }
 
