@@ -9,7 +9,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IEntityRepo<Car>, CarRepo>();
 builder.Services.AddScoped<IEntityRepo<Customer>, CustomerRepo>();
 builder.Services.AddScoped<IEntityRepo<Engineer>, MockEngineerRepo>();
-builder.Services.AddScoped<IEntityRepo<Manager>, MockManagerRepo>();
+builder.Services.AddScoped<IEntityRepo<Manager>, ManagerRepo>();
 builder.Services.AddScoped<IEntityRepo<ServiceTask>, ServiceTaskRepo>();
 builder.Services.AddScoped<IEntityRepo<Transaction>, MockTransactionRepo>();
 builder.Services.AddScoped<IEntityRepo<TransactionLine>, MockTransactionLineRepo>();
