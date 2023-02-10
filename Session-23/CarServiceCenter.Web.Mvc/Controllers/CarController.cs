@@ -18,7 +18,22 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
 
         // GET: CarController/Details/5
         public ActionResult Details(int id) {
-            return View();
+            if(id == null) {
+                return NotFound();
+            }
+
+            var car = _carRepo.GetById(id);
+            if(car == null) {
+                return NotFound();
+            }
+
+            var viewCar = new CarDetailsDto();
+            viewCar.Id = car.Id;
+            viewCar.Brand = car.Brand;
+            viewCar.Model = car.Model;
+            viewCar.CarRegistrationNumber = car.CarRegistrationNumber;
+            //viewCar.Transactions = car.Transactions.ToList();
+            return View(model: viewCar);
         }
 
         // GET: CarController/Create

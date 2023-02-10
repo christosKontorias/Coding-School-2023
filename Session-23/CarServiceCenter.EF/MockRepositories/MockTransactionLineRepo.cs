@@ -1,7 +1,9 @@
 ﻿using CarServiceCenter.EF.Repositories;
 using CarServiceCenter.Model;
+using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +15,7 @@ namespace CarServiceCenter.EF.MockRepositories {
         public MockTransactionLineRepo() {
             _transactionLines = new List<TransactionLine>()
             {
-                new TransactionLine{ Id = 1},
+                 new TransactionLine{ Id = 1, Hours = 4, PricePerHour = 30, Price = 120 },
             };
         }
 
