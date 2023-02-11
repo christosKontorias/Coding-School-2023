@@ -1,12 +1,14 @@
 ﻿using CarServiceCenter.EF.Repositories;
 using CarServiceCenter.Model;
+using CarServiceCenter.Web.Mvc.Models.Engineer;
 using CarServiceCenter.Web.Mvc.Models.Transaction;
 using CarServiceCenter.Web.Mvc.Models.TransactionLine;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CarServiceCenter.Web.Mvc.Controllers; 
+
 public class TransactionController : Controller {
 
     private readonly IEntityRepo<Transaction> _transactionRepo;
@@ -85,16 +87,59 @@ public class TransactionController : Controller {
 
     // GET: TransactionController/Edit/5
     public ActionResult Edit(int id) {
-        return View();
+        var TransactionDb = _transactionRepo.GetById(id);
+        if (TransactionDb == null) {
+            return null;
+        }
+
+        var viewTransaction = new TransactionEditDto();
+        viewTransaction.Date = TransactionDb.Date;
+        viewTransaction.TotalPrice = TransactionDb.TotalPrice;
+        viewTransaction.CustomerId = TransactionDb.CustomerId;
+        viewTransaction.ManagerId = TransactionDb.ManagerId;
+        viewTransaction.CarId = TransactionDb.CarId;
+
+
+        // Get the list of customers
+        var customers = _customerRepo.GetAll();
+        ViewBag.CustomerId = new SelectList(customers, "Id", "Surname", viewTransaction.CustomerId);
+
+        // Get the list of managers
+        var managers = _managerRepo.GetAll();
+        ViewBag.ManagerId = new SelectList(managers, "Id", "Surname", viewTransaction.ManagerId);
+
+        // Get the list of managers
+        var cars = _carRepo.GetAll();
+        ViewBag.CarId = new SelectList(cars, "Id", "Model", viewTransaction.CarId);
+
+        return View(model: viewTransaction);
     }
 
     // POST: TransactionController/Edit/5
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Edit(int id, IFormCollection collection) {
+    public ActionResult Edit(int id, TransactionEditDto transaction) {
         try {
-            return RedirectToAction(nameof(Index));
-        } catch {
+            if (!ModelState.IsValid) {
+                return View();
+            }
+            var TransactionDb = _transactionRepo.GetById(id);
+
+            if (TransactionDb == null) {
+                return NotFound();
+            }
+
+            TransactionDb.Date = transaction.Date;
+            TransactionDb.TotalPrice = transaction.TotalPrice;
+            TransactionDb.CustomerId = transaction.CustomerId;
+            TransactionDb.ManagerId = transaction.ManagerId;
+            TransactionDb.CarId = transaction.CarId;
+
+
+            _transactionRepo.Update(id, TransactionDb);
+            return RedirectToAction(nameof(Transaction));
+        } catch (Exception ex) {
+
             return View();
         }
     }
