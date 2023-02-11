@@ -1,5 +1,6 @@
 ﻿using CarServiceCenter.EF.Repositories;
 using CarServiceCenter.Model;
+using CarServiceCenter.Web.Mvc.Models.Car;
 using CarServiceCenter.Web.Mvc.Models.Customer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,7 +21,23 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
 
         // GET: CustomerController/Details/5
         public ActionResult Details(int id) {
-            return View();
+            if (id == null) {
+                return NotFound();
+            }
+
+            var customer = _customerRepo.GetById(id);
+            if (customer == null) {
+                return NotFound();
+            }
+
+            var viewCustomer = new CustomerDetailsDto();
+            viewCustomer.Id = customer.Id;
+            viewCustomer.Name = customer.Name;
+            viewCustomer.Surname = customer.Surname;
+            viewCustomer.Phone = customer.Phone;
+            viewCustomer.Tin = customer.Tin;
+            //viewCar.Transactions = car.Transactions.ToList();
+            return View(model: viewCustomer);
         }
 
         // GET: CustomerController/Create

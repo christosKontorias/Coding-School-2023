@@ -1,5 +1,6 @@
 ﻿using CarServiceCenter.EF.Repositories;
 using CarServiceCenter.Model;
+using CarServiceCenter.Web.Mvc.Models.Car;
 using CarServiceCenter.Web.Mvc.Models.Engineer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,22 +17,36 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
 			_engineerRepo = engineerRepo;
 		}
 
-		//public EngineerController(IEntityRepo<Engineer> engineerRepo) {
-		//    _engineerRepo = engineerRepo;
-		//}
 		// GET: EngineerController
 		public ActionResult Engineer() {
 			var engineers = _engineerRepo.GetAll();
 			return View(model: engineers);
 		}
 
-		// GET: EngineerController/Details/5
-		public ActionResult Details(int id) {
-			return View();
-		}
+        // GET: EngineerController/Details/5
+        public ActionResult Details(int id) {
+            if (id == null) {
+                return NotFound();
+            }
 
-		// GET: EngineerController/Create
-		public ActionResult Create() {
+            var engineer = _engineerRepo.GetById(id);
+            if (engineer == null) {
+                return NotFound();
+            }
+
+            var viewEngineer = new EngineerDetailsDto();
+            viewEngineer.Id = engineer.Id;
+            viewEngineer.Name = engineer.Name;
+            viewEngineer.Surname = engineer.Surname;
+            viewEngineer.SalaryPerMonth = engineer.SalaryPerMonth;
+            viewEngineer.ManagerId = engineer.ManagerId;
+
+            return View(model: viewEngineer);
+        }
+
+
+        // GET: EngineerController/Create
+        public ActionResult Create() {
 			var newEngineer = new EngineerCreateDto();
 			var managers = _managerRepo.GetAll();
 			foreach (var manager in managers) {
