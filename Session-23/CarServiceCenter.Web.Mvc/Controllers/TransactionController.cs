@@ -1,5 +1,6 @@
 ﻿using CarServiceCenter.EF.Repositories;
 using CarServiceCenter.Model;
+using CarServiceCenter.Web.Mvc.Models.Transaction;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,9 +31,16 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
         // POST: TransactionController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection) {
+        public ActionResult Create(TransactionCreateDto transaction) {
             try {
-                return RedirectToAction(nameof(Index));
+                if (!ModelState.IsValid) {
+                    return View();
+                }
+                var TransactionDb = new Transaction();
+                TransactionDb.Date = transaction.Date;
+                _transactionRepo.Add(TransactionDb);
+
+                return RedirectToAction("Transaction");
             } catch {
                 return View();
             }
