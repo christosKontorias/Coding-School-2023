@@ -34,7 +34,7 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
             var newEngineer = new EngineerCreateDto();
             var managers = _managerRepo.GetAll();
             foreach (var manager in managers) {
-                newEngineer.Managers.Add(new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem(manager.Surname, manager.Id.ToString()));
+                //newEngineer.Managers.Add(new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem(manager.Surname, manager.Id.ToString()));
             }
             return View(model: newEngineer);
         }

@@ -26,3 +26,28 @@ public class Engineer
 
     public List<TransactionLine> TransactionLines { get; set; }
 }
+
+public class EngineerCreateDto {
+    public string Name { get; set; }
+    public string Surname { get; set; }
+    public int SalaryPerMonth { get; set; }
+    //selector theloume kai mia lista 
+    public int ManagerId { get; set; }
+    //public List<SelectListItem> Managers { get; } = new List<SelectListItem>();
+}
+public class EngineerDeleteDto {
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Surname { get; set; }
+    public int SalaryPerMonth { get; set; }
+    public int ManagerId { get; set; }
+
+}
+public class EngineerEditDto {
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Surname { get; set; }
+    public int SalaryPerMonth { get; set; }
+    public int ManagerId { get; set; }
+
+}
