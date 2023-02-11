@@ -30,12 +30,12 @@ namespace CarServiceCenter.EF.Repositories {
 
         public IList<Transaction> GetAll() {
             using var context = new CarServiceCenterDbContext();
-            return context.Transactions.ToList();
+            return context.Transactions.Include(transaction => transaction.Customer).Include(transaction => transaction.Manager).Include(transaction => transaction.Car).ToList();
         }
 
         public Transaction? GetById(int id) {
             using var context = new CarServiceCenterDbContext();
-            var TransactionDb = context.Transactions.Where(transaction => transaction.Id == id).SingleOrDefault();
+            var TransactionDb = context.Transactions.Include(transaction => transaction.Customer).Include(transaction => transaction.Manager).Include(transaction => transaction.Car).Where(transaction => transaction.Id == id).SingleOrDefault();
             if (TransactionDb is null) {
                 throw new KeyNotFoundException($"Given id '{id}' was not found in database");
             } else {
