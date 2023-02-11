@@ -12,7 +12,7 @@ public class ServiceTask
     }
 
     public ServiceTask() {
-
+        TransactionLines = new List<TransactionLine>();
     }
 
     public int Id { get; set; }

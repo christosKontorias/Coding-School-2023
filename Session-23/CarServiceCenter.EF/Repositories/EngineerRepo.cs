@@ -9,7 +9,12 @@ using System.Threading.Tasks;
 namespace CarServiceCenter.EF.Repositories {
     public class EngineerRepo : IEntityRepo<Engineer> {
         public void Add(Engineer entity) {
-            throw new NotImplementedException();
+            using var context = new CarServiceCenterDbContext();
+            if (entity.Id != 0)
+                throw new ArgumentException("Given entity should not have Id set", nameof(entity));
+
+            context.Engineers.Add(entity);
+            context.SaveChanges();
         }
 
         public void Delete(int id) {
