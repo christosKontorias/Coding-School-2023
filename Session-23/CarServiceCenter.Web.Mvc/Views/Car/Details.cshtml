@@ -29,41 +29,6 @@
 			@Html.DisplayFor(model => model.CarRegistrationNumber)
 		</dd>
 	</dl>
-	<hr />
-	<h5>Transaction</h5>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    Date
-                </th>
-                <th>
-                    TotalPrice
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Transactions) {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Date)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TotalPrice)
-                    </td>
-
-                    <td>
-@*                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-
 </div>
 <div>
 @*	<a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> *@
