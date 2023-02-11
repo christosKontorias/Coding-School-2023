@@ -1,5 +1,6 @@
 ﻿using CarServiceCenter.EF.Context;
 using CarServiceCenter.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,12 +29,12 @@ namespace CarServiceCenter.EF.Repositories {
 
         public IList<Engineer> GetAll() {
             using var context = new CarServiceCenterDbContext();
-            return context.Engineers.ToList();
+            return context.Engineers.Include(engineer => engineer.Manager).ToList();
         }
 
         public Engineer? GetById(int id) {
             using var context = new CarServiceCenterDbContext();
-            return context.Engineers.Where(engineer => engineer.Id == id).SingleOrDefault();
+            return context.Engineers.Include(engineer => engineer.Manager).Where(engineer => engineer.Id == id).SingleOrDefault();
         }
 
         public void Update(int id, Engineer entity) {
