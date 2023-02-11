@@ -1,5 +1,6 @@
 ﻿using CarServiceCenter.EF.Repositories;
 using CarServiceCenter.Model;
+using CarServiceCenter.Web.Mvc.Models.Car;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarServiceCenter.Web.Mvc.Controllers {

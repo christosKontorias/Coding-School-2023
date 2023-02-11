@@ -26,30 +26,3 @@ public class Car
     // Relations
     public List<Transaction> Transactions { get; set; }
 }
-
-public class CarCreateDto {
-    public string Brand { get; set; }
-    public string Model { get; set; }
-    public string CarRegistrationNumber { get; set;}
-}
-
-public class CarEditDto {
-    public int Id { get; set; }
-    public string Brand { get; set; }
-    public string Model { get; set; }
-    public string CarRegistrationNumber { get; set; }
-}
-public class CarDeleteDto {
-    public int Id { get; set; }
-    public string Brand { get; set; }
-    public string Model { get; set; }
-    public string CarRegistrationNumber { get; set; }
-}
-
-public class CarDetailsDto {
-    public int Id { get; set; }
-    public string Brand { get; set; }
-    public string Model { get; set; }
-    public string CarRegistrationNumber { get; set; }
-    public List<Transaction> Transactions { get; set; } = new List<Transaction>();
-}
