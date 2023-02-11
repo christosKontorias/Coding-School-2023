@@ -37,8 +37,24 @@ public class TransactionController : Controller {
 
     // GET: TransactionController/Details/5
     public ActionResult Details(int id) {
-        return View();
-    }
+		if (id == null) {
+			return NotFound();
+		}
+
+		var transaction = _transactionRepo.GetById(id);
+		if (transaction == null) {
+			return NotFound();
+		}
+
+		var viewTransaction = new TransactionDetailsDto();
+		viewTransaction.Date = transaction.Date;
+		viewTransaction.TotalPrice = transaction.TotalPrice;
+		viewTransaction.CustomerId = transaction.CustomerId;
+		viewTransaction.ManagerId = transaction.ManagerId;
+		viewTransaction.CarId = transaction.CarId;
+
+		return View(model: viewTransaction);
+	}
 
     // GET: TransactionController/Create
     public ActionResult Create() {
@@ -146,7 +162,20 @@ public class TransactionController : Controller {
 
     // GET: TransactionController/Delete/5
     public ActionResult Delete(int id) {
-        return View();
+        var TransactionDb = _transactionRepo.GetById(id);
+        if (TransactionDb == null) {
+            return NotFound();
+        }
+
+        var viewTransaction = new TransactionDeleteDto {
+            Date = TransactionDb.Date,
+            TotalPrice = TransactionDb.TotalPrice,
+            CustomerId = TransactionDb.CustomerId,
+            ManagerId = TransactionDb.ManagerId,
+            CarId = TransactionDb.CarId
+        };
+
+        return View(model: viewTransaction);
     }
 
     // POST: TransactionController/Delete/5
@@ -154,7 +183,8 @@ public class TransactionController : Controller {
     [ValidateAntiForgeryToken]
     public ActionResult Delete(int id, IFormCollection collection) {
         try {
-            return RedirectToAction(nameof(Index));
+            _transactionRepo.Delete(id);
+            return RedirectToAction(nameof(Transaction));
         } catch {
             return View();
         }
