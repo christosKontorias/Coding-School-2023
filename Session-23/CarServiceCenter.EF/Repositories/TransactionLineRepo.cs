@@ -35,7 +35,7 @@ namespace CarServiceCenter.EF.Repositories {
 
         public TransactionLine? GetById(int id) {
             using var context = new CarServiceCenterDbContext();
-            var TransactionLineDb = context.TransactionLines.Where(transactionLine => transactionLine.Id == id).SingleOrDefault();
+            var TransactionLineDb = context.TransactionLines.Include(transaction => transaction.Id).Include(serviceTask => serviceTask.Id).Include(engineer => engineer.Id).Where(transactionLine => transactionLine.Id == id).SingleOrDefault();
             if (TransactionLineDb is null) {
                 throw new KeyNotFoundException($"Given id '{id}' was not found in database");
             } else {

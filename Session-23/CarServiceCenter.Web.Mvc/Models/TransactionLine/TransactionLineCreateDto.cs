@@ -10,9 +10,9 @@ public class TransactionLineCreateDto {
     public List<SelectListItem> Transactions { get; } = new List<SelectListItem>();
 
     public int ServiceTaskId { get; set; }
-    public List<SelectListItem> ServiceTasks { get; set; } = new List<SelectListItem>();
+    public List<SelectListItem> ServiceTasks { get; } = new List<SelectListItem>();
 
     public int EngineerId { get; set; }
-    public List<SelectListItem> Engineers { get; set; } = new List<SelectListItem>();
+    public List<SelectListItem> Engineers { get; } = new List<SelectListItem>();
 
 }

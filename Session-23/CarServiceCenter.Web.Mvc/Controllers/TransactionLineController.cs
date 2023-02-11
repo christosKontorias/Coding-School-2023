@@ -1,17 +1,30 @@
-﻿using CarServiceCenter.EF.Repositories;
+﻿
+using CarServiceCenter.EF.Repositories;
 using CarServiceCenter.Model;
+using CarServiceCenter.Web.Mvc.Models.Engineer;
+using CarServiceCenter.Web.Mvc.Models.TransactionLine;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace CarServiceCenter.Web.Mvc.Controllers {
     public class TransactionLineController : Controller {
 
         private readonly IEntityRepo<TransactionLine> _transactionLineRepo;
+        private readonly IEntityRepo<Transaction> _transactionRepo;
+        private readonly IEntityRepo<ServiceTask> _serviceTaskRepo;
+        private readonly IEntityRepo<Engineer> _engineerRepo;
 
-        public TransactionLineController(IEntityRepo<TransactionLine> transactionLineRepo) {
+        public TransactionLineController(IEntityRepo<TransactionLine> transactionLineRepo,
+                                         IEntityRepo<Transaction> transactionRepo,
+                                         IEntityRepo<ServiceTask> serviceTaskRepo,
+                                         IEntityRepo<Engineer> engineerRepo) {
             _transactionLineRepo = transactionLineRepo;
+            _transactionRepo = transactionRepo;
+            _serviceTaskRepo = serviceTaskRepo;
+            _engineerRepo = engineerRepo;
         }
-
 
         // GET: TransactionLineController
         public ActionResult TransactionLine() {
@@ -26,15 +39,46 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
 
         // GET: TransactionLineController/Create
         public ActionResult Create() {
-            return View();
+            var newTransactionLine = new TransactionLineCreateDto();
+            var transactions = _transactionRepo.GetAll();
+            foreach (var transaction in transactions) {
+                newTransactionLine.Transactions.Add(new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem(transaction.Date.ToString(), transaction.Id.ToString()));
+            }
+
+            var serviceTasks = _serviceTaskRepo.GetAll();
+            foreach (var serviceTask in serviceTasks) {
+                newTransactionLine.ServiceTasks.Add(new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem(serviceTask.Description, serviceTask.Id.ToString()));
+            }
+
+            var engineers = _engineerRepo.GetAll();
+            foreach (var engineer in engineers) {
+                newTransactionLine.Engineers.Add(new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem(engineer.Surname, engineer.Id.ToString()));
+            }
+
+            return View(model: newTransactionLine);
+
         }
 
         // POST: TransactionLineController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection) {
+        public ActionResult Create(TransactionLineCreateDto transactionLine) {
             try {
-                return RedirectToAction(nameof(Index));
+                if (!ModelState.IsValid) {
+                    return View();
+                }
+
+                var TransactionLineDb = new TransactionLine();
+                TransactionLineDb.Hours = transactionLine.Hours;
+                TransactionLineDb.PricePerHour = transactionLine.PricePerHour;
+                TransactionLineDb.Price = transactionLine.Price;
+                TransactionLineDb.TransactionId = transactionLine.TransactionId;
+                TransactionLineDb.ServiceTaskId = transactionLine.ServiceTaskId;
+                TransactionLineDb.EngineerId = transactionLine.EngineerId;
+
+                _transactionLineRepo.Add(TransactionLineDb);
+
+                return RedirectToAction("TransactionLine");
             } catch {
                 return View();
             }

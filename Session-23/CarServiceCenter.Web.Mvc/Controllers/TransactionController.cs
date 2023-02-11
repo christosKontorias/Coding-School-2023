@@ -38,6 +38,7 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
                 }
                 var TransactionDb = new Transaction();
                 TransactionDb.Date = transaction.Date;
+
                 _transactionRepo.Add(TransactionDb);
 
                 return RedirectToAction("Transaction");
