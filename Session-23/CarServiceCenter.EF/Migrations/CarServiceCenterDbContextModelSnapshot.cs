@@ -214,13 +214,16 @@ namespace CarServiceCenter.EF.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Hours")
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(3, 2)
+                        .HasColumnType("decimal(3,2)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(9, 2)
+                        .HasColumnType("decimal(9,2)");
 
                     b.Property<decimal>("PricePerHour")
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(3, 2)
+                        .HasColumnType("decimal(3,2)");
 
                     b.Property<int>("ServiceTaskId")
                         .HasColumnType("int");
