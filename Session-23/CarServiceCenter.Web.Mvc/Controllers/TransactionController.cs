@@ -52,7 +52,7 @@ public class TransactionController : Controller {
 		viewTransaction.CustomerId = transaction.CustomerId;
 		viewTransaction.ManagerId = transaction.ManagerId;
 		viewTransaction.CarId = transaction.CarId;
-
+        viewTransaction.TransactionLines = transaction.TransactionLines;
 		return View(model: viewTransaction);
 	}
 

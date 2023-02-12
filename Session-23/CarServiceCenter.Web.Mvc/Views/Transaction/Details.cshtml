@@ -83,13 +83,13 @@
                         @Html.DisplayFor(modelItem => item.Price)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Transaction.Id)
+                        @Html.DisplayFor(modelItem => item.TransactionId)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ServiceTask.Code)
+                        @Html.DisplayFor(modelItem => item.ServiceTaskId)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Engineer.Surname)
+                        @Html.DisplayFor(modelItem => item.EngineerId)
                     </td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
