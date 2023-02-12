@@ -1,4 +1,5 @@
-﻿@model CarServiceCenter.Web.Mvc.Models.Transaction.TransactionDetailsDto
+﻿@model CarServiceCenter.Web.Mvc.Models.Transaction.TransactionDetailsDto;
+
 
 @{
 	ViewData["Title"] = "Details";
@@ -41,12 +42,13 @@
 			@Html.DisplayFor(model => model.CarId)
 		</dd>
 	</dl>
+
 	<hr />
 	<h5>Transaction Lines</h5>
 
 
 </div>
 <div>
-	@*    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
-	*@    <a asp-action="Transaction">Back to List</a>
+	@*    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a *@
+	<a asp-action="Transaction">Back to List</a>
 </div>

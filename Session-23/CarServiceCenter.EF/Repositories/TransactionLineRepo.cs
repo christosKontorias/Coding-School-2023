@@ -30,7 +30,8 @@ namespace CarServiceCenter.EF.Repositories {
 
         public IList<TransactionLine> GetAll() {
             using var context = new CarServiceCenterDbContext();
-            return context.TransactionLines.Include(transactionLine => transactionLine.Transaction).
+            return context.TransactionLines.
+                Include(transactionLine => transactionLine.Transaction).
                 Include(transactionLine => transactionLine.ServiceTask).
                 Include(transactionLine => transactionLine.Engineer).ToList(); 
         }

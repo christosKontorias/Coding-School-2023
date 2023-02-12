@@ -9,4 +9,10 @@ namespace CarServiceCenter.Web.Mvc.Models.Transaction;
     public int ManagerId { get; set; }
     public int CarId { get; set; }
     public List<SelectListItem> TransactionLines { get; } = new List<SelectListItem>();
-	}
+
+
+
+	public decimal Hours { get; set; }
+	public decimal PricePerHour { get; set; }
+	public decimal Price { get; set; }
+}

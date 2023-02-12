@@ -146,7 +146,7 @@ public class TransactionController : Controller {
             }
 
             TransactionDb.Date = transaction.Date;
-            TransactionDb.TotalPrice = transaction.TotalPrice;
+            //TransactionDb.TotalPrice = transaction.TotalPrice;
             TransactionDb.CustomerId = transaction.CustomerId;
             TransactionDb.ManagerId = transaction.ManagerId;
             TransactionDb.CarId = transaction.CarId;
