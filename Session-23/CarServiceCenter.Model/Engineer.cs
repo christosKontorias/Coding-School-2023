@@ -1,4 +1,7 @@
-﻿namespace CarServiceCenter.Model;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
+namespace CarServiceCenter.Model;
 
 public class Engineer
 {
@@ -18,7 +21,10 @@ public class Engineer
     public int Id { get; set; }
     public string Name { get; set; }
     public string Surname { get; set; }
-    public int SalaryPerMonth { get; set; }
+    [DisplayName("Salary Per Month")]
+	[Range(0, 3000, ErrorMessage = "Salary cannot exceed 3000")]
+
+	public int SalaryPerMonth { get; set; }
 
     // Relations
     public int ManagerId { get; set; }
