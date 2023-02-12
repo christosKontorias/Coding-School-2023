@@ -31,7 +31,8 @@ namespace CarServiceCenter.EF.Repositories {
         public IList<Transaction> GetAll() {
             using var context = new CarServiceCenterDbContext();
             return context.Transactions.
-                Include(transaction => transaction.Customer).
+				Include(transaction => transaction.TransactionLines).
+				Include(transaction => transaction.Customer).
                 Include(transaction => transaction.Manager).
                 Include(transaction => transaction.Car).ToList();
 
@@ -40,6 +41,7 @@ namespace CarServiceCenter.EF.Repositories {
         public Transaction? GetById(int id) {
             using var context = new CarServiceCenterDbContext();
             var TransactionDb = context.Transactions.
+                Include(transaction => transaction.TransactionLines).
                 Include(transaction => transaction.Customer).
                  Include(transaction => transaction.Manager).
                  Include(transaction => transaction.Car).

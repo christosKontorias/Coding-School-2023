@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using CarServiceCenter.Web.Mvc.Models.TransactionLine;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CarServiceCenter.Web.Mvc.Models.Transaction; 
 	public class TransactionDetailsDto {
@@ -8,11 +9,6 @@ namespace CarServiceCenter.Web.Mvc.Models.Transaction;
     public int CustomerId { get; set; }
     public int ManagerId { get; set; }
     public int CarId { get; set; }
-    public List<SelectListItem> TransactionLines { get; } = new List<SelectListItem>();
+	public List<CarServiceCenter.Model.TransactionLine> TransactionLines { get; set; } = new List<CarServiceCenter.Model.TransactionLine>();
 
-
-
-	public decimal Hours { get; set; }
-	public decimal PricePerHour { get; set; }
-	public decimal Price { get; set; }
 }

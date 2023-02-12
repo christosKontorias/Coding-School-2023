@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
-namespace CarServiceCenter.Web.Mvc.Controllers; 
+namespace CarServiceCenter.Web.Mvc.Controllers;
 public class TransactionLineController : Controller {
 
     private readonly IEntityRepo<TransactionLine> _transactionLineRepo;
@@ -36,8 +36,25 @@ public class TransactionLineController : Controller {
 
     // GET: TransactionLineController/Details/5
     public ActionResult Details(int id) {
-        return View();
+        if (id == null) {
+            return NotFound();
+        }
 
+        var transactionLines = _transactionLineRepo.GetById(id);
+        if (transactionLines == null) {
+            return NotFound();
+        }
+
+        var viewTransactionLine = new TransactionLineDetailsDto();
+        viewTransactionLine.Hours = transactionLines.Hours;
+        viewTransactionLine.PricePerHour = transactionLines.PricePerHour;
+        viewTransactionLine.Price = transactionLines.Price;
+        viewTransactionLine.TransactionId = transactionLines.TransactionId;
+        viewTransactionLine.ServiceTaskId = transactionLines.ServiceTaskId;
+        viewTransactionLine.EngineerId = transactionLines.EngineerId;
+
+
+        return View(model: viewTransactionLine);
     }
 
     // GET: TransactionLineController/Create
@@ -47,7 +64,7 @@ public class TransactionLineController : Controller {
         var newTransactionLine = new TransactionLineCreateDto();
         var transactions = _transactionRepo.GetAll();
         foreach (var transaction in transactions) {
-            newTransactionLine.Transactions.Add(new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem(transaction.Date.ToString(), transaction.Id.ToString()));
+            newTransactionLine.Transactions.Add(new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem(transaction.Id.ToString(), transaction.Id.ToString()));
         }
 
         var serviceTasks = _serviceTaskRepo.GetAll();
@@ -76,8 +93,8 @@ public class TransactionLineController : Controller {
             var TransactionLineDb = new TransactionLine();
             TransactionLineDb.Hours = transactionLine.Hours;
             TransactionLineDb.PricePerHour = transactionLine.PricePerHour;
-			TransactionLineDb.Price = TransactionLineDb.CalculatePrice(transactionLine.Hours, transactionLine.PricePerHour);
-			TransactionLineDb.TransactionId = transactionLine.TransactionId;
+            TransactionLineDb.Price = TransactionLineDb.CalculatePrice(transactionLine.Hours, transactionLine.PricePerHour);
+            TransactionLineDb.TransactionId = transactionLine.TransactionId;
             TransactionLineDb.ServiceTaskId = transactionLine.ServiceTaskId;
             TransactionLineDb.EngineerId = transactionLine.EngineerId;
 
@@ -90,30 +107,77 @@ public class TransactionLineController : Controller {
     }
 
 
-	// GET: TransactionLineController/Edit/5
-	public ActionResult Edit(int id) {
-        return View();
+    // GET: TransactionLineController/Edit/5
+    public ActionResult Edit(int id) {
+        var TransactionLineDb = _transactionLineRepo.GetById(id);
+        if (TransactionLineDb == null) {
+            return null;
+        }
+
+        var viewTransactionLine = new TransactionLineEditDto();
+        viewTransactionLine.Hours = TransactionLineDb.Hours;
+        //viewTransactionLine.TotalPrice = TransactionLineDb.TotalPrice;
+        viewTransactionLine.PricePerHour = TransactionLineDb.PricePerHour;
+        viewTransactionLine.Price = TransactionLineDb.Price;
+        viewTransactionLine.TransactionId = TransactionLineDb.TransactionId;
+        viewTransactionLine.ServiceTaskId = TransactionLineDb.ServiceTaskId;
+        viewTransactionLine.EngineerId = TransactionLineDb.EngineerId;
+
+
+
+        // Get the list of transactions
+        var transactions = _transactionRepo.GetAll();
+        ViewBag.TransactionId = new SelectList(transactions, "Id", "Id", viewTransactionLine.TransactionId);
+
+        // Get the list of serviceTasks
+        var serviceTasks = _serviceTaskRepo.GetAll();
+        ViewBag.ServiceTaskId = new SelectList(serviceTasks, "Id", "Code", viewTransactionLine.ServiceTaskId);
+
+        // Get the list of egineers
+        var engineers = _engineerRepo.GetAll();
+        ViewBag.EngineerId = new SelectList(engineers, "Id", "Surname", viewTransactionLine.EngineerId);
+
+        return View(model: viewTransactionLine);
     }
 
     // POST: TransactionLineController/Edit/5
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Edit(int id, IFormCollection collection) {
+    public ActionResult Edit(int id, TransactionLineEditDto transactionLine) {
         try {
-            return RedirectToAction(nameof(Index));
-        } catch {
+            if (!ModelState.IsValid) {
+                return View();
+            }
+            var TransactionLineDb = _transactionLineRepo.GetById(id);
+
+            if (TransactionLineDb == null) {
+                return NotFound();
+            }
+
+            TransactionLineDb.Hours = transactionLine.Hours;
+            TransactionLineDb.PricePerHour = transactionLine.PricePerHour;
+            TransactionLineDb.Price = TransactionLineDb.CalculatePrice(transactionLine.Hours, transactionLine.PricePerHour);
+            TransactionLineDb.TransactionId = transactionLine.TransactionId;
+            TransactionLineDb.ServiceTaskId = transactionLine.ServiceTaskId;
+            TransactionLineDb.EngineerId = transactionLine.EngineerId;
+
+
+            _transactionLineRepo.Update(id, TransactionLineDb);
+            return RedirectToAction(nameof(TransactionLine));
+        } catch (Exception ex) {
+
             return View();
         }
     }
 
     // GET: TransactionLineController/Delete/5
     public ActionResult Delete(int id) {
-		var TransactionLineDb = _transactionLineRepo.GetById(id);
-		if (TransactionLineDb == null) {
-			return NotFound();
-		}
+        var TransactionLineDb = _transactionLineRepo.GetById(id);
+        if (TransactionLineDb == null) {
+            return NotFound();
+        }
 
-		var viewTransactionLine = new TransactionLineDeleteDto {
+        var viewTransactionLine = new TransactionLineDeleteDto {
             Hours = TransactionLineDb.Hours,
             PricePerHour = TransactionLineDb.PricePerHour,
             Price = TransactionLineDb.Price,
@@ -122,18 +186,18 @@ public class TransactionLineController : Controller {
             EngineerId = TransactionLineDb.EngineerId
         };
 
-		return View(model: viewTransactionLine);
-	}
+        return View(model: viewTransactionLine);
+    }
 
     // POST: TransactionLineController/Delete/5
     [HttpPost]
     [ValidateAntiForgeryToken]
     public ActionResult Delete(int id, IFormCollection collection) {
-		try {
-			_transactionLineRepo.Delete(id);
-			return RedirectToAction(nameof(TransactionLine));
-		} catch {
-			return View();
-		}
-	}
+        try {
+            _transactionLineRepo.Delete(id);
+            return RedirectToAction(nameof(TransactionLine));
+        } catch {
+            return View();
+        }
+    }
 }

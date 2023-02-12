@@ -46,6 +46,60 @@
 	<hr />
 	<h5>Transaction Lines</h5>
 
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Hours
+                </th>
+                <th>
+                    PricePerHour
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                    Transaction
+                </th>
+                <th>
+                    ServiceTask
+                </th>
+                <th>
+                    Engineer
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.TransactionLines) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hours)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PricePerHour)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Transaction.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ServiceTask.Code)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Engineer.Surname)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
 </div>
 <div>
