@@ -17,9 +17,9 @@ namespace CarServiceCenter.EF.Configurations
             builder.Property(t => t.Id).ValueGeneratedOnAdd();
 
             // Properties
-            builder.Property(t => t.Hours).IsRequired();
-            builder.Property(t => t.PricePerHour).IsRequired();
-            builder.Property(t => t.Price).IsRequired();
+            builder.Property(t => t.Hours).HasPrecision(3, 2).IsRequired();
+            builder.Property(t => t.PricePerHour).HasPrecision(3, 2).IsRequired();
+            builder.Property(t => t.Price).HasPrecision(9, 2).IsRequired();
 
             // Relations
             builder.HasOne(t => t.Transaction)
