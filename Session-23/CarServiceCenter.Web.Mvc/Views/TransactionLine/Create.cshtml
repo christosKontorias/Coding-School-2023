@@ -1,7 +1,7 @@
 ﻿@model CarServiceCenter.Web.Mvc.Models.TransactionLine.TransactionLineCreateDto
 
 @{
-    ViewData["Title"] = "Create";
+	ViewData["Title"] = "Create";
 }
 
 <h1>Create</h1>
@@ -9,47 +9,56 @@
 <h4>TransactionLine</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Hours" class="control-label"></label>
-                <input asp-for="Hours" class="form-control" />
-                <span asp-validation-for="Hours" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PricePerHour" class="control-label"></label>
-                <input asp-for="PricePerHour" class="form-control" />
-                <span asp-validation-for="PricePerHour" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TransactionId" class="control-label"></label>
-                <select asp-for="TransactionId" class ="form-control" asp-items="Model.Transactions"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="ServiceTaskId" class="control-label"></label>
-                <select asp-for="ServiceTaskId" class ="form-control" asp-items="Model.ServiceTasks"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="EngineerId" class="control-label"></label>
-                <select asp-for="EngineerId" class ="form-control" asp-items="Model.Engineers"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+	<div class="col-md-4">
+		<form asp-action="Create">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="form-group">
+				<label asp-for="Hours" class="control-label"></label>
+				<input asp-for="Hours" class="form-control" />
+				<span asp-validation-for="Hours" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="PricePerHour" class="control-label">Price Per Hour</label>
+				<input asp-for="PricePerHour" class="form-control" type="text"/>
+				<input type="hidden" asp-for="PricePerHour" value="35" />
+				<span asp-validation-for="PricePerHour" class="text-danger"></span>
+			</div>
+			@*<div class="form-group">
+			<label asp-for="Price" class="control-label"></label>
+			<input asp-for="Price" class="form-control" />
+			<span asp-validation-for="Price" class="text-danger"></span>
+			</div>*@
+			<div class="form-group">
+				<label asp-for="Price" class="control-label"></label>
+				<input asp-for="Price" class="form-control" disabled />
+				<span asp-validation-for="Price" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="TransactionId" class="control-label"></label>
+				<select asp-for="TransactionId" class="form-control" asp-items="Model.Transactions"></select>
+			</div>
+			<div class="form-group">
+				<label asp-for="ServiceTaskId" class="control-label"></label>
+				<select asp-for="ServiceTaskId" class="form-control" asp-items="Model.ServiceTasks"></select>
+			</div>
+			<div class="form-group">
+				<label asp-for="EngineerId" class="control-label"></label>
+				<select asp-for="EngineerId" class="form-control" asp-items="Model.Engineers"></select>
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Create" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
 </div>
 
 <div>
-    <a asp-action="TransactionLine">Back to List</a>
+	<a asp-action="TransactionLine">Back to List</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
 }

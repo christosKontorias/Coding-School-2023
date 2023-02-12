@@ -5,5 +5,5 @@ public class ServiceTaskDeleteDto {
     public string Code { get; set; }
     public string Description { get; set; }
     public decimal Hours { get; set; }
-  
+
 }

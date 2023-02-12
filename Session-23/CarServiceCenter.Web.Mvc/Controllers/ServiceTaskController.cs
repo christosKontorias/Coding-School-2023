@@ -1,5 +1,6 @@
 ﻿using CarServiceCenter.EF.Repositories;
 using CarServiceCenter.Model;
+using CarServiceCenter.Web.Mvc.Models.Customer;
 using CarServiceCenter.Web.Mvc.Models.ServiceTask;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -111,7 +112,7 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
             var viewServiceTask = new ServiceTaskDeleteDto {
                 Code = ServiceTaskDb.Code,
                 Description = ServiceTaskDb.Description,
-                Hours = ServiceTaskDb.Hours
+                Hours = ServiceTaskDb.Hours,
             };
 
             return View(model: viewServiceTask);

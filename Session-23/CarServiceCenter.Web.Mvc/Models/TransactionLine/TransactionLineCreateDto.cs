@@ -15,4 +15,9 @@ public class TransactionLineCreateDto {
     public int EngineerId { get; set; }
     public List<SelectListItem> Engineers { get; } = new List<SelectListItem>();
 
+    public decimal CalculatePrice() {
+        return Hours * PricePerHour;
+    }
+
+
 }
