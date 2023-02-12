@@ -1,4 +1,6 @@
-﻿namespace CarServiceCenter.Model;
+﻿using System.ComponentModel;
+
+namespace CarServiceCenter.Model;
 
 public class TransactionLine
 {
@@ -14,14 +16,14 @@ public class TransactionLine
     }
     public int Id { get; set; }
     public decimal Hours { get; set; }
-    public decimal PricePerHour { get; set; }
+	[DisplayName("Price Per Hour")]
+	public decimal PricePerHour { get; set; }
     public decimal Price { get; set; }
 
     // Relations
     public int TransactionId { get; set; }
     public Transaction Transaction { get; set; } = null!;
-
-    public int ServiceTaskId { get; set; }
+	public int ServiceTaskId { get; set; }
     public ServiceTask ServiceTask { get; set; } = null!;
 
     public int EngineerId { get; set; }
