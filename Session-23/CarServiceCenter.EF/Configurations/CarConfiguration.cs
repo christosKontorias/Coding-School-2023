@@ -17,9 +17,9 @@ namespace CarServiceCenter.EF.Configurations
             builder.Property(t => t.Id).ValueGeneratedOnAdd();
 
             // Properties
-            builder.Property(t => t.Brand).HasMaxLength(30).IsRequired();
-            builder.Property(t => t.Model).HasMaxLength(50).IsRequired();
-            builder.Property(t => t.CarRegistrationNumber).HasMaxLength(10).IsRequired();
+            builder.Property(t => t.Brand).HasMaxLength(15).IsRequired();
+            builder.Property(t => t.Model).HasMaxLength(15).IsRequired();
+            builder.Property(t => t.CarRegistrationNumber).HasMaxLength(8).IsRequired();
 
             // Relations
 

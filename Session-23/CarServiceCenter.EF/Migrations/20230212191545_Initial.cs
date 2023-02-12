@@ -17,9 +17,9 @@ namespace CarServiceCenter.EF.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Brand = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    Model = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    CarRegistrationNumber = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false)
+                    Brand = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    Model = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    CarRegistrationNumber = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -34,7 +34,7 @@ namespace CarServiceCenter.EF.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Surname = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Phone = table.Column<int>(type: "int", nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
                     Tin = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false)
                 },
                 constraints: table =>
@@ -135,9 +135,9 @@ namespace CarServiceCenter.EF.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Hours = table.Column<decimal>(type: "decimal(3,2)", precision: 3, scale: 2, nullable: false),
-                    PricePerHour = table.Column<decimal>(type: "decimal(3,2)", precision: 3, scale: 2, nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(9,2)", precision: 9, scale: 2, nullable: false),
+                    Hours = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PricePerHour = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     TransactionId = table.Column<int>(type: "int", nullable: false),
                     ServiceTaskId = table.Column<int>(type: "int", nullable: false),
                     EngineerId = table.Column<int>(type: "int", nullable: false)
