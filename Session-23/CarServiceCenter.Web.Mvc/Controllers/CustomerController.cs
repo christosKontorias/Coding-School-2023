@@ -36,7 +36,6 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
             viewCustomer.Surname = customer.Surname;
             viewCustomer.Phone = customer.Phone;
             viewCustomer.Tin = customer.Tin;
-            //viewCar.Transactions = car.Transactions.ToList();
             return View(model: viewCustomer);
         }
 
@@ -75,6 +74,7 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
             }
 
             var viewCustomer = new CustomerEditDto();
+            viewCustomer.Id = CustomerDb.Id;
             viewCustomer.Name = CustomerDb.Name;
             viewCustomer.Surname = CustomerDb.Surname;
             viewCustomer.Phone = CustomerDb.Phone;
@@ -96,6 +96,7 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
                     return NotFound();
                 }
 
+                CustomerDb.Id = customer.Id;
                 CustomerDb.Name = customer.Name;
                 CustomerDb.Surname = customer.Surname;
                 CustomerDb.Phone = customer.Phone;

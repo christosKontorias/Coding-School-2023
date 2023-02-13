@@ -72,7 +72,8 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
             }
 
             var viewServiceTask = new ServiceTaskEditDto();
-            viewServiceTask.Code = ServiceTaskDb.Code;
+			viewServiceTask.Id = ServiceTaskDb.Id;
+			viewServiceTask.Code = ServiceTaskDb.Code;
             viewServiceTask.Description = ServiceTaskDb.Description;
             viewServiceTask.Hours = ServiceTaskDb.Hours;
             return View(model: viewServiceTask);
@@ -92,7 +93,8 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
                     return NotFound();
                 }
 
-                ServiceTaskDb.Code = serviceTask.Code;
+				ServiceTaskDb.Id = serviceTask.Id;
+				ServiceTaskDb.Code = serviceTask.Code;
                 ServiceTaskDb.Description = serviceTask.Description;
                 ServiceTaskDb.Hours = serviceTask.Hours;
                 _serviceTaskRepo.Update(id, ServiceTaskDb);
@@ -110,7 +112,8 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
             }
 
             var viewServiceTask = new ServiceTaskDeleteDto {
-                Code = ServiceTaskDb.Code,
+                Id = ServiceTaskDb.Id,
+				Code = ServiceTaskDb.Code,
                 Description = ServiceTaskDb.Description,
                 Hours = ServiceTaskDb.Hours,
             };

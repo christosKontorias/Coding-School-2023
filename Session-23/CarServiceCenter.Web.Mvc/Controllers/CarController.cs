@@ -33,7 +33,6 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
             viewCar.Brand = car.Brand;
             viewCar.Model = car.Model;
             viewCar.CarRegistrationNumber = car.CarRegistrationNumber;
-            //viewCar.Transactions = car.Transactions.ToList();
             return View(model: viewCar);
         }
 

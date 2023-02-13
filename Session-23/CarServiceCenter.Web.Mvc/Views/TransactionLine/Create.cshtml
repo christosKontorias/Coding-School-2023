@@ -4,7 +4,7 @@
 	ViewData["Title"] = "Create";
 }
 
-<h1>Add Mew Transaction Line</h1>
+<h1>Add New Transaction Line</h1>
 
 <hr />
 <div class="row">
@@ -16,18 +16,18 @@
 				<input asp-for="Hours" class="form-control" />
 				<span asp-validation-for="Hours" class="text-danger"></span>
 			</div>
-			@*			<div class="form-group">
-			<label asp-for="PricePerHour" class="control-label">Price Per Hour</label>
-			<input asp-for="PricePerHour" class="form-control" type="text"/>
-			<input type="hidden" asp-for="PricePerHour" value="35" />
-			<span asp-validation-for="PricePerHour" class="text-danger"></span>
-			</div>*@
 			<div class="form-group">
+				<label asp-for="PricePerHour" class="control-label">Price Per Hour</label>
+				<input asp-for="PricePerHour" class="form-control" type="number"/>
+				<input type="hidden" asp-for="PricePerHour" />
+				<span asp-validation-for="PricePerHour" class="text-danger"></span>
+			</div>
+@*			<div class="form-group">
 				<label asp-for="PricePerHour" class="control-label">Price Per Hour</label>
 				<input asp-for="PricePerHour" class="form-control" type="text" value="44.5" disabled />
 				<input type="hidden" asp-for="PricePerHour" value="44.5" />
 				<span asp-validation-for="PricePerHour" class="text-danger"></span>
-			</div>
+			</div>*@
 
 			<div class="form-group">
 				<label asp-for="Price" class="control-label"></label>

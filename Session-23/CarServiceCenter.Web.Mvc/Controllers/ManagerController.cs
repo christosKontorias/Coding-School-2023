@@ -73,6 +73,7 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
             }
 
             var viewManager = new ManagerEditDto();
+            viewManager.Id = ManagerDb.Id;
             viewManager.Name = ManagerDb.Name;
             viewManager.Surname = ManagerDb.Surname;
             viewManager.SalaryPerMonth = ManagerDb.SalaryPerMonth;
@@ -93,7 +94,8 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
                     return NotFound();
                 }
 
-                ManagerDb.Name = manager.Name;
+				ManagerDb.Id = manager.Id;
+				ManagerDb.Name = manager.Name;
                 ManagerDb.Surname = manager.Surname;
                 ManagerDb.SalaryPerMonth = manager.SalaryPerMonth;
                 _managerRepo.Update(id, ManagerDb);
@@ -111,6 +113,7 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
             }
 
             var viewManager = new ManagerDeleteDto {
+                Id = ManagerDb.Id,
                 Name = ManagerDb.Name,
                 Surname = ManagerDb.Surname,
                 SalaryPerMonth = ManagerDb.SalaryPerMonth

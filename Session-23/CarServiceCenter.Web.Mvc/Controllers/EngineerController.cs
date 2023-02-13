@@ -85,6 +85,7 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
 			}
 
 			var viewEngineer = new EngineerEditDto();
+			viewEngineer.Id = EngineerDb.Id;
 			viewEngineer.Name = EngineerDb.Name;
 			viewEngineer.Surname = EngineerDb.Surname;
 			viewEngineer.SalaryPerMonth = EngineerDb.SalaryPerMonth;
@@ -112,6 +113,7 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
 					return NotFound();
 				}
 
+				EngineerDb.Id = engineer.Id;
 				EngineerDb.Name = engineer.Name;
 				EngineerDb.Surname = engineer.Surname;
 				EngineerDb.SalaryPerMonth = engineer.SalaryPerMonth;
@@ -133,6 +135,7 @@ namespace CarServiceCenter.Web.Mvc.Controllers {
 			}
 
 			var viewEngineer = new EngineerDeleteDto {
+				Id = EngineerDb.Id,
 				Name = EngineerDb.Name,
 				Surname = EngineerDb.Surname,
 				SalaryPerMonth = EngineerDb.SalaryPerMonth
