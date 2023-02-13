@@ -8,60 +8,68 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CarServiceCenter.EF.Repositories {
-    public class TransactionLineRepo : IEntityRepo<TransactionLine> {
-        public void Add(TransactionLine entity) {
-            using var context = new CarServiceCenterDbContext();
+	public class TransactionLineRepo : IEntityRepo<TransactionLine> {
+		public void Add(TransactionLine entity) {
+			using var context = new CarServiceCenterDbContext();
 
-            if (entity.Id != 0)
-                throw new ArgumentException("Given entity should not have Id set", nameof(entity));
+			if (entity.Id != 0)
+				throw new ArgumentException("Given entity should not have Id set", nameof(entity));
 
-            context.TransactionLines.Add(entity);
-            context.SaveChanges();
-        }
+			context.TransactionLines.Add(entity);
+			context.SaveChanges();
+		}
 
-        public void Delete(int id) {
-            using var context = new CarServiceCenterDbContext();
-            var TransactionLineDb = context.TransactionLines.Where(transactionLine => transactionLine.Id == id).SingleOrDefault();
-            if (TransactionLineDb is null)
-                throw new KeyNotFoundException($"Given id '{id}' was not found in database");
-            context.Remove(TransactionLineDb);
-            context.SaveChanges();
-        }
+		public void Delete(int id) {
+			using var context = new CarServiceCenterDbContext();
+			var TransactionLineDb = context.TransactionLines
+				.Include(transactionLine => transactionLine.Transaction)
+				.Include(transactionLine => transactionLine.ServiceTask)
+				.Include(transactionLine => transactionLine.Engineer)
+				.Where(transactionLine => transactionLine.Id == id).SingleOrDefault();
+			if (TransactionLineDb is null)
+				throw new KeyNotFoundException($"Given id '{id}' was not found in database");
+			context.Remove(TransactionLineDb);
+			context.SaveChanges();
+		}
 
-        public IList<TransactionLine> GetAll() {
-            using var context = new CarServiceCenterDbContext();
-            return context.TransactionLines.
-                Include(transactionLine => transactionLine.Transaction).
-                Include(transactionLine => transactionLine.ServiceTask).
-                Include(transactionLine => transactionLine.Engineer).ToList(); 
-        }
+		public IList<TransactionLine> GetAll() {
+			using var context = new CarServiceCenterDbContext();
+			return context.TransactionLines.
+				Include(transactionLine => transactionLine.Transaction).
+				Include(transactionLine => transactionLine.ServiceTask).
+				Include(transactionLine => transactionLine.Engineer).ToList();
+		}
 
-        public TransactionLine? GetById(int id) {
-            using var context = new CarServiceCenterDbContext();
-            var TransactionLineDb = context.TransactionLines.
-                Include(transactionLine => transactionLine.Transaction).
-                Include(transactionLine => transactionLine.ServiceTask).
-                Include(transactionLine => transactionLine.Engineer).
-                Where(transactionLine => transactionLine.Id == id).SingleOrDefault();
-                
-            if (TransactionLineDb is null) {
-                throw new KeyNotFoundException($"Given id '{id}' was not found in database");
-            } else {
-                return TransactionLineDb;
-            }
-        }
+		public TransactionLine? GetById(int id) {
+			using var context = new CarServiceCenterDbContext();
+			var TransactionLineDb = context.TransactionLines.
+				Include(transactionLine => transactionLine.Transaction).
+				Include(transactionLine => transactionLine.ServiceTask).
+				Include(transactionLine => transactionLine.Engineer).
+				Where(transactionLine => transactionLine.Id == id).SingleOrDefault();
 
-        public void Update(int id, TransactionLine entity) {
-            using var context = new CarServiceCenterDbContext();
-            var TransactionLineDb = context.TransactionLines.Where(transactionLine => transactionLine.Id == id).SingleOrDefault();
-            if (TransactionLineDb is null)
-                throw new KeyNotFoundException($"Given id '{id}' was not found in database");
-            TransactionLineDb.Price = entity.Price;
-            TransactionLineDb.PricePerHour = entity.PricePerHour;
-            TransactionLineDb.Hours = entity.Hours;
-            TransactionLineDb.ServiceTaskId = entity.ServiceTaskId;
+			if (TransactionLineDb is null) {
+				throw new KeyNotFoundException($"Given id '{id}' was not found in database");
+			} else {
+				return TransactionLineDb;
+			}
+		}
 
-            context.SaveChanges();
-        }
-    }
+		public void Update(int id, TransactionLine entity) {
+			using var context = new CarServiceCenterDbContext();
+			var TransactionLineDb = context.TransactionLines
+				.Include(transactionLine => transactionLine.Transaction)
+				.Include(transactionLine => transactionLine.ServiceTask)
+				.Include(transactionLine => transactionLine.Engineer)
+				.Where(transactionLine => transactionLine.Id == id).SingleOrDefault();
+			if (TransactionLineDb is null)
+				throw new KeyNotFoundException($"Given id '{id}' was not found in database");
+			TransactionLineDb.Price = entity.Price;
+			TransactionLineDb.PricePerHour = entity.PricePerHour;
+			TransactionLineDb.Hours = entity.Hours;
+			TransactionLineDb.ServiceTaskId = entity.ServiceTaskId;
+
+			context.SaveChanges();
+		}
+	}
 }

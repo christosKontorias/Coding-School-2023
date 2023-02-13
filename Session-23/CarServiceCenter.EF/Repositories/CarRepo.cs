@@ -20,7 +20,7 @@ namespace CarServiceCenter.EF.Repositories {
 
         public void Delete(int id) {
             using var context = new CarServiceCenterDbContext();
-            var CarDb = context.Cars.Where(car => car.Id == id).SingleOrDefault();
+            var CarDb = context.Cars.Include(car => car.Transactions).Where(car => car.Id == id).SingleOrDefault();
 
             if (CarDb is null)
                 throw new KeyNotFoundException($"Given id '{id}' was not found in database");
@@ -30,12 +30,12 @@ namespace CarServiceCenter.EF.Repositories {
 
         public IList<Car> GetAll() {
             using var context = new CarServiceCenterDbContext();
-            return context.Cars.ToList();
+            return context.Cars.Include(car => car.Transactions).ToList();
         }
 
         public Car? GetById(int id) {
             using var context = new CarServiceCenterDbContext();
-            var CarDb = context.Cars.Where(car => car.Id == id).SingleOrDefault();
+            var CarDb = context.Cars.Include(car => car.Transactions).Where(car => car.Id == id).SingleOrDefault();
 
             if (CarDb is null) {
                 throw new KeyNotFoundException($"Given id '{id}' was not found in database");

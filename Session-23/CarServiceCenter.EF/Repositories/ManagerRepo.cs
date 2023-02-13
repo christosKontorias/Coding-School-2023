@@ -1,5 +1,6 @@
 ﻿using CarServiceCenter.EF.Context;
 using CarServiceCenter.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,10 @@ namespace CarServiceCenter.EF.Repositories {
 
         public void Delete(int id) {
             using var context = new CarServiceCenterDbContext();
-            var ManagerDb = context.Managers.Where(manager => manager.Id == id).SingleOrDefault();
+            var ManagerDb = context.Managers
+                .Include(manager => manager.Engineers)
+			    .Include(manager => manager.Transactions)
+				.Where(manager => manager.Id == id).SingleOrDefault();
 
             if (ManagerDb is null)
                 throw new KeyNotFoundException($"Given id '{id}' was not found in database");
@@ -34,7 +38,9 @@ namespace CarServiceCenter.EF.Repositories {
 
         public Manager? GetById(int id) {
             using var context = new CarServiceCenterDbContext();
-            var ManagerDb = context.Managers.Where(manager => manager.Id == id).SingleOrDefault();
+            var ManagerDb = context.Managers.Include(manager => manager.Engineers)
+				.Include(manager => manager.Transactions).
+                Where(manager => manager.Id == id).SingleOrDefault();
 
             if (ManagerDb is null) {
                 throw new KeyNotFoundException($"Given id '{id}' was not found in database");
@@ -45,8 +51,10 @@ namespace CarServiceCenter.EF.Repositories {
 
         public void Update(int id, Manager entity) {
             using var context = new CarServiceCenterDbContext();
-            var ManagerDb = context.Managers.Where(manager => manager.Id == id).SingleOrDefault();
-            if (ManagerDb is null)
+            var ManagerDb = context.Managers.Include(manager => manager.Engineers)
+				.Include(manager => manager.Transactions).
+				Where(manager => manager.Id == id).SingleOrDefault();
+			if (ManagerDb is null)
                 return;
             ManagerDb.Name = entity.Name;
             ManagerDb.Surname = entity.Surname;

@@ -20,7 +20,9 @@ namespace CarServiceCenter.EF.Repositories {
 
         public void Delete(int id) {
             using var context = new CarServiceCenterDbContext();
-            var EngineerDb = context.Engineers.Where(engineer => engineer.Id == id).SingleOrDefault();
+            var EngineerDb = context.Engineers.Include(engineer => engineer.Manager)
+			    .Include(engineer => engineer.TransactionLines)
+				.Where(engineer => engineer.Id == id).SingleOrDefault();
             if (EngineerDb is null)
                 return;
             context.Remove(EngineerDb);
@@ -29,12 +31,14 @@ namespace CarServiceCenter.EF.Repositories {
 
         public IList<Engineer> GetAll() {
             using var context = new CarServiceCenterDbContext();
-            return context.Engineers.Include(engineer => engineer.Manager).ToList();
+            return context.Engineers.Include(engineer => engineer.Manager)
+				.Include(engineer => engineer.TransactionLines).ToList();
         }
 
         public Engineer? GetById(int id) {
             using var context = new CarServiceCenterDbContext();
-            return context.Engineers.Include(engineer => engineer.Manager).Where(engineer => engineer.Id == id).SingleOrDefault();
+            return context.Engineers.Include(engineer => engineer.Manager)
+				.Include(engineer => engineer.TransactionLines).Where(engineer => engineer.Id == id).SingleOrDefault();
         }
 
         public void Update(int id, Engineer entity) {

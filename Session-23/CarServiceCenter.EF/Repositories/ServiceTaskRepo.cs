@@ -1,5 +1,6 @@
 ﻿using CarServiceCenter.EF.Context;
 using CarServiceCenter.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,9 @@ namespace CarServiceCenter.EF.Repositories {
 
         public void Delete(int id) {
             using var context = new CarServiceCenterDbContext();
-            var ServiceTaskDb = context.ServiceTasks.Where(serviceTask => serviceTask.Id == id).SingleOrDefault();
+            var ServiceTaskDb = context.ServiceTasks
+                .Include(serviceTask => serviceTask.TransactionLines)                
+                .Where(serviceTask => serviceTask.Id == id).SingleOrDefault();
             if (ServiceTaskDb is null)
                 throw new KeyNotFoundException($"Given id '{id}' was not found in database");
             context.Remove(ServiceTaskDb);

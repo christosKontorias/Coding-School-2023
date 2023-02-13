@@ -8,63 +8,68 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CarServiceCenter.EF.Repositories {
-    public class TransactionRepo : IEntityRepo<Transaction> {
-        public void Add(Transaction entity) {
-            using var context = new CarServiceCenterDbContext();
+	public class TransactionRepo : IEntityRepo<Transaction> {
+		public void Add(Transaction entity) {
+			using var context = new CarServiceCenterDbContext();
 
-            if (entity.Id != 0)
-                throw new ArgumentException("Given entity should not have Id set", nameof(entity));
+			if (entity.Id != 0)
+				throw new ArgumentException("Given entity should not have Id set", nameof(entity));
 
-            context.Transactions.Add(entity);
-            context.SaveChanges();
-        }
+			context.Transactions.Add(entity);
+			context.SaveChanges();
+		}
 
-        public void Delete(int id) {
-            using var context = new CarServiceCenterDbContext();
-            var TransactionDb = context.Transactions.Where(transaction => transaction.Id == id).SingleOrDefault();
-            if (TransactionDb is null)
-                throw new KeyNotFoundException($"Given id '{id}' was not found in database");
-            context.Remove(TransactionDb);
-            context.SaveChanges();
-        }
-
-        public IList<Transaction> GetAll() {
-            using var context = new CarServiceCenterDbContext();
-            return context.Transactions.
+		public void Delete(int id) {
+			using var context = new CarServiceCenterDbContext();
+			var TransactionDb = context.Transactions.
 				Include(transaction => transaction.TransactionLines).
 				Include(transaction => transaction.Customer).
-                Include(transaction => transaction.Manager).
-                Include(transaction => transaction.Car).ToList();
+				 Include(transaction => transaction.Manager).
+				 Include(transaction => transaction.Car).
+				Where(transaction => transaction.Id == id).SingleOrDefault();
+			if (TransactionDb is null)
+				throw new KeyNotFoundException($"Given id '{id}' was not found in database");
+			context.Remove(TransactionDb);
+			context.SaveChanges();
+		}
 
-        }
+		public IList<Transaction> GetAll() {
+			using var context = new CarServiceCenterDbContext();
+			return context.Transactions.
+				Include(transaction => transaction.TransactionLines).
+				Include(transaction => transaction.Customer).
+				Include(transaction => transaction.Manager).
+				Include(transaction => transaction.Car).ToList();
 
-        public Transaction? GetById(int id) {
-            using var context = new CarServiceCenterDbContext();
-            var TransactionDb = context.Transactions.
-                Include(transaction => transaction.TransactionLines).
-                Include(transaction => transaction.Customer).
-                 Include(transaction => transaction.Manager).
-                 Include(transaction => transaction.Car).
-                Where(transaction => transaction.Id == id).SingleOrDefault();
+		}
 
-            if (TransactionDb is null) {
-                throw new KeyNotFoundException($"Given id '{id}' was not found in database");
-            } else {
-                return TransactionDb;
-            }
-        }
+		public Transaction? GetById(int id) {
+			using var context = new CarServiceCenterDbContext();
+			var TransactionDb = context.Transactions.
+				Include(transaction => transaction.TransactionLines).
+				Include(transaction => transaction.Customer).
+				 Include(transaction => transaction.Manager).
+				 Include(transaction => transaction.Car).
+				Where(transaction => transaction.Id == id).SingleOrDefault();
 
-        public void Update(int id, Transaction entity) {
-            using var context = new CarServiceCenterDbContext();
-            var TransactionDb = context.Transactions.Where(transaction => transaction.Id == id).SingleOrDefault();
-            if (TransactionDb is null)
-                throw new KeyNotFoundException($"Given id '{id}' was not found in database");
-            TransactionDb.Date = entity.Date;
-            TransactionDb.CustomerId = entity.CustomerId;
-            TransactionDb.CarId = entity.CarId;
-            TransactionDb.ManagerId = entity.ManagerId;
-            TransactionDb.TotalPrice = entity.TotalPrice;
-            context.SaveChanges();
-        }
-    }
+			if (TransactionDb is null) {
+				throw new KeyNotFoundException($"Given id '{id}' was not found in database");
+			} else {
+				return TransactionDb;
+			}
+		}
+
+		public void Update(int id, Transaction entity) {
+			using var context = new CarServiceCenterDbContext();
+			var TransactionDb = context.Transactions.Where(transaction => transaction.Id == id).SingleOrDefault();
+			if (TransactionDb is null)
+				throw new KeyNotFoundException($"Given id '{id}' was not found in database");
+			TransactionDb.Date = entity.Date;
+			TransactionDb.CustomerId = entity.CustomerId;
+			TransactionDb.CarId = entity.CarId;
+			TransactionDb.ManagerId = entity.ManagerId;
+			TransactionDb.TotalPrice = entity.TotalPrice;
+			context.SaveChanges();
+		}
+	}
 }
