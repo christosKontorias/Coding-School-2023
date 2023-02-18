@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="7.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\FuelStation.EF\FuelStation.EF.csproj" />
+    <ProjectReference Include="..\..\FuelStation.Model\FuelStation.Model.csproj" />
+    <ProjectReference Include="..\Client\FuelStation.Web.Client.csproj" />
+    <ProjectReference Include="..\Shared\FuelStation.Web.Shared.csproj" />
+  </ItemGroup>
+
+
+</Project>
