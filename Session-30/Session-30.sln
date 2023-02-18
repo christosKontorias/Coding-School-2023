@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33403.182
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuelStation.EF", "FuelStation.EF\FuelStation.EF.csproj", "{255B3751-14CC-4B39-A6B8-F3D928C5386B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuelStation.Model", "FuelStation.Model\FuelStation.Model.csproj", "{CC2BBF60-EAF3-4704-8D85-581A39C1C497}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{255B3751-14CC-4B39-A6B8-F3D928C5386B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{255B3751-14CC-4B39-A6B8-F3D928C5386B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{255B3751-14CC-4B39-A6B8-F3D928C5386B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{255B3751-14CC-4B39-A6B8-F3D928C5386B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC2BBF60-EAF3-4704-8D85-581A39C1C497}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC2BBF60-EAF3-4704-8D85-581A39C1C497}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC2BBF60-EAF3-4704-8D85-581A39C1C497}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC2BBF60-EAF3-4704-8D85-581A39C1C497}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {40052310-E5C0-41E5-95C2-EF0BED3826B7}
+	EndGlobalSection
+EndGlobal
