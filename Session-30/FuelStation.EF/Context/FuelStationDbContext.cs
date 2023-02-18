@@ -12,8 +12,8 @@ public class FuelStationDbContext : DbContext {
 
 	public DbSet<Customer> Customers { get; set; } = null!;
 	public DbSet<Employee> Employees { get; set; } = null!;
-	public DbSet<Item> items { get; set; } = null!;
-	public DbSet<Transaction> transactions { get; set; } = null!;
+	public DbSet<Item> Items { get; set; } = null!;
+	public DbSet<Transaction> Transactions { get; set; } = null!;
 	public DbSet<TransactionLine> TransactionLines { get; set; } = null!;
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder) {
