@@ -19,4 +19,5 @@ public class Item {
 	//Constructor
 
 	//Relations
+	public List<TransactionLine> TransactionLines { get; set; }
 }

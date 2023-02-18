@@ -15,10 +15,10 @@ public class Employee {
 	public DateTime HireDateStart { get; set; }
 	public DateTime HireDateEnd { get;set; }
 	public int SallaryPerMonth { get; set; }
-	//decimal SallaryPerMonth
 	public EmployeeType EmployeeType { get; set; }
 
 	//Constructor
 
 	//Relations
+	public List<Transaction> Transactions { get; set; }
 }
