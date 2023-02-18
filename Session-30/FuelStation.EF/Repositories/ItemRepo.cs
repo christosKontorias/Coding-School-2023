@@ -21,7 +21,7 @@ public class ItemRepo : IEntityRepo<Item> {
 
 	public void Delete(int id) {
 		using var context = new FuelStationDbContext();
-		var ItemDb = context.Items.Where(item => item.Id == id).SingleOrDefault();
+		var ItemDb = context.Items.SingleOrDefault(item => item.Id == id);
 		if (ItemDb is null) {
 			throw new KeyNotFoundException($"Given id '{id}' was not found in database");
 		}
