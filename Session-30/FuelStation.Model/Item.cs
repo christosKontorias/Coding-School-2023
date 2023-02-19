@@ -17,7 +17,13 @@ public class Item {
 	public decimal Cost { get; set; }
 
 	//Constructor
-
+	public Item(String code, String description, ItemType itemType, decimal price, decimal cost) {
+		Code = code;
+		Description = description;
+		ItemType = itemType;
+		Price = price;
+		Cost = cost;
+	}
 	//Relations
 	public List<TransactionLine> TransactionLines { get; set; }
 }

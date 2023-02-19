@@ -18,7 +18,16 @@ public class Employee {
 	public EmployeeType EmployeeType { get; set; }
 
 	//Constructor
+	public Employee(string name, string surname, DateTime hireDateStart, DateTime hireDateEnd,int sallaryPerMonth, EmployeeType employeeType) {
+		Name = name;
+		Surname = surname;
+		HireDateStart = hireDateStart;
+		HireDateEnd = hireDateEnd;
+		EmployeeType = employeeType;
+		SallaryPerMonth = sallaryPerMonth;
 
+		Transactions = new List<Transaction>();
+	}
 	//Relations
 	public List<Transaction> Transactions { get; set; }
 }
