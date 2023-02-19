@@ -26,9 +26,9 @@ public class TransactionLineConfiguration : IEntityTypeConfiguration<Transaction
 			.HasForeignKey(transactionLine => transactionLine.TransactionId)
 			.OnDelete(DeleteBehavior.Restrict);
 
-		builder.HasOne(t => t.Item)
-			.WithMany(t => t.TransactionLines)
-			.HasForeignKey(t => t.ItemId)
+		builder.HasOne(transactionLine => transactionLine.Item)
+			.WithMany(transactionLine => transactionLine.TransactionLines)
+			.HasForeignKey(transactionLine => transactionLine.ItemId)
 			.OnDelete(DeleteBehavior.Restrict);
 	}
 }
