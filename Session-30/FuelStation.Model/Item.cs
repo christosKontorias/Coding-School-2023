@@ -23,7 +23,10 @@ public class Item {
 		ItemType = itemType;
 		Price = price;
 		Cost = cost;
+
+		TransactionLines = new List<TransactionLine>();
 	}
+
 	//Relations
 	public List<TransactionLine> TransactionLines { get; set; }
 }

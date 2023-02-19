@@ -15,6 +15,13 @@ public class Transaction {
 	public decimal TotalValue { get; set; }
 
 	//Constructor
+	public Transaction(PaymentMethod paymentMethod, decimal totalValue) {
+		Date = DateTime.Now;
+		PaymentMethod = paymentMethod;
+		TotalValue = totalValue;
+
+		TransactionLines = new List<TransactionLine>();
+	}
 
 	//Relations
 	public int EmployeeId { get; set; }

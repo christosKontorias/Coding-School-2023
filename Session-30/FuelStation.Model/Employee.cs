@@ -23,8 +23,8 @@ public class Employee {
 		Surname = surname;
 		HireDateStart = hireDateStart;
 		HireDateEnd = hireDateEnd;
-		EmployeeType = employeeType;
 		SallaryPerMonth = sallaryPerMonth;
+		EmployeeType = employeeType;
 
 		Transactions = new List<Transaction>();
 	}
