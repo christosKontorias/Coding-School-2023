@@ -15,7 +15,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction> {
 		// Properties
 		builder.Property(transaction => transaction.Date).IsRequired();
 		builder.Property(transaction => transaction.PaymentMethod).IsRequired();
-		builder.Property(transaction => transaction.TotalValue).HasPrecision(5, 2).IsRequired();
+		builder.Property(transaction => transaction.TotalValue).HasPrecision(6, 2).IsRequired();
 	
 		//Relations
 		builder.HasOne(transaction => transaction.Customer)

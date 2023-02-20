@@ -16,9 +16,9 @@ public class TransactionLineConfiguration : IEntityTypeConfiguration<Transaction
 		builder.Property(transactionLine => transactionLine.Quantity).IsRequired();
 		builder.Property(transactionLine => transactionLine.ItemPrice).HasPrecision(5, 2).IsRequired();
 		builder.Property(transactionLine => transactionLine.NetValue).HasPrecision(6, 2).IsRequired();
-		builder.Property(transactionLine => transactionLine.DiscountPercent).HasPrecision(2, 2).IsRequired();
-		builder.Property(transactionLine => transactionLine.DiscountValue).HasPrecision(2, 2).IsRequired();
-		builder.Property(transactionLine => transactionLine.TotalValue).HasPrecision(5, 2).IsRequired();
+		builder.Property(transactionLine => transactionLine.DiscountPercent).HasPrecision(4, 2).IsRequired();
+		builder.Property(transactionLine => transactionLine.DiscountValue).HasPrecision(4, 2).IsRequired();
+		builder.Property(transactionLine => transactionLine.TotalValue).HasPrecision(6, 2).IsRequired();
 
 		// Relations
 		builder.HasOne(transactionLine => transactionLine.Transaction)
