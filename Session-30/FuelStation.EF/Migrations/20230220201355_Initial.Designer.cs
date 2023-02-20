@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FuelStation.EF.Migrations
 {
     [DbContext(typeof(FuelStationDbContext))]
-    [Migration("20230220152729_Initial")]
+    [Migration("20230220201355_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -102,8 +102,8 @@ namespace FuelStation.EF.Migrations
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<decimal>("Cost")
-                        .HasPrecision(3, 2)
-                        .HasColumnType("decimal(3,2)");
+                        .HasPrecision(4, 2)
+                        .HasColumnType("decimal(4,2)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -114,8 +114,8 @@ namespace FuelStation.EF.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Price")
-                        .HasPrecision(3, 2)
-                        .HasColumnType("decimal(3,2)");
+                        .HasPrecision(4, 2)
+                        .HasColumnType("decimal(4,2)");
 
                     b.HasKey("Id");
 
@@ -143,8 +143,8 @@ namespace FuelStation.EF.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("TotalValue")
-                        .HasPrecision(5, 2)
-                        .HasColumnType("decimal(5,2)");
+                        .HasPrecision(6, 2)
+                        .HasColumnType("decimal(6,2)");
 
                     b.HasKey("Id");
 
@@ -164,12 +164,12 @@ namespace FuelStation.EF.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<decimal>("DiscountPercent")
-                        .HasPrecision(2, 2)
-                        .HasColumnType("decimal(2,2)");
+                        .HasPrecision(4, 2)
+                        .HasColumnType("decimal(4,2)");
 
                     b.Property<decimal>("DiscountValue")
-                        .HasPrecision(2, 2)
-                        .HasColumnType("decimal(2,2)");
+                        .HasPrecision(4, 2)
+                        .HasColumnType("decimal(4,2)");
 
                     b.Property<int>("ItemId")
                         .HasColumnType("int");
@@ -186,8 +186,8 @@ namespace FuelStation.EF.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("TotalValue")
-                        .HasPrecision(5, 2)
-                        .HasColumnType("decimal(5,2)");
+                        .HasPrecision(6, 2)
+                        .HasColumnType("decimal(6,2)");
 
                     b.Property<int>("TransactionId")
                         .HasColumnType("int");
