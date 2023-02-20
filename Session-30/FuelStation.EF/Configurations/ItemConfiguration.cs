@@ -21,6 +21,6 @@ public class ItemConfiguration : IEntityTypeConfiguration<Item> {
 		builder.Property(item => item.Cost).HasPrecision(3, 2).IsRequired();
 
 		// Unique constraint on Code (Den xerw akoma)
-		builder.HasIndex(item => item.Code).IsUnique();
+		//builder.HasIndex(item => item.Code).IsUnique();
 	}
 }

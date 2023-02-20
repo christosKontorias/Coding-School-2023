@@ -19,6 +19,6 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>{
 		builder.Property(customer => customer.CardNumber).HasMaxLength(20).IsRequired();
 
 		// Unique constraint on CardNumber (Den xerw akoma)
-		builder.HasIndex(c => c.CardNumber).IsUnique();
+		//builder.HasIndex(c => c.CardNumber).IsUnique();
 	}
 }
