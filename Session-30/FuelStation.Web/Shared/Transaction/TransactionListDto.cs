@@ -14,7 +14,5 @@ namespace FuelStation.Web.Shared.Transaction {
 		public decimal TotalValue { get; set; }
 		public int EmployeeId { get; set; }
 		public int CustomerId { get; set; }
-
-		public List<TransactionLine> TransactionLines { get; set; } = new();
 	}
 }
