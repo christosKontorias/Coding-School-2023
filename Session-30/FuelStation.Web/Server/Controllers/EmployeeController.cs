@@ -2,16 +2,22 @@
 using FuelStation.Model;
 using FuelStation.Model.Enums;
 using FuelStation.Web.Shared.Employee;
+using FuelStation.Web.Shared.MemberValidation;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Data.Common;
 
 namespace FuelStation.Web.Server.Controllers {
 	[Route("[controller]")]
 	[ApiController]
 	public class EmployeeController : ControllerBase {
 		private readonly IEntityRepo<Employee> _employeeRepo;
+		private readonly IMemberValidation _memberValidation;
+		public String errorMessage = String.Empty;
 
-		public EmployeeController(IEntityRepo<Employee> employeeRepo) {
+		public EmployeeController(IEntityRepo<Employee> employeeRepo, IMemberValidation memberValidation) {
 			_employeeRepo = employeeRepo;
+			_memberValidation = memberValidation;
 		}
 
 		[HttpGet]
@@ -48,21 +54,47 @@ namespace FuelStation.Web.Server.Controllers {
 			_employeeRepo.Add(newEmployee);
 		}
 
+
+
 		[HttpPut]
-		public async Task Put(EmployeeEditDto employee) {
-			var itemToUpdate = _employeeRepo.GetById(employee.Id);
-			itemToUpdate.Name = employee.Name;
-			itemToUpdate.Surname = employee.Surname;
-			itemToUpdate.HireDateStart = employee.HireDateStart;
-			itemToUpdate.HireDateEnd = employee.HireDateEnd;
-			itemToUpdate.SallaryPerMonth = employee.SallaryPerMonth;
-			itemToUpdate.EmployeeType = employee.EmployeeType;
-			_employeeRepo.Update(employee.Id, itemToUpdate);
+		public async Task<ActionResult> Put(EmployeeEditDto employee) {
+			var EmployeeDb = await Task.Run(() => { return _employeeRepo.GetById(employee.Id); });
+			if (EmployeeDb == null) {
+				return BadRequest($"Employee not found");
+			} else if (_memberValidation.ValidateUpdateEmployee(employee.EmployeeType, EmployeeDb, _employeeRepo.GetAll().ToList(), out errorMessage)) {
+				EmployeeDb.Name = employee.Name;
+				EmployeeDb.Surname = employee.Surname;
+				EmployeeDb.HireDateStart = employee.HireDateStart;
+				EmployeeDb.HireDateEnd = employee.HireDateEnd;
+				EmployeeDb.SallaryPerMonth = employee.SallaryPerMonth;
+				EmployeeDb.EmployeeType = employee.EmployeeType;
+				try {
+					_employeeRepo.Update(employee.Id, EmployeeDb);
+				} catch (DbUpdateException ex) {
+					return BadRequest(ex.Message);
+				}
+				return Ok();
+			} else {
+				return BadRequest(errorMessage);
+			}
 		}
 
 		[HttpDelete("{id}")]
-		public async Task Delete(int id) {
-			_employeeRepo.Delete(id);
+		public async Task<ActionResult> Delete(int id) {
+
+			var employees = _employeeRepo.GetAll().ToList();
+			if (_memberValidation.ValidateDeleteEmployee(employees.Where(e => e.Id == id).Single().EmployeeType, employees, out errorMessage)) {
+				try {
+					await Task.Run(() => { _employeeRepo.Delete(id); });
+				} catch (DbUpdateException) {
+					return BadRequest($"Could not delete this employee because it has transactions");
+				} catch (KeyNotFoundException) {
+					return BadRequest($"Employee not found");
+				}
+				return Ok();
+			}
+			return BadRequest(errorMessage);
+
 		}
 	}
 }

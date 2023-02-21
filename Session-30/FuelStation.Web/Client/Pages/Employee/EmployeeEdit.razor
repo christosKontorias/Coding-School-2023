@@ -5,6 +5,8 @@
 
 @inject HttpClient httpClient
 @inject NavigationManager navigationManager
+@inject IJSRuntime jsRuntime
+
 
 <h3>@title</h3>
 
@@ -99,8 +101,11 @@
 		} else {
 			response = await httpClient.PutAsJsonAsync("employee", Employee);
 		}
-
-		response.EnsureSuccessStatusCode();
-		navigationManager.NavigateTo("employeelist");
+		if (response.IsSuccessStatusCode) {
+			navigationManager.NavigateTo("/employeelist");
+		} else {
+			var error = await response.Content.ReadAsStringAsync();
+			await jsRuntime.InvokeVoidAsync("alert", error);
+		}
 	}
 }
