@@ -1,5 +1,6 @@
 ﻿using FuelStation.EF.Repositories;
 using FuelStation.Model;
+using FuelStation.Web.Shared.Customer;
 using FuelStation.Web.Shared.Employee;
 using FuelStation.Web.Shared.Item;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +11,7 @@ namespace FuelStation.Web.Server.Controllers {
 	public class ItemController : ControllerBase {
 		private readonly IEntityRepo<Item> _itemRepo;
 
-		public ItemController(IEntityRepo<Item> itemRepo) {
+		public ItemController(IEntityRepo<Item> itemRepo) { 
 			_itemRepo = itemRepo;
 		}
 
@@ -40,14 +41,49 @@ namespace FuelStation.Web.Server.Controllers {
 			};
 		}
 
+		//[HttpPost]
+		//public async Task Post(ItemEditDto item) {
+		//	var newItem = new Item(item.Code, item.Description, item.ItemType, item.Price, item.Cost);
+		//	_itemRepo.Add(newItem);
+		//}
+
+		//[HttpPut]
+		//public async Task Put(ItemEditDto item) {
+		//	var itemToUpdate = _itemRepo.GetById(item.Id);
+		//	itemToUpdate.Code = item.Code;
+		//	itemToUpdate.Description = item.Description;
+		//	itemToUpdate.ItemType = item.ItemType;
+		//	itemToUpdate.Price = item.Price;
+		//	itemToUpdate.Cost = item.Cost;
+		//	_itemRepo.Update(item.Id, itemToUpdate);
+		//}
+
 		[HttpPost]
-		public async Task Post(ItemEditDto item) {
+		public async Task<ActionResult<ItemEditDto>> Post(ItemEditDto item) {
+
+			if (_itemRepo.GetAll().Any(c => c.Code == item.Code)) {
+				return BadRequest("CardNumber must be unique");
+			}
 			var newItem = new Item(item.Code, item.Description, item.ItemType, item.Price, item.Cost);
 			_itemRepo.Add(newItem);
+
+			return CreatedAtAction(nameof(GetById), new { id = newItem.Id }, new ItemEditDto {
+				Id = newItem.Id,
+				Code = newItem.Code,
+				Description = newItem.Description,
+				ItemType = newItem.ItemType,
+				Price = newItem.Price,
+				Cost = newItem.Cost
+			});
 		}
 
 		[HttpPut]
-		public async Task Put(ItemEditDto item) {
+		public async Task<IActionResult> Put(ItemEditDto item) {
+
+			if (_itemRepo.GetAll().Any(item => item.Id != item.Id && item.Code == item.Code)) {
+				return BadRequest("CardNumber must be unique");
+			}
+
 			var itemToUpdate = _itemRepo.GetById(item.Id);
 			itemToUpdate.Code = item.Code;
 			itemToUpdate.Description = item.Description;
@@ -55,6 +91,8 @@ namespace FuelStation.Web.Server.Controllers {
 			itemToUpdate.Price = item.Price;
 			itemToUpdate.Cost = item.Cost;
 			_itemRepo.Update(item.Id, itemToUpdate);
+
+			return NoContent();
 		}
 
 		[HttpDelete("{id}")]

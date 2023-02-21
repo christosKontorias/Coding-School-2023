@@ -55,7 +55,6 @@ namespace FuelStation.Web.Server.Controllers {
 		}
 
 
-
 		[HttpPut]
 		public async Task<ActionResult> Put(EmployeeEditDto employee) {
 			var EmployeeDb = await Task.Run(() => { return _employeeRepo.GetById(employee.Id); });
