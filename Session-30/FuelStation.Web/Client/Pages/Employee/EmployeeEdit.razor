@@ -19,6 +19,7 @@
 			<div class="col-md-6">
 				<label class="form-label">Name</label>
 				<InputText class="form-control" @bind-Value="@Employee.Name" />
+				<ValidationMessage For="@(() => Employee.Name)" />
 			</div>
 		</div>
 
@@ -26,6 +27,7 @@
 			<div class="col-md-6">
 				<label class="form-label">Surname</label>
 				<InputText class="form-control" @bind-Value="@Employee.Surname" />
+				<ValidationMessage For="@(() => Employee.Surname)" />
 			</div>
 		</div>
 
@@ -34,6 +36,7 @@
 			<div class="col-md-6">
 				<label type="date">Hire Date Start:</label>
 				<InputDate class="form-control" @bind-Value="@Employee.HireDateStart" />
+				<ValidationMessage For="@(() => Employee.HireDateStart)" />
 			</div>
 		</div>
 

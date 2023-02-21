@@ -19,6 +19,8 @@
 			<div class="col-md-6">
 				<label class="form-label">Code</label>
 				<InputText class="form-control" @bind-Value="@Item.Code" />
+				<ValidationMessage For="@(() => Item.Code)" />
+
 			</div>
 		</div>
 
@@ -26,6 +28,8 @@
 			<div class="col-md-6">
 				<label class="form-label">Description</label>
 				<InputText class="form-control" @bind-Value="@Item.Description" />
+				<ValidationMessage For="@(() => Item.Description)" />
+
 			</div>
 		</div>
 

@@ -19,6 +19,7 @@
 			<div class="col-md-6">
 				<label class="form-label">Name</label>
 				<InputText class="form-control" @bind-Value="@Customer.Name" />
+				<ValidationMessage For="@(() => Customer.Name)" />
 			</div>
 		</div>
 
@@ -27,6 +28,7 @@
 			<div class="col-md-6">
 				<label class="form-label">Surname</label>
 				<InputText class="form-control" @bind-Value="@Customer.Surname" />
+				<ValidationMessage For="@(() => Customer.Surname)" />
 			</div>
 		</div>
 
@@ -35,6 +37,7 @@
 			<div class="col-md-6">
 				<label class="form-label">Card Number</label>
 				<InputText class="form-control" @bind-Value="@Customer.CardNumber" />
+				<ValidationMessage For="@(() => Customer.CardNumber)" />
 			</div>
 		</div>
 
