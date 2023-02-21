@@ -41,23 +41,6 @@ namespace FuelStation.Web.Server.Controllers {
 			};
 		}
 
-		//[HttpPost]
-		//public async Task Post(ItemEditDto item) {
-		//	var newItem = new Item(item.Code, item.Description, item.ItemType, item.Price, item.Cost);
-		//	_itemRepo.Add(newItem);
-		//}
-
-		//[HttpPut]
-		//public async Task Put(ItemEditDto item) {
-		//	var itemToUpdate = _itemRepo.GetById(item.Id);
-		//	itemToUpdate.Code = item.Code;
-		//	itemToUpdate.Description = item.Description;
-		//	itemToUpdate.ItemType = item.ItemType;
-		//	itemToUpdate.Price = item.Price;
-		//	itemToUpdate.Cost = item.Cost;
-		//	_itemRepo.Update(item.Id, itemToUpdate);
-		//}
-
 		[HttpPost]
 		public async Task<ActionResult<ItemEditDto>> Post(ItemEditDto item) {
 
