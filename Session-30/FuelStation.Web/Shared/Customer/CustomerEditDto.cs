@@ -16,6 +16,7 @@ namespace FuelStation.Web.Shared.Customer {
 		public string Surname { get; set; } = null!;
 		[Required]
 		[MaxLength(20, ErrorMessage = "Card Number must have max length 20 characters.")]
-		public string CardNumber { get; set; } = null!;
+        [RegularExpression("^A.*", ErrorMessage = "CardNumber must start with the letter 'A'")]
+        public string CardNumber { get; set; } = null!;
 	}
 }

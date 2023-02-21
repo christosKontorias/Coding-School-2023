@@ -24,7 +24,7 @@ namespace FuelStation.Web.Server.Controllers {
 				CardNumber = customer.CardNumber
 			});
 		}
-
+		 
 		[HttpGet("{id}")]
 		public async Task<CustomerEditDto> GetById(int id) {
 			var result = _customerRepo.GetById(id);
@@ -37,19 +37,45 @@ namespace FuelStation.Web.Server.Controllers {
 		}
 
 		[HttpPost]
-		public async Task Post(CustomerEditDto customer) {
+		public async Task<ActionResult<CustomerEditDto>> Post(CustomerEditDto customer) {
+			if (string.IsNullOrWhiteSpace(customer.CardNumber) || !customer.CardNumber.StartsWith("A")) {
+				return BadRequest("CardNumber must not be empty and must start with 'A'");
+			}
+
+			if (_customerRepo.GetAll().Any(c => c.CardNumber == customer.CardNumber)) {
+				return BadRequest("CardNumber must be unique");
+			}
+
 			var newCustomer = new Customer(customer.Name, customer.Surname, customer.CardNumber);
 			_customerRepo.Add(newCustomer);
+
+			return CreatedAtAction(nameof(GetById), new { id = newCustomer.Id }, new CustomerEditDto {
+				Id = newCustomer.Id,
+				Name = newCustomer.Name,
+				Surname = newCustomer.Surname,
+				CardNumber = newCustomer.CardNumber
+			});
 		}
 
 		[HttpPut]
-		public async Task Put(CustomerEditDto customer) {
+		public async Task<IActionResult> Put(CustomerEditDto customer) {
+			if (string.IsNullOrWhiteSpace(customer.CardNumber) || !customer.CardNumber.StartsWith("A")) {
+				return BadRequest("CardNumber must not be empty and must start with 'A'");
+			}
+
+			if (_customerRepo.GetAll().Any(customer => customer.Id != customer.Id && customer.CardNumber == customer.CardNumber)) {
+				return BadRequest("CardNumber must be unique");
+			}
+
 			var itemToUpdate = _customerRepo.GetById(customer.Id);
 			itemToUpdate.Name = customer.Name;
 			itemToUpdate.Surname = customer.Surname;
 			itemToUpdate.CardNumber = customer.CardNumber;
 			_customerRepo.Update(customer.Id, itemToUpdate);
+
+			return NoContent();
 		}
+
 
 		[HttpDelete("{id}")]
 		public async Task Delete(int id) {
