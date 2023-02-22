@@ -1,11 +1,13 @@
 ﻿@page "/employeelist"
+@attribute [Authorize(Roles = "Manager")]
+@using FuelStation.Web.Client.Authentication;
 @using FuelStation.Web.Shared.Employee;
 @using FuelStation.Web.Shared;
-
+@using System.Net.Http.Headers;
 @inject HttpClient httpClient
 @inject NavigationManager navigationManager
 @inject IJSRuntime jsRuntime
-@attribute [Authorize(Roles = "Manager")]
+@inject AuthenticationStateProvider authenticationStateProvider
 
 <h3>Employee List</h3>
 
@@ -55,9 +57,20 @@
 	bool isLoading { get; set; } = true;
 	string errorMessage = null;
 
-	protected override async Task OnInitializedAsync() {
-		await LoadItemsFromServer();
-		isLoading = false;
+	protected override async Task OnInitializedAsync()
+	{
+		var customAuthStateProvider = (CustomAuthenticationStateProvider)authenticationStateProvider;
+		var token = await customAuthStateProvider.GetToken();
+		if (!string.IsNullOrWhiteSpace(token))
+		{
+			httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
+			await LoadItemsFromServer();
+			isLoading = false;
+		}
+		else
+		{
+			navigationManager.NavigateTo("/login");
+		}
 	}
 
 	private async Task LoadItemsFromServer() {

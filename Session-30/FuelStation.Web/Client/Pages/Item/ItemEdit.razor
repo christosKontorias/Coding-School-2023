@@ -1,11 +1,13 @@
 ﻿@page "/itemlist/edit/{Id:int?}"
+@attribute [Authorize(Roles = "Manager, Staff")]
 @using FuelStation.Model.Enums;
+@using FuelStation.Web.Client.Authentication;
 @using FuelStation.Web.Shared.Item;
 @using FuelStation.Web.Shared;
-
+@using System.Net.Http.Headers;
 @inject HttpClient httpClient
 @inject NavigationManager navigationManager
-@attribute [Authorize(Roles = "Manager, Staff")]
+@inject AuthenticationStateProvider authenticationStateProvider
 
 <h3>@title</h3>
 
@@ -73,12 +75,19 @@
 	ItemEditDto Item { get; set; }
 	string? title;
 	protected override async Task OnInitializedAsync() {
-		if (Id == null) {
-			Item = new();
-			title = "Create Item";
+		var customAuthStateProvider = (CustomAuthenticationStateProvider)authenticationStateProvider;
+		var token = await customAuthStateProvider.GetToken();
+		if (!string.IsNullOrWhiteSpace(token)) {
+			httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
+				if (Id == null) {
+					Item = new();
+					title = "Create Item";
+				} else {
+					Item = await httpClient.GetFromJsonAsync<ItemEditDto>($"item/{Id}");
+					title = "Edit Item";
+				}
 		} else {
-			Item = await httpClient.GetFromJsonAsync<ItemEditDto>($"item/{Id}");
-			title = "Edit Item";
+			navigationManager.NavigateTo("/login");
 		}
 	}
 

@@ -1,14 +1,17 @@
 ﻿@page "/customerlist/edit/{Id:int?}"
+@attribute [Authorize(Roles = "Manager, Cashier")]
+@using FuelStation.Web.Client.Authentication;
 @using FuelStation.Web.Shared.Customer;
 @using FuelStation.Web.Shared;
+@using System.Net.Http.Headers;
 @inject HttpClient httpClient
 @inject NavigationManager navigationManager
-@attribute [Authorize(Roles ="Manager, Cashier")]
+@inject AuthenticationStateProvider authenticationStateProvider
 
 <h3>@title</h3>
 
 @if (Customer == null) {
-	<LoadingSpinner Type="LoadingSpinnerType.Border"/>
+	<LoadingSpinner Type="LoadingSpinnerType.Border" />
 } else {
 	<EditForm Model="Customer" OnValidSubmit="OnSave">
 		<DataAnnotationsValidator />
@@ -40,13 +43,13 @@
 			</div>
 		</div>
 
-	<div class="row mt-2">
-		<div class="col">
-			<button class="btn btn-success" type="submit">Save</button>
-			<button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
+		<div class="row mt-2">
+			<div class="col">
+				<button class="btn btn-success" type="submit">Save</button>
+				<button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
+			</div>
 		</div>
-	</div>
-		</EditForm>
+	</EditForm>
 }
 
 
@@ -56,12 +59,19 @@
 	string? title;
 
 	protected override async Task OnInitializedAsync() {
-		if (Id == null) {
-			Customer = new();
-			title = "Create Customer";
+		var customAuthStateProvider = (CustomAuthenticationStateProvider)authenticationStateProvider;
+		var token = await customAuthStateProvider.GetToken();
+		if (!string.IsNullOrWhiteSpace(token)) {
+			httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
+			if (Id == null) {
+				Customer = new();
+				title = "Create Customer";
+			} else {
+				Customer = await httpClient.GetFromJsonAsync<CustomerEditDto>($"customer/{Id}");
+				title = "Edit Customer";
+			}
 		} else {
-			Customer = await httpClient.GetFromJsonAsync<CustomerEditDto>($"customer/{Id}");
-			title = "Edit Customer";
+			navigationManager.NavigateTo("/login");
 		}
 	}
 	private void OnCancel() {

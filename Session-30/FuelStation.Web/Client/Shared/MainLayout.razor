@@ -29,8 +29,8 @@
 
 @code{
     private async Task Logout() {
-        var customeAuthStateProvider = (CustomAuthenticationStateProvider)authStateProvider;
-        await customeAuthStateProvider.UpdateAuthenticationState(null);
+        var customAuthStateProvider = (CustomAuthenticationStateProvider)authStateProvider;
+        await customAuthStateProvider.UpdateAuthenticationState(null);
         navigationManager.NavigateTo("/", true);
 
     }

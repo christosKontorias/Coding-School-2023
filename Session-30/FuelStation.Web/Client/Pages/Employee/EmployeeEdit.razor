@@ -1,13 +1,14 @@
 ﻿@page "/employeelist/edit/{Id:int?}"
+@attribute [Authorize(Roles = "Manager")]
 @using FuelStation.Model.Enums;
+@using FuelStation.Web.Client.Authentication;
 @using FuelStation.Web.Shared.Employee;
 @using FuelStation.Web.Shared;
-
+@using System.Net.Http.Headers;
 @inject HttpClient httpClient
 @inject NavigationManager navigationManager
 @inject IJSRuntime jsRuntime
-@attribute [Authorize(Roles = "Manager")]
-
+@inject AuthenticationStateProvider authenticationStateProvider
 
 <h3>@title</h3>
 
@@ -82,12 +83,19 @@
 	EmployeeEditDto Employee { get; set; }
 	string? title;
 	protected override async Task OnInitializedAsync() {
-		if (Id == null) {
-			Employee = new();
-			title = "Create Employee";
+		var customAuthStateProvider = (CustomAuthenticationStateProvider)authenticationStateProvider;
+		var token = await customAuthStateProvider.GetToken();
+		if (!string.IsNullOrWhiteSpace(token)) {
+			httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
+			if (Id == null) {
+				Employee = new();
+				title = "Create Employee";
+			} else {
+				Employee = await httpClient.GetFromJsonAsync<EmployeeEditDto>($"employee/{Id}");
+				title = "Edit Employee";
+			}
 		} else {
-			Employee = await httpClient.GetFromJsonAsync<EmployeeEditDto>($"employee/{Id}");
-			title = "Edit Employee";
+			navigationManager.NavigateTo("/login");
 		}
 	}
 
