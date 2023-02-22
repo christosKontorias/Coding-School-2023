@@ -3,6 +3,7 @@ using FuelStation.Model;
 using FuelStation.Web.Shared.Customer;
 using FuelStation.Web.Shared.Employee;
 using FuelStation.Web.Shared.Item;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FuelStation.Web.Server.Controllers {
@@ -16,6 +17,7 @@ namespace FuelStation.Web.Server.Controllers {
 		}
 
 		[HttpGet]
+		[Authorize(Roles = "Staff")]
 		public async Task<IEnumerable<ItemListDto>> Get() {
 			var result = _itemRepo.GetAll();
 			return result.Select(item => new ItemListDto {

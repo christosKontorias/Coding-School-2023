@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FuelStation.Web.Client", "F
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FuelStation.Web.Shared", "FuelStation.Web\Shared\FuelStation.Web.Shared.csproj", "{354DE1BA-0552-4BE6-8076-8028D4B740B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuelStation.WinForms", "FuelStation.WinForms\FuelStation.WinForms.csproj", "{4BC83C09-AB93-47FE-AE04-D8C05F15016D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FuelStation.WinForms", "FuelStation.WinForms\FuelStation.WinForms.csproj", "{4BC83C09-AB93-47FE-AE04-D8C05F15016D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

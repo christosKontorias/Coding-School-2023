@@ -1,7 +1,11 @@
 using FuelStation.EF.Repositories;
 using FuelStation.Model;
+using FuelStation.Web.Server.Authentication;
 using FuelStation.Web.Shared.MemberValidation;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +18,21 @@ builder.Services.AddScoped<IEntityRepo<Employee>, EmployeeRepo>();
 builder.Services.AddScoped<IEntityRepo<Item>, ItemRepo>();
 builder.Services.AddScoped<IMemberValidation, MemberValidation>();
 
+//Authentication
+builder.Services.AddAuthentication(o => {
+	o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+	o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(o => {
+	o.RequireHttpsMetadata = false;
+	o.SaveToken = true;
+	o.TokenValidationParameters = new TokenValidationParameters {
+		ValidateIssuerSigningKey = true,
+		IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(JwtAuthenticationManager.JWT_SECURITY_KEY)),
+		ValidateIssuer = false,
+		ValidateAudience = false
+	};
+});
+builder.Services.AddSingleton<UserAccountService>();
 
 var app = builder.Build();
 
@@ -33,6 +52,9 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+//Authentication
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapRazorPages();
 app.MapControllers();

@@ -4,6 +4,7 @@
 @inject HttpClient httpClient
 @inject NavigationManager navigationManager
 @inject IJSRuntime jsRuntime
+@attribute [Authorize(Roles ="Managers, Cashiers")]
 
 <h3>Customer List</h3>
 @if (isLoading) {
