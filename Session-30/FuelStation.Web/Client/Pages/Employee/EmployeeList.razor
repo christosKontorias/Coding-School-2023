@@ -5,6 +5,7 @@
 @inject HttpClient httpClient
 @inject NavigationManager navigationManager
 @inject IJSRuntime jsRuntime
+@attribute [Authorize(Roles = "Manager")]
 
 <h3>Employee List</h3>
 

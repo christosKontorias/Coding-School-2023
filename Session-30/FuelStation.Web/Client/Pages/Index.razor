@@ -19,7 +19,7 @@ Welcome to your new app.
 <AuthorizeView>
 	<Authorized>
 		<br /><br />
-		<button class="btn btn-outline-primary" @onclick="DisplayGreetingAlert">Display Greeting Alert</button>
+		<button class="btn btn-outline-primary" @onclick="DisplayGreetingAlert">Display LogIn Role</button>
 	</Authorized>
 </AuthorizeView>
 
@@ -30,7 +30,7 @@ Welcome to your new app.
 
 	private async Task DisplayGreetingAlert() {
 		var authState = await authenticationState;
-		var message = $"Hello {authState.User.Identity.Name}";
+		var message = $"You are Log In as {authState.User.Identity.Name}";
 		await jsRuntime.InvokeVoidAsync("alert", message);
 	}
 }

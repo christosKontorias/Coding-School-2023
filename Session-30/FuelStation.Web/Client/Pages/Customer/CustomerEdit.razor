@@ -3,8 +3,7 @@
 @using FuelStation.Web.Shared;
 @inject HttpClient httpClient
 @inject NavigationManager navigationManager
-
-
+@attribute [Authorize(Roles ="Manager, Cashier")]
 
 <h3>@title</h3>
 

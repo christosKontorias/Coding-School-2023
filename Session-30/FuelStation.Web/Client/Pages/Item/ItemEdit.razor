@@ -5,6 +5,7 @@
 
 @inject HttpClient httpClient
 @inject NavigationManager navigationManager
+@attribute [Authorize(Roles = "Manager, Staff")]
 
 <h3>@title</h3>
 
