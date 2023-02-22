@@ -24,7 +24,7 @@ namespace FuelStation.Web.Server.Controllers {
 				CardNumber = customer.CardNumber
 			});
 		}
-		 
+
 		[HttpGet("{id}")]
 		public async Task<CustomerEditDto> GetById(int id) {
 			var result = _customerRepo.GetById(id);
@@ -43,7 +43,8 @@ namespace FuelStation.Web.Server.Controllers {
 			}
 
 			if (_customerRepo.GetAll().Any(c => c.CardNumber == customer.CardNumber)) {
-				return BadRequest("CardNumber must be unique");
+				var errorMessage = "Card Number must be unique";
+				return StatusCode(StatusCodes.Status400BadRequest, new { Error = errorMessage });
 			}
 
 			var newCustomer = new Customer(customer.Name, customer.Surname, customer.CardNumber);
@@ -63,8 +64,10 @@ namespace FuelStation.Web.Server.Controllers {
 				return BadRequest("CardNumber must not be empty and must start with 'A'");
 			}
 
-			if (_customerRepo.GetAll().Any(customer => customer.Id != customer.Id && customer.CardNumber == customer.CardNumber)) {
-				return BadRequest("CardNumber must be unique");
+
+			if (_customerRepo.GetAll().Any(c => c.CardNumber == customer.CardNumber)) {
+				var errorMessage = "Card Number must be unique";
+				return StatusCode(StatusCodes.Status400BadRequest, new { Error = errorMessage });
 			}
 
 			var itemToUpdate = _customerRepo.GetById(customer.Id);

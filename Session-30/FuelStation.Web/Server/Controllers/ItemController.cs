@@ -45,9 +45,11 @@ namespace FuelStation.Web.Server.Controllers {
 		[HttpPost]
 		public async Task<ActionResult<ItemEditDto>> Post(ItemEditDto item) {
 
-			if (_itemRepo.GetAll().Any(c => c.Code == item.Code)) {
-				return BadRequest("CardNumber must be unique");
+			if (_itemRepo.GetAll().Any(i => i.Code == item.Code)) {
+				var errorMessage = "Code must be unique";
+				return StatusCode(StatusCodes.Status400BadRequest, new { Error = errorMessage });
 			}
+
 			var newItem = new Item(item.Code, item.Description, item.ItemType, item.Price, item.Cost);
 			_itemRepo.Add(newItem);
 
@@ -64,8 +66,9 @@ namespace FuelStation.Web.Server.Controllers {
 		[HttpPut]
 		public async Task<IActionResult> Put(ItemEditDto item) {
 
-			if (_itemRepo.GetAll().Any(item => item.Id != item.Id && item.Code == item.Code)) {
-				return BadRequest("CardNumber must be unique");
+			if (_itemRepo.GetAll().Any(i => i.Code == item.Code)) {
+				var errorMessage = "Code must be unique";
+				return StatusCode(StatusCodes.Status400BadRequest, new { Error = errorMessage });
 			}
 
 			var itemToUpdate = _itemRepo.GetById(item.Id);

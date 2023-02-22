@@ -5,7 +5,9 @@
 @using FuelStation.Web.Shared.Item;
 @using FuelStation.Web.Shared;
 @using System.Net.Http.Headers;
+@using System.Net;
 @inject HttpClient httpClient
+@inject IJSRuntime jsRuntime
 @inject NavigationManager navigationManager
 @inject AuthenticationStateProvider authenticationStateProvider
 
@@ -79,13 +81,13 @@
 		var token = await customAuthStateProvider.GetToken();
 		if (!string.IsNullOrWhiteSpace(token)) {
 			httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
-				if (Id == null) {
-					Item = new();
-					title = "Create Item";
-				} else {
-					Item = await httpClient.GetFromJsonAsync<ItemEditDto>($"item/{Id}");
-					title = "Edit Item";
-				}
+			if (Id == null) {
+				Item = new();
+				title = "Create Item";
+			} else {
+				Item = await httpClient.GetFromJsonAsync<ItemEditDto>($"item/{Id}");
+				title = "Edit Item";
+			}
 		} else {
 			navigationManager.NavigateTo("/login");
 		}
@@ -103,7 +105,12 @@
 			response = await httpClient.PutAsJsonAsync("item", Item);
 		}
 
-		response.EnsureSuccessStatusCode();
-		navigationManager.NavigateTo("itemlist");
+		if (response.IsSuccessStatusCode) {
+			navigationManager.NavigateTo("itemlist");
+		} else if (response.StatusCode == HttpStatusCode.BadRequest) {
+			var errorResponse = await response.Content.ReadFromJsonAsync<CodeErrorResponse>();
+			var errorMessage = errorResponse?.Error ?? "An error occurred";
+			await jsRuntime.InvokeVoidAsync("alert", errorMessage);
+		}
 	}
 }
