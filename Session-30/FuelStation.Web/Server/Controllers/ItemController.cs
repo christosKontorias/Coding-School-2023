@@ -17,7 +17,6 @@ namespace FuelStation.Web.Server.Controllers {
 		}
 
 		[HttpGet]
-		[Authorize(Roles = "Staff")]
 		public async Task<IEnumerable<ItemListDto>> Get() {
 			var result = _itemRepo.GetAll();
 			return result.Select(item => new ItemListDto {
