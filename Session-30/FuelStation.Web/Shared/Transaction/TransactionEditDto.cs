@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FuelStation.Web.Shared.TransactionLine;
 
 namespace FuelStation.Web.Shared.Transaction {
 	public class TransactionEditDto {
@@ -14,6 +15,8 @@ namespace FuelStation.Web.Shared.Transaction {
 		public decimal TotalValue { get; set; }
 		public int EmployeeId { get; set; }
 		public int CustomerId { get; set; }
+
+		public List<TransactionLineEditDto> TransactionLines { get; set; }
 
 	}
 }

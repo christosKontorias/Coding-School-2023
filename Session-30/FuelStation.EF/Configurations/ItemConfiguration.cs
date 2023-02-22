@@ -20,7 +20,7 @@ public class ItemConfiguration : IEntityTypeConfiguration<Item> {
 		builder.Property(item => item.Price).HasPrecision(4, 2).IsRequired();
 		builder.Property(item => item.Cost).HasPrecision(4, 2).IsRequired();
 
-		// Unique constraint on Code (Den xerw akoma)
+		// Unique constraint on Code
 		//builder.HasIndex(item => item.Code).IsUnique();
 	}
 }
