@@ -9,8 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FuelStation.EF\FuelStation.EF.csproj" />
+    <ProjectReference Include="..\FuelStation.Model\FuelStation.Model.csproj" />
     <ProjectReference Include="..\FuelStation.Web\Server\FuelStation.Web.Server.csproj" />
-    <ProjectReference Include="..\FuelStation.Web\Shared\FuelStation.Web.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
