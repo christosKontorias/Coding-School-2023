@@ -12,6 +12,7 @@ namespace FuelStation.Web.Server.Controllers {
 		public TransactionController(IEntityRepo<Transaction> transactionRepo) {
 			_transactionRepo = transactionRepo;
 		}
+
 		[HttpGet]
 		public async Task<IEnumerable<TransactionListDto>> Get() {
 			var result = _transactionRepo.GetAll();

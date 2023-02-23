@@ -78,8 +78,11 @@
 			this.Controls.Add(this.btnExit);
 			this.Controls.Add(this.btnItem);
 			this.Controls.Add(this.btnCustomer);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Name = "MainMenuForm";
-			this.Text = "Fuel Station";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.Text = "Fuel Station Menu";
+			this.Load += new System.EventHandler(this.MainMenuForm_Load);
 			this.ResumeLayout(false);
 
 		}

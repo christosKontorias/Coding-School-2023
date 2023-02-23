@@ -14,6 +14,19 @@ namespace FuelStation.WinForms {
 			InitializeComponent();
 		}
 
+		string username;
+		public MainMenuForm(string username) {
+			InitializeComponent();
+			this.username = username;
+		}
+		private void MainMenuForm_Load(object sender, EventArgs e) {
+			if (username == "cashier") {
+				btnItem.Hide();
+			} else if (username == "staff") {
+				btnCustomer.Hide();
+				btnTransactions.Hide();
+			}
+		}
 		private void btnCustomer_Click(object sender, EventArgs e) {
 			CustomerForm customerForm = new CustomerForm();
 			customerForm.ShowDialog();
