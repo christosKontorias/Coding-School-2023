@@ -45,5 +45,56 @@ namespace FuelStation.WinForms {
 			this.Close();
 		}
 
+		private void btnCustomer_MouseEnter(object sender, EventArgs e) {
+			btnCustomer.BackColor = Color.FromArgb(208, 171, 171);
+			btnCustomer.ForeColor = Color.White;
+			btnCustomer.FlatAppearance.BorderColor = Color.Black;
+			btnCustomer.FlatAppearance.BorderSize = 2;
+		}
+
+		private void btnCustomer_MouseLeave(object sender, EventArgs e) {
+			btnCustomer.BackColor = Color.FromArgb(221, 221, 221);
+			btnCustomer.ForeColor = Color.Black;
+			btnCustomer.FlatAppearance.BorderSize = 0;
+		}
+
+		private void btnItem_MouseEnter(object sender, EventArgs e) {
+			btnItem.BackColor = Color.FromArgb(208, 171, 171);
+			btnItem.ForeColor = Color.White;
+			btnItem.FlatAppearance.BorderColor = Color.Black;
+			btnItem.FlatAppearance.BorderSize = 2;
+		}
+
+		private void btnItem_MouseLeave(object sender, EventArgs e) {
+			btnItem.BackColor = Color.FromArgb(221, 221, 221);
+			btnItem.ForeColor = Color.Black;
+			btnItem.FlatAppearance.BorderSize = 0;
+		}
+
+		private void btnTransactions_MouseEnter(object sender, EventArgs e) {
+			btnTransactions.BackColor = Color.FromArgb(208, 171, 171);
+			btnTransactions.ForeColor = Color.White;
+			btnTransactions.FlatAppearance.BorderColor = Color.Black;
+			btnTransactions.FlatAppearance.BorderSize = 1;
+		}
+
+		private void btnTransactions_MouseLeave(object sender, EventArgs e) {
+			btnTransactions.BackColor = Color.FromArgb(221, 221, 221);
+			btnTransactions.ForeColor = Color.Black;
+			btnTransactions.FlatAppearance.BorderSize = 0;
+		}
+
+		private void btnExit_MouseEnter(object sender, EventArgs e) {
+			btnExit.BackColor = Color.FromArgb(208, 171, 171);
+			btnExit.ForeColor = Color.White;
+			btnExit.FlatAppearance.BorderColor = Color.Black;
+			btnExit.FlatAppearance.BorderSize = 2;
+		}
+
+		private void btnExit_MouseLeave(object sender, EventArgs e) {
+			btnExit.BackColor = Color.FromArgb(221, 221, 221);
+			btnExit.ForeColor = Color.Black;
+			btnExit.FlatAppearance.BorderSize = 0;
+		}
 	}
 }

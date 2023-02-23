@@ -35,43 +35,67 @@
 			// 
 			// btnCustomer
 			// 
-			this.btnCustomer.Location = new System.Drawing.Point(80, 338);
+			this.btnCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+			this.btnCustomer.FlatAppearance.BorderSize = 0;
+			this.btnCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnCustomer.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+			this.btnCustomer.Location = new System.Drawing.Point(59, 335);
 			this.btnCustomer.Name = "btnCustomer";
-			this.btnCustomer.Size = new System.Drawing.Size(96, 40);
+			this.btnCustomer.Size = new System.Drawing.Size(110, 40);
 			this.btnCustomer.TabIndex = 0;
 			this.btnCustomer.Text = "Customers";
-			this.btnCustomer.UseVisualStyleBackColor = true;
+			this.btnCustomer.UseVisualStyleBackColor = false;
 			this.btnCustomer.Click += new System.EventHandler(this.btnCustomer_Click);
+			this.btnCustomer.MouseEnter += new System.EventHandler(this.btnCustomer_MouseEnter);
+			this.btnCustomer.MouseLeave += new System.EventHandler(this.btnCustomer_MouseLeave);
 			// 
 			// btnItem
 			// 
-			this.btnItem.Location = new System.Drawing.Point(182, 338);
+			this.btnItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+			this.btnItem.FlatAppearance.BorderSize = 0;
+			this.btnItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnItem.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+			this.btnItem.Location = new System.Drawing.Point(175, 335);
 			this.btnItem.Name = "btnItem";
-			this.btnItem.Size = new System.Drawing.Size(96, 40);
+			this.btnItem.Size = new System.Drawing.Size(110, 40);
 			this.btnItem.TabIndex = 1;
 			this.btnItem.Text = "Items";
-			this.btnItem.UseVisualStyleBackColor = true;
+			this.btnItem.UseVisualStyleBackColor = false;
 			this.btnItem.Click += new System.EventHandler(this.btnItem_Click);
+			this.btnItem.MouseEnter += new System.EventHandler(this.btnItem_MouseEnter);
+			this.btnItem.MouseLeave += new System.EventHandler(this.btnItem_MouseLeave);
 			// 
 			// btnExit
 			// 
-			this.btnExit.Location = new System.Drawing.Point(182, 393);
+			this.btnExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+			this.btnExit.FlatAppearance.BorderSize = 0;
+			this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnExit.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+			this.btnExit.Location = new System.Drawing.Point(175, 381);
 			this.btnExit.Name = "btnExit";
-			this.btnExit.Size = new System.Drawing.Size(96, 40);
+			this.btnExit.Size = new System.Drawing.Size(110, 40);
 			this.btnExit.TabIndex = 2;
 			this.btnExit.Text = "Exit";
-			this.btnExit.UseVisualStyleBackColor = true;
+			this.btnExit.UseVisualStyleBackColor = false;
 			this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+			this.btnExit.MouseEnter += new System.EventHandler(this.btnExit_MouseEnter);
+			this.btnExit.MouseLeave += new System.EventHandler(this.btnExit_MouseLeave);
 			// 
 			// btnTransactions
 			// 
-			this.btnTransactions.Location = new System.Drawing.Point(284, 338);
+			this.btnTransactions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+			this.btnTransactions.FlatAppearance.BorderSize = 0;
+			this.btnTransactions.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnTransactions.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+			this.btnTransactions.Location = new System.Drawing.Point(291, 335);
 			this.btnTransactions.Name = "btnTransactions";
-			this.btnTransactions.Size = new System.Drawing.Size(96, 40);
+			this.btnTransactions.Size = new System.Drawing.Size(110, 40);
 			this.btnTransactions.TabIndex = 3;
 			this.btnTransactions.Text = "Transactions";
-			this.btnTransactions.UseVisualStyleBackColor = true;
+			this.btnTransactions.UseVisualStyleBackColor = false;
 			this.btnTransactions.Click += new System.EventHandler(this.btnTransactions_Click);
+			this.btnTransactions.MouseEnter += new System.EventHandler(this.btnTransactions_MouseEnter);
+			this.btnTransactions.MouseLeave += new System.EventHandler(this.btnTransactions_MouseLeave);
 			// 
 			// pictureBox1
 			// 
