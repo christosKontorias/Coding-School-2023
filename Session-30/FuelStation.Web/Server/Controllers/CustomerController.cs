@@ -64,7 +64,6 @@ namespace FuelStation.Web.Server.Controllers {
 				return BadRequest("CardNumber must not be empty and must start with 'A'");
 			}
 
-
 			if (_customerRepo.GetAll().Any(c => c.CardNumber == customer.CardNumber)) {
 				var errorMessage = "Card Number must be unique";
 				return StatusCode(StatusCodes.Status400BadRequest, new { Error = errorMessage });
@@ -78,7 +77,6 @@ namespace FuelStation.Web.Server.Controllers {
 
 			return NoContent();
 		}
-
 
 		[HttpDelete("{id}")]
 		public async Task Delete(int id) {

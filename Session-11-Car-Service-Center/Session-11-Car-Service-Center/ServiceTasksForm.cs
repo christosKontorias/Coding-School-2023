@@ -1,20 +1,8 @@
 ﻿using CarServiceCenterLib;
 using SerializerLib;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Columns;
-using System.Text.RegularExpressions;
-using DevExpress.XtraEditors.ColorPick.Picker;
 using DevExpress.XtraGrid.Views.Base;
-using DevExpress.XtraGrid;
 
 namespace Session_11_Car_Service_Center {
     public partial class ServiceTasksForm : Form {

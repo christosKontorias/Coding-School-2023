@@ -290,5 +290,9 @@ namespace Session_11_Car_Service_Center {
                 }
             }
         }
-    }
+
+		private void grdCustomers_Click(object sender, EventArgs e) {
+
+		}
+	}
 }
