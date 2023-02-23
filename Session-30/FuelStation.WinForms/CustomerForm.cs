@@ -14,7 +14,6 @@ namespace FuelStation.WinForms {
 		}
 
 		private void CustomerForm_Load(object sender, EventArgs e) {
-			dataGridView1.AutoGenerateColumns = false;
 			SetControlProperties();
 		}
 

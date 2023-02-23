@@ -24,24 +24,55 @@
 		/// </summary>
 		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerForm));
 			this.bsCustomers = new System.Windows.Forms.BindingSource(this.components);
+			this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+			this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
 			((System.ComponentModel.ISupportInitialize)(this.bsCustomers)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
 			this.SuspendLayout();
+			// 
+			// gridControl1
+			// 
+			this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.gridControl1.Location = new System.Drawing.Point(0, 0);
+			this.gridControl1.MainView = this.gridView1;
+			this.gridControl1.Name = "gridControl1";
+			this.gridControl1.Size = new System.Drawing.Size(800, 450);
+			this.gridControl1.TabIndex = 0;
+			this.gridControl1.UseEmbeddedNavigator = true;
+			this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+			// 
+			// gridView1
+			// 
+			this.gridView1.GridControl = this.gridControl1;
+			this.gridView1.Name = "gridView1";
+			this.gridView1.OptionsView.ShowGroupPanel = false;
 			// 
 			// CustomerForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.gridControl1);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "CustomerForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Customers";
 			this.Load += new System.EventHandler(this.CustomerForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.bsCustomers)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
 		private BindingSource bsCustomers;
+		private DevExpress.XtraGrid.GridControl gridControl1;
+		private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
 	}
 }
