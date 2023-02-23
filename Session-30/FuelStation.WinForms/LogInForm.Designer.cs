@@ -240,6 +240,7 @@
 			this.btnExit.TabIndex = 12;
 			this.btnExit.Text = "Exit";
 			this.btnExit.UseVisualStyleBackColor = false;
+			this.btnExit.Click += new System.EventHandler(this.btnExit_Click_1);
 			this.btnExit.MouseEnter += new System.EventHandler(this.btnExit_MouseEnter);
 			this.btnExit.MouseLeave += new System.EventHandler(this.btnExit_MouseLeave);
 			// 

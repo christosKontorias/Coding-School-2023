@@ -12,6 +12,7 @@ namespace FuelStation.WinForms {
 	public partial class LogInForm : Form {
 		public LogInForm() {
 			InitializeComponent();
+			txtPassword.PasswordChar= '*';
 		}
 
 		private void btnLogin_Click(object sender, EventArgs e) {
@@ -33,12 +34,8 @@ namespace FuelStation.WinForms {
 			Show();
 		}
 
-		private void btnExit_Click(object sender, EventArgs e) {
-			this.Close();
-		}
-
 		private void btnLogin_MouseEnter(object sender, EventArgs e) {
-			btnLogin.BackColor = Color.FromArgb(201, 71, 71);
+			btnLogin.BackColor = Color.FromArgb(208, 171, 171);
 			btnLogin.ForeColor = Color.White;
 			btnLogin.FlatAppearance.BorderColor = Color.Black;
 			btnLogin.FlatAppearance.BorderSize = 1;
@@ -51,7 +48,7 @@ namespace FuelStation.WinForms {
 		}
 
 		private void btnExit_MouseEnter(object sender, EventArgs e) {
-			btnExit.BackColor = Color.FromArgb(201, 71, 71);
+			btnExit.BackColor = Color.FromArgb(208, 171, 171);
 			btnExit.ForeColor = Color.White;
 			btnExit.FlatAppearance.BorderColor = Color.Black;
 			btnExit.FlatAppearance.BorderSize = 2;
@@ -61,6 +58,10 @@ namespace FuelStation.WinForms {
 			btnExit.BackColor = Color.FromArgb(221, 221, 221);
 			btnExit.ForeColor = Color.Black;
 			btnExit.FlatAppearance.BorderSize = 0;
+		}
+
+		private void btnExit_Click_1(object sender, EventArgs e) {
+			this.Close();
 		}
 	}
 }
