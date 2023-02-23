@@ -89,7 +89,7 @@
 			this.btnTransactions.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
 			this.btnTransactions.Location = new System.Drawing.Point(291, 335);
 			this.btnTransactions.Name = "btnTransactions";
-			this.btnTransactions.Size = new System.Drawing.Size(110, 40);
+			this.btnTransactions.Size = new System.Drawing.Size(126, 40);
 			this.btnTransactions.TabIndex = 3;
 			this.btnTransactions.Text = "Transactions";
 			this.btnTransactions.UseVisualStyleBackColor = false;
