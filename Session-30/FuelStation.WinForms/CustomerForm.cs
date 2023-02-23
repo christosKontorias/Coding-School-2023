@@ -1,5 +1,6 @@
 using FuelStation.Web.Shared.Customer;
 using Newtonsoft.Json;
+using System.Net.Http;
 
 namespace FuelStation.WinForms {
 	public partial class CustomerForm : Form {
@@ -8,7 +9,6 @@ namespace FuelStation.WinForms {
 
 		public CustomerForm() {
 			InitializeComponent();
-
 			_client = new HttpClient();
 			_client.BaseAddress = new Uri("https://localhost:7136/");
 		}
@@ -22,7 +22,7 @@ namespace FuelStation.WinForms {
 			var customers = await GetCustomers();
 			if (customers != null) {
 				bsCustomers.DataSource = customers;
-				dataGridView1.DataSource = bsCustomers;
+				grvCustomers.DataSource = bsCustomers;
 			}
 		}
 
@@ -33,6 +33,14 @@ namespace FuelStation.WinForms {
 				return JsonConvert.DeserializeObject<List<CustomerListDto>>(content);
 			}
 			return null;
+		}
+
+		private void gridViewCustomers_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e) {
+
+		}
+
+		private void gridViewCustomers_ValidatingEditor(object sender, DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventArgs e) {
+
 		}
 	}
 }
