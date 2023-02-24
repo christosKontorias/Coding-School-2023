@@ -26,14 +26,11 @@
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TransactionsForm));
 			this.label1 = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
 			this.grvTransaction = new DevExpress.XtraGrid.GridControl();
 			this.gridViewTransaction = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.colDate = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colPaymentMethod = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colTotalValue = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.grvTransactionLine = new DevExpress.XtraGrid.GridControl();
-			this.gridViewTransactionLine = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.btnClose = new System.Windows.Forms.Button();
 			this.btnUpdate = new System.Windows.Forms.Button();
 			this.btnDelete = new System.Windows.Forms.Button();
@@ -43,8 +40,6 @@
 			this.bsTransactionLines = new System.Windows.Forms.BindingSource(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.grvTransaction)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewTransaction)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.grvTransactionLine)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.gridViewTransactionLine)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsTransactions)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsTransactionLines)).BeginInit();
 			this.SuspendLayout();
@@ -58,16 +53,6 @@
 			this.label1.Size = new System.Drawing.Size(181, 47);
 			this.label1.TabIndex = 6;
 			this.label1.Text = "Transaction";
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("Segoe Print", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.label2.Location = new System.Drawing.Point(271, 292);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(249, 47);
-			this.label2.TabIndex = 7;
-			this.label2.Text = "Transaction Line";
 			// 
 			// grvTransaction
 			// 
@@ -112,22 +97,6 @@
 			this.colTotalValue.Name = "colTotalValue";
 			this.colTotalValue.Visible = true;
 			this.colTotalValue.VisibleIndex = 2;
-			// 
-			// grvTransactionLine
-			// 
-			this.grvTransactionLine.Location = new System.Drawing.Point(12, 342);
-			this.grvTransactionLine.MainView = this.gridViewTransactionLine;
-			this.grvTransactionLine.Name = "grvTransactionLine";
-			this.grvTransactionLine.Size = new System.Drawing.Size(780, 230);
-			this.grvTransactionLine.TabIndex = 9;
-			this.grvTransactionLine.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridViewTransactionLine});
-			// 
-			// gridViewTransactionLine
-			// 
-			this.gridViewTransactionLine.GridControl = this.grvTransactionLine;
-			this.gridViewTransactionLine.Name = "gridViewTransactionLine";
-			this.gridViewTransactionLine.OptionsView.ShowGroupPanel = false;
 			// 
 			// btnClose
 			// 
@@ -215,9 +184,7 @@
 			this.Controls.Add(this.btnDelete);
 			this.Controls.Add(this.btnSave);
 			this.Controls.Add(this.btnCreate);
-			this.Controls.Add(this.grvTransactionLine);
 			this.Controls.Add(this.grvTransaction);
-			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -227,8 +194,6 @@
 			this.Load += new System.EventHandler(this.TransactionsForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.grvTransaction)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewTransaction)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.grvTransactionLine)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.gridViewTransactionLine)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsTransactions)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsTransactionLines)).EndInit();
 			this.ResumeLayout(false);
@@ -239,7 +204,6 @@
 		#endregion
 
 		private Label label1;
-		private Label label2;
 		private DevExpress.XtraGrid.GridControl gridControl1;
 		private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
 		private DevExpress.XtraGrid.GridControl gridControl2;
@@ -251,8 +215,6 @@
 		private Button btnCreate;
 		private DevExpress.XtraGrid.GridControl grvTransaction;
 		private DevExpress.XtraGrid.Views.Grid.GridView gridViewTransaction;
-		private DevExpress.XtraGrid.GridControl grvTransactionLine;
-		private DevExpress.XtraGrid.Views.Grid.GridView gridViewTransactionLine;
 		private BindingSource bsTransactions;
 		private BindingSource bsTransactionLines;
 		private DevExpress.XtraGrid.Columns.GridColumn colDate;

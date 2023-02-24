@@ -33,35 +33,36 @@ namespace FuelStation.WinForms {
 			txtPassword.Clear();
 			Show();
 		}
+		private void btnExit_Click_1(object sender, EventArgs e) {
+			this.Close();
+		}
 
 		private void btnLogin_MouseEnter(object sender, EventArgs e) {
-			btnLogin.BackColor = Color.FromArgb(208, 171, 171);
-			btnLogin.ForeColor = Color.White;
-			btnLogin.FlatAppearance.BorderColor = Color.Black;
-			btnLogin.FlatAppearance.BorderSize = 1;
+			CustomizeButtonOnMouseEnter(btnLogin);
 		}
 
 		private void btnLogin_MouseLeave(object sender, EventArgs e) {
-			btnLogin.BackColor = Color.FromArgb(221, 221, 221);
-			btnLogin.ForeColor = Color.Black;
-			btnLogin.FlatAppearance.BorderSize = 0;
+			CustomizeButtonOnMouseLeave(btnLogin);
 		}
 
 		private void btnExit_MouseEnter(object sender, EventArgs e) {
-			btnExit.BackColor = Color.FromArgb(208, 171, 171);
-			btnExit.ForeColor = Color.White;
-			btnExit.FlatAppearance.BorderColor = Color.Black;
-			btnExit.FlatAppearance.BorderSize = 2;
+			CustomizeButtonOnMouseEnter(btnExit);
 		}
 
 		private void btnExit_MouseLeave(object sender, EventArgs e) {
-			btnExit.BackColor = Color.FromArgb(221, 221, 221);
-			btnExit.ForeColor = Color.Black;
-			btnExit.FlatAppearance.BorderSize = 0;
+			CustomizeButtonOnMouseLeave(btnExit);
+		}
+		private void CustomizeButtonOnMouseEnter(Button button) {
+			button.BackColor = Color.FromArgb(208, 171, 171);
+			button.ForeColor = Color.White;
+			button.FlatAppearance.BorderColor = Color.Black;
+			button.FlatAppearance.BorderSize = 2;
 		}
 
-		private void btnExit_Click_1(object sender, EventArgs e) {
-			this.Close();
+		private void CustomizeButtonOnMouseLeave(Button button) {
+			button.BackColor = Color.FromArgb(221, 221, 221);
+			button.ForeColor = Color.Black;
+			button.FlatAppearance.BorderSize = 0;
 		}
 	}
 }

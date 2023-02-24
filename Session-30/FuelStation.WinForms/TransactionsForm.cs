@@ -1,4 +1,5 @@
-﻿using FuelStation.Web.Server.Controllers;
+﻿using FuelStation.EF.Repositories;
+using FuelStation.Web.Server.Controllers;
 using FuelStation.Web.Shared.Customer;
 using FuelStation.Web.Shared.Employee;
 using FuelStation.Web.Shared.Item;
@@ -13,12 +14,13 @@ namespace FuelStation.WinForms {
 	public partial class TransactionsForm : Form {
 
 		private readonly HttpClient _httpClient;
+		//private readonly TransactionRepo _transactionRepo;
 
 		public TransactionsForm() {
 			InitializeComponent();
 			_httpClient = new HttpClient();
 			_httpClient.BaseAddress = new Uri("https://localhost:7136/");
-
+			//_transactionRepo = new TransactionRepo();
 
 		}
 		private void TransactionsForm_Load(object sender, EventArgs e) {
@@ -26,40 +28,22 @@ namespace FuelStation.WinForms {
 		}
 
 		private async void SetControlProperties() {
+			//var transactions = _transactionRepo.GetAll();
+			//grvTransaction.DataSource = transactions;
 
-			//var transactions = await GetTransactions();
-			//if (transactions != null) {
-			//	bsTransactions.DataSource = transactions;
-			//	grvTransaction.DataSource = bsTransactions;
-			//}
-
-			//var transactionLines = await GetTransactionLines();
-			//if (transactionLines != null) {
-			//	bsTransactionLine.DataSource = transactionLines;
-			//	grvTransactionLine.DataSource = bsTransactionLine;
-			//}
 
 		}
 
 		//Display Transaction
-		private async Task<List<TransactionListDto>> GetTransactions() {
-			var response = await _httpClient.GetAsync("transaction");
-			if (response.IsSuccessStatusCode) {
-				var content = await response.Content.ReadAsStringAsync();
-				return JsonConvert.DeserializeObject<List<TransactionListDto>>(content);
-			}
-			return null;
-		}
-
-		//Display TransactionLine
-		//private async Task<List<TransactionListDto>> GetTransactionLines() {
-		//	var response = await _httpClient.GetAsync("transactionLine");
+		//private async Task<List<TransactionListDto>> GetAllTransactions() {
+		//	var response = await _httpClient.GetAsync("transaction");
 		//	if (response.IsSuccessStatusCode) {
 		//		var content = await response.Content.ReadAsStringAsync();
 		//		return JsonConvert.DeserializeObject<List<TransactionListDto>>(content);
 		//	}
 		//	return null;
 		//}
+
 
 		private void btnClose_Click(object sender, EventArgs e) {
 			this.Close();
@@ -69,69 +53,55 @@ namespace FuelStation.WinForms {
 
 		//Customize Buttons
 		private void btnCreate_MouseEnter(object sender, EventArgs e) {
-			btnCreate.BackColor = Color.FromArgb(208, 171, 171);
-			btnCreate.ForeColor = Color.White;
-			btnCreate.FlatAppearance.BorderColor = Color.Black;
-			btnCreate.FlatAppearance.BorderSize = 2;
+			CustomizeButtonOnMouseEnter(btnCreate);
 		}
 
 		private void btnCreate_MouseLeave(object sender, EventArgs e) {
-			btnCreate.BackColor = Color.FromArgb(221, 221, 221);
-			btnCreate.ForeColor = Color.Black;
-			btnCreate.FlatAppearance.BorderSize = 0;
+			CustomizeButtonOnMouseLeave(btnCreate);
 		}
 
 		private void btnSave_MouseEnter(object sender, EventArgs e) {
-			btnSave.BackColor = Color.FromArgb(208, 171, 171);
-			btnSave.ForeColor = Color.White;
-			btnSave.FlatAppearance.BorderColor = Color.Black;
-			btnSave.FlatAppearance.BorderSize = 2;
+			CustomizeButtonOnMouseEnter(btnSave);
 		}
 
 		private void btnSave_MouseLeave(object sender, EventArgs e) {
-			btnSave.BackColor = Color.FromArgb(221, 221, 221);
-			btnSave.ForeColor = Color.Black;
-			btnSave.FlatAppearance.BorderSize = 0;
+			CustomizeButtonOnMouseLeave(btnSave);
 		}
 
 		private void btnDelete_MouseEnter(object sender, EventArgs e) {
-			btnDelete.BackColor = Color.FromArgb(208, 171, 171);
-			btnDelete.ForeColor = Color.White;
-			btnDelete.FlatAppearance.BorderColor = Color.Black;
-			btnDelete.FlatAppearance.BorderSize = 2;
+			CustomizeButtonOnMouseEnter(btnDelete);
 		}
 
 		private void btnDelete_MouseLeave(object sender, EventArgs e) {
-			btnDelete.BackColor = Color.FromArgb(221, 221, 221);
-			btnDelete.ForeColor = Color.Black;
-			btnDelete.FlatAppearance.BorderSize = 0;
+			CustomizeButtonOnMouseLeave(btnDelete);
 		}
 
 		private void btnUpdate_MouseEnter(object sender, EventArgs e) {
-			btnUpdate.BackColor = Color.FromArgb(208, 171, 171);
-			btnUpdate.ForeColor = Color.White;
-			btnUpdate.FlatAppearance.BorderColor = Color.Black;
-			btnUpdate.FlatAppearance.BorderSize = 2;
+			CustomizeButtonOnMouseEnter(btnUpdate);
 		}
 
 		private void btnUpdate_MouseLeave(object sender, EventArgs e) {
-			btnUpdate.BackColor = Color.FromArgb(221, 221, 221);
-			btnUpdate.ForeColor = Color.Black;
-			btnUpdate.FlatAppearance.BorderSize = 0;
+			CustomizeButtonOnMouseLeave(btnUpdate);
 		}
 
 		private void btnClose_MouseEnter(object sender, EventArgs e) {
-			btnClose.BackColor = Color.FromArgb(208, 171, 171);
-			btnClose.ForeColor = Color.White;
-			btnClose.FlatAppearance.BorderColor = Color.Black;
-			btnClose.FlatAppearance.BorderSize = 2;
+			CustomizeButtonOnMouseEnter(btnClose);
 		}
 
 		private void btnClose_MouseLeave(object sender, EventArgs e) {
-			btnClose.BackColor = Color.FromArgb(221, 221, 221);
-			btnClose.ForeColor = Color.Black;
-			btnClose.FlatAppearance.BorderSize = 0;
+			CustomizeButtonOnMouseLeave(btnClose);
+		}
+		private void CustomizeButtonOnMouseEnter(Button button) {
+			button.BackColor = Color.FromArgb(208, 171, 171);
+			button.ForeColor = Color.White;
+			button.FlatAppearance.BorderColor = Color.Black;
+			button.FlatAppearance.BorderSize = 2;
 		}
 
+		private void CustomizeButtonOnMouseLeave(Button button) {
+			button.BackColor = Color.FromArgb(221, 221, 221);
+			button.ForeColor = Color.Black;
+			button.FlatAppearance.BorderSize = 0;
+		}
 	}
 }
