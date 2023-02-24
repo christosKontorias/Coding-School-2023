@@ -19,6 +19,7 @@
 		<p class="text-danger">@errorMessage</p>
 	}
 	<button class="btn btn-primary" @onclick="CreateItem">Create</button>
+	<button class="btn btn-info" @onclick="RefreshItem">Refresh</button>
 
 	<table class="table table-striped table-hover">
 		<thead>
@@ -79,7 +80,9 @@
 	private void EditItem(ItemListDto item) {
 		navigationManager.NavigateTo($"itemlist/edit/{item.Id}");
 	}
-
+	private void RefreshItem() {
+		navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
+	}
 	private async Task DeleteItem(ItemListDto item) {
 
 		errorMessage = null;

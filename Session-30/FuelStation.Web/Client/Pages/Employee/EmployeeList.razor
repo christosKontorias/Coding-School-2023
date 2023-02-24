@@ -19,6 +19,7 @@
 		<p class="text-danger">@errorMessage</p>
 	}
 	<button class="btn btn-primary" @onclick="CreateItem">Create</button>
+	<button class="btn btn-info" @onclick="RefreshItem">Refresh</button>
 
 	<table class="table table-striped table-hover">
 		<thead>
@@ -84,7 +85,9 @@
 	private void EditItem(EmployeeListDto employee) {
 		navigationManager.NavigateTo($"employeelist/edit/{employee.Id}");
 	}
-
+	private void RefreshItem() {
+		navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
+	}
 	private async Task DeleteItem(EmployeeListDto employee) {
 		var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Delete Item. Are you sure?");
 		if (confirm) {
