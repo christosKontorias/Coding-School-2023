@@ -33,7 +33,7 @@ namespace FuelStation.WinForms {
 				grvCustomers.DataSource = bsCustomers;
 			}
 		}
-		//Display Customers List
+		//Display Customers 
 		private async Task<List<CustomerListDto>> GetCustomers() {
 			var response = await _httpClient.GetAsync("customer");
 			if (response.IsSuccessStatusCode) {
