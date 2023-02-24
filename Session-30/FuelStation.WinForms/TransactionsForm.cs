@@ -1,17 +1,13 @@
-﻿using DevExpress.XtraSpreadsheet.TileLayout;
+﻿using FuelStation.Web.Server.Controllers;
+using FuelStation.Web.Shared.Customer;
+using FuelStation.Web.Shared.Employee;
 using FuelStation.Web.Shared.Item;
 using FuelStation.Web.Shared.Transaction;
+using FuelStation.Web.Shared.TransactionLine;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Net.Http.Json;
 
 namespace FuelStation.WinForms {
 	public partial class TransactionsForm : Form {
@@ -22,17 +18,20 @@ namespace FuelStation.WinForms {
 			InitializeComponent();
 			_httpClient = new HttpClient();
 			_httpClient.BaseAddress = new Uri("https://localhost:7136/");
+
+
 		}
 		private void TransactionsForm_Load(object sender, EventArgs e) {
 			SetControlProperties();
 		}
 
 		private async void SetControlProperties() {
-			var transactions = await GetTransactions();
-			if (transactions != null) {
-				bsTransaction.DataSource = transactions;
-				grvTransaction.DataSource = bsTransaction;
-			}
+
+			//var transactions = await GetTransactions();
+			//if (transactions != null) {
+			//	bsTransactions.DataSource = transactions;
+			//	grvTransaction.DataSource = bsTransactions;
+			//}
 
 			//var transactionLines = await GetTransactionLines();
 			//if (transactionLines != null) {

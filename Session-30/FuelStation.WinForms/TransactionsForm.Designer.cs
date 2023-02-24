@@ -29,6 +29,9 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.grvTransaction = new DevExpress.XtraGrid.GridControl();
 			this.gridViewTransaction = new DevExpress.XtraGrid.Views.Grid.GridView();
+			this.colDate = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.colPaymentMethod = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.colTotalValue = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.grvTransactionLine = new DevExpress.XtraGrid.GridControl();
 			this.gridViewTransactionLine = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.btnClose = new System.Windows.Forms.Button();
@@ -36,14 +39,14 @@
 			this.btnDelete = new System.Windows.Forms.Button();
 			this.btnSave = new System.Windows.Forms.Button();
 			this.btnCreate = new System.Windows.Forms.Button();
-			this.bsTransaction = new System.Windows.Forms.BindingSource(this.components);
-			this.bsTransactionLine = new System.Windows.Forms.BindingSource(this.components);
+			this.bsTransactions = new System.Windows.Forms.BindingSource(this.components);
+			this.bsTransactionLines = new System.Windows.Forms.BindingSource(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.grvTransaction)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewTransaction)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.grvTransactionLine)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewTransactionLine)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.bsTransaction)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.bsTransactionLine)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsTransactions)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsTransactionLines)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -78,9 +81,37 @@
 			// 
 			// gridViewTransaction
 			// 
+			this.gridViewTransaction.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colDate,
+            this.colPaymentMethod,
+            this.colTotalValue});
 			this.gridViewTransaction.GridControl = this.grvTransaction;
 			this.gridViewTransaction.Name = "gridViewTransaction";
 			this.gridViewTransaction.OptionsView.ShowGroupPanel = false;
+			// 
+			// colDate
+			// 
+			this.colDate.Caption = "Date";
+			this.colDate.FieldName = "Date";
+			this.colDate.Name = "colDate";
+			this.colDate.Visible = true;
+			this.colDate.VisibleIndex = 0;
+			// 
+			// colPaymentMethod
+			// 
+			this.colPaymentMethod.Caption = "Payment Method";
+			this.colPaymentMethod.FieldName = "PaymentMethod";
+			this.colPaymentMethod.Name = "colPaymentMethod";
+			this.colPaymentMethod.Visible = true;
+			this.colPaymentMethod.VisibleIndex = 1;
+			// 
+			// colTotalValue
+			// 
+			this.colTotalValue.Caption = "Total Value";
+			this.colTotalValue.FieldName = "TotalValue";
+			this.colTotalValue.Name = "colTotalValue";
+			this.colTotalValue.Visible = true;
+			this.colTotalValue.VisibleIndex = 2;
 			// 
 			// grvTransactionLine
 			// 
@@ -104,7 +135,7 @@
 			this.btnClose.FlatAppearance.BorderSize = 0;
 			this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnClose.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.btnClose.Location = new System.Drawing.Point(575, 598);
+			this.btnClose.Location = new System.Drawing.Point(817, 243);
 			this.btnClose.Name = "btnClose";
 			this.btnClose.Size = new System.Drawing.Size(110, 40);
 			this.btnClose.TabIndex = 14;
@@ -120,7 +151,7 @@
 			this.btnUpdate.FlatAppearance.BorderSize = 0;
 			this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnUpdate.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.btnUpdate.Location = new System.Drawing.Point(459, 598);
+			this.btnUpdate.Location = new System.Drawing.Point(817, 197);
 			this.btnUpdate.Name = "btnUpdate";
 			this.btnUpdate.Size = new System.Drawing.Size(110, 40);
 			this.btnUpdate.TabIndex = 13;
@@ -135,7 +166,7 @@
 			this.btnDelete.FlatAppearance.BorderSize = 0;
 			this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnDelete.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.btnDelete.Location = new System.Drawing.Point(343, 598);
+			this.btnDelete.Location = new System.Drawing.Point(817, 151);
 			this.btnDelete.Name = "btnDelete";
 			this.btnDelete.Size = new System.Drawing.Size(110, 40);
 			this.btnDelete.TabIndex = 12;
@@ -150,7 +181,7 @@
 			this.btnSave.FlatAppearance.BorderSize = 0;
 			this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSave.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.btnSave.Location = new System.Drawing.Point(227, 598);
+			this.btnSave.Location = new System.Drawing.Point(817, 105);
 			this.btnSave.Name = "btnSave";
 			this.btnSave.Size = new System.Drawing.Size(110, 40);
 			this.btnSave.TabIndex = 11;
@@ -165,7 +196,7 @@
 			this.btnCreate.FlatAppearance.BorderSize = 0;
 			this.btnCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnCreate.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.btnCreate.Location = new System.Drawing.Point(111, 598);
+			this.btnCreate.Location = new System.Drawing.Point(817, 59);
 			this.btnCreate.Name = "btnCreate";
 			this.btnCreate.Size = new System.Drawing.Size(110, 40);
 			this.btnCreate.TabIndex = 10;
@@ -178,7 +209,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(804, 680);
+			this.ClientSize = new System.Drawing.Size(939, 680);
 			this.Controls.Add(this.btnClose);
 			this.Controls.Add(this.btnUpdate);
 			this.Controls.Add(this.btnDelete);
@@ -198,8 +229,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.gridViewTransaction)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.grvTransactionLine)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewTransactionLine)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.bsTransaction)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.bsTransactionLine)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsTransactions)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsTransactionLines)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -222,7 +253,10 @@
 		private DevExpress.XtraGrid.Views.Grid.GridView gridViewTransaction;
 		private DevExpress.XtraGrid.GridControl grvTransactionLine;
 		private DevExpress.XtraGrid.Views.Grid.GridView gridViewTransactionLine;
-		private BindingSource bsTransaction;
-		private BindingSource bsTransactionLine;
+		private BindingSource bsTransactions;
+		private BindingSource bsTransactionLines;
+		private DevExpress.XtraGrid.Columns.GridColumn colDate;
+		private DevExpress.XtraGrid.Columns.GridColumn colPaymentMethod;
+		private DevExpress.XtraGrid.Columns.GridColumn colTotalValue;
 	}
 }

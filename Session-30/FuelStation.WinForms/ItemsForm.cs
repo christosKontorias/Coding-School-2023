@@ -1,4 +1,6 @@
-﻿using FuelStation.Web.Shared.Item;
+﻿using FuelStation.Model;
+using FuelStation.Web.Shared.Customer;
+using FuelStation.Web.Shared.Item;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Http.Json;
