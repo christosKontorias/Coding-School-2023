@@ -1,10 +1,4 @@
 ﻿using FuelStation.Model.Enums;
-using FuelStation.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FuelStation.Web.Shared.Transaction {
 	public  class TransactionListDto {
@@ -14,5 +8,7 @@ namespace FuelStation.Web.Shared.Transaction {
 		public decimal TotalValue { get; set; }
 		public int EmployeeId { get; set; }
 		public int CustomerId { get; set; }
+
+		public List<FuelStation.Model.TransactionLine> TransactionLines { get; set; } = new();
 	}
 }

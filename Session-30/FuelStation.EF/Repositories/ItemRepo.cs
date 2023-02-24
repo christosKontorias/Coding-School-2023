@@ -51,6 +51,7 @@ public class ItemRepo : IEntityRepo<Item> {
 		ItemDb.ItemType = entity.ItemType;
 		ItemDb.Price = entity.Price;
 		ItemDb.Cost = entity.Cost;
+		ItemDb.TransactionLines = entity.TransactionLines;
 		context.SaveChanges();
 	}
 }

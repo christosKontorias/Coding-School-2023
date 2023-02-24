@@ -22,7 +22,8 @@ namespace FuelStation.Web.Server.Controllers {
 				PaymentMethod = transaction.PaymentMethod,
 				TotalValue = transaction.TotalValue,
 				EmployeeId = transaction.EmployeeId,
-				CustomerId = transaction.CustomerId
+				CustomerId = transaction.CustomerId,
+				TransactionLines = transaction.TransactionLines
 			});
 		}
 
@@ -35,25 +36,31 @@ namespace FuelStation.Web.Server.Controllers {
 				PaymentMethod = result.PaymentMethod,
 				TotalValue = result.TotalValue,
 				EmployeeId = result.EmployeeId,
-				CustomerId = result.CustomerId
+				CustomerId = result.CustomerId,
+				TransactionLines = result.TransactionLines
 			};
 		}
 
 		[HttpPost]
 		public async Task Post(TransactionEditDto transaction) {
 			var newTransaction = new Transaction(transaction.PaymentMethod, transaction.TotalValue);
-			newTransaction.PaymentMethod = transaction.PaymentMethod;
-			newTransaction.TotalValue = transaction.TotalValue;
+			//newTransaction.PaymentMethod = transaction.PaymentMethod;
+			//newTransaction.TotalValue = transaction.TotalValue;
+			newTransaction.EmployeeId = transaction.EmployeeId;
+			newTransaction.CustomerId = transaction.CustomerId;
+			newTransaction.TransactionLines = transaction.TransactionLines;
 			_transactionRepo.Add(newTransaction);
 		}
 
 		[HttpPut]
 		public async Task Put(TransactionEditDto transaction) {
 			var itemToUpdate = _transactionRepo.GetById(transaction.Id);
+			itemToUpdate.Date = transaction.Date;
 			itemToUpdate.PaymentMethod = transaction.PaymentMethod;
 			itemToUpdate.TotalValue = transaction.TotalValue;
 			itemToUpdate.EmployeeId = transaction.EmployeeId;
 			itemToUpdate.CustomerId = transaction.CustomerId;
+			itemToUpdate.TransactionLines = transaction.TransactionLines;
 			_transactionRepo.Update(transaction.Id, itemToUpdate);
 		}
 

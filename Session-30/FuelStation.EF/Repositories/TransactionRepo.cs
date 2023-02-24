@@ -46,16 +46,16 @@ public class TransactionRepo : IEntityRepo<Transaction> {
 			.Include(transaction => transaction.Customer)
 			.Include(transaction => transaction.Employee)
 			.Include(transaction => transaction.TransactionLines)
-			//.ThenInclude(transaction => transaction.Item)
 			.SingleOrDefault(transaction => transaction.Id == id);
+			//.ThenInclude(transaction => transaction.Item)
 	}
 
 	public void Update(int id, Transaction entity) {
 		using var context = new FuelStationDbContext();
 		var TransactionDb = context.Transactions
-			.Include(transaction => transaction.TransactionLines)
-			//.ThenInclude(transaction => transaction.Item)
+			.Include(transaction => transaction.Id)
 			.SingleOrDefault(transaction => transaction.Id == id);
+			//.ThenInclude(transaction => transaction.Item)
 		if (TransactionDb is null) {
 			throw new KeyNotFoundException($"Given id '{id}' was not found in database");
 		}
@@ -64,7 +64,7 @@ public class TransactionRepo : IEntityRepo<Transaction> {
 		TransactionDb.TotalValue = entity.TotalValue;
 		TransactionDb.CustomerId = entity.CustomerId;
 		TransactionDb.EmployeeId = entity.EmployeeId;
-		TransactionDb.TransactionLines = entity.TransactionLines;
+		//TransactionDb.TransactionLines = entity.TransactionLines;
 		context.SaveChanges();
 	}
 }

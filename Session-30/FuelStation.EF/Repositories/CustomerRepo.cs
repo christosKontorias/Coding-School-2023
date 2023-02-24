@@ -48,7 +48,7 @@ public class CustomerRepo : IEntityRepo<Customer> {
 		CustomerDb.Name = entity.Name;
 		CustomerDb.Surname = entity.Surname;
 		CustomerDb.CardNumber = entity.CardNumber;
-		//CustomerDb.Transactions = entity.Transactions;
+		CustomerDb.Transactions = entity.Transactions;
 		context.SaveChanges();
 	}
 }

@@ -53,6 +53,7 @@ public class EmployeeRepo : IEntityRepo<Employee> {
 		EmployeeDb.HireDateEnd = entity.HireDateEnd;
 		EmployeeDb.SallaryPerMonth = entity.SallaryPerMonth;
 		EmployeeDb.EmployeeType = entity.EmployeeType;
+		EmployeeDb.Transactions = entity.Transactions;
 		context.SaveChanges();
 	}
 }

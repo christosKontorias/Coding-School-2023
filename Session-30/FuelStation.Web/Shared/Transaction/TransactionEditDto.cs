@@ -16,7 +16,7 @@ namespace FuelStation.Web.Shared.Transaction {
 		public int EmployeeId { get; set; }
 		public int CustomerId { get; set; }
 
-		public List<TransactionLineEditDto> TransactionLines { get; set; }
+		public List<FuelStation.Model.TransactionLine> TransactionLines { get; set; } = new();
 
 	}
 }
