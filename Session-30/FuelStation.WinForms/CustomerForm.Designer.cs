@@ -57,8 +57,6 @@
 			this.gridViewCustomers.GridControl = this.grvCustomers;
 			this.gridViewCustomers.Name = "gridViewCustomers";
 			this.gridViewCustomers.OptionsView.ShowGroupPanel = false;
-			this.gridViewCustomers.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridViewCustomers_ValidateRow);
-			this.gridViewCustomers.ValidatingEditor += new DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventHandler(this.gridViewCustomers_ValidatingEditor);
 			// 
 			// colName
 			// 
