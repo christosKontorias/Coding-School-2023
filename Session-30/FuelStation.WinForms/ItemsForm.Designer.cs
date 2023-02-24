@@ -38,6 +38,7 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.btnDelete = new System.Windows.Forms.Button();
 			this.btnUpdate = new System.Windows.Forms.Button();
+			this.btnClose = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.grvItems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewItems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsItems)).BeginInit();
@@ -45,11 +46,10 @@
 			// 
 			// grvItems
 			// 
-			this.grvItems.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.grvItems.Location = new System.Drawing.Point(0, 190);
+			this.grvItems.Location = new System.Drawing.Point(12, 59);
 			this.grvItems.MainView = this.gridViewItems;
 			this.grvItems.Name = "grvItems";
-			this.grvItems.Size = new System.Drawing.Size(800, 260);
+			this.grvItems.Size = new System.Drawing.Size(776, 301);
 			this.grvItems.TabIndex = 0;
 			this.grvItems.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewItems});
@@ -108,58 +108,101 @@
 			// 
 			// btnCreate
 			// 
-			this.btnCreate.Location = new System.Drawing.Point(104, 145);
+			this.btnCreate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+			this.btnCreate.FlatAppearance.BorderSize = 0;
+			this.btnCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnCreate.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+			this.btnCreate.Location = new System.Drawing.Point(115, 400);
 			this.btnCreate.Name = "btnCreate";
-			this.btnCreate.Size = new System.Drawing.Size(75, 23);
+			this.btnCreate.Size = new System.Drawing.Size(110, 40);
 			this.btnCreate.TabIndex = 1;
 			this.btnCreate.Text = "Create";
-			this.btnCreate.UseVisualStyleBackColor = true;
+			this.btnCreate.UseVisualStyleBackColor = false;
 			this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+			this.btnCreate.MouseEnter += new System.EventHandler(this.btnCreate_MouseEnter);
+			this.btnCreate.MouseLeave += new System.EventHandler(this.btnCreate_MouseLeave);
 			// 
 			// btnSave
 			// 
-			this.btnSave.Location = new System.Drawing.Point(244, 145);
+			this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+			this.btnSave.FlatAppearance.BorderSize = 0;
+			this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnSave.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+			this.btnSave.Location = new System.Drawing.Point(231, 400);
 			this.btnSave.Name = "btnSave";
-			this.btnSave.Size = new System.Drawing.Size(75, 23);
+			this.btnSave.Size = new System.Drawing.Size(110, 40);
 			this.btnSave.TabIndex = 2;
 			this.btnSave.Text = "Save";
-			this.btnSave.UseVisualStyleBackColor = true;
+			this.btnSave.UseVisualStyleBackColor = false;
 			this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+			this.btnSave.MouseEnter += new System.EventHandler(this.btnSave_MouseEnter);
+			this.btnSave.MouseLeave += new System.EventHandler(this.btnSave_MouseLeave);
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(366, 23);
+			this.label1.Font = new System.Drawing.Font("Segoe Print", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+			this.label1.Location = new System.Drawing.Point(310, 10);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(57, 15);
+			this.label1.Size = new System.Drawing.Size(154, 47);
 			this.label1.TabIndex = 3;
 			this.label1.Text = "Items List";
+			this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			// 
 			// btnDelete
 			// 
-			this.btnDelete.Location = new System.Drawing.Point(366, 145);
+			this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+			this.btnDelete.FlatAppearance.BorderSize = 0;
+			this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnDelete.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+			this.btnDelete.Location = new System.Drawing.Point(347, 400);
 			this.btnDelete.Name = "btnDelete";
-			this.btnDelete.Size = new System.Drawing.Size(75, 23);
+			this.btnDelete.Size = new System.Drawing.Size(110, 40);
 			this.btnDelete.TabIndex = 4;
 			this.btnDelete.Text = "Delete";
-			this.btnDelete.UseVisualStyleBackColor = true;
+			this.btnDelete.UseVisualStyleBackColor = false;
 			this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+			this.btnDelete.MouseEnter += new System.EventHandler(this.btnDelete_MouseEnter);
+			this.btnDelete.MouseLeave += new System.EventHandler(this.btnDelete_MouseLeave);
 			// 
 			// btnUpdate
 			// 
-			this.btnUpdate.Location = new System.Drawing.Point(474, 145);
+			this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+			this.btnUpdate.FlatAppearance.BorderSize = 0;
+			this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnUpdate.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+			this.btnUpdate.Location = new System.Drawing.Point(463, 400);
 			this.btnUpdate.Name = "btnUpdate";
-			this.btnUpdate.Size = new System.Drawing.Size(75, 23);
+			this.btnUpdate.Size = new System.Drawing.Size(110, 40);
 			this.btnUpdate.TabIndex = 5;
 			this.btnUpdate.Text = "Update";
-			this.btnUpdate.UseVisualStyleBackColor = true;
+			this.btnUpdate.UseVisualStyleBackColor = false;
 			this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+			this.btnUpdate.MouseEnter += new System.EventHandler(this.btnUpdate_MouseEnter);
+			this.btnUpdate.MouseLeave += new System.EventHandler(this.btnUpdate_MouseLeave);
+			// 
+			// btnClose
+			// 
+			this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+			this.btnClose.FlatAppearance.BorderSize = 0;
+			this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnClose.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+			this.btnClose.Location = new System.Drawing.Point(579, 400);
+			this.btnClose.Name = "btnClose";
+			this.btnClose.Size = new System.Drawing.Size(110, 40);
+			this.btnClose.TabIndex = 6;
+			this.btnClose.Text = "Close";
+			this.btnClose.UseVisualStyleBackColor = false;
+			this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+			this.btnClose.MouseEnter += new System.EventHandler(this.btnClose_MouseEnter);
+			this.btnClose.MouseLeave += new System.EventHandler(this.btnClose_MouseLeave);
 			// 
 			// ItemsForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.btnClose);
 			this.Controls.Add(this.btnUpdate);
 			this.Controls.Add(this.btnDelete);
 			this.Controls.Add(this.label1);
@@ -193,5 +236,6 @@
 		private DevExpress.XtraGrid.Columns.GridColumn colItemType;
 		private DevExpress.XtraGrid.Columns.GridColumn colPrice;
 		private DevExpress.XtraGrid.Columns.GridColumn colCost;
+		private Button btnClose;
 	}
 }
