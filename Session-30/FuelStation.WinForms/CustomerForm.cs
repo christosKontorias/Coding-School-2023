@@ -21,7 +21,7 @@ namespace FuelStation.WinForms {
 		}
 
 		private void CustomerForm_Load(object sender, EventArgs e) {
-			_= SetControlProperties();
+			SetControlProperties();
 		}
 
 		private async Task SetControlProperties() {
