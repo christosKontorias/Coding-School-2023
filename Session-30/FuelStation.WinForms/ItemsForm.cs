@@ -1,14 +1,18 @@
-﻿using FuelStation.Web.Shared.Item;
+﻿using DevExpress.CodeParser;
+using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Views.Grid;
+using FuelStation.Web.Shared.Customer;
+using FuelStation.Web.Shared.Item;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Text;
 
 namespace FuelStation.WinForms {
 	public partial class ItemsForm : Form {
 
 		private readonly HttpClient _httpClient;
-		//private List<ItemListDto> _itemList = new();
 
 		public ItemsForm() {
 			InitializeComponent();
@@ -28,7 +32,7 @@ namespace FuelStation.WinForms {
 			}
 		}
 
-		//Display Items List
+		//Display Items
 		private async Task<List<ItemListDto>> GetItems() {
 			var response = await _httpClient.GetAsync("item");
 			if (response.IsSuccessStatusCode) {
@@ -76,9 +80,7 @@ namespace FuelStation.WinForms {
 
 		private void btnSave_Click(object sender, EventArgs e) {
 			OnSave();
-
 		}
-
 
 		private void btnDelete_Click(object sender, EventArgs e) {
 			OnDelete();
@@ -87,5 +89,6 @@ namespace FuelStation.WinForms {
 		private void btnUpdate_Click(object sender, EventArgs e) {
 			SetControlProperties();
 		}
+
 	}
 }

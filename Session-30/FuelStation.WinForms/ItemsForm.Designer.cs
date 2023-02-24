@@ -27,17 +27,17 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ItemsForm));
 			this.grvItems = new DevExpress.XtraGrid.GridControl();
 			this.gridViewItems = new DevExpress.XtraGrid.Views.Grid.GridView();
+			this.colCode = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.colItemType = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.colPrice = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.colCost = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.bsItems = new System.Windows.Forms.BindingSource(this.components);
 			this.btnCreate = new System.Windows.Forms.Button();
 			this.btnSave = new System.Windows.Forms.Button();
 			this.label1 = new System.Windows.Forms.Label();
 			this.btnDelete = new System.Windows.Forms.Button();
 			this.btnUpdate = new System.Windows.Forms.Button();
-			this.colCode = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.colItemType = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.colPrice = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.colCost = new DevExpress.XtraGrid.Columns.GridColumn();
 			((System.ComponentModel.ISupportInitialize)(this.grvItems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewItems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsItems)).BeginInit();
@@ -65,6 +65,46 @@
 			this.gridViewItems.GridControl = this.grvItems;
 			this.gridViewItems.Name = "gridViewItems";
 			this.gridViewItems.OptionsView.ShowGroupPanel = false;
+			// 
+			// colCode
+			// 
+			this.colCode.Caption = "Code";
+			this.colCode.FieldName = "Code";
+			this.colCode.Name = "colCode";
+			this.colCode.Visible = true;
+			this.colCode.VisibleIndex = 0;
+			// 
+			// colDescription
+			// 
+			this.colDescription.Caption = "Description";
+			this.colDescription.FieldName = "Description";
+			this.colDescription.Name = "colDescription";
+			this.colDescription.Visible = true;
+			this.colDescription.VisibleIndex = 1;
+			// 
+			// colItemType
+			// 
+			this.colItemType.Caption = "Item Type";
+			this.colItemType.FieldName = "ItemType";
+			this.colItemType.Name = "colItemType";
+			this.colItemType.Visible = true;
+			this.colItemType.VisibleIndex = 2;
+			// 
+			// colPrice
+			// 
+			this.colPrice.Caption = "Price";
+			this.colPrice.FieldName = "Price";
+			this.colPrice.Name = "colPrice";
+			this.colPrice.Visible = true;
+			this.colPrice.VisibleIndex = 3;
+			// 
+			// colCost
+			// 
+			this.colCost.Caption = "Cost";
+			this.colCost.FieldName = "Cost";
+			this.colCost.Name = "colCost";
+			this.colCost.Visible = true;
+			this.colCost.VisibleIndex = 4;
 			// 
 			// btnCreate
 			// 
@@ -114,46 +154,6 @@
 			this.btnUpdate.Text = "Update";
 			this.btnUpdate.UseVisualStyleBackColor = true;
 			this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-			// 
-			// colCode
-			// 
-			this.colCode.Caption = "Code";
-			this.colCode.FieldName = "Code";
-			this.colCode.Name = "colCode";
-			this.colCode.Visible = true;
-			this.colCode.VisibleIndex = 0;
-			// 
-			// colDescription
-			// 
-			this.colDescription.Caption = "Description";
-			this.colDescription.FieldName = "Description";
-			this.colDescription.Name = "colDescription";
-			this.colDescription.Visible = true;
-			this.colDescription.VisibleIndex = 1;
-			// 
-			// colItemType
-			// 
-			this.colItemType.Caption = "Item Type";
-			this.colItemType.FieldName = "ItemType";
-			this.colItemType.Name = "colItemType";
-			this.colItemType.Visible = true;
-			this.colItemType.VisibleIndex = 2;
-			// 
-			// colPrice
-			// 
-			this.colPrice.Caption = "Price";
-			this.colPrice.FieldName = "Price";
-			this.colPrice.Name = "colPrice";
-			this.colPrice.Visible = true;
-			this.colPrice.VisibleIndex = 3;
-			// 
-			// colCost
-			// 
-			this.colCost.Caption = "Cost";
-			this.colCost.FieldName = "Cost";
-			this.colCost.Name = "colCost";
-			this.colCost.Visible = true;
-			this.colCost.VisibleIndex = 4;
 			// 
 			// ItemsForm
 			// 
