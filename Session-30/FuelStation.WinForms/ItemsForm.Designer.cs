@@ -209,8 +209,10 @@
 			this.Controls.Add(this.btnSave);
 			this.Controls.Add(this.btnCreate);
 			this.Controls.Add(this.grvItems);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "ItemsForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Items";
 			this.Load += new System.EventHandler(this.ItemsForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.grvItems)).EndInit();
