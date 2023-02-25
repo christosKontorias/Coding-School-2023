@@ -17,7 +17,11 @@ namespace FuelStation.Web.Shared.Item {
 		public string Description { get; set; }
 		[Required]
 		public ItemType ItemType { get; set; }
+		[Required]
+		[Range(1, int.MaxValue, ErrorMessage = "The Price must be greater than 0")]
 		public decimal Price { get; set; }
+		[Required]
+		[Range(1, int.MaxValue, ErrorMessage = "The Cost must be greater than 0")]
 		public decimal Cost { get; set; }
 	}
 }

@@ -53,6 +53,7 @@
 			<div class="col-md-6">
 				<label class="form-label">Price</label>
 				<InputNumber class="form-control" @bind-Value="@Item.Price" />
+				<ValidationMessage For="@(() => Item.Price)" />
 			</div>
 		</div>
 
@@ -60,6 +61,7 @@
 			<div class="col-md-6">
 				<label class="form-label">Cost</label>
 				<InputNumber class="form-control" @bind-Value="@Item.Cost" />
+				<ValidationMessage For="@(() => Item.Cost)" />
 			</div>
 		</div>
 

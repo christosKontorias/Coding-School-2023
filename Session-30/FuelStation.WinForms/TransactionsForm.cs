@@ -1,12 +1,5 @@
-﻿using FuelStation.EF.Repositories;
-using FuelStation.Web.Server.Controllers;
-using FuelStation.Web.Shared.Customer;
-using FuelStation.Web.Shared.Employee;
-using FuelStation.Web.Shared.Item;
-using FuelStation.Web.Shared.Transaction;
-using FuelStation.Web.Shared.TransactionLine;
-using Newtonsoft.Json;
-using System.ComponentModel;
+﻿using FuelStation.Web.Shared.Customer;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
 
@@ -14,13 +7,12 @@ namespace FuelStation.WinForms {
 	public partial class TransactionsForm : Form {
 
 		private readonly HttpClient _httpClient;
-		//private readonly TransactionRepo _transactionRepo;
+		private CustomerListDto _customer;
 
 		public TransactionsForm() {
 			InitializeComponent();
 			_httpClient = new HttpClient();
-			_httpClient.BaseAddress = new Uri("https://localhost:7136/");
-			//_transactionRepo = new TransactionRepo();
+			//_httpClient.BaseAddress = new Uri("https://localhost:7136/");
 
 		}
 		private void TransactionsForm_Load(object sender, EventArgs e) {
@@ -28,28 +20,16 @@ namespace FuelStation.WinForms {
 		}
 
 		private async void SetControlProperties() {
-			//var transactions = _transactionRepo.GetAll();
-			//grvTransaction.DataSource = transactions;
-
 
 		}
 
-		//Display Transaction
-		//private async Task<List<TransactionListDto>> GetAllTransactions() {
-		//	var response = await _httpClient.GetAsync("transaction");
-		//	if (response.IsSuccessStatusCode) {
-		//		var content = await response.Content.ReadAsStringAsync();
-		//		return JsonConvert.DeserializeObject<List<TransactionListDto>>(content);
-		//	}
-		//	return null;
-		//}
 
+		private void textBox1_TextChanged(object sender, EventArgs e) {
 
+		}
 		private void btnClose_Click(object sender, EventArgs e) {
 			this.Close();
 		}
-
-
 
 		//Customize Buttons
 		private void btnCreate_MouseEnter(object sender, EventArgs e) {
@@ -103,5 +83,6 @@ namespace FuelStation.WinForms {
 			button.ForeColor = Color.Black;
 			button.FlatAppearance.BorderSize = 0;
 		}
+
 	}
 }

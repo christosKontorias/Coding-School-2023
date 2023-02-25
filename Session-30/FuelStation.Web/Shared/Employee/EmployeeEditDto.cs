@@ -17,6 +17,8 @@ namespace FuelStation.Web.Shared.Employee {
 		public string Surname { get; set; }
 		public DateTime HireDateStart { get; set; }
 		public DateTime HireDateEnd { get; set; }
+		[Required]
+		[Range(1, int.MaxValue, ErrorMessage = "The Salary must be greater than 0")]
 		public int SallaryPerMonth { get; set; }
 		[Required]
 		public EmployeeType EmployeeType { get; set; }

@@ -36,25 +36,50 @@
 		</div>
 
 
-		<div class="row">
-			<div class="col-md-6">
-				<label type="date">Hire Date Start:</label>
-				<InputDate class="form-control" @bind-Value="@Employee.HireDateStart" />
-				<ValidationMessage For="@(() => Employee.HireDateStart)" />
+		@*		<div class="row">
+	<div class="col-md-6">
+	<label type="date">Hire Date Start:</label>
+	<InputDate class="form-control" @bind-Value="@Employee.HireDateStart"/>
+	<ValidationMessage For="@(() => Employee.HireDateStart)" />
+	</div>
+	</div>*@
+		@if (Id == null) {
+			<div class="row">
+				<div class="col-md-6">
+					<label type="date">Hire Date Start:</label>
+					<InputDate class="form-control" @bind-Value="@Employee.HireDateStart" />
+				</div>
 			</div>
-		</div>
+		} else {
+			<div class="row">
+				<div class="col-md-6">
+					<label type="date">Hire Date Start:</label>
+					<InputDate class="form-control" @bind-Value="@Employee.HireDateStart" disabled />
+				</div>
+			</div>
+		}
 
-		<div class="row">
-			<div class="col-md-6">
-				<labe ltype="date">Hire Date Start:</labe>
-				<InputDate class="form-control" @bind-Value="@Employee.HireDateEnd" />
+		@if (Id == null) {
+			<div class="row">
+				<div class="col-md-6">
+					<label type="date">Hire Date End:</label>
+					<InputDate class="form-control" @bind-Value="@Employee.HireDateEnd" disabled />
+				</div>
 			</div>
-		</div>
+		} else {
+			<div class="row">
+				<div class="col-md-6">
+					<label type="date">Hire Date End:</label>
+					<InputDate class="form-control" @bind-Value="@Employee.HireDateEnd" />
+				</div>
+			</div>
+		}
 
 		<div class="row">
 			<div class="col-md-6">
 				<label class="form-label">Salary Per Month</label>
 				<InputNumber class="form-control" @bind-Value="@Employee.SallaryPerMonth" />
+				<ValidationMessage For="@(() => Employee.SallaryPerMonth)" />
 			</div>
 		</div>
 
@@ -88,11 +113,14 @@
 		if (!string.IsNullOrWhiteSpace(token)) {
 			httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
 			if (Id == null) {
-				Employee = new();
+				Employee = new() {
+						HireDateStart = DateTime.Now
+					};
 				title = "Create Employee";
 			} else {
 				Employee = await httpClient.GetFromJsonAsync<EmployeeEditDto>($"employee/{Id}");
 				title = "Edit Employee";
+				Employee.HireDateEnd = DateTime.Now;
 			}
 		} else {
 			navigationManager.NavigateTo("/login");
