@@ -1,6 +1,8 @@
 ﻿@page "/ledgerlist"
 @using FuelStation.Web.Shared.Ledger;
 @using FuelStation.Web.Shared;
+@using FuelStation.Web.Shared.Transaction;
+@inject HttpClient httpClient
 @attribute [Authorize(Roles = "Manager")]
 
 <h3>Ledger</h3>
@@ -33,7 +35,8 @@
 }
 
 @code {
+	private List<LedgerListDto> ledgerList = new();
 	bool isLoading { get; set; } = true;
-	List<LedgerListDto> ledgerList = new List<LedgerListDto>();
+
 
 }

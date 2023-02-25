@@ -14,7 +14,11 @@ public class Ledger {
 	public decimal Expenses { get; set; }
 	public decimal Total { get; set; }
 
-	//Constructor
+	public List<Transaction> Transactions { get; set; } = new List<Transaction>();
 
-	//Relations
+
+	public Ledger(DateTime datetime) {
+		Year = datetime.Year;
+		Month = datetime.Month;
+	}
 }
