@@ -27,12 +27,8 @@ namespace FuelStation.WinForms {
 		}
 		//Display Customers 
 		private async Task<List<CustomerListDto>> GetCustomers() {
-			var response = await _httpClient.GetAsync("customer");
-			if (response.IsSuccessStatusCode) {
-				var content = await response.Content.ReadAsStringAsync();
-				return JsonConvert.DeserializeObject<List<CustomerListDto>>(content);
-			}
-			return null;
+			var response = await _httpClient.GetFromJsonAsync<List<CustomerListDto>>("customer");
+			return response;
 		}
 
 		//Save

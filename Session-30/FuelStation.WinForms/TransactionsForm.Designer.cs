@@ -50,7 +50,7 @@
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Segoe Print", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.label1.Location = new System.Drawing.Point(292, 114);
+			this.label1.Location = new System.Drawing.Point(380, 45);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(181, 47);
 			this.label1.TabIndex = 6;
@@ -178,18 +178,19 @@
 			// 
 			// textBox1
 			// 
-			this.textBox1.Location = new System.Drawing.Point(191, 59);
+			this.textBox1.Location = new System.Drawing.Point(184, 15);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(146, 23);
+			this.textBox1.Size = new System.Drawing.Size(113, 23);
 			this.textBox1.TabIndex = 15;
 			this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
 			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(100, 62);
+			this.label2.Font = new System.Drawing.Font("Segoe Print", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+			this.label2.Location = new System.Drawing.Point(12, 9);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(85, 15);
+			this.label2.Size = new System.Drawing.Size(166, 35);
 			this.label2.TabIndex = 16;
 			this.label2.Text = "Card Number :";
 			// 

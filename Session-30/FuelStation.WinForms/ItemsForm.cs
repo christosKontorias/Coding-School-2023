@@ -30,12 +30,8 @@ namespace FuelStation.WinForms {
 
 		//Display Items
 		private async Task<List<ItemListDto>> GetItems() {
-			var response = await _httpClient.GetAsync("item");
-			if (response.IsSuccessStatusCode) {
-				var content = await response.Content.ReadAsStringAsync();
-				return JsonConvert.DeserializeObject<List<ItemListDto>>(content);
-			}
-			return null;
+			var response = await _httpClient.GetFromJsonAsync<List<ItemListDto>>("item");
+			return response;
 		}
 
 		//Save
