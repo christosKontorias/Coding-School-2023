@@ -38,16 +38,16 @@
 			this.txtUsername = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.pictureBox2 = new System.Windows.Forms.PictureBox();
-			this.panel2 = new System.Windows.Forms.Panel();
+			this.panelUsername = new System.Windows.Forms.Panel();
 			this.pictureBox4 = new System.Windows.Forms.PictureBox();
-			this.panel3 = new System.Windows.Forms.Panel();
+			this.panelPassword = new System.Windows.Forms.Panel();
 			this.btnExit = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-			this.panel2.SuspendLayout();
+			this.panelUsername.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-			this.panel3.SuspendLayout();
+			this.panelPassword.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -196,16 +196,16 @@
 			this.pictureBox2.TabIndex = 8;
 			this.pictureBox2.TabStop = false;
 			// 
-			// panel2
+			// panelUsername
 			// 
-			this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
-			this.panel2.Controls.Add(this.pictureBox2);
-			this.panel2.Controls.Add(this.label2);
-			this.panel2.Controls.Add(this.txtUsername);
-			this.panel2.Location = new System.Drawing.Point(260, 194);
-			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(331, 60);
-			this.panel2.TabIndex = 10;
+			this.panelUsername.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
+			this.panelUsername.Controls.Add(this.pictureBox2);
+			this.panelUsername.Controls.Add(this.label2);
+			this.panelUsername.Controls.Add(this.txtUsername);
+			this.panelUsername.Location = new System.Drawing.Point(260, 194);
+			this.panelUsername.Name = "panelUsername";
+			this.panelUsername.Size = new System.Drawing.Size(331, 60);
+			this.panelUsername.TabIndex = 10;
 			// 
 			// pictureBox4
 			// 
@@ -217,16 +217,16 @@
 			this.pictureBox4.TabIndex = 8;
 			this.pictureBox4.TabStop = false;
 			// 
-			// panel3
+			// panelPassword
 			// 
-			this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
-			this.panel3.Controls.Add(this.pictureBox4);
-			this.panel3.Controls.Add(this.label3);
-			this.panel3.Controls.Add(this.txtPassword);
-			this.panel3.Location = new System.Drawing.Point(260, 268);
-			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(331, 60);
-			this.panel3.TabIndex = 11;
+			this.panelPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(246)))), ((int)(((byte)(255)))));
+			this.panelPassword.Controls.Add(this.pictureBox4);
+			this.panelPassword.Controls.Add(this.label3);
+			this.panelPassword.Controls.Add(this.txtPassword);
+			this.panelPassword.Location = new System.Drawing.Point(260, 268);
+			this.panelPassword.Name = "panelPassword";
+			this.panelPassword.Size = new System.Drawing.Size(331, 60);
+			this.panelPassword.TabIndex = 11;
 			// 
 			// btnExit
 			// 
@@ -251,8 +251,8 @@
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(250)))), ((int)(((byte)(255)))));
 			this.ClientSize = new System.Drawing.Size(603, 518);
 			this.Controls.Add(this.btnExit);
-			this.Controls.Add(this.panel3);
-			this.Controls.Add(this.panel2);
+			this.Controls.Add(this.panelPassword);
+			this.Controls.Add(this.panelUsername);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.btnLogin);
 			this.Controls.Add(this.label1);
@@ -261,15 +261,16 @@
 			this.Name = "LogInForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Fuel Station";
+			this.Load += new System.EventHandler(this.LogInForm_Load);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-			this.panel2.ResumeLayout(false);
-			this.panel2.PerformLayout();
+			this.panelUsername.ResumeLayout(false);
+			this.panelUsername.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-			this.panel3.ResumeLayout(false);
-			this.panel3.PerformLayout();
+			this.panelPassword.ResumeLayout(false);
+			this.panelPassword.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -292,9 +293,9 @@
 		private TextBox txtUsername;
 		private Label label2;
 		private PictureBox pictureBox2;
-		private Panel panel2;
+		private Panel panelUsername;
 		private PictureBox pictureBox4;
-		private Panel panel3;
+		private Panel panelPassword;
 		private Button button1;
 	}
 }

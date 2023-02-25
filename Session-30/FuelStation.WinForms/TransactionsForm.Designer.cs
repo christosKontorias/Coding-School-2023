@@ -57,7 +57,7 @@
 			this.btnClose.FlatAppearance.BorderSize = 0;
 			this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnClose.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.btnClose.Location = new System.Drawing.Point(798, 372);
+			this.btnClose.Location = new System.Drawing.Point(750, 326);
 			this.btnClose.Name = "btnClose";
 			this.btnClose.Size = new System.Drawing.Size(110, 40);
 			this.btnClose.TabIndex = 14;
@@ -73,7 +73,7 @@
 			this.btnUpdate.FlatAppearance.BorderSize = 0;
 			this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnUpdate.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.btnUpdate.Location = new System.Drawing.Point(798, 326);
+			this.btnUpdate.Location = new System.Drawing.Point(750, 280);
 			this.btnUpdate.Name = "btnUpdate";
 			this.btnUpdate.Size = new System.Drawing.Size(110, 40);
 			this.btnUpdate.TabIndex = 13;
@@ -88,7 +88,7 @@
 			this.btnDelete.FlatAppearance.BorderSize = 0;
 			this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnDelete.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.btnDelete.Location = new System.Drawing.Point(798, 280);
+			this.btnDelete.Location = new System.Drawing.Point(750, 234);
 			this.btnDelete.Name = "btnDelete";
 			this.btnDelete.Size = new System.Drawing.Size(110, 40);
 			this.btnDelete.TabIndex = 12;
@@ -103,7 +103,7 @@
 			this.btnSave.FlatAppearance.BorderSize = 0;
 			this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSave.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.btnSave.Location = new System.Drawing.Point(798, 234);
+			this.btnSave.Location = new System.Drawing.Point(750, 188);
 			this.btnSave.Name = "btnSave";
 			this.btnSave.Size = new System.Drawing.Size(110, 40);
 			this.btnSave.TabIndex = 11;
@@ -118,7 +118,7 @@
 			this.btnCreate.FlatAppearance.BorderSize = 0;
 			this.btnCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnCreate.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.btnCreate.Location = new System.Drawing.Point(798, 188);
+			this.btnCreate.Location = new System.Drawing.Point(750, 142);
 			this.btnCreate.Name = "btnCreate";
 			this.btnCreate.Size = new System.Drawing.Size(110, 40);
 			this.btnCreate.TabIndex = 10;

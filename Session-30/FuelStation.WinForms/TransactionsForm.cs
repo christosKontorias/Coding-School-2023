@@ -21,16 +21,25 @@ namespace FuelStation.WinForms {
 			_httpClient = new HttpClient();
 
 		}
-		private void TransactionsForm_Load(object sender, EventArgs e) {
+		private async void TransactionsForm_Load(object sender, EventArgs e) {
+			var transactions = await GetTransactions();
+			bsTransactions.DataSource = transactions.ToList();
 		}
+
+
+		private async Task<IEnumerable<TransactionListDto>> GetTransactions() {
+		 await _httpClient.GetAsync("https://localhost:7136/transaction");
+			var transactions = await _httpClient.GetFromJsonAsync<List<TransactionListDto>>("transaction");
+			return transactions;
+		}
+
+
+
 
 		private void btnCreate_Click(object sender, EventArgs e) {
 			bsTransactions.Add(new TransactionListDto());
 		}
 
-		private void textBox1_TextChanged(object sender, EventArgs e) {
-
-		}
 		private void btnClose_Click(object sender, EventArgs e) {
 			this.Close();
 		}

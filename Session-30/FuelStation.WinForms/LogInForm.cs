@@ -36,6 +36,10 @@ namespace FuelStation.WinForms {
 		private void btnExit_Click_1(object sender, EventArgs e) {
 			this.Close();
 		}
+		private void LogInForm_Load(object sender, EventArgs e) {
+			panelUsername.BorderStyle = BorderStyle.FixedSingle;
+			panelPassword.BorderStyle = BorderStyle.FixedSingle;
+		}
 
 		private void btnLogin_MouseEnter(object sender, EventArgs e) {
 			CustomizeButtonOnMouseEnter(btnLogin);
@@ -64,5 +68,6 @@ namespace FuelStation.WinForms {
 			button.ForeColor = Color.Black;
 			button.FlatAppearance.BorderSize = 0;
 		}
+
 	}
 }
