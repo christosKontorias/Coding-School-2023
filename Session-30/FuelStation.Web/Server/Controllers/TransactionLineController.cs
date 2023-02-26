@@ -1,5 +1,7 @@
 ﻿using FuelStation.EF.Repositories;
 using FuelStation.Model;
+using FuelStation.Web.Shared.Item;
+using FuelStation.Web.Shared.Transaction;
 using FuelStation.Web.Shared.TransactionLine;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,7 +30,7 @@ namespace FuelStation.Web.Server.Controllers {
 				DiscountValue = transactionLine.DiscountValue,
 				TotalValue = transactionLine.TotalValue,
 				TransactionId = transactionLine.TransactionId,
-				ItemId = transactionLine.ItemId
+				//ItemId = transactionLine.ItemId
 			});
 		}
 
@@ -49,27 +51,13 @@ namespace FuelStation.Web.Server.Controllers {
 		}
 
 		[HttpPost]
-		public async Task Post(TransactionLineEditDto transactionLine) {
-			//var newTransactionLine = new TransactionLine(transactionLine.Quantity,
-			//	transactionLine.ItemId, transactionLine.NetValue, transactionLine.DiscountPercent,
-			//	transactionLine.DiscountValue, transactionLine.TotalValue);
-			////newTransaction.PaymentMethod = transaction.PaymentMethod;
-			////newTransaction.TotalValue = transaction.TotalValue;
-			//newTransactionLine.ItemId = transactionLine.TransactionId;
-			//newTransactionLine.TransactionId = transactionLine.TransactionId;
-			//_transactionLineRepo.Add(newTransactionLine);
-
-			var newTransactionLine = new TransactionLine(
-				transactionLine.Quantity,
-				transactionLine.ItemPrice,
-				transactionLine.NetValue,
-				transactionLine.DiscountPercent,
-				transactionLine.DiscountValue,
-				transactionLine.TotalValue
-			   );
-			await Task.Run(() => { _transactionLineRepo.Add(newTransactionLine); });
-
-
+		public async Task Post(TransactionLineListDto transactionLine) {
+			var newTransactionLine = new TransactionLine(transactionLine.Quantity,
+				transactionLine.ItemPrice, transactionLine.NetValue, transactionLine.DiscountPercent,
+				transactionLine.DiscountValue, transactionLine.TotalValue);
+			newTransactionLine.TransactionId = transactionLine.TransactionId;
+			newTransactionLine.ItemId = transactionLine.ItemId;
+			_transactionLineRepo.Add(newTransactionLine);
 		}
 
 		[HttpPut]
@@ -90,26 +78,5 @@ namespace FuelStation.Web.Server.Controllers {
 		public async Task Delete(int id) {
 			_transactionLineRepo.Delete(id);
 		}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	}
 }

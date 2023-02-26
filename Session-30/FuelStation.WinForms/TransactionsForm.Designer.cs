@@ -51,6 +51,7 @@
 			this.colDiscountPercent = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colTransactionLineTotalValue = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colTransactionLineTransactionId = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.colItems = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.repItems = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
 			this.bsTransactionLines = new System.Windows.Forms.BindingSource(this.components);
 			this.bsItems = new System.Windows.Forms.BindingSource(this.components);
@@ -60,6 +61,7 @@
 			this.btnTransactionLineDelete = new System.Windows.Forms.Button();
 			this.btnTransactionLineSave = new System.Windows.Forms.Button();
 			this.btnTransactionLineCreate = new System.Windows.Forms.Button();
+			this.colDiscountValue = new DevExpress.XtraGrid.Columns.GridColumn();
 			((System.ComponentModel.ISupportInitialize)(this.grdTransactions)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewTransactions)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repCustomers)).BeginInit();
@@ -90,9 +92,9 @@
 			this.btnTransactionClose.FlatAppearance.BorderSize = 0;
 			this.btnTransactionClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnTransactionClose.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.btnTransactionClose.Location = new System.Drawing.Point(815, 638);
+			this.btnTransactionClose.Location = new System.Drawing.Point(815, 628);
 			this.btnTransactionClose.Name = "btnTransactionClose";
-			this.btnTransactionClose.Size = new System.Drawing.Size(100, 30);
+			this.btnTransactionClose.Size = new System.Drawing.Size(100, 40);
 			this.btnTransactionClose.TabIndex = 14;
 			this.btnTransactionClose.Text = "Close";
 			this.btnTransactionClose.UseVisualStyleBackColor = false;
@@ -106,9 +108,9 @@
 			this.btnTransactionUpdate.FlatAppearance.BorderSize = 0;
 			this.btnTransactionUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnTransactionUpdate.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.btnTransactionUpdate.Location = new System.Drawing.Point(709, 638);
+			this.btnTransactionUpdate.Location = new System.Drawing.Point(709, 628);
 			this.btnTransactionUpdate.Name = "btnTransactionUpdate";
-			this.btnTransactionUpdate.Size = new System.Drawing.Size(100, 30);
+			this.btnTransactionUpdate.Size = new System.Drawing.Size(100, 40);
 			this.btnTransactionUpdate.TabIndex = 13;
 			this.btnTransactionUpdate.Text = "Update";
 			this.btnTransactionUpdate.UseVisualStyleBackColor = false;
@@ -290,8 +292,10 @@
             this.colItemPrice,
             this.colValue,
             this.colDiscountPercent,
+            this.colDiscountValue,
             this.colTransactionLineTotalValue,
-            this.colTransactionLineTransactionId});
+            this.colTransactionLineTransactionId,
+            this.colItems});
 			this.gridViewTransactionLine.GridControl = this.grdTransactionLine;
 			this.gridViewTransactionLine.Name = "gridViewTransactionLine";
 			this.gridViewTransactionLine.OptionsView.ShowGroupPanel = false;
@@ -333,14 +337,24 @@
 			this.colTransactionLineTotalValue.Caption = "Total Value";
 			this.colTransactionLineTotalValue.FieldName = "TotalValue";
 			this.colTransactionLineTotalValue.Name = "colTransactionLineTotalValue";
+			this.colTransactionLineTotalValue.OptionsColumn.AllowEdit = false;
 			this.colTransactionLineTotalValue.Visible = true;
-			this.colTransactionLineTotalValue.VisibleIndex = 4;
+			this.colTransactionLineTotalValue.VisibleIndex = 5;
 			// 
 			// colTransactionLineTransactionId
 			// 
 			this.colTransactionLineTransactionId.Caption = "Transaction ID";
 			this.colTransactionLineTransactionId.FieldName = "TransactionId";
 			this.colTransactionLineTransactionId.Name = "colTransactionLineTransactionId";
+			// 
+			// colItems
+			// 
+			this.colItems.Caption = "Item";
+			this.colItems.ColumnEdit = this.repItems;
+			this.colItems.FieldName = "ItemId";
+			this.colItems.Name = "colItems";
+			this.colItems.Visible = true;
+			this.colItems.VisibleIndex = 6;
 			// 
 			// repItems
 			// 
@@ -405,6 +419,14 @@
 			this.btnTransactionLineCreate.Click += new System.EventHandler(this.btnTransactionLineCreate_Click);
 			this.btnTransactionLineCreate.MouseEnter += new System.EventHandler(this.btnTransactionLineCreate_MouseEnter);
 			this.btnTransactionLineCreate.MouseLeave += new System.EventHandler(this.btnTransactionLineCreate_MouseLeave);
+			// 
+			// colDiscountValue
+			// 
+			this.colDiscountValue.Caption = "Discount Value";
+			this.colDiscountValue.FieldName = "DiscountValue";
+			this.colDiscountValue.Name = "colDiscountValue";
+			this.colDiscountValue.Visible = true;
+			this.colDiscountValue.VisibleIndex = 4;
 			// 
 			// TransactionsForm
 			// 
@@ -487,5 +509,7 @@
 		private Button btnTransactionLineDelete;
 		private Button btnTransactionLineSave;
 		private Button btnTransactionLineCreate;
+		private DevExpress.XtraGrid.Columns.GridColumn colItems;
+		private DevExpress.XtraGrid.Columns.GridColumn colDiscountValue;
 	}
 }

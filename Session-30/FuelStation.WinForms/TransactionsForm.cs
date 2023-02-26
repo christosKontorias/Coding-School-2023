@@ -71,10 +71,10 @@ namespace FuelStation.WinForms {
 						repEmployees.DisplayMember = "Surname";
 
 						//Items
-						//bsItems.DataSource = _items;
-      //                  repItems.DataSource = bsItems;
-      //                  repItems.ValueMember = "Id";
-      //                  repItems.DisplayMember = "Code";
+						bsItems.DataSource = _items;
+						repItems.DataSource = bsItems;
+						repItems.ValueMember = "Id";
+						repItems.DisplayMember = "Code";
 
 					} else {
                         MessageBox.Show("Failed to retrieve transactions from server.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
