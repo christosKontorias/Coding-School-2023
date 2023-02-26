@@ -60,12 +60,7 @@ namespace FuelStation.Web.Server.Controllers {
 
 		[HttpPut]
 		public async Task<IActionResult> Put(CustomerEditDto customer) {
-			//if (string.IsNullOrWhiteSpace(customer.CardNumber) || !customer.CardNumber.StartsWith("A")) {
-			//	return BadRequest("CardNumber must not be empty and must start with 'A'");
-			//}
 
-
-			//keep the same
 			var existingCustomer = _customerRepo.GetAll().FirstOrDefault(c => c.Id != customer.Id && c.CardNumber == customer.CardNumber);
 			if (existingCustomer != null) {
 				var errorMessage = "Card Number must be unique";

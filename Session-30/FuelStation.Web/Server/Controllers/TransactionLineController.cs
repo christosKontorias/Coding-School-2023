@@ -50,14 +50,26 @@ namespace FuelStation.Web.Server.Controllers {
 
 		[HttpPost]
 		public async Task Post(TransactionLineEditDto transactionLine) {
-			var newTransactionLine = new TransactionLine(transactionLine.Quantity,
-				transactionLine.ItemId, transactionLine.NetValue, transactionLine.DiscountPercent,
-				transactionLine.DiscountValue, transactionLine.TotalValue);
-			//newTransaction.PaymentMethod = transaction.PaymentMethod;
-			//newTransaction.TotalValue = transaction.TotalValue;
-			newTransactionLine.ItemId = transactionLine.TransactionId;
-			newTransactionLine.TransactionId = transactionLine.TransactionId;
-			_transactionLineRepo.Add(newTransactionLine);
+			//var newTransactionLine = new TransactionLine(transactionLine.Quantity,
+			//	transactionLine.ItemId, transactionLine.NetValue, transactionLine.DiscountPercent,
+			//	transactionLine.DiscountValue, transactionLine.TotalValue);
+			////newTransaction.PaymentMethod = transaction.PaymentMethod;
+			////newTransaction.TotalValue = transaction.TotalValue;
+			//newTransactionLine.ItemId = transactionLine.TransactionId;
+			//newTransactionLine.TransactionId = transactionLine.TransactionId;
+			//_transactionLineRepo.Add(newTransactionLine);
+
+			var newTransactionLine = new TransactionLine(
+				transactionLine.Quantity,
+				transactionLine.ItemPrice,
+				transactionLine.NetValue,
+				transactionLine.DiscountPercent,
+				transactionLine.DiscountValue,
+				transactionLine.TotalValue
+			   );
+			await Task.Run(() => { _transactionLineRepo.Add(newTransactionLine); });
+
+
 		}
 
 		[HttpPut]

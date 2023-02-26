@@ -4,6 +4,7 @@ using FuelStation.Web.Shared.Item;
 using FuelStation.Web.Shared.Transaction;
 using FuelStation.Web.Shared.TransactionLine;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FuelStation.Web.Server.Controllers {
 	[Route("[controller]")]
@@ -90,6 +91,5 @@ namespace FuelStation.Web.Server.Controllers {
 		public async Task Delete(int id) {
 			_transactionRepo.Delete(id);
 		}
-
 	}
 }

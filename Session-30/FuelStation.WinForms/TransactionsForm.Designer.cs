@@ -26,19 +26,21 @@
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TransactionsForm));
 			this.label1 = new System.Windows.Forms.Label();
-			this.btnClose = new System.Windows.Forms.Button();
-			this.btnUpdate = new System.Windows.Forms.Button();
-			this.btnDelete = new System.Windows.Forms.Button();
-			this.btnSave = new System.Windows.Forms.Button();
-			this.btnCreate = new System.Windows.Forms.Button();
+			this.btnTransactionClose = new System.Windows.Forms.Button();
+			this.btnTransactionUpdate = new System.Windows.Forms.Button();
+			this.btnTransactionDelete = new System.Windows.Forms.Button();
+			this.btnTransactionSave = new System.Windows.Forms.Button();
+			this.btnTransactionCreate = new System.Windows.Forms.Button();
 			this.grdTransactions = new DevExpress.XtraGrid.GridControl();
 			this.gridViewTransactions = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.colTransactionID = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colDate = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colPaymentMethod = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colTotalValue = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.colCustomerID = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.colEmployeeID = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.colCustomerId = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.repCustomers = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+			this.colEmployeeId = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.repEmployees = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
 			this.bsTransactions = new System.Windows.Forms.BindingSource(this.components);
 			this.label3 = new System.Windows.Forms.Label();
 			this.grdTransactionLine = new DevExpress.XtraGrid.GridControl();
@@ -49,117 +51,128 @@
 			this.colDiscountPercent = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colTransactionLineTotalValue = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colTransactionLineTransactionId = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.repItem = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.repItems = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
 			this.bsTransactionLines = new System.Windows.Forms.BindingSource(this.components);
 			this.bsItems = new System.Windows.Forms.BindingSource(this.components);
 			this.colTransactionLineItem = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.bsCustomers = new System.Windows.Forms.BindingSource(this.components);
+			this.bsEmployees = new System.Windows.Forms.BindingSource(this.components);
+			this.btnTransactionLineDelete = new System.Windows.Forms.Button();
+			this.btnTransactionLineSave = new System.Windows.Forms.Button();
+			this.btnTransactionLineCreate = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.grdTransactions)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewTransactions)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repCustomers)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repEmployees)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsTransactions)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.grdTransactionLine)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewTransactionLine)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repItems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsTransactionLines)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsItems)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsCustomers)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsEmployees)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Segoe Print", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.label1.Location = new System.Drawing.Point(380, 45);
+			this.label1.Location = new System.Drawing.Point(381, 74);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(181, 47);
 			this.label1.TabIndex = 6;
 			this.label1.Text = "Transaction";
 			// 
-			// btnClose
+			// btnTransactionClose
 			// 
-			this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-			this.btnClose.FlatAppearance.BorderSize = 0;
-			this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnClose.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.btnClose.Location = new System.Drawing.Point(699, 285);
-			this.btnClose.Name = "btnClose";
-			this.btnClose.Size = new System.Drawing.Size(110, 40);
-			this.btnClose.TabIndex = 14;
-			this.btnClose.Text = "Close";
-			this.btnClose.UseVisualStyleBackColor = false;
-			this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-			this.btnClose.MouseEnter += new System.EventHandler(this.btnClose_MouseEnter);
-			this.btnClose.MouseLeave += new System.EventHandler(this.btnClose_MouseLeave);
+			this.btnTransactionClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+			this.btnTransactionClose.FlatAppearance.BorderSize = 0;
+			this.btnTransactionClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnTransactionClose.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+			this.btnTransactionClose.Location = new System.Drawing.Point(815, 638);
+			this.btnTransactionClose.Name = "btnTransactionClose";
+			this.btnTransactionClose.Size = new System.Drawing.Size(100, 30);
+			this.btnTransactionClose.TabIndex = 14;
+			this.btnTransactionClose.Text = "Close";
+			this.btnTransactionClose.UseVisualStyleBackColor = false;
+			this.btnTransactionClose.Click += new System.EventHandler(this.btnTransactionClose_Click);
+			this.btnTransactionClose.MouseEnter += new System.EventHandler(this.btnTransactionClose_MouseEnter);
+			this.btnTransactionClose.MouseLeave += new System.EventHandler(this.btnTransactionClose_MouseLeave);
 			// 
-			// btnUpdate
+			// btnTransactionUpdate
 			// 
-			this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-			this.btnUpdate.FlatAppearance.BorderSize = 0;
-			this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnUpdate.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.btnUpdate.Location = new System.Drawing.Point(699, 239);
-			this.btnUpdate.Name = "btnUpdate";
-			this.btnUpdate.Size = new System.Drawing.Size(110, 40);
-			this.btnUpdate.TabIndex = 13;
-			this.btnUpdate.Text = "Update";
-			this.btnUpdate.UseVisualStyleBackColor = false;
-			this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-			this.btnUpdate.MouseEnter += new System.EventHandler(this.btnUpdate_MouseEnter);
-			this.btnUpdate.MouseLeave += new System.EventHandler(this.btnUpdate_MouseLeave);
+			this.btnTransactionUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+			this.btnTransactionUpdate.FlatAppearance.BorderSize = 0;
+			this.btnTransactionUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnTransactionUpdate.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+			this.btnTransactionUpdate.Location = new System.Drawing.Point(709, 638);
+			this.btnTransactionUpdate.Name = "btnTransactionUpdate";
+			this.btnTransactionUpdate.Size = new System.Drawing.Size(100, 30);
+			this.btnTransactionUpdate.TabIndex = 13;
+			this.btnTransactionUpdate.Text = "Update";
+			this.btnTransactionUpdate.UseVisualStyleBackColor = false;
+			this.btnTransactionUpdate.Click += new System.EventHandler(this.btnTransactionUpdate_Click);
+			this.btnTransactionUpdate.MouseEnter += new System.EventHandler(this.btnTransactionUpdate_MouseEnter);
+			this.btnTransactionUpdate.MouseLeave += new System.EventHandler(this.btnTransactionUpdate_MouseLeave);
 			// 
-			// btnDelete
+			// btnTransactionDelete
 			// 
-			this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-			this.btnDelete.FlatAppearance.BorderSize = 0;
-			this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnDelete.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.btnDelete.Location = new System.Drawing.Point(699, 193);
-			this.btnDelete.Name = "btnDelete";
-			this.btnDelete.Size = new System.Drawing.Size(110, 40);
-			this.btnDelete.TabIndex = 12;
-			this.btnDelete.Text = "Delete";
-			this.btnDelete.UseVisualStyleBackColor = false;
-			this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-			this.btnDelete.MouseEnter += new System.EventHandler(this.btnDelete_MouseEnter);
-			this.btnDelete.MouseLeave += new System.EventHandler(this.btnDelete_MouseLeave);
+			this.btnTransactionDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+			this.btnTransactionDelete.FlatAppearance.BorderSize = 0;
+			this.btnTransactionDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnTransactionDelete.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+			this.btnTransactionDelete.Location = new System.Drawing.Point(796, 269);
+			this.btnTransactionDelete.Name = "btnTransactionDelete";
+			this.btnTransactionDelete.Size = new System.Drawing.Size(100, 40);
+			this.btnTransactionDelete.TabIndex = 12;
+			this.btnTransactionDelete.Text = "Delete";
+			this.btnTransactionDelete.UseVisualStyleBackColor = false;
+			this.btnTransactionDelete.Click += new System.EventHandler(this.btnTransactionDelete_Click);
+			this.btnTransactionDelete.MouseEnter += new System.EventHandler(this.btnTransactionDelete_MouseEnter);
+			this.btnTransactionDelete.MouseLeave += new System.EventHandler(this.btnTransactionDelete_MouseLeave);
 			// 
-			// btnSave
+			// btnTransactionSave
 			// 
-			this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-			this.btnSave.FlatAppearance.BorderSize = 0;
-			this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnSave.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.btnSave.Location = new System.Drawing.Point(699, 147);
-			this.btnSave.Name = "btnSave";
-			this.btnSave.Size = new System.Drawing.Size(110, 40);
-			this.btnSave.TabIndex = 11;
-			this.btnSave.Text = "Save";
-			this.btnSave.UseVisualStyleBackColor = false;
-			this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-			this.btnSave.MouseEnter += new System.EventHandler(this.btnSave_MouseEnter);
-			this.btnSave.MouseLeave += new System.EventHandler(this.btnSave_MouseLeave);
+			this.btnTransactionSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+			this.btnTransactionSave.FlatAppearance.BorderSize = 0;
+			this.btnTransactionSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnTransactionSave.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+			this.btnTransactionSave.Location = new System.Drawing.Point(796, 223);
+			this.btnTransactionSave.Name = "btnTransactionSave";
+			this.btnTransactionSave.Size = new System.Drawing.Size(100, 40);
+			this.btnTransactionSave.TabIndex = 11;
+			this.btnTransactionSave.Text = "Save";
+			this.btnTransactionSave.UseVisualStyleBackColor = false;
+			this.btnTransactionSave.Click += new System.EventHandler(this.btnTransactionSave_Click);
+			this.btnTransactionSave.MouseEnter += new System.EventHandler(this.btnTransactionSave_MouseEnter);
+			this.btnTransactionSave.MouseLeave += new System.EventHandler(this.btnTransactionSave_MouseLeave);
 			// 
-			// btnCreate
+			// btnTransactionCreate
 			// 
-			this.btnCreate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
-			this.btnCreate.FlatAppearance.BorderSize = 0;
-			this.btnCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnCreate.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.btnCreate.Location = new System.Drawing.Point(699, 101);
-			this.btnCreate.Name = "btnCreate";
-			this.btnCreate.Size = new System.Drawing.Size(110, 40);
-			this.btnCreate.TabIndex = 10;
-			this.btnCreate.Text = "Create";
-			this.btnCreate.UseVisualStyleBackColor = false;
-			this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
-			this.btnCreate.MouseEnter += new System.EventHandler(this.btnCreate_MouseEnter);
-			this.btnCreate.MouseLeave += new System.EventHandler(this.btnCreate_MouseLeave);
+			this.btnTransactionCreate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+			this.btnTransactionCreate.FlatAppearance.BorderSize = 0;
+			this.btnTransactionCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnTransactionCreate.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+			this.btnTransactionCreate.Location = new System.Drawing.Point(796, 177);
+			this.btnTransactionCreate.Name = "btnTransactionCreate";
+			this.btnTransactionCreate.Size = new System.Drawing.Size(100, 40);
+			this.btnTransactionCreate.TabIndex = 10;
+			this.btnTransactionCreate.Text = "Create";
+			this.btnTransactionCreate.UseVisualStyleBackColor = false;
+			this.btnTransactionCreate.Click += new System.EventHandler(this.btnTransactionCreate_Click);
+			this.btnTransactionCreate.MouseEnter += new System.EventHandler(this.btnTransactionCreate_MouseEnter);
+			this.btnTransactionCreate.MouseLeave += new System.EventHandler(this.btnTransactionCreate_MouseLeave);
 			// 
 			// grdTransactions
 			// 
-			this.grdTransactions.Location = new System.Drawing.Point(12, 120);
+			this.grdTransactions.Location = new System.Drawing.Point(12, 139);
 			this.grdTransactions.MainView = this.gridViewTransactions;
 			this.grdTransactions.Name = "grdTransactions";
-			this.grdTransactions.Size = new System.Drawing.Size(652, 200);
+			this.grdTransactions.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repCustomers,
+            this.repEmployees});
+			this.grdTransactions.Size = new System.Drawing.Size(735, 200);
 			this.grdTransactions.TabIndex = 17;
 			this.grdTransactions.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewTransactions});
@@ -171,10 +184,11 @@
             this.colDate,
             this.colPaymentMethod,
             this.colTotalValue,
-            this.colCustomerID,
-            this.colEmployeeID});
+            this.colCustomerId,
+            this.colEmployeeId});
 			this.gridViewTransactions.GridControl = this.grdTransactions;
 			this.gridViewTransactions.Name = "gridViewTransactions";
+			this.gridViewTransactions.OptionsDetail.EnableMasterViewMode = false;
 			this.gridViewTransactions.OptionsView.ShowGroupPanel = false;
 			// 
 			// colTransactionID
@@ -204,24 +218,48 @@
 			this.colTotalValue.Caption = "Total Value";
 			this.colTotalValue.FieldName = "TotalValue";
 			this.colTotalValue.Name = "colTotalValue";
+			this.colTotalValue.OptionsColumn.AllowEdit = false;
 			this.colTotalValue.Visible = true;
 			this.colTotalValue.VisibleIndex = 2;
 			// 
-			// colCustomerID
+			// colCustomerId
 			// 
-			this.colCustomerID.Caption = "Customer ID";
-			this.colCustomerID.FieldName = "CustomerId";
-			this.colCustomerID.Name = "colCustomerID";
-			this.colCustomerID.Visible = true;
-			this.colCustomerID.VisibleIndex = 3;
+			this.colCustomerId.Caption = "Customer";
+			this.colCustomerId.ColumnEdit = this.repCustomers;
+			this.colCustomerId.FieldName = "CustomerId";
+			this.colCustomerId.Name = "colCustomerId";
+			this.colCustomerId.Visible = true;
+			this.colCustomerId.VisibleIndex = 3;
 			// 
-			// colEmployeeID
+			// repCustomers
 			// 
-			this.colEmployeeID.Caption = "Employee ID";
-			this.colEmployeeID.FieldName = "EmployeeId";
-			this.colEmployeeID.Name = "colEmployeeID";
-			this.colEmployeeID.Visible = true;
-			this.colEmployeeID.VisibleIndex = 4;
+			this.repCustomers.AutoHeight = false;
+			this.repCustomers.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.repCustomers.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Surname", "Surname"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CardNumber", "Card Number")});
+			this.repCustomers.Name = "repCustomers";
+			// 
+			// colEmployeeId
+			// 
+			this.colEmployeeId.Caption = "Employee";
+			this.colEmployeeId.ColumnEdit = this.repEmployees;
+			this.colEmployeeId.FieldName = "EmployeeId";
+			this.colEmployeeId.Name = "colEmployeeId";
+			this.colEmployeeId.Visible = true;
+			this.colEmployeeId.VisibleIndex = 4;
+			// 
+			// repEmployees
+			// 
+			this.repEmployees.AutoHeight = false;
+			this.repEmployees.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.repEmployees.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Surname", "Surname")});
+			this.repEmployees.Name = "repEmployees";
 			// 
 			// label3
 			// 
@@ -240,7 +278,7 @@
 			this.grdTransactionLine.Name = "grdTransactionLine";
 			this.grdTransactionLine.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repItems});
-			this.grdTransactionLine.Size = new System.Drawing.Size(719, 200);
+			this.grdTransactionLine.Size = new System.Drawing.Size(735, 200);
 			this.grdTransactionLine.TabIndex = 19;
 			this.grdTransactionLine.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewTransactionLine});
@@ -253,8 +291,7 @@
             this.colValue,
             this.colDiscountPercent,
             this.colTransactionLineTotalValue,
-            this.colTransactionLineTransactionId,
-            this.repItem});
+            this.colTransactionLineTransactionId});
 			this.gridViewTransactionLine.GridControl = this.grdTransactionLine;
 			this.gridViewTransactionLine.Name = "gridViewTransactionLine";
 			this.gridViewTransactionLine.OptionsView.ShowGroupPanel = false;
@@ -305,20 +342,14 @@
 			this.colTransactionLineTransactionId.FieldName = "TransactionId";
 			this.colTransactionLineTransactionId.Name = "colTransactionLineTransactionId";
 			// 
-			// repItem
-			// 
-			this.repItem.Caption = "Item";
-			this.repItem.ColumnEdit = this.repItems;
-			this.repItem.FieldName = "ItemId";
-			this.repItem.Name = "repItem";
-			this.repItem.Visible = true;
-			this.repItem.VisibleIndex = 5;
-			// 
 			// repItems
 			// 
 			this.repItems.AutoHeight = false;
 			this.repItems.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.repItems.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Code", "Code"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Description", "Description")});
 			this.repItems.Name = "repItems";
 			// 
 			// colTransactionLineItem
@@ -327,19 +358,70 @@
 			this.colTransactionLineItem.FieldName = "ItemId";
 			this.colTransactionLineItem.Name = "colTransactionLineItem";
 			// 
+			// btnTransactionLineDelete
+			// 
+			this.btnTransactionLineDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+			this.btnTransactionLineDelete.FlatAppearance.BorderSize = 0;
+			this.btnTransactionLineDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnTransactionLineDelete.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+			this.btnTransactionLineDelete.Location = new System.Drawing.Point(796, 523);
+			this.btnTransactionLineDelete.Name = "btnTransactionLineDelete";
+			this.btnTransactionLineDelete.Size = new System.Drawing.Size(100, 40);
+			this.btnTransactionLineDelete.TabIndex = 22;
+			this.btnTransactionLineDelete.Text = "Delete";
+			this.btnTransactionLineDelete.UseVisualStyleBackColor = false;
+			this.btnTransactionLineDelete.Click += new System.EventHandler(this.btnTransactionLineDelete_Click);
+			this.btnTransactionLineDelete.MouseEnter += new System.EventHandler(this.btnTransactionLineDelete_MouseEnter);
+			this.btnTransactionLineDelete.MouseLeave += new System.EventHandler(this.btnTransactionLineDelete_MouseLeave);
+			// 
+			// btnTransactionLineSave
+			// 
+			this.btnTransactionLineSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+			this.btnTransactionLineSave.FlatAppearance.BorderSize = 0;
+			this.btnTransactionLineSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnTransactionLineSave.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+			this.btnTransactionLineSave.Location = new System.Drawing.Point(796, 477);
+			this.btnTransactionLineSave.Name = "btnTransactionLineSave";
+			this.btnTransactionLineSave.Size = new System.Drawing.Size(100, 40);
+			this.btnTransactionLineSave.TabIndex = 21;
+			this.btnTransactionLineSave.Text = "Save";
+			this.btnTransactionLineSave.UseVisualStyleBackColor = false;
+			this.btnTransactionLineSave.Click += new System.EventHandler(this.btnTransactionLineSave_Click);
+			this.btnTransactionLineSave.MouseEnter += new System.EventHandler(this.btnTransactionLineSave_MouseEnter);
+			this.btnTransactionLineSave.MouseLeave += new System.EventHandler(this.btnTransactionLineSave_MouseLeave);
+			// 
+			// btnTransactionLineCreate
+			// 
+			this.btnTransactionLineCreate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+			this.btnTransactionLineCreate.FlatAppearance.BorderSize = 0;
+			this.btnTransactionLineCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnTransactionLineCreate.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+			this.btnTransactionLineCreate.Location = new System.Drawing.Point(796, 431);
+			this.btnTransactionLineCreate.Name = "btnTransactionLineCreate";
+			this.btnTransactionLineCreate.Size = new System.Drawing.Size(100, 40);
+			this.btnTransactionLineCreate.TabIndex = 20;
+			this.btnTransactionLineCreate.Text = "Create";
+			this.btnTransactionLineCreate.UseVisualStyleBackColor = false;
+			this.btnTransactionLineCreate.Click += new System.EventHandler(this.btnTransactionLineCreate_Click);
+			this.btnTransactionLineCreate.MouseEnter += new System.EventHandler(this.btnTransactionLineCreate_MouseEnter);
+			this.btnTransactionLineCreate.MouseLeave += new System.EventHandler(this.btnTransactionLineCreate_MouseLeave);
+			// 
 			// TransactionsForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(939, 680);
+			this.Controls.Add(this.btnTransactionLineDelete);
+			this.Controls.Add(this.btnTransactionLineSave);
+			this.Controls.Add(this.btnTransactionLineCreate);
 			this.Controls.Add(this.grdTransactionLine);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.grdTransactions);
-			this.Controls.Add(this.btnClose);
-			this.Controls.Add(this.btnUpdate);
-			this.Controls.Add(this.btnDelete);
-			this.Controls.Add(this.btnSave);
-			this.Controls.Add(this.btnCreate);
+			this.Controls.Add(this.btnTransactionClose);
+			this.Controls.Add(this.btnTransactionUpdate);
+			this.Controls.Add(this.btnTransactionDelete);
+			this.Controls.Add(this.btnTransactionSave);
+			this.Controls.Add(this.btnTransactionCreate);
 			this.Controls.Add(this.label1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -349,12 +431,16 @@
 			this.Load += new System.EventHandler(this.TransactionsForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.grdTransactions)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewTransactions)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repCustomers)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repEmployees)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsTransactions)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.grdTransactionLine)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewTransactionLine)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repItems)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsTransactionLines)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsItems)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsCustomers)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsEmployees)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -367,11 +453,11 @@
 		private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
 		private DevExpress.XtraGrid.GridControl gridControl2;
 		private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
-		private Button btnClose;
-		private Button btnUpdate;
-		private Button btnDelete;
-		private Button btnSave;
-		private Button btnCreate;
+		private Button btnTransactionClose;
+		private Button btnTransactionUpdate;
+		private Button btnTransactionDelete;
+		private Button btnTransactionSave;
+		private Button btnTransactionCreate;
 		private DevExpress.XtraGrid.GridControl grdTransactions;
 		private DevExpress.XtraGrid.Views.Grid.GridView gridViewTransactions;
 		private BindingSource bsTransactions;
@@ -382,8 +468,6 @@
 		private DevExpress.XtraGrid.GridControl grdTransactionLine;
 		private DevExpress.XtraGrid.Views.Grid.GridView gridViewTransactionLine;
 		private BindingSource bsTransactionLines;
-		private DevExpress.XtraGrid.Columns.GridColumn colCustomerID;
-		private DevExpress.XtraGrid.Columns.GridColumn colEmployeeID;
 		private BindingSource bsItems;
 		private DevExpress.XtraGrid.Columns.GridColumn colTransactionID;
 		private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repItems;
@@ -393,7 +477,15 @@
 		private DevExpress.XtraGrid.Columns.GridColumn colDiscountPercent;
 		private DevExpress.XtraGrid.Columns.GridColumn colTransactionLineTotalValue;
 		private DevExpress.XtraGrid.Columns.GridColumn colTransactionLineTransactionId;
-		private DevExpress.XtraGrid.Columns.GridColumn repItem;
 		private DevExpress.XtraGrid.Columns.GridColumn colTransactionLineItem;
+		private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repCustomers;
+		private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repEmployees;
+		private BindingSource bsCustomers;
+		private BindingSource bsEmployees;
+		private DevExpress.XtraGrid.Columns.GridColumn colCustomerId;
+		private DevExpress.XtraGrid.Columns.GridColumn colEmployeeId;
+		private Button btnTransactionLineDelete;
+		private Button btnTransactionLineSave;
+		private Button btnTransactionLineCreate;
 	}
 }
