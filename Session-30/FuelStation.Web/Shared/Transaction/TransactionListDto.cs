@@ -1,4 +1,5 @@
 ﻿using FuelStation.Model.Enums;
+using FuelStation.Web.Shared.TransactionLine;
 
 namespace FuelStation.Web.Shared.Transaction {
 	public  class TransactionListDto {
@@ -9,6 +10,6 @@ namespace FuelStation.Web.Shared.Transaction {
 		public int EmployeeId { get; set; }
 		public int CustomerId { get; set; }
 
-		public List<FuelStation.Model.TransactionLine> TransactionLines { get; set; } = new();
+		public List<TransactionLineListDto>? TransactionLines { get; set; } = new();
 	}
 }

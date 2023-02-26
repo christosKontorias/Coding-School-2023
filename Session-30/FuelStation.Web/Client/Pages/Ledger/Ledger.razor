@@ -1,4 +1,6 @@
 ﻿@page "/ledgerlist"
+@using FuelStation.Web.Shared.Employee;
+@using FuelStation.Web.Shared.Item;
 @using FuelStation.Web.Shared.Ledger;
 @using FuelStation.Web.Shared;
 @using FuelStation.Web.Shared.Transaction;
@@ -21,13 +23,13 @@
 				</tr>
 			</thead>
 			<tbody>
-			@foreach (var monthlyLedger in ledgerList) {
+			@foreach (var ledger in ledgerList) {
 						<tr>
-							<td>@monthlyLedger.Year</td>
-							<td>@monthlyLedger.Month</td>
-							<td>@monthlyLedger.Income €</td>
-							<td>@monthlyLedger.Expenses €</td>
-							<td>@monthlyLedger.Total €</td>
+					<td>@ledger.Year</td>
+					<td>@ledger.Month</td>
+					<td>@ledger.Income €</td>
+					<td>@ledger.Expenses €</td>
+					<td>@ledger.Total €</td>
 						</tr>
 			}
 			</tbody>
@@ -35,8 +37,65 @@
 }
 
 @code {
-	private List<LedgerListDto> ledgerList = new();
+	private List<EmployeeListDto> Employees = new();
+	private List<ItemListDto> Items = new();
+	private List<TransactionListDto> Transactions = new();
 	bool isLoading { get; set; } = true;
+	int year = 2023;
+	int month = 1;
+	int monthNow = DateTime.Now.Month;
+	int yearNow = DateTime.Now.Year;
+	decimal monthIncome;
+	decimal monthExpenses;
+	List<LedgerListDto> ledgerList = new List<LedgerListDto>();
+
+	protected override async Task OnInitializedAsync() {
+		await LoadItemsFromServer();
+		for (int i = year; i <= yearNow; i++) {
+
+			for (int j = 1; j <= 12; j++) {
+				if (i == yearNow && j > monthNow) {
+					break;
+				}
+				DateTime date = new DateTime(i, j, 1);
+				LedgerListDto ledger = new LedgerListDto(date);
+				monthIncome = CalculateMonthlyIncome(date);
+				monthExpenses = CalculateMonthlyExpenses(date);
+				ledger.UpdateLedger(monthIncome, monthExpenses);
+				ledgerList.Add(ledger);
+			}
+		}
+		isLoading = false;
+	}
+	private async Task LoadItemsFromServer() {
+		Transactions = await httpClient.GetFromJsonAsync<List<TransactionListDto>>("ledger");
+		Employees = await httpClient.GetFromJsonAsync<List<EmployeeListDto>>("employee");
+		Items = await httpClient.GetFromJsonAsync<List<ItemListDto>>("item");
+	}
+	private decimal CalculateMonthlyIncome(DateTime date) {
+		int month = date.Month;
+		int year = date.Year;
+		decimal incomeSum = 0;
+		List<TransactionListDto> transactionsThisMonth = Transactions.FindAll(c => c.Date.Month == month).FindAll(c => c.Date.Year == year).ToList();
+		foreach (var transaction in transactionsThisMonth) {
+			incomeSum += transaction.TotalValue;
+		}
+		return incomeSum;
+	}
+	private decimal CalculateMonthlyExpenses(DateTime date) {
+		int month = date.Month;
+		int year = date.Year;
+		decimal salaries = 0;
+		decimal itemCostSum = 0;
 
 
+		List<TransactionListDto> transactionsThisMonth2 = Transactions.FindAll(c => c.Date.Month == month).FindAll(c => c.Date.Year == year).ToList();
+		foreach (var item in Items) {
+			itemCostSum += item.Cost;
+		}
+		foreach (var employee in Employees) {
+			salaries += employee.SallaryPerMonth;
+		}
+		return itemCostSum + 5000 + salaries;
+	}
 }

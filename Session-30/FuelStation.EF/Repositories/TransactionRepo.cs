@@ -35,7 +35,7 @@ public class TransactionRepo : IEntityRepo<Transaction> {
 			.Include(transaction => transaction.Customer)
 			.Include(transaction => transaction.Employee)
 			.Include(transaction => transaction.TransactionLines)
-			//.ThenInclude(transaction => transaction.Item)
+			.ThenInclude(transaction => transaction.Item)
 			.ToList();
 		return transactions;
 	}

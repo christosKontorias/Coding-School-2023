@@ -22,7 +22,7 @@ namespace FuelStation.WinForms {
 			var customers = await GetCustomers();
 			if (customers != null) {
 				bsCustomers.DataSource = customers;
-				grvCustomers.DataSource = bsCustomers;
+				grdCustomers.DataSource = bsCustomers;
 			}
 		}
 		//Display Customers 
@@ -77,9 +77,10 @@ namespace FuelStation.WinForms {
 
 		private void btnUpdate_Click(object sender, EventArgs e) {
 			SetControlProperties();
-		}
+            MessageBox.Show("Customers Updated Successfully!");
+        }
 
-		private void btnClose_Click(object sender, EventArgs e) {
+        private void btnClose_Click(object sender, EventArgs e) {
 			this.Close();
 		}
 

@@ -24,7 +24,7 @@ namespace FuelStation.WinForms {
 			var items = await GetItems();
 			if (items != null) {
 				bsItems.DataSource = items;
-				grvItems.DataSource = bsItems;
+				grdItems.DataSource = bsItems;
 			}
 		}
 
@@ -80,9 +80,10 @@ namespace FuelStation.WinForms {
 
 		private void btnUpdate_Click(object sender, EventArgs e) {
 			SetControlProperties();
-		}
+            MessageBox.Show("Items Updated Successfully!");
+        }
 
-		private void btnClose_Click(object sender, EventArgs e) {
+        private void btnClose_Click(object sender, EventArgs e) {
 			this.Close();
 		}
 

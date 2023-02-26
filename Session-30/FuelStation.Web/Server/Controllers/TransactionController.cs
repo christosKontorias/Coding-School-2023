@@ -1,6 +1,8 @@
 ﻿using FuelStation.EF.Repositories;
 using FuelStation.Model;
+using FuelStation.Web.Shared.Item;
 using FuelStation.Web.Shared.Transaction;
+using FuelStation.Web.Shared.TransactionLine;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FuelStation.Web.Server.Controllers {
@@ -23,8 +25,28 @@ namespace FuelStation.Web.Server.Controllers {
 				TotalValue = transaction.TotalValue,
 				EmployeeId = transaction.EmployeeId,
 				CustomerId = transaction.CustomerId,
-				TransactionLines = transaction.TransactionLines
-			});
+				TransactionLines = transaction.TransactionLines.Select(transactionLine => new TransactionLineListDto {
+					Id = transactionLine.Id,
+					Quantity = transactionLine.Quantity,
+					ItemPrice = transactionLine.ItemPrice,
+					NetValue = transactionLine.NetValue,
+					DiscountPercent = transactionLine.DiscountPercent,
+					DiscountValue = transactionLine.DiscountValue,
+					TotalValue = transactionLine.TotalValue,
+					TransactionId = transactionLine.TransactionId,
+					ItemId = transactionLine.ItemId,
+					item = new ItemListDto {
+						Id = transactionLine.Item.Id,
+						Code = transactionLine.Item.Code,
+						Description = transactionLine.Item.Description,
+						Price = transactionLine.Item.Price,
+						Cost = transactionLine.Item.Cost,
+						ItemType = transactionLine.Item.ItemType,
+					},
+
+				}).ToList()
+
+			}).ToList();
 		}
 
 		[HttpGet("{id}")]

@@ -26,7 +26,7 @@
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerForm));
 			this.bsCustomers = new System.Windows.Forms.BindingSource(this.components);
-			this.grvCustomers = new DevExpress.XtraGrid.GridControl();
+			this.grdCustomers = new DevExpress.XtraGrid.GridControl();
 			this.gridViewCustomers = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colSurname = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -38,18 +38,18 @@
 			this.btnSave = new System.Windows.Forms.Button();
 			this.btnCreate = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.bsCustomers)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.grvCustomers)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.grdCustomers)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewCustomers)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// grvCustomers
+			// grdCustomers
 			// 
-			this.grvCustomers.Location = new System.Drawing.Point(12, 59);
-			this.grvCustomers.MainView = this.gridViewCustomers;
-			this.grvCustomers.Name = "grvCustomers";
-			this.grvCustomers.Size = new System.Drawing.Size(776, 301);
-			this.grvCustomers.TabIndex = 0;
-			this.grvCustomers.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+			this.grdCustomers.Location = new System.Drawing.Point(12, 59);
+			this.grdCustomers.MainView = this.gridViewCustomers;
+			this.grdCustomers.Name = "grdCustomers";
+			this.grdCustomers.Size = new System.Drawing.Size(776, 301);
+			this.grdCustomers.TabIndex = 0;
+			this.grdCustomers.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewCustomers});
 			// 
 			// gridViewCustomers
@@ -58,7 +58,7 @@
             this.colName,
             this.colSurname,
             this.colCardNumber});
-			this.gridViewCustomers.GridControl = this.grvCustomers;
+			this.gridViewCustomers.GridControl = this.grdCustomers;
 			this.gridViewCustomers.Name = "gridViewCustomers";
 			this.gridViewCustomers.OptionsView.ShowGroupPanel = false;
 			// 
@@ -188,7 +188,7 @@
 			this.Controls.Add(this.btnSave);
 			this.Controls.Add(this.btnCreate);
 			this.Controls.Add(this.label1);
-			this.Controls.Add(this.grvCustomers);
+			this.Controls.Add(this.grdCustomers);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "CustomerForm";
@@ -196,7 +196,7 @@
 			this.Text = "Customers";
 			this.Load += new System.EventHandler(this.CustomerForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.bsCustomers)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.grvCustomers)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.grdCustomers)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewCustomers)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -205,7 +205,7 @@
 
 		#endregion
 		private BindingSource bsCustomers;
-		private DevExpress.XtraGrid.GridControl grvCustomers;
+		private DevExpress.XtraGrid.GridControl grdCustomers;
 		private DevExpress.XtraGrid.Views.Grid.GridView gridViewCustomers;
 		private DevExpress.XtraGrid.Columns.GridColumn colName;
 		private DevExpress.XtraGrid.Columns.GridColumn colSurname;

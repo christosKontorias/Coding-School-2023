@@ -9,7 +9,7 @@ namespace FuelStation.Web.Server.Authentication {
 	public class JwtAuthenticationManager {
 
 		public const string JWT_SECURITY_KEY = "ufCrVARDHmHBbaBfCiZstCtBUgNqrTcMMNjWNFBqMqQ";
-		private const int JWT_TOKEN_VALIDITY_MINS = 30;
+		private const int JWT_TOKEN_VALIDITY_HOURS = 10;
 
 		private UserAccountService _userAccountService;
 
@@ -26,7 +26,7 @@ namespace FuelStation.Web.Server.Authentication {
 				return null;
 
 			/* Generating JWT Token*/
-			var tokenExpiryTimeStamp = DateTime.Now.AddMinutes(JWT_TOKEN_VALIDITY_MINS);
+			var tokenExpiryTimeStamp = DateTime.Now.AddMinutes(JWT_TOKEN_VALIDITY_HOURS);
 			var tokenKey = Encoding.ASCII.GetBytes(JWT_SECURITY_KEY);
 			var claimsIdentity = new ClaimsIdentity(new List<Claim> {
 				new Claim(ClaimTypes.Name, userAccount.UserName),

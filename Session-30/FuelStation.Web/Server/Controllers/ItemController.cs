@@ -66,7 +66,8 @@ namespace FuelStation.Web.Server.Controllers {
 		[HttpPut]
 		public async Task<IActionResult> Put(ItemEditDto item) {
 
-			if (_itemRepo.GetAll().Any(i => i.Code == item.Code)) {
+			var existingItem = _itemRepo.GetAll().FirstOrDefault(c => c.Id != item.Id && c.Code == item.Code);
+			if (existingItem != null) {
 				var errorMessage = "Code must be unique";
 				return StatusCode(StatusCodes.Status400BadRequest, new { Error = errorMessage });
 			}

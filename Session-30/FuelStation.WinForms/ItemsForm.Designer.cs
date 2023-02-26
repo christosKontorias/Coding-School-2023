@@ -25,7 +25,7 @@
 		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ItemsForm));
-			this.grvItems = new DevExpress.XtraGrid.GridControl();
+			this.grdItems = new DevExpress.XtraGrid.GridControl();
 			this.gridViewItems = new DevExpress.XtraGrid.Views.Grid.GridView();
 			this.colCode = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -39,19 +39,19 @@
 			this.btnDelete = new System.Windows.Forms.Button();
 			this.btnUpdate = new System.Windows.Forms.Button();
 			this.btnClose = new System.Windows.Forms.Button();
-			((System.ComponentModel.ISupportInitialize)(this.grvItems)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.grdItems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewItems)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsItems)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// grvItems
+			// grdItems
 			// 
-			this.grvItems.Location = new System.Drawing.Point(12, 59);
-			this.grvItems.MainView = this.gridViewItems;
-			this.grvItems.Name = "grvItems";
-			this.grvItems.Size = new System.Drawing.Size(776, 301);
-			this.grvItems.TabIndex = 0;
-			this.grvItems.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+			this.grdItems.Location = new System.Drawing.Point(12, 59);
+			this.grdItems.MainView = this.gridViewItems;
+			this.grdItems.Name = "grdItems";
+			this.grdItems.Size = new System.Drawing.Size(776, 301);
+			this.grdItems.TabIndex = 0;
+			this.grdItems.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewItems});
 			// 
 			// gridViewItems
@@ -62,7 +62,7 @@
             this.colItemType,
             this.colPrice,
             this.colCost});
-			this.gridViewItems.GridControl = this.grvItems;
+			this.gridViewItems.GridControl = this.grdItems;
 			this.gridViewItems.Name = "gridViewItems";
 			this.gridViewItems.OptionsView.ShowGroupPanel = false;
 			// 
@@ -208,14 +208,14 @@
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.btnSave);
 			this.Controls.Add(this.btnCreate);
-			this.Controls.Add(this.grvItems);
+			this.Controls.Add(this.grdItems);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "ItemsForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Items";
 			this.Load += new System.EventHandler(this.ItemsForm_Load);
-			((System.ComponentModel.ISupportInitialize)(this.grvItems)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.grdItems)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewItems)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsItems)).EndInit();
 			this.ResumeLayout(false);
@@ -225,7 +225,7 @@
 
 		#endregion
 
-		private DevExpress.XtraGrid.GridControl grvItems;
+		private DevExpress.XtraGrid.GridControl grdItems;
 		private DevExpress.XtraGrid.Views.Grid.GridView gridViewItems;
 		private BindingSource bsItems;
 		private Button btnCreate;
