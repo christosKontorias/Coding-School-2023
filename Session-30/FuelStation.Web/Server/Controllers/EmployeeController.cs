@@ -68,7 +68,7 @@ namespace FuelStation.Web.Server.Controllers {
 		public async Task<ActionResult> Put(EmployeeEditDto employee) {
 			var EmployeeDb = await Task.Run(() => { return _employeeRepo.GetById(employee.Id); });
 			if (EmployeeDb == null) {
-				return BadRequest($"Employee not found");
+				return BadRequest($"Employee not found.");
 			} else if (_memberValidation.ValidateUpdateEmployee(employee.EmployeeType, EmployeeDb, _employeeRepo.GetAll().ToList(), out errorMessage)) {
 				EmployeeDb.Name = employee.Name;
 				EmployeeDb.Surname = employee.Surname;
@@ -117,9 +117,9 @@ namespace FuelStation.Web.Server.Controllers {
 				try {
 					await Task.Run(() => { _employeeRepo.Delete(id); });
 				} catch (DbUpdateException) {
-					return BadRequest($"Could not delete this employee because it has transactions");
+					return BadRequest($"Could not delete this employee because it has transactions.");
 				} catch (KeyNotFoundException) {
-					return BadRequest($"Employee not found");
+					return BadRequest($"Employee not found.");
 				}
 				return Ok();
 			}

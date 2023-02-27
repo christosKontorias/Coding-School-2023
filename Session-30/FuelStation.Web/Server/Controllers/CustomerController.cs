@@ -39,11 +39,11 @@ namespace FuelStation.Web.Server.Controllers {
 		[HttpPost]
 		public async Task<ActionResult<CustomerEditDto>> Post(CustomerEditDto customer) {
 			if (string.IsNullOrWhiteSpace(customer.CardNumber) || !customer.CardNumber.StartsWith("A")) {
-				return BadRequest("CardNumber must not be empty and must start with 'A'");
+				return BadRequest("CardNumber must not be empty and must start with 'A'.");
 			}
 
 			if (_customerRepo.GetAll().Any(c => c.CardNumber == customer.CardNumber)) {
-				var errorMessage = "Card Number must be unique";
+				var errorMessage = "Card Number must be unique.";
 				return StatusCode(StatusCodes.Status400BadRequest, new { Error = errorMessage });
 			}
 
@@ -63,7 +63,7 @@ namespace FuelStation.Web.Server.Controllers {
 
 			var existingCustomer = _customerRepo.GetAll().FirstOrDefault(c => c.Id != customer.Id && c.CardNumber == customer.CardNumber);
 			if (existingCustomer != null) {
-				var errorMessage = "Card Number must be unique";
+				var errorMessage = "Card Number must be unique.";
 				return StatusCode(StatusCodes.Status400BadRequest, new { Error = errorMessage });
 			}
 
