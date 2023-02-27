@@ -49,9 +49,18 @@ namespace FuelStation.Web.Server.Controllers {
 		}
 
 		[HttpPost]
-		public async Task Post(EmployeeEditDto employee) {
+		public async Task<ActionResult> Post(EmployeeEditDto employee) {
 			var newEmployee = new Employee(employee.Name, employee.Surname, employee.HireDateStart, employee.HireDateEnd, employee.SallaryPerMonth, employee.EmployeeType);
-			_employeeRepo.Add(newEmployee);
+			var employees = _employeeRepo.GetAll().ToList();
+			if (_memberValidation.ValidateCreateEmployee(newEmployee.EmployeeType, employees, out errorMessage)) {
+				try {
+					await Task.Run(() => { _employeeRepo.Add(newEmployee); });
+				} catch (DbException ex) {
+					return BadRequest(ex.Message);
+				}
+				return Ok();
+			}
+			return BadRequest(errorMessage);
 		}
 
 
@@ -95,10 +104,26 @@ namespace FuelStation.Web.Server.Controllers {
 		//	return BadRequest(errorMessage);
 		//}
 
+		//[HttpDelete("{id}")]
+
+		//public async Task Delete(int id) {
+		//	_employeeRepo.Delete(id);
+		//}
 		[HttpDelete("{id}")]
 
-		public async Task Delete(int id) {
-			_employeeRepo.Delete(id);
+		public async Task<ActionResult> Delete(int id) {
+			var employees = _employeeRepo.GetAll().ToList();
+			if (_memberValidation.ValidateDeleteEmployee(employees.Where(employee => employee.Id == id).Single().EmployeeType, employees, out errorMessage)) {
+				try {
+					await Task.Run(() => { _employeeRepo.Delete(id); });
+				} catch (DbUpdateException) {
+					return BadRequest($"Could not delete this employee because it has transactions");
+				} catch (KeyNotFoundException) {
+					return BadRequest($"Employee not found");
+				}
+				return Ok();
+			}
+			return BadRequest(errorMessage);
 		}
 	}
 }

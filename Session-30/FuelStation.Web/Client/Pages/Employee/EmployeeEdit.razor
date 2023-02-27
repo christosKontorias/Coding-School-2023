@@ -143,16 +143,16 @@
 		if (response.IsSuccessStatusCode)
 		{
 			navigationManager.NavigateTo("employeelist");
-			//} else {
-			//	var error = await response.Content.ReadAsStringAsync();
-			//	await jsRuntime.InvokeVoidAsync("alert", error);
-			//}
-		}
-		else if (response.StatusCode == HttpStatusCode.BadRequest)
-		{
-			var errorResponse = await response.Content.ReadFromJsonAsync<CodeErrorResponse>();
-				var errorMessage = errorResponse?.Error ?? "An error occurred";
-				await jsRuntime.InvokeVoidAsync("alert", errorMessage);
+			} else {
+				var error = await response.Content.ReadAsStringAsync();
+				await jsRuntime.InvokeVoidAsync("alert", error);
 			}
-	}
+		}
+		//else if (response.StatusCode == HttpStatusCode.BadRequest)
+		//{
+		//	var errorResponse = await response.Content.ReadFromJsonAsync<CodeErrorResponse>();
+		//		var errorMessage = errorResponse?.Error ?? "An error occurred";
+		//		await jsRuntime.InvokeVoidAsync("alert", errorMessage);
+		//	}
+	
 }

@@ -13,14 +13,14 @@
 		<div class="top-row px-4">
 			<AuthorizeView>
 				<Authorized>
-					<NavLink class="nav-link" @onclick="Logout" href="javascript:void(0)">
-						<div class="nav-item px-2">
-							<span class="oi oi-account-logout" aria-hidden="true"></span> Sign Out
-						</div>
-					</NavLink>
 					<NavLink class="nav-link" @onclick="DisplayGreetingAlert">
 						<div class="nav-item px-2">
 							<span class="oi oi-info" aria-hidden="true"></span> Info
+						</div>
+					</NavLink>
+					<NavLink class="nav-link" @onclick="Logout" href="javascript:void(0)">
+						<div class="nav-item px-2">
+							<span class="oi oi-account-logout" aria-hidden="true"></span> Sign Out
 						</div>
 					</NavLink>
 				</Authorized>

@@ -9,5 +9,7 @@ namespace FuelStation.Web.Shared.MemberValidation {
 	public interface IMemberValidation {
 		bool ValidateDeleteEmployee(EmployeeType employeeType, List<FuelStation.Model.Employee> employees, out String errorMessage);
 		bool ValidateUpdateEmployee(EmployeeType newEmployeeType, FuelStation.Model.Employee EmployeeDb, List<FuelStation.Model.Employee> employees, out String errorMessage);
+		bool ValidateCreateEmployee(EmployeeType employeeType, List<FuelStation.Model.Employee> employees, out String errorMessage);
+
 	}
 }
