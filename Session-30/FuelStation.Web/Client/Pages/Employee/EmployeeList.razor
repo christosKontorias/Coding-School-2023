@@ -89,7 +89,7 @@
 		navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
 	}
 	private async Task DeleteItem(EmployeeListDto employee) {
-		var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Delete Item. Are you sure?");
+		var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Delete Employee. Are you sure?");
 		if (confirm) {
 			//var response = await httpClient.DeleteAsync($"employee/{employee.Id}");
 			//if (response.IsSuccessStatusCode) {
