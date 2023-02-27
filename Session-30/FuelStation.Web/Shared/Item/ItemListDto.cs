@@ -12,7 +12,9 @@ namespace FuelStation.Web.Shared.Item {
 		public string Code { get; set; }
 		public string Description { get; set; }
 		public ItemType ItemType { get; set; }
+		[DataType(DataType.Currency)]
 		public decimal Price { get; set; }
+		[DataType(DataType.Currency)]
 		public decimal Cost { get; set; }
 	}
 }

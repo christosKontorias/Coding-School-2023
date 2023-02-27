@@ -5,6 +5,7 @@ using FuelStation.Web.Shared.Employee;
 using FuelStation.Web.Shared.Item;
 using FuelStation.Web.Shared.Transaction;
 using FuelStation.Web.Shared.TransactionLine;
+using System.Data;
 using System.Net.Http;
 using System.Net.Http.Json;
 
@@ -12,8 +13,8 @@ namespace FuelStation.WinForms {
 	public partial class TransactionsForm : Form {
 
         private readonly HttpClient _httpClient;
-
-        public TransactionsForm() {
+		private readonly List<CustomerListDto> _customers;
+		public TransactionsForm() {
             InitializeComponent();
             _httpClient = new HttpClient();
             _httpClient.BaseAddress = new Uri("https://localhost:7136/");
@@ -77,8 +78,8 @@ namespace FuelStation.WinForms {
 		//Search CardNumber
 		private void txtSearchCardNumber_TextChanged(object sender, EventArgs e) {
 
-
 		}
+	
 
 
         //Display Transaction
@@ -170,7 +171,7 @@ namespace FuelStation.WinForms {
 			}
 
 			if (response.IsSuccessStatusCode) {
-				MessageBox.Show("Transaction Line saved successfully!");
+				MessageBox.Show("Transaction Line saved successfully.");
 			} else {
 				MessageBox.Show("Error saving transaction Line.");
 			}
@@ -184,7 +185,7 @@ namespace FuelStation.WinForms {
 				response = await _httpClient.DeleteAsync($"transactionLine/{transactionLine.Id}");
 				if (response.IsSuccessStatusCode) {
 					bsTransactionLines.RemoveCurrent();
-					MessageBox.Show("Transaction Line saved successfully!");
+					MessageBox.Show("Transaction Line saved successfully.");
 				} else {
 					MessageBox.Show("Error saving transaction Line.");
 				}
