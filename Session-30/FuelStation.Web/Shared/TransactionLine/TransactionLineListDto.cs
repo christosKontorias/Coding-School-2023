@@ -22,5 +22,7 @@ namespace FuelStation.Web.Shared.TransactionLine {
 		public int ItemId { get; set; }
 
 		public ItemListDto? item { get; set; }
+
+		public List<TransactionLineListDto> TransactionLines { get; set; } = new();
 	}
 }

@@ -1,31 +1,15 @@
-﻿using DevExpress.DataAccess.Native.Data;
-using DevExpress.XtraBars;
-using DevExpress.XtraEditors;
-using DevExpress.XtraEditors.Repository;
-using DevExpress.XtraGrid.Views.Grid;
-using DevExpress.XtraRichEdit.UI;
-using DevExpress.XtraScheduler.Outlook.Interop;
-using DevExpress.XtraSpreadsheet.TileLayout;
-using FuelStation.EF.Repositories;
-using FuelStation.Model;
-using FuelStation.Web.Client.Authentication;
+﻿using FuelStation.Model;
+using FuelStation.Model.Enums;
 using FuelStation.Web.Shared.Customer;
 using FuelStation.Web.Shared.Employee;
 using FuelStation.Web.Shared.Item;
 using FuelStation.Web.Shared.Transaction;
 using FuelStation.Web.Shared.TransactionLine;
-using Microsoft.Data.SqlClient;
-using Newtonsoft.Json;
-using System.ComponentModel;
-using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace FuelStation.WinForms {
-    public partial class TransactionsForm : Form {
+	public partial class TransactionsForm : Form {
 
         private readonly HttpClient _httpClient;
 
@@ -74,7 +58,12 @@ namespace FuelStation.WinForms {
 						bsItems.DataSource = _items;
 						repItems.DataSource = bsItems;
 						repItems.ValueMember = "Id";
-						repItems.DisplayMember = "Code";
+						repItems.DisplayMember = "ItemType";
+
+						//repItemPrice.DataSource = bsItems;
+						//repItemPrice.ValueMember = "Id";
+						//repItemPrice.DisplayMember = "Price";
+
 
 					} else {
                         MessageBox.Show("Failed to retrieve transactions from server.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -84,6 +73,11 @@ namespace FuelStation.WinForms {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+		//Search CardNumber
+		private void txtSearchCardNumber_TextChanged(object sender, EventArgs e) {
+
+
+		}
 
 
         //Display Transaction
@@ -114,6 +108,15 @@ namespace FuelStation.WinForms {
 		private async Task OnSave() {
 			HttpResponseMessage response = null;
 			TransactionListDto transaction = (TransactionListDto)bsTransactions.Current;
+
+			// Check if the total value is greater than 50 Euros
+
+				if (transaction.TotalValue > 50) {
+					transaction.PaymentMethod = PaymentMethod.Cash;
+				}
+
+
+			//Save Transaction
 			if (transaction.Id == 0) {
 				response = await _httpClient.PostAsJsonAsync("transaction", transaction);
 			} else {
@@ -158,7 +161,7 @@ namespace FuelStation.WinForms {
 		// TransactionLine Save
 		private async Task OnTransactionLineSave() {
 			HttpResponseMessage response = null;
-			TransactionLineListDto transactionLine = (TransactionLineListDto)bsTransactionLines.Current;
+			TransactionLineEditDto transactionLine = (TransactionLineEditDto)bsTransactionLines.Current;
 			if (transactionLine.Id == 0) {
 				response = await _httpClient.PostAsJsonAsync("transactionLine", transactionLine);
 			} else {
@@ -209,18 +212,76 @@ namespace FuelStation.WinForms {
             this.Close();
 		}
 
-        //Calculations
-        private decimal CalculateNetValue(TransactionLineListDto transactionLine) {
-            return transactionLine.Quantity * transactionLine.ItemPrice;
-        }
+		//Calculations
+		private decimal CalculateNetValue(TransactionLineListDto transactionLine) {
+			return transactionLine.Quantity * transactionLine.ItemPrice;
+		}
 
-        private decimal CalculateDiscountValue(TransactionLineListDto transactionLine) {
-            return transactionLine.NetValue * (transactionLine.DiscountPercent / 100);
-        }
+		private decimal CalculateDiscountValue(TransactionLineListDto transactionLine) {
+			return transactionLine.NetValue * (transactionLine.DiscountPercent / 100);
+		}
 
-        private decimal CalculateTotalValue(TransactionLineListDto transactionLine) {
-            return transactionLine.NetValue - transactionLine.DiscountValue;
-        }
+		private decimal CalculateTotalValue(TransactionLineListDto transactionLine) {
+			return transactionLine.NetValue - transactionLine.DiscountValue;
+		}
+
+		//Update TransactionLine Rows Calculations 
+		private void gridViewTransactionLine_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e) {
+
+			if (e.Column.FieldName == "Quantity" || e.Column.FieldName == "ItemPrice" || e.Column.FieldName == "DiscountPercent") {
+				TransactionLineListDto transactionLine = (TransactionLineListDto)gridViewTransactionLine.GetRow(e.RowHandle);
+
+				decimal netValue = CalculateNetValue(transactionLine);
+				decimal discountValue = CalculateDiscountValue(transactionLine);
+				decimal totalValue = CalculateTotalValue(transactionLine);
+
+				gridViewTransactionLine.SetRowCellValue(e.RowHandle, "NetValue", netValue);
+				gridViewTransactionLine.SetRowCellValue(e.RowHandle, "DiscountValue", discountValue);
+				gridViewTransactionLine.SetRowCellValue(e.RowHandle, "TotalValue", totalValue);
+
+				decimal totalTransactionValue = 0;
+				for (int i = 0; i < gridViewTransactionLine.RowCount; i++) {
+					TransactionLineListDto currentTransactionLine = (TransactionLineListDto)gridViewTransactionLine.GetRow(i);
+					totalTransactionValue += currentTransactionLine.TotalValue;
+				}
+				gridViewTransactions.SetRowCellValue(0, "TotalValue", totalTransactionValue);
+			}
+
+			//Pick the Item Price of Selected Item
+			//if (e.Column.FieldName == "ItemId") {
+			//	int itemId = Convert.ToInt32(e.Value);
+			//	Item selectedItem = bsItems.List.OfType<Item>().FirstOrDefault(x => x.Id == itemId);
+			//	if (selectedItem != null) {
+			//		gridViewTransactionLine.SetRowCellValue(e.RowHandle, "ItemPrice", selectedItem.Price);
+			//	}
+			//}
+
+			//if (e.Column.FieldName == "Quantity" || e.Column.FieldName == "ItemId" || e.Column.FieldName == "DiscountPercent") {
+			//	TransactionLineListDto transactionLine = (TransactionLineListDto)gridViewTransactionLine.GetRow(e.RowHandle);
+
+			//	transactionLine.NetValue = CalculateNetValue(transactionLine);
+			//	transactionLine.DiscountValue = CalculateDiscountValue(transactionLine);
+			//	transactionLine.TotalValue = CalculateTotalValue(transactionLine);
+
+			//	gridViewTransactionLine.RefreshRow(e.RowHandle);
+
+			//	decimal totalTransactionValue = 0;
+			//	for (int i = 0; i < gridViewTransactionLine.RowCount; i++) {
+			//		TransactionLineListDto currentTransactionLine = (TransactionLineListDto)gridViewTransactionLine.GetRow(i);
+			//		totalTransactionValue += currentTransactionLine.TotalValue;
+			//	}
+			//	gridViewTransactions.SetRowCellValue(0, "TotalValue", totalTransactionValue);
+			//}
+		}
+
+
+
+
+
+
+
+
+
 
 
 		//Customize Buttons

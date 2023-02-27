@@ -45,14 +45,16 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.grdTransactionLine = new DevExpress.XtraGrid.GridControl();
 			this.gridViewTransactionLine = new DevExpress.XtraGrid.Views.Grid.GridView();
+			this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.colTransactionLineTransactionId = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.colItems = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.repItems = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
 			this.colQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colItemPrice = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colValue = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colDiscountPercent = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.colDiscountValue = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colTransactionLineTotalValue = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.colTransactionLineTransactionId = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.colItems = new DevExpress.XtraGrid.Columns.GridColumn();
-			this.repItems = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
 			this.bsTransactionLines = new System.Windows.Forms.BindingSource(this.components);
 			this.bsItems = new System.Windows.Forms.BindingSource(this.components);
 			this.colTransactionLineItem = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -61,7 +63,8 @@
 			this.btnTransactionLineDelete = new System.Windows.Forms.Button();
 			this.btnTransactionLineSave = new System.Windows.Forms.Button();
 			this.btnTransactionLineCreate = new System.Windows.Forms.Button();
-			this.colDiscountValue = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.label2 = new System.Windows.Forms.Label();
+			this.txtSearchCardNumber = new System.Windows.Forms.TextBox();
 			((System.ComponentModel.ISupportInitialize)(this.grdTransactions)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewTransactions)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repCustomers)).BeginInit();
@@ -288,64 +291,35 @@
 			// gridViewTransactionLine
 			// 
 			this.gridViewTransactionLine.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colId,
+            this.colTransactionLineTransactionId,
+            this.colItems,
             this.colQuantity,
             this.colItemPrice,
             this.colValue,
             this.colDiscountPercent,
             this.colDiscountValue,
-            this.colTransactionLineTotalValue,
-            this.colTransactionLineTransactionId,
-            this.colItems});
+            this.colTransactionLineTotalValue});
 			this.gridViewTransactionLine.GridControl = this.grdTransactionLine;
 			this.gridViewTransactionLine.Name = "gridViewTransactionLine";
 			this.gridViewTransactionLine.OptionsView.ShowGroupPanel = false;
+			this.gridViewTransactionLine.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridViewTransactionLine_CellValueChanged);
 			// 
-			// colQuantity
+			// colId
 			// 
-			this.colQuantity.Caption = "Quantity";
-			this.colQuantity.FieldName = "Quantity";
-			this.colQuantity.Name = "colQuantity";
-			this.colQuantity.Visible = true;
-			this.colQuantity.VisibleIndex = 0;
-			// 
-			// colItemPrice
-			// 
-			this.colItemPrice.Caption = "Item Price";
-			this.colItemPrice.FieldName = "ItemPrice";
-			this.colItemPrice.Name = "colItemPrice";
-			this.colItemPrice.Visible = true;
-			this.colItemPrice.VisibleIndex = 1;
-			// 
-			// colValue
-			// 
-			this.colValue.Caption = "Net Value";
-			this.colValue.FieldName = "NetValue";
-			this.colValue.Name = "colValue";
-			this.colValue.Visible = true;
-			this.colValue.VisibleIndex = 2;
-			// 
-			// colDiscountPercent
-			// 
-			this.colDiscountPercent.Caption = "Discount Percent";
-			this.colDiscountPercent.FieldName = "DiscountPercent";
-			this.colDiscountPercent.Name = "colDiscountPercent";
-			this.colDiscountPercent.Visible = true;
-			this.colDiscountPercent.VisibleIndex = 3;
-			// 
-			// colTransactionLineTotalValue
-			// 
-			this.colTransactionLineTotalValue.Caption = "Total Value";
-			this.colTransactionLineTotalValue.FieldName = "TotalValue";
-			this.colTransactionLineTotalValue.Name = "colTransactionLineTotalValue";
-			this.colTransactionLineTotalValue.OptionsColumn.AllowEdit = false;
-			this.colTransactionLineTotalValue.Visible = true;
-			this.colTransactionLineTotalValue.VisibleIndex = 5;
+			this.colId.Caption = "TransactionLine ID";
+			this.colId.FieldName = "Id";
+			this.colId.Name = "colId";
+			this.colId.Visible = true;
+			this.colId.VisibleIndex = 0;
 			// 
 			// colTransactionLineTransactionId
 			// 
-			this.colTransactionLineTransactionId.Caption = "Transaction ID";
+			this.colTransactionLineTransactionId.Caption = "TransactionId";
 			this.colTransactionLineTransactionId.FieldName = "TransactionId";
 			this.colTransactionLineTransactionId.Name = "colTransactionLineTransactionId";
+			this.colTransactionLineTransactionId.Visible = true;
+			this.colTransactionLineTransactionId.VisibleIndex = 1;
 			// 
 			// colItems
 			// 
@@ -354,7 +328,7 @@
 			this.colItems.FieldName = "ItemId";
 			this.colItems.Name = "colItems";
 			this.colItems.Visible = true;
-			this.colItems.VisibleIndex = 6;
+			this.colItems.VisibleIndex = 2;
 			// 
 			// repItems
 			// 
@@ -363,8 +337,60 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.repItems.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Code", "Code"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Description", "Description")});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Description", "Description"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ItemType", "ItemType")});
 			this.repItems.Name = "repItems";
+			// 
+			// colQuantity
+			// 
+			this.colQuantity.Caption = "Quantity";
+			this.colQuantity.FieldName = "Quantity";
+			this.colQuantity.Name = "colQuantity";
+			this.colQuantity.Visible = true;
+			this.colQuantity.VisibleIndex = 3;
+			// 
+			// colItemPrice
+			// 
+			this.colItemPrice.Caption = "Item Price";
+			this.colItemPrice.FieldName = "ItemPrice";
+			this.colItemPrice.Name = "colItemPrice";
+			this.colItemPrice.Visible = true;
+			this.colItemPrice.VisibleIndex = 4;
+			// 
+			// colValue
+			// 
+			this.colValue.Caption = "Net Value";
+			this.colValue.FieldName = "NetValue";
+			this.colValue.Name = "colValue";
+			this.colValue.OptionsColumn.AllowEdit = false;
+			this.colValue.Visible = true;
+			this.colValue.VisibleIndex = 5;
+			// 
+			// colDiscountPercent
+			// 
+			this.colDiscountPercent.Caption = "Discount Percent";
+			this.colDiscountPercent.FieldName = "DiscountPercent";
+			this.colDiscountPercent.Name = "colDiscountPercent";
+			this.colDiscountPercent.Visible = true;
+			this.colDiscountPercent.VisibleIndex = 6;
+			// 
+			// colDiscountValue
+			// 
+			this.colDiscountValue.Caption = "Discount Value";
+			this.colDiscountValue.FieldName = "DiscountValue";
+			this.colDiscountValue.Name = "colDiscountValue";
+			this.colDiscountValue.OptionsColumn.AllowEdit = false;
+			this.colDiscountValue.Visible = true;
+			this.colDiscountValue.VisibleIndex = 7;
+			// 
+			// colTransactionLineTotalValue
+			// 
+			this.colTransactionLineTotalValue.Caption = "Total Value";
+			this.colTransactionLineTotalValue.FieldName = "TotalValue";
+			this.colTransactionLineTotalValue.Name = "colTransactionLineTotalValue";
+			this.colTransactionLineTotalValue.OptionsColumn.AllowEdit = false;
+			this.colTransactionLineTotalValue.Visible = true;
+			this.colTransactionLineTotalValue.VisibleIndex = 8;
 			// 
 			// colTransactionLineItem
 			// 
@@ -420,19 +446,31 @@
 			this.btnTransactionLineCreate.MouseEnter += new System.EventHandler(this.btnTransactionLineCreate_MouseEnter);
 			this.btnTransactionLineCreate.MouseLeave += new System.EventHandler(this.btnTransactionLineCreate_MouseLeave);
 			// 
-			// colDiscountValue
+			// label2
 			// 
-			this.colDiscountValue.Caption = "Discount Value";
-			this.colDiscountValue.FieldName = "DiscountValue";
-			this.colDiscountValue.Name = "colDiscountValue";
-			this.colDiscountValue.Visible = true;
-			this.colDiscountValue.VisibleIndex = 4;
+			this.label2.AutoSize = true;
+			this.label2.Font = new System.Drawing.Font("Segoe Print", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+			this.label2.Location = new System.Drawing.Point(12, 9);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(166, 35);
+			this.label2.TabIndex = 23;
+			this.label2.Text = "Card Number :";
+			// 
+			// txtSearchCardNumber
+			// 
+			this.txtSearchCardNumber.Location = new System.Drawing.Point(184, 15);
+			this.txtSearchCardNumber.Name = "txtSearchCardNumber";
+			this.txtSearchCardNumber.Size = new System.Drawing.Size(100, 23);
+			this.txtSearchCardNumber.TabIndex = 24;
+			this.txtSearchCardNumber.TextChanged += new System.EventHandler(this.txtSearchCardNumber_TextChanged);
 			// 
 			// TransactionsForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(939, 680);
+			this.Controls.Add(this.txtSearchCardNumber);
+			this.Controls.Add(this.label2);
 			this.Controls.Add(this.btnTransactionLineDelete);
 			this.Controls.Add(this.btnTransactionLineSave);
 			this.Controls.Add(this.btnTransactionLineCreate);
@@ -498,7 +536,6 @@
 		private DevExpress.XtraGrid.Columns.GridColumn colValue;
 		private DevExpress.XtraGrid.Columns.GridColumn colDiscountPercent;
 		private DevExpress.XtraGrid.Columns.GridColumn colTransactionLineTotalValue;
-		private DevExpress.XtraGrid.Columns.GridColumn colTransactionLineTransactionId;
 		private DevExpress.XtraGrid.Columns.GridColumn colTransactionLineItem;
 		private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repCustomers;
 		private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repEmployees;
@@ -509,7 +546,12 @@
 		private Button btnTransactionLineDelete;
 		private Button btnTransactionLineSave;
 		private Button btnTransactionLineCreate;
-		private DevExpress.XtraGrid.Columns.GridColumn colItems;
 		private DevExpress.XtraGrid.Columns.GridColumn colDiscountValue;
+		private Label label2;
+		private TextBox txtSearchCardNumber;
+		private DevExpress.XtraGrid.Columns.GridColumn colItems;
+		private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+		private DevExpress.XtraGrid.Columns.GridColumn colId;
+		private DevExpress.XtraGrid.Columns.GridColumn colTransactionLineTransactionId;
 	}
 }

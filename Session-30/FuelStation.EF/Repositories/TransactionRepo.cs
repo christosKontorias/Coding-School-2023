@@ -53,7 +53,6 @@ public class TransactionRepo : IEntityRepo<Transaction> {
 	public void Update(int id, Transaction entity) {
 		using var context = new FuelStationDbContext();
 		var TransactionDb = context.Transactions
-			.Include(transaction => transaction.Id)
 			.SingleOrDefault(transaction => transaction.Id == id);
 			//.ThenInclude(transaction => transaction.Item)
 		if (TransactionDb is null) {
@@ -64,7 +63,7 @@ public class TransactionRepo : IEntityRepo<Transaction> {
 		TransactionDb.TotalValue = entity.TotalValue;
 		TransactionDb.CustomerId = entity.CustomerId;
 		TransactionDb.EmployeeId = entity.EmployeeId;
-		//TransactionDb.TransactionLines = entity.TransactionLines;
+		TransactionDb.TransactionLines = entity.TransactionLines;
 		context.SaveChanges();
 	}
 }

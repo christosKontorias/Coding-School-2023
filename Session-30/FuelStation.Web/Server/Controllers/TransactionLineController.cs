@@ -35,18 +35,18 @@ namespace FuelStation.Web.Server.Controllers {
 		}
 
 		[HttpGet("{id}")]
-		public async Task<TransactionLineEditDto> GetById(int id) {
+		public async Task<TransactionLineListDto> GetById(int id) {
 			var result = _transactionLineRepo.GetById(id);
-			return new TransactionLineEditDto {
-				Id = id,
+			return new TransactionLineListDto {
+				//Id = id,
 				Quantity = result.Quantity,
 				ItemPrice = result.ItemPrice,
 				NetValue = result.NetValue,
 				DiscountPercent = result.DiscountPercent,
 				DiscountValue = result.DiscountValue,
 				TotalValue = result.TotalValue,
-				TransactionId = result.TransactionId,
-				ItemId = result.ItemId
+				//TransactionId = result.TransactionId,
+				//ItemId = result.ItemId
 			};
 		}
 
