@@ -1,12 +1,4 @@
-﻿using FuelStation.Model.Enums;
-using FuelStation.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace FuelStation.Web.Shared.TransactionLine {
 	public class TransactionLineEditDto {
@@ -30,7 +22,6 @@ namespace FuelStation.Web.Shared.TransactionLine {
 			DiscountPercent = discountPercent;
 			DiscountValue = discountValue;
 			TotalValue = totalValue;
-
 		}
 	}
 }
