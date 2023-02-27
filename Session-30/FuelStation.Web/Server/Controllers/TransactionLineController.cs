@@ -30,7 +30,7 @@ namespace FuelStation.Web.Server.Controllers {
 				DiscountValue = transactionLine.DiscountValue,
 				TotalValue = transactionLine.TotalValue,
 				TransactionId = transactionLine.TransactionId,
-				//ItemId = transactionLine.ItemId
+				ItemId = transactionLine.ItemId
 			});
 		}
 
@@ -38,15 +38,15 @@ namespace FuelStation.Web.Server.Controllers {
 		public async Task<TransactionLineListDto> GetById(int id) {
 			var result = _transactionLineRepo.GetById(id);
 			return new TransactionLineListDto {
-				//Id = id,
+				Id = id,
 				Quantity = result.Quantity,
 				ItemPrice = result.ItemPrice,
 				NetValue = result.NetValue,
 				DiscountPercent = result.DiscountPercent,
 				DiscountValue = result.DiscountValue,
 				TotalValue = result.TotalValue,
-				//TransactionId = result.TransactionId,
-				//ItemId = result.ItemId
+				TransactionId = result.TransactionId,
+				ItemId = result.ItemId
 			};
 		}
 
@@ -55,8 +55,8 @@ namespace FuelStation.Web.Server.Controllers {
 			var newTransactionLine = new TransactionLine(transactionLine.Quantity,
 				transactionLine.ItemPrice, transactionLine.NetValue, transactionLine.DiscountPercent,
 				transactionLine.DiscountValue, transactionLine.TotalValue);
-			newTransactionLine.TransactionId = transactionLine.TransactionId;
-			newTransactionLine.ItemId = transactionLine.ItemId;
+			//newTransactionLine.TransactionId = transactionLine.TransactionId;
+			//newTransactionLine.ItemId = transactionLine.ItemId;
 			_transactionLineRepo.Add(newTransactionLine);
 		}
 

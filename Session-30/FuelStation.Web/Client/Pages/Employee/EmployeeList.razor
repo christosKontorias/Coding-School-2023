@@ -91,12 +91,18 @@
 	private async Task DeleteItem(EmployeeListDto employee) {
 		var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Delete Item. Are you sure?");
 		if (confirm) {
+			//var response = await httpClient.DeleteAsync($"employee/{employee.Id}");
+			//if (response.IsSuccessStatusCode) {
+			//	await LoadItemsFromServer();
+			//} else {
+			//	var error = await response.Content.ReadAsStringAsync();
+			//	await jsRuntime.InvokeVoidAsync("alert", error);
+			//}
 			var response = await httpClient.DeleteAsync($"employee/{employee.Id}");
 			if (response.IsSuccessStatusCode) {
 				await LoadItemsFromServer();
 			} else {
-				var error = await response.Content.ReadAsStringAsync();
-				await jsRuntime.InvokeVoidAsync("alert", error);
+				errorMessage = "You can't delete this Employee.";
 			}
 		}
 	}

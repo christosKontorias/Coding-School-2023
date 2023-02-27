@@ -71,7 +71,7 @@
 
 	private async Task DisplayGreetingAlert() {
 		var authState = await authenticationState;
-		var message = $"You are Log In as {authState.User.Identity.Name}";
+		var message = $"You are Log In as {authState.User.Identity.Name} !";
 		await jsRuntime.InvokeVoidAsync("alert", message);
 	}
 }

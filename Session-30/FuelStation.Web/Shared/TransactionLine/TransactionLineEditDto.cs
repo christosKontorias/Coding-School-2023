@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.ComponentModel.DataAnnotations;
 
 namespace FuelStation.Web.Shared.TransactionLine {
 	public class TransactionLineEditDto {
@@ -15,6 +16,7 @@ namespace FuelStation.Web.Shared.TransactionLine {
 		public decimal NetValue { get; set; }
 		public decimal DiscountPercent { get; set; }
 		public decimal DiscountValue { get; set; }
+		[DataType(DataType.Currency)]
 		public decimal TotalValue { get; set; }
 		public int TransactionId { get; set; }
 		public int ItemId { get; set; }
@@ -30,6 +32,5 @@ namespace FuelStation.Web.Shared.TransactionLine {
 			TotalValue = totalValue;
 
 		}
-
 	}
 }

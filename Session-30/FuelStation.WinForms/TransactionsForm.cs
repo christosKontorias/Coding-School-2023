@@ -34,8 +34,8 @@ namespace FuelStation.WinForms {
 
 
 					if (transactions != null) {
-                        bsTransactions.DataSource = transactions;
-						
+						bsTransactions.DataSource = transactions;
+
 						bsTransactionLines.DataSource = bsTransactions;
 						bsTransactionLines.DataMember = "TransactionLines";
 
@@ -60,9 +60,10 @@ namespace FuelStation.WinForms {
 						repItems.ValueMember = "Id";
 						repItems.DisplayMember = "ItemType";
 
-						//repItemPrice.DataSource = bsItems;
-						//repItemPrice.ValueMember = "Id";
-						//repItemPrice.DisplayMember = "Price";
+						//Total Value
+						repTotalValue.DataSource = bsTransactionLines;
+						repTotalValue.ValueMember = "TotalValue";
+						repTotalValue.DisplayMember = "TotalValue";
 
 
 					} else {
@@ -178,7 +179,7 @@ namespace FuelStation.WinForms {
 		// TransactionLine Delete
 		private async Task OnTransactionLineDelete() {
 			HttpResponseMessage response = null;
-			TransactionLineListDto transactionLine = (TransactionLineListDto)bsTransactionLines.Current;
+			TransactionLineEditDto transactionLine = (TransactionLineEditDto)bsTransactionLines.Current;
 			if (transactionLine.Id != null) {
 				response = await _httpClient.DeleteAsync($"transactionLine/{transactionLine.Id}");
 				if (response.IsSuccessStatusCode) {
@@ -228,6 +229,15 @@ namespace FuelStation.WinForms {
 		//Update TransactionLine Rows Calculations 
 		private void gridViewTransactionLine_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e) {
 
+			//Pick the Item Price of Selected Item
+			if (e.Column.FieldName == "ItemId") {
+				int itemId = Convert.ToInt32(e.Value);
+				Item selectedItem = bsItems.List.OfType<Item>().FirstOrDefault(x => x.Id == itemId);
+				if (selectedItem != null) {
+					gridViewTransactionLine.SetRowCellValue(e.RowHandle, "ItemPrice", selectedItem.Price);
+				}
+			}
+
 			if (e.Column.FieldName == "Quantity" || e.Column.FieldName == "ItemPrice" || e.Column.FieldName == "DiscountPercent") {
 				TransactionLineListDto transactionLine = (TransactionLineListDto)gridViewTransactionLine.GetRow(e.RowHandle);
 
@@ -246,38 +256,7 @@ namespace FuelStation.WinForms {
 				}
 				gridViewTransactions.SetRowCellValue(0, "TotalValue", totalTransactionValue);
 			}
-
-			//Pick the Item Price of Selected Item
-			//if (e.Column.FieldName == "ItemId") {
-			//	int itemId = Convert.ToInt32(e.Value);
-			//	Item selectedItem = bsItems.List.OfType<Item>().FirstOrDefault(x => x.Id == itemId);
-			//	if (selectedItem != null) {
-			//		gridViewTransactionLine.SetRowCellValue(e.RowHandle, "ItemPrice", selectedItem.Price);
-			//	}
-			//}
-
-			//if (e.Column.FieldName == "Quantity" || e.Column.FieldName == "ItemId" || e.Column.FieldName == "DiscountPercent") {
-			//	TransactionLineListDto transactionLine = (TransactionLineListDto)gridViewTransactionLine.GetRow(e.RowHandle);
-
-			//	transactionLine.NetValue = CalculateNetValue(transactionLine);
-			//	transactionLine.DiscountValue = CalculateDiscountValue(transactionLine);
-			//	transactionLine.TotalValue = CalculateTotalValue(transactionLine);
-
-			//	gridViewTransactionLine.RefreshRow(e.RowHandle);
-
-			//	decimal totalTransactionValue = 0;
-			//	for (int i = 0; i < gridViewTransactionLine.RowCount; i++) {
-			//		TransactionLineListDto currentTransactionLine = (TransactionLineListDto)gridViewTransactionLine.GetRow(i);
-			//		totalTransactionValue += currentTransactionLine.TotalValue;
-			//	}
-			//	gridViewTransactions.SetRowCellValue(0, "TotalValue", totalTransactionValue);
-			//}
 		}
-
-
-
-
-
 
 
 

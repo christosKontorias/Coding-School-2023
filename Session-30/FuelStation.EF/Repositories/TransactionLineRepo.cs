@@ -31,7 +31,9 @@ public class TransactionLineRepo : IEntityRepo<TransactionLine> {
 
 	public IList<TransactionLine> GetAll() {
 		using var context = new FuelStationDbContext();
-		return context.TransactionLines.Include(transactionLine => transactionLine.Transaction).ToList();
+		return context.TransactionLines
+			.Include(transactionLine => transactionLine.Transaction)
+			.Include(transactionLine => transactionLine.Item).ToList();
 	}
 
 	public TransactionLine? GetById(int id) {
@@ -55,9 +57,9 @@ public class TransactionLineRepo : IEntityRepo<TransactionLine> {
 		TransactionLineDb.DiscountValue = entity.DiscountValue;
 		TransactionLineDb.TotalValue = entity.TotalValue;
 		//TransactionLineDb.Transaction = entity.Transaction;
-		TransactionLineDb.TransactionId = entity.TransactionId;
+		//TransactionLineDb.TransactionId = entity.TransactionId;
 		//TransactionLineDb.Item = entity.Item;
-		TransactionLineDb.ItemId = entity.ItemId;
+		//TransactionLineDb.ItemId = entity.ItemId;
 		context.SaveChanges();
 	}
 }

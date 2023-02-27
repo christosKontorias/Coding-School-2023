@@ -5,9 +5,11 @@
 @using FuelStation.Web.Shared;
 @using FuelStation.Web.Shared.Transaction;
 @inject HttpClient httpClient
+@inject NavigationManager navigationManager
 @attribute [Authorize(Roles = "Manager")]
 
 <h3>Ledger</h3>
+<button class="btn btn-info" @onclick="RefreshItem">Refresh</button>
 
 @if (isLoading) {
 		<LoadingSpinner Type="LoadingSpinnerType.Border" />
@@ -67,8 +69,13 @@
 		}
 		isLoading = false;
 	}
+
+	private void RefreshItem() {
+		navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
+	}
+
 	private async Task LoadItemsFromServer() {
-		Transactions = await httpClient.GetFromJsonAsync<List<TransactionListDto>>("ledger");
+		Transactions = await httpClient.GetFromJsonAsync<List<TransactionListDto>>("transaction");
 		Employees = await httpClient.GetFromJsonAsync<List<EmployeeListDto>>("employee");
 		Items = await httpClient.GetFromJsonAsync<List<ItemListDto>>("item");
 	}

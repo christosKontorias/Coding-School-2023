@@ -37,6 +37,7 @@
 			this.colDate = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colPaymentMethod = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.colTotalValue = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.repTotalValue = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
 			this.colCustomerId = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.repCustomers = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
 			this.colEmployeeId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -67,6 +68,7 @@
 			this.txtSearchCardNumber = new System.Windows.Forms.TextBox();
 			((System.ComponentModel.ISupportInitialize)(this.grdTransactions)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewTransactions)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.repTotalValue)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repCustomers)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repEmployees)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsTransactions)).BeginInit();
@@ -176,7 +178,8 @@
 			this.grdTransactions.Name = "grdTransactions";
 			this.grdTransactions.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repCustomers,
-            this.repEmployees});
+            this.repEmployees,
+            this.repTotalValue});
 			this.grdTransactions.Size = new System.Drawing.Size(735, 200);
 			this.grdTransactions.TabIndex = 17;
 			this.grdTransactions.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -221,11 +224,19 @@
 			// colTotalValue
 			// 
 			this.colTotalValue.Caption = "Total Value";
+			this.colTotalValue.ColumnEdit = this.repTotalValue;
 			this.colTotalValue.FieldName = "TotalValue";
 			this.colTotalValue.Name = "colTotalValue";
 			this.colTotalValue.OptionsColumn.AllowEdit = false;
 			this.colTotalValue.Visible = true;
 			this.colTotalValue.VisibleIndex = 2;
+			// 
+			// repTotalValue
+			// 
+			this.repTotalValue.AutoHeight = false;
+			this.repTotalValue.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+			this.repTotalValue.Name = "repTotalValue";
 			// 
 			// colCustomerId
 			// 
@@ -491,6 +502,7 @@
 			this.Load += new System.EventHandler(this.TransactionsForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.grdTransactions)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewTransactions)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.repTotalValue)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repCustomers)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repEmployees)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.bsTransactions)).EndInit();
@@ -553,5 +565,6 @@
 		private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
 		private DevExpress.XtraGrid.Columns.GridColumn colId;
 		private DevExpress.XtraGrid.Columns.GridColumn colTransactionLineTransactionId;
+		private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repTotalValue;
 	}
 }
