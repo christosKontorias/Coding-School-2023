@@ -163,7 +163,7 @@ namespace FuelStation.WinForms {
 		// TransactionLine Save
 		private async Task OnTransactionLineSave() {
 			HttpResponseMessage response = null;
-			TransactionLineEditDto transactionLine = (TransactionLineEditDto)bsTransactionLines.Current;
+			TransactionLineListDto transactionLine = (TransactionLineListDto)bsTransactionLines.Current;
 			if (transactionLine.Id == 0) {
 				response = await _httpClient.PostAsJsonAsync("transactionLine", transactionLine);
 			} else {

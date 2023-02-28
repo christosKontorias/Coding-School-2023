@@ -30,7 +30,7 @@ namespace FuelStation.Web.Server.Controllers {
 				DiscountValue = transactionLine.DiscountValue,
 				TotalValue = transactionLine.TotalValue,
 				TransactionId = transactionLine.TransactionId,
-				ItemId = transactionLine.ItemId
+				ItemId = transactionLine.ItemId,
 			});
 		}
 
@@ -55,10 +55,18 @@ namespace FuelStation.Web.Server.Controllers {
 			var newTransactionLine = new TransactionLine(transactionLine.Quantity,
 				transactionLine.ItemPrice, transactionLine.NetValue, transactionLine.DiscountPercent,
 				transactionLine.DiscountValue, transactionLine.TotalValue);
+			newTransactionLine.Quantity = transactionLine.Quantity;
+			newTransactionLine.ItemPrice = transactionLine.ItemPrice;
+			newTransactionLine.NetValue = transactionLine.NetValue;
+			newTransactionLine.DiscountPercent = transactionLine.DiscountPercent;
+			newTransactionLine.DiscountValue = transactionLine.DiscountValue;
+			newTransactionLine.TotalValue = transactionLine.TotalValue;
 			//newTransactionLine.TransactionId = transactionLine.TransactionId;
 			//newTransactionLine.ItemId = transactionLine.ItemId;
 			_transactionLineRepo.Add(newTransactionLine);
 		}
+
+
 
 		[HttpPut]
 		public async Task Put(TransactionLineEditDto transactionLine) {

@@ -64,8 +64,6 @@
 			this.btnTransactionLineDelete = new System.Windows.Forms.Button();
 			this.btnTransactionLineSave = new System.Windows.Forms.Button();
 			this.btnTransactionLineCreate = new System.Windows.Forms.Button();
-			this.label2 = new System.Windows.Forms.Label();
-			this.txtSearchCardNumber = new System.Windows.Forms.TextBox();
 			((System.ComponentModel.ISupportInitialize)(this.grdTransactions)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gridViewTransactions)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repTotalValue)).BeginInit();
@@ -85,7 +83,7 @@
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Segoe Print", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.label1.Location = new System.Drawing.Point(261, 89);
+			this.label1.Location = new System.Drawing.Point(12, 9);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(181, 47);
 			this.label1.TabIndex = 6;
@@ -97,7 +95,7 @@
 			this.btnTransactionClose.FlatAppearance.BorderSize = 0;
 			this.btnTransactionClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnTransactionClose.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.btnTransactionClose.Location = new System.Drawing.Point(815, 628);
+			this.btnTransactionClose.Location = new System.Drawing.Point(796, 536);
 			this.btnTransactionClose.Name = "btnTransactionClose";
 			this.btnTransactionClose.Size = new System.Drawing.Size(100, 40);
 			this.btnTransactionClose.TabIndex = 14;
@@ -113,7 +111,7 @@
 			this.btnTransactionUpdate.FlatAppearance.BorderSize = 0;
 			this.btnTransactionUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnTransactionUpdate.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.btnTransactionUpdate.Location = new System.Drawing.Point(709, 628);
+			this.btnTransactionUpdate.Location = new System.Drawing.Point(690, 536);
 			this.btnTransactionUpdate.Name = "btnTransactionUpdate";
 			this.btnTransactionUpdate.Size = new System.Drawing.Size(100, 40);
 			this.btnTransactionUpdate.TabIndex = 13;
@@ -129,7 +127,7 @@
 			this.btnTransactionDelete.FlatAppearance.BorderSize = 0;
 			this.btnTransactionDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnTransactionDelete.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.btnTransactionDelete.Location = new System.Drawing.Point(796, 269);
+			this.btnTransactionDelete.Location = new System.Drawing.Point(796, 180);
 			this.btnTransactionDelete.Name = "btnTransactionDelete";
 			this.btnTransactionDelete.Size = new System.Drawing.Size(100, 40);
 			this.btnTransactionDelete.TabIndex = 12;
@@ -145,7 +143,7 @@
 			this.btnTransactionSave.FlatAppearance.BorderSize = 0;
 			this.btnTransactionSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnTransactionSave.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.btnTransactionSave.Location = new System.Drawing.Point(796, 223);
+			this.btnTransactionSave.Location = new System.Drawing.Point(796, 134);
 			this.btnTransactionSave.Name = "btnTransactionSave";
 			this.btnTransactionSave.Size = new System.Drawing.Size(100, 40);
 			this.btnTransactionSave.TabIndex = 11;
@@ -161,7 +159,7 @@
 			this.btnTransactionCreate.FlatAppearance.BorderSize = 0;
 			this.btnTransactionCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnTransactionCreate.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.btnTransactionCreate.Location = new System.Drawing.Point(796, 177);
+			this.btnTransactionCreate.Location = new System.Drawing.Point(796, 88);
 			this.btnTransactionCreate.Name = "btnTransactionCreate";
 			this.btnTransactionCreate.Size = new System.Drawing.Size(100, 40);
 			this.btnTransactionCreate.TabIndex = 10;
@@ -173,7 +171,7 @@
 			// 
 			// grdTransactions
 			// 
-			this.grdTransactions.Location = new System.Drawing.Point(12, 139);
+			this.grdTransactions.Location = new System.Drawing.Point(12, 63);
 			this.grdTransactions.MainView = this.gridViewTransactions;
 			this.grdTransactions.Name = "grdTransactions";
 			this.grdTransactions.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -281,7 +279,7 @@
 			// 
 			this.label3.AutoSize = true;
 			this.label3.Font = new System.Drawing.Font("Segoe Print", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.label3.Location = new System.Drawing.Point(223, 355);
+			this.label3.Location = new System.Drawing.Point(12, 269);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(260, 47);
 			this.label3.TabIndex = 18;
@@ -289,7 +287,7 @@
 			// 
 			// grdTransactionLine
 			// 
-			this.grdTransactionLine.Location = new System.Drawing.Point(12, 405);
+			this.grdTransactionLine.Location = new System.Drawing.Point(12, 319);
 			this.grdTransactionLine.MainView = this.gridViewTransactionLine;
 			this.grdTransactionLine.Name = "grdTransactionLine";
 			this.grdTransactionLine.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -415,7 +413,7 @@
 			this.btnTransactionLineDelete.FlatAppearance.BorderSize = 0;
 			this.btnTransactionLineDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnTransactionLineDelete.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.btnTransactionLineDelete.Location = new System.Drawing.Point(796, 523);
+			this.btnTransactionLineDelete.Location = new System.Drawing.Point(796, 445);
 			this.btnTransactionLineDelete.Name = "btnTransactionLineDelete";
 			this.btnTransactionLineDelete.Size = new System.Drawing.Size(100, 40);
 			this.btnTransactionLineDelete.TabIndex = 22;
@@ -431,7 +429,7 @@
 			this.btnTransactionLineSave.FlatAppearance.BorderSize = 0;
 			this.btnTransactionLineSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnTransactionLineSave.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.btnTransactionLineSave.Location = new System.Drawing.Point(796, 477);
+			this.btnTransactionLineSave.Location = new System.Drawing.Point(796, 399);
 			this.btnTransactionLineSave.Name = "btnTransactionLineSave";
 			this.btnTransactionLineSave.Size = new System.Drawing.Size(100, 40);
 			this.btnTransactionLineSave.TabIndex = 21;
@@ -447,7 +445,7 @@
 			this.btnTransactionLineCreate.FlatAppearance.BorderSize = 0;
 			this.btnTransactionLineCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnTransactionLineCreate.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.btnTransactionLineCreate.Location = new System.Drawing.Point(796, 431);
+			this.btnTransactionLineCreate.Location = new System.Drawing.Point(796, 353);
 			this.btnTransactionLineCreate.Name = "btnTransactionLineCreate";
 			this.btnTransactionLineCreate.Size = new System.Drawing.Size(100, 40);
 			this.btnTransactionLineCreate.TabIndex = 20;
@@ -457,31 +455,11 @@
 			this.btnTransactionLineCreate.MouseEnter += new System.EventHandler(this.btnTransactionLineCreate_MouseEnter);
 			this.btnTransactionLineCreate.MouseLeave += new System.EventHandler(this.btnTransactionLineCreate_MouseLeave);
 			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("Segoe Print", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.label2.Location = new System.Drawing.Point(12, 9);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(166, 35);
-			this.label2.TabIndex = 23;
-			this.label2.Text = "Card Number :";
-			// 
-			// txtSearchCardNumber
-			// 
-			this.txtSearchCardNumber.Location = new System.Drawing.Point(184, 15);
-			this.txtSearchCardNumber.Name = "txtSearchCardNumber";
-			this.txtSearchCardNumber.Size = new System.Drawing.Size(100, 23);
-			this.txtSearchCardNumber.TabIndex = 24;
-			this.txtSearchCardNumber.TextChanged += new System.EventHandler(this.txtSearchCardNumber_TextChanged);
-			// 
 			// TransactionsForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(939, 680);
-			this.Controls.Add(this.txtSearchCardNumber);
-			this.Controls.Add(this.label2);
+			this.ClientSize = new System.Drawing.Size(939, 590);
 			this.Controls.Add(this.btnTransactionLineDelete);
 			this.Controls.Add(this.btnTransactionLineSave);
 			this.Controls.Add(this.btnTransactionLineCreate);
